@@ -275,12 +275,18 @@ h2 {
     font-size: 1.1em;
     white-space: nowrap;
 }
-.beach-card .surf-detail .surf-value {
+.beach-card .surf-detail:first-child .surf-value {
     display: inline-block;
     border: 2px solid #b3d4ff;
     border-radius: 8px;
     padding: 2px 10px;
     background: #f0f8ff;
+}
+.beach-card .surf-detail .surf-value {
+    min-height: 2.2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .rating-row {
     margin: 10px 0;
