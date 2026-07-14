@@ -275,7 +275,7 @@ h2 {
     font-size: 1.1em;
     white-space: nowrap;
 }
-.beach-card .surf-detail:first-child .surf-value {
+.beach-card .surf-detail .surf-value {
     display: inline-block;
     border: 2px solid #b3d4ff;
     border-radius: 8px;
