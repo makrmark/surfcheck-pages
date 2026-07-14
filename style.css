@@ -13,7 +13,7 @@ body {
     color: #333;
     max-width: 800px;
     margin: 0 auto;
-    padding: 90px 20px 20px;
+    padding: 130px 20px 20px;
     background-color: #f0f8ff;
     overflow-x: hidden;
 }
@@ -31,6 +31,14 @@ header {
     padding: 6px 10px;
     border-bottom: 2px solid #0066cc;
 }
+@media (min-width: 600px) {
+    header {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 0 15px;
+        margin-bottom: 30px;
+    }
 h1 {
     color: #0066cc;
     font-size: 0.95em;
