@@ -3400,7 +3400,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 13:22:51 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 15:03:15 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3665,9 +3665,9 @@ h2 {
           windPoints.push(x.toFixed(1) + ',' + wi.toFixed(1));
           tidePoints.push(x.toFixed(1) + ',' + ty.toFixed(1));
           dots.push(
-            '<circle cx="' + x.toFixed(1) + '" cy="' + wy.toFixed(1) + '" r="3" class="tl-dot tl-dot-wave"/>',
-            '<circle cx="' + x.toFixed(1) + '" cy="' + wi.toFixed(1) + '" r="3" class="tl-dot tl-dot-wind"/>',
-            '<circle cx="' + x.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="3" class="tl-dot tl-dot-tide"/>'
+            '<circle cx="' + x.toFixed(1) + '" cy="' + wy.toFixed(1) + '" r="3" class="tl-dot tl-dot-wave"></circle>',
+            '<circle cx="' + x.toFixed(1) + '" cy="' + wi.toFixed(1) + '" r="3" class="tl-dot tl-dot-wind"></circle>',
+            '<circle cx="' + x.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="3" class="tl-dot tl-dot-tide"></circle>'
           );
         });
 
@@ -3690,9 +3690,9 @@ h2 {
         chartHtml += '</div>' +
           '<div class="tl-svg-wrap">' +
           '<svg width="100%" height="' + svgH + '" viewBox="0 0 ' + svgW + ' ' + svgH + '" class="tl-chart-svg">' +
-          '<polyline points="' + wavePoints.join(' ') + '" class="tl-line tl-line-wave" />' +
-          '<polyline points="' + windPoints.join(' ') + '" class="tl-line tl-line-wind" />' +
-          '<polyline points="' + tidePoints.join(' ') + '" class="tl-line tl-line-tide" />' +
+          '<polyline points="' + wavePoints.join(' ') + '" class="tl-line tl-line-wave"></polyline>' +
+          '<polyline points="' + windPoints.join(' ') + '" class="tl-line tl-line-wind"></polyline>' +
+          '<polyline points="' + tidePoints.join(' ') + '" class="tl-line tl-line-tide"></polyline>' +
           dots.join('') +
           '</svg>' +
           '<div class="tl-legend">' +
