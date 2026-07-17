@@ -579,81 +579,46 @@ h2 {
     color: #f5a623;
     letter-spacing: -1px;
 }
-.tl-svg-wrap {
-    position: relative;
-    margin-top: 0;
-    padding: 0;
+.tl-bar-wrap {
+    margin-top: 2px;
 }
-.tl-chart-svg {
-    display: block;
-}
-.tl-line {
-    fill: none;
-    stroke-width: 2;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-}
-.tl-line-wave {
-    stroke: #4a90d9;
-}
-.tl-line-wind {
-    stroke: #27ae60;
-}
-.tl-line-tide {
-    stroke: #8e44ad;
-    stroke-dasharray: 4,3;
-}
-.tl-dot {
-    stroke: #fff;
-    stroke-width: 1.5;
-}
-.tl-dot-wave {
-    fill: #4a90d9;
-}
-.tl-dot-wind {
-    fill: #27ae60;
-}
-.tl-dot-tide {
-    fill: #8e44ad;
-}
-.tl-svg-zone {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    cursor: pointer;
-    z-index: 2;
-    border-radius: 4px;
-    transition: background 0.15s;
-}
-.tl-svg-zone:hover {
-    background: rgba(0, 102, 204, 0.08);
-}
-.tl-legend {
+.tl-bars {
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 1px;
-    font-size: 0.55em;
-    color: #888;
+    gap: 2px;
 }
-.tl-legend-item {
-    display: inline-flex;
+.tl-bar-row {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 1px;
 }
-.tl-legend-swatch {
-    display: inline-block;
-    width: 10px;
-    height: 3px;
-    border-radius: 2px;
+.tl-bar-label {
+    font-size: 0.5em;
+    color: #999;
+    font-weight: 600;
+    margin-bottom: 1px;
 }
-.tl-swatch-wave {
+.tl-bar-col {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+}
+.tl-bar {
+    width: 60%;
+    min-height: 2px;
+    border-radius: 2px 2px 0 0;
+    transition: height 0.2s;
+}
+.tl-bar-wave {
     background: #4a90d9;
 }
-.tl-swatch-wind {
+.tl-bar-wind {
     background: #27ae60;
 }
-.tl-swatch-tide {
+.tl-bar-tide {
     background: #8e44ad;
 }
 
@@ -674,9 +639,5 @@ h2 {
     }
     .tl-slot-rating {
         font-size: 0.65em;
-    }
-    .tl-legend {
-        font-size: 0.65em;
-        gap: 14px;
     }
 }
