@@ -3352,7 +3352,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 16:29:44 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 16:30:55 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3533,7 +3533,7 @@ h2 {
       if (chart) {
         chart.style.display = '';
         chart.querySelectorAll('.tl-day').forEach(function(el) {
-          el.style.display = el.getAttribute('data-day') === day ? '' : 'none';
+          el.style.display = el.getAttribute('data-day') === day ? 'block' : 'none';
         });
       }
       try { localStorage.setItem('surfcheckDay', day); } catch(e) {}
@@ -3723,7 +3723,7 @@ h2 {
       } else {
         container.style.display = '';
         container.querySelectorAll('.tl-day').forEach(function(el) {
-          el.style.display = el.getAttribute('data-day') === day ? '' : 'none';
+          el.style.display = el.getAttribute('data-day') === day ? 'block' : 'none';
         });
         // Set first slot active
         var firstSlot = container.querySelector('.tl-slot[data-day="' + day + '"]');
