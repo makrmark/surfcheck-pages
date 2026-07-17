@@ -3361,7 +3361,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 15:06:37 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 15:27:44 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3651,27 +3651,16 @@ h2 {
         chartHtml += '</div>' +
           '<div class="tl-bar-wrap">' +
           '<div class="tl-bars">' +
-          '<div class="tl-bar-row">' +
-            '<span class="tl-bar-label">Swell</span>' +
-            dayData.map(function(d) {
-              var pct = Math.round((d.wave_height / maxWave) * 100);
-              return '<div class="tl-bar-col"><div class="tl-bar tl-bar-wave" style="height:' + pct + '%"></div></div>';
-            }).join('') +
-          '</div>' +
-          '<div class="tl-bar-row">' +
-            '<span class="tl-bar-label">Wind</span>' +
-            dayData.map(function(d) {
-              var pct = Math.round((d.wind_knots / maxWind) * 100);
-              return '<div class="tl-bar-col"><div class="tl-bar tl-bar-wind" style="height:' + pct + '%"></div></div>';
-            }).join('') +
-          '</div>' +
-          '<div class="tl-bar-row">' +
-            '<span class="tl-bar-label">Tide</span>' +
-            dayData.map(function(d) {
-              var pct = Math.round(((d.tide_height - minTide) / tideRange) * 100);
-              return '<div class="tl-bar-col"><div class="tl-bar tl-bar-tide" style="height:' + pct + '%"></div></div>';
-            }).join('') +
-          '</div>' +
+          dayData.map(function(d, i) {
+            var wp = Math.round((d.wave_height / maxWave) * 100);
+            var wip = Math.round((d.wind_knots / maxWind) * 100);
+            var tp = Math.round(((d.tide_height - minTide) / tideRange) * 100);
+            return '<div class="tl-bar-col">' +
+              '<div class="tl-bar tl-bar-wave" style="height:' + wp + 'px"></div>' +
+              '<div class="tl-bar tl-bar-wind" style="height:' + wip + 'px"></div>' +
+              '<div class="tl-bar tl-bar-tide" style="height:' + tp + 'px"></div>' +
+              '</div>';
+          }).join('') +
           '</div>' +
           '</div>' +
           '</div>';
