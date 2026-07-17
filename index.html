@@ -522,109 +522,59 @@ h2 {
     text-align: center;
     margin-bottom: 1px;
 }
-.tl-slots {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 1px;
-}
-.tl-slot {
-    flex: 1;
-    min-width: 0;
-    padding: 3px 1px;
-    border: 1px solid #b3d4ff;
-    border-radius: 6px;
-    background: white;
+.tl-info-bar {
+    font-size: 0.6em;
+    color: #333;
     text-align: center;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+    padding: 2px 0 1px 0;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.tl-slot:hover {
+.tl-slider {
+    position: relative;
+    height: 18px;
+    margin: 1px 0;
+    cursor: pointer;
+}
+.tl-slider-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #d0d0d0;
+    border-radius: 2px;
+    transform: translateY(-50%);
+}
+.tl-slider-dot {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #b3d4ff;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+    z-index: 1;
+}
+.tl-slider-dot:hover {
     background: #e6f2ff;
     border-color: #0066cc;
 }
-.tl-slot.active {
+.tl-slider-dot.active {
     background: #0066cc;
     border-color: #0066cc;
-}
-.tl-slot.active .tl-slot-label,
-.tl-slot.active .tl-slot-metric {
-    color: white;
-}
-.tl-slot-label {
-    font-size: 0.6em;
-    font-weight: 700;
-    color: #0066cc;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.tl-slot-metric {
-    font-size: 0.5em;
-    color: #555;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.2;
-}
-.tl-metric-val {
-    font-weight: 600;
-    color: #0066cc;
-}
-.tl-slot.active .tl-metric-val {
-    color: #fff;
-}
-.tl-compass {
-    color: #888;
-    font-size: 0.9em;
-}
-.tl-wind-metric {
-    color: #666;
-}
-.tl-svg-wrap {
-    margin-top: 1px;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    line-height: 0;
-}
-.tl-chart-svg {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-.tl-svg-zone {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    cursor: pointer;
-}
-.tl-dot-wave {
-    fill: #4a90d9;
-}
-.tl-dot-wind {
-    fill: #27ae60;
-}
-.tl-dot-tide {
-    fill: #8e44ad;
+    transform: translate(-50%, -50%) scale(1.3);
 }
 
 @media (min-width: 600px) {
     .timeline-chart {
         margin: 6px 0 4px 0;
         max-width: 700px;
-    }
-    .tl-slot {
-        padding: 6px 4px;
-        border-width: 2px;
-    }
-    .tl-slot-label {
-        font-size: 0.75em;
-    }
-    .tl-slot-metric {
-        font-size: 0.7em;
-    }
-    .tl-slot-rating {
-        font-size: 0.65em;
     }
 }
 
@@ -3340,7 +3290,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 16:37:16 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 18:05:27 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3511,9 +3461,23 @@ h2 {
       if (first) {
         first.style.display = 'block';
         var label = first.getAttribute('data-tf');
-        // Update chart active slot
-        document.querySelectorAll('.tl-slot').forEach(function(el) { el.classList.remove('active'); });
-        document.querySelectorAll('.tl-slot[data-tf="' + label + '"][data-day="' + day + '"]').forEach(function(el) { el.classList.add('active'); });
+        // Update slider dot
+        var chart = document.getElementById('timelineChart');
+        if (chart) {
+          chart.querySelectorAll('.tl-slider-dot').forEach(function(d) { d.classList.remove('active'); });
+          chart.querySelectorAll('.tl-slider-dot[data-tf="' + label + '"][data-day="' + day + '"]').forEach(function(d) { d.classList.add('active'); });
+          // Update info bar
+          var infoEl = document.getElementById('tl-info-' + day);
+          if (infoEl) {
+            var dataEl = document.getElementById('timeline-data');
+            if (dataEl) {
+              try {
+                var d = JSON.parse(dataEl.textContent).filter(function(x) { return x.day === day && x.label === label; })[0];
+                if (d) infoEl.textContent = d.emoji + ' ' + d.label + ' \u00b7 ' + d.wave_height + 'm ' + d.wave_compass + ' \u00b7 ' + d.wind_knots + 'kt ' + d.wind_compass;
+              } catch(e) {}
+            }
+          }
+        }
         try { localStorage.setItem('surfcheckTimeframe', label); } catch(e) {}
       }
       // Show/hide chart for this day
@@ -3533,9 +3497,22 @@ h2 {
       document.querySelectorAll('.timeframe-content').forEach(function(el) {
         el.style.display = (el.getAttribute('data-tf') === label && el.getAttribute('data-day') === day) ? 'block' : 'none';
       });
-      // Update chart active slot
-      document.querySelectorAll('.tl-slot').forEach(function(el) { el.classList.remove('active'); });
-      document.querySelectorAll('.tl-slot[data-tf="' + label + '"][data-day="' + day + '"]').forEach(function(el) { el.classList.add('active'); });
+      // Update slider dot and info bar
+      var chart = document.getElementById('timelineChart');
+      if (chart) {
+        chart.querySelectorAll('.tl-slider-dot').forEach(function(d) { d.classList.remove('active'); });
+        chart.querySelectorAll('.tl-slider-dot[data-tf="' + label + '"][data-day="' + day + '"]').forEach(function(d) { d.classList.add('active'); });
+        var infoEl = document.getElementById('tl-info-' + day);
+        if (infoEl) {
+          var dataEl = document.getElementById('timeline-data');
+          if (dataEl) {
+            try {
+              var d = JSON.parse(dataEl.textContent).filter(function(x) { return x.day === day && x.label === label; })[0];
+              if (d) infoEl.textContent = d.emoji + ' ' + d.label + ' \u00b7 ' + d.wave_height + 'm ' + d.wave_compass + ' \u00b7 ' + d.wind_knots + 'kt ' + d.wind_compass;
+            } catch(e) {}
+          }
+        }
+      }
       try { localStorage.setItem('surfcheckTimeframe', label); } catch(e) {}
     }
     function showOutlook() {
@@ -3558,139 +3535,65 @@ h2 {
       try { data = JSON.parse(dataEl.textContent); } catch(e) { return; }
       if (!data || data.length === 0) return;
 
-      // Group by day
       var days = ['today', 'tomorrow'];
       var dayLabels = { 'today': 'Today', 'tomorrow': 'Tomorrow' };
       var chartHtml = '';
 
+      function makeInfo(day, label) {
+        var item = data.filter(function(x) { return x.day === day && x.label === label; })[0];
+        if (!item) item = data.filter(function(x) { return x.day === day; })[0];
+        if (!item) return '';
+        return item.emoji + ' ' + item.label + ' \u00b7 ' + item.wave_height + 'm ' + item.wave_compass + ' \u00b7 ' + item.wind_knots + 'kt ' + item.wind_compass;
+      }
+
       days.forEach(function(dayId) {
         var dayData = data.filter(function(d) { return d.day === dayId; });
         if (dayData.length === 0) return;
-
         var dateStr = dayData[0] ? dayData[0].date_str : '';
-
-        // Find max values for normalization
-        var maxWave = 0, maxWind = 0, minTide = 0, maxTide = 0;
-        dayData.forEach(function(d) {
-          var wh = d.wave_height;
-          var ws = d.wind_knots;
-          var th = d.tide_height;
-          if (wh > maxWave) maxWave = wh;
-          if (ws > maxWind) maxWind = ws;
-          if (th < minTide) minTide = th;
-          if (th > maxTide) maxTide = th;
-        });
-        maxWave = Math.max(maxWave, 0.5);
-        maxWind = Math.max(maxWind, 5);
-        var tideRange = Math.max(maxTide - minTide, 0.3);
-
-        var n = dayData.length;
-        var slotW = 60; // viewBox width per slot
-        var svgW = n * slotW;
-        var svgH = 44;
-        var pad = 4;
-
-        // Build SVG chart lines
-        var wavePoints = [];
-        var windPoints = [];
-        var tidePoints = [];
-        var dots = [];
-
-        dayData.forEach(function(d, i) {
-          var x = (i + 0.5) * slotW;
-          var wy = svgH - pad - ((d.wave_height) / maxWave) * (svgH - 2 * pad);
-          var wi = svgH - pad - ((d.wind_knots) / maxWind) * (svgH - 2 * pad);
-          var ty = svgH - pad - ((d.tide_height - minTide) / tideRange) * (svgH - 2 * pad);
-          wavePoints.push(x.toFixed(1) + ',' + wy.toFixed(1));
-          windPoints.push(x.toFixed(1) + ',' + wi.toFixed(1));
-          tidePoints.push(x.toFixed(1) + ',' + ty.toFixed(1));
-          dots.push(
-            '<circle cx="' + x.toFixed(1) + '" cy="' + wy.toFixed(1) + '" r="1.5" class="tl-dot tl-dot-wave"></circle>',
-            '<circle cx="' + x.toFixed(1) + '" cy="' + wi.toFixed(1) + '" r="1.5" class="tl-dot tl-dot-wind"></circle>',
-            '<circle cx="' + x.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="1.5" class="tl-dot tl-dot-tide"></circle>'
-          );
-        });
+        var firstLabel = dayData[0] ? dayData[0].label : '';
+        var count = dayData.length;
 
         chartHtml += '<div class="tl-day" data-day="' + dayId + '">' +
-          '<div class="tl-day-label">' + dayLabels[dayId] + ' &middot; ' + dateStr + '</div>' +
-          '<div class="tl-slots">';
+          '<div class="tl-day-label">' + dayLabels[dayId] + ' \u00b7 ' + dateStr + '</div>' +
+          '<div class="tl-info-bar" id="tl-info-' + dayId + '">' + makeInfo(dayId, firstLabel) + '</div>' +
+          '<div class="tl-slider">' +
+          '<div class="tl-slider-track"></div>';
 
         dayData.forEach(function(d, i) {
-          chartHtml += '<div class="tl-slot" data-tf="' + d.label + '" data-day="' + dayId + '">' +
-            '<div class="tl-slot-label">' + d.emoji + ' ' + d.label + '</div>' +
-            '<div class="tl-slot-metric"><span class="tl-metric-val">' + d.wave_height + 'm</span> <span class="tl-compass">' + d.wave_compass + '</span></div>' +
-            '<div class="tl-slot-metric tl-wind-metric">' + d.wind_knots + 'kt ' + d.wind_compass + '</div>' +
-            '</div>';
+          var pct = count > 1 ? Math.round(i / (count - 1) * 100) : 50;
+          chartHtml += '<div class="tl-slider-dot" data-tf="' + d.label + '" data-day="' + dayId + '" style="left:' + pct + '%"></div>';
         });
 
-        chartHtml += '</div>' +
-          '<div class="tl-svg-wrap">' +
-          '<svg class="tl-chart-svg" viewBox="0 0 ' + svgW + ' ' + svgH + '" preserveAspectRatio="xMidYMid meet">' +
-          '<polyline points="' + wavePoints.join(' ') + '" fill="none" stroke="#4a90d9" stroke-width="1.5"></polyline>' +
-          '<polyline points="' + windPoints.join(' ') + '" fill="none" stroke="#27ae60" stroke-width="1.5"></polyline>' +
-          '<polyline points="' + tidePoints.join(' ') + '" fill="none" stroke="#8e44ad" stroke-width="1.5"></polyline>' +
-          dots.join('') +
-          '</svg>' +
-          '</div>' +
-          '</div>';
+        chartHtml += '</div></div>';
       });
 
       container.innerHTML = chartHtml;
 
-      // Click handlers on slots
-      container.querySelectorAll('.tl-slot').forEach(function(s) {
-        s.addEventListener('click', function() {
+      // Click handlers on dots
+      container.querySelectorAll('.tl-slider-dot').forEach(function(dot) {
+        dot.addEventListener('click', function() {
           var label = this.getAttribute('data-tf');
           var day = this.getAttribute('data-day');
+          // Update active dot
+          container.querySelectorAll('.tl-slider-dot[data-day="' + day + '"]').forEach(function(d) { d.classList.remove('active'); });
+          this.classList.add('active');
+          // Update info bar
+          var infoEl = document.getElementById('tl-info-' + day);
+          if (infoEl) {
+            var item = data.filter(function(x) { return x.day === day && x.label === label; })[0];
+            if (item) infoEl.textContent = item.emoji + ' ' + item.label + ' \u00b7 ' + item.wave_height + 'm ' + item.wave_compass + ' \u00b7 ' + item.wind_knots + 'kt ' + item.wind_compass;
+          }
+          // Navigate
           var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
           if (dayBtn) {
-            // Simulate click to switch day
             var handler = dayBtn.getAttribute('onclick');
             if (handler) {
-              // Extract the day argument from onclick
-              var m = handler.match(/['"](\w+)['"]/);
+              var m = handler.match(/[\x27"](\w+)[\x27"]/);
               if (m) showDay(m[1]);
             }
           }
           showTimeframe(label);
         });
-      });
-
-      // Create click overlays on SVG chart zones
-      container.querySelectorAll('.tl-svg-wrap').forEach(function(wrap) {
-        var dayEl = wrap.closest('.tl-day');
-        if (!dayEl) return;
-        var day = dayEl.getAttribute('data-day');
-        var slots = dayEl.querySelectorAll('.tl-slot');
-        if (slots.length === 0) return;
-        var svg = wrap.querySelector('.tl-chart-svg');
-        if (!svg) return;
-        var vb = svg.getAttribute('viewBox').split(' ');
-        var vbW = parseFloat(vb[2]);
-        var colW = vbW / slots.length;
-        for (var i = 0; i < slots.length; i++) {
-          (function(idx) {
-            var overlay = document.createElement('div');
-            overlay.className = 'tl-svg-zone';
-            overlay.style.left = ((idx * colW) / vbW * 100).toFixed(2) + '%';
-            overlay.style.width = (colW / vbW * 100).toFixed(2) + '%';
-            var label = slots[idx].getAttribute('data-tf');
-            overlay.setAttribute('data-tf', label);
-            overlay.setAttribute('data-day', day);
-            overlay.addEventListener('click', function() {
-              var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
-              if (dayBtn) {
-                var handler = dayBtn.getAttribute('onclick');
-                if (handler) {
-                  var m = handler.match(/['"](\w+)['"]/);
-                  if (m) showDay(m[1]);
-                }
-              }
-              showTimeframe(label);
-            });
-            wrap.appendChild(overlay);
-          })(i);
-        }
       });
 
       // Sync initial state
@@ -3703,9 +3606,8 @@ h2 {
         container.querySelectorAll('.tl-day').forEach(function(el) {
           el.style.display = el.getAttribute('data-day') === day ? 'block' : 'none';
         });
-        // Set first slot active
-        var firstSlot = container.querySelector('.tl-slot[data-day="' + day + '"]');
-        if (firstSlot) firstSlot.classList.add('active');
+        var firstDot = container.querySelector('.tl-slider-dot[data-day="' + day + '"]');
+        if (firstDot) firstDot.classList.add('active');
       }
     }
 
