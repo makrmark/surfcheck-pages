@@ -534,6 +534,7 @@ h2 {
     height: 26px;
     margin: 0 16px;
     cursor: pointer;
+    touch-action: none;
 }
 .tl-slider-track {
     position: absolute;
@@ -3288,7 +3289,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 18:21:02 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 18:39:50 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3564,32 +3565,92 @@ h2 {
 
       container.innerHTML = chartHtml;
 
-      // Click handlers on dots
-      container.querySelectorAll('.tl-slider-dot').forEach(function(dot) {
-        dot.addEventListener('click', function() {
-          var label = this.getAttribute('data-tf');
-          var day = this.getAttribute('data-day');
-          // Update active dot
-          container.querySelectorAll('.tl-slider-dot[data-day="' + day + '"]').forEach(function(d) { d.classList.remove('active'); });
-          this.classList.add('active');
-          // Update info bar
-          var infoEl = document.getElementById('tl-info-' + day);
-          if (infoEl) {
-            var item = data.filter(function(x) { return x.day === day && x.label === label; })[0];
-            if (item) infoEl.textContent = item.emoji + ' ' + item.label + ' \u00b7 ' + item.wave_height + 'm ' + item.wave_compass + ' \u00b7 ' + item.wind_knots + 'kt ' + item.wind_compass;
-          }
-          // Navigate
-          var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
-          if (dayBtn) {
-            var handler = dayBtn.getAttribute('onclick');
-            if (handler) {
-              var m = handler.match(/[\x27"](\w+)[\x27"]/);
-              if (m) showDay(m[1]);
-            }
-          }
-          showTimeframe(label);
+      // ---- Drag-handler on slider ----
+      function findClosestDot(slider, clientX) {
+        var rect = slider.getBoundingClientRect();
+        var pct = (clientX - rect.left) / rect.width * 100;
+        var dots = slider.querySelectorAll('.tl-slider-dot');
+        var best = null, bestDist = Infinity;
+        dots.forEach(function(d) {
+          var dist = Math.abs(parseFloat(d.style.left) - pct);
+          if (dist < bestDist) { bestDist = dist; best = d; }
         });
+        return best;
+      }
+
+      var activeSlider = null;
+      var dragStartTouch = null;
+
+      function updateUiFromDot(dot) {
+        if (!dot) return;
+        var day = dot.getAttribute('data-day');
+        var label = dot.getAttribute('data-tf');
+        var slider = dot.closest('.tl-slider');
+        slider.querySelectorAll('.tl-slider-dot').forEach(function(d) { d.classList.remove('active'); });
+        dot.classList.add('active');
+        var infoEl = document.getElementById('tl-info-' + day);
+        if (infoEl) {
+          var item = data.filter(function(x) { return x.day === day && x.label === label; })[0];
+          if (item) infoEl.textContent = item.emoji + ' ' + item.label + ' \u00b7 ' + item.wave_height + 'm ' + item.wave_compass + ' \u00b7 ' + item.wind_knots + 'kt ' + item.wind_compass;
+        }
+      }
+
+      function navToDot(dot) {
+        if (!dot) return;
+        var day = dot.getAttribute('data-day');
+        var label = dot.getAttribute('data-tf');
+        var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
+        if (dayBtn) {
+          var handler = dayBtn.getAttribute('onclick');
+          if (handler) {
+            var m = handler.match(/[\x27"](\w+)[\x27"]/);
+            if (m) showDay(m[1]);
+          }
+        }
+        showTimeframe(label);
+      }
+
+      function onDragMove(e) {
+        if (!activeSlider) return;
+        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        var dot = findClosestDot(activeSlider, clientX);
+        if (dot) updateUiFromDot(dot);
+      }
+
+      function onDragEnd(e) {
+        if (!activeSlider) return;
+        // For touch: check if vertical scroll happened (don't navigate if scrolled away)
+        if (e.changedTouches && dragStartTouch) {
+          var dy = Math.abs(e.changedTouches[0].clientY - dragStartTouch.clientY);
+          if (dy > 30) { activeSlider = null; dragStartTouch = null; return; }
+        }
+        var activeDot = activeSlider.querySelector('.tl-slider-dot.active');
+        if (activeDot) navToDot(activeDot);
+        activeSlider = null;
+        dragStartTouch = null;
+      }
+
+      // Per-slider start
+      container.querySelectorAll('.tl-slider').forEach(function(slider) {
+        slider.addEventListener('mousedown', function(e) {
+          activeSlider = slider;
+          dragStartTouch = { clientX: e.clientX, clientY: e.clientY };
+          var dot = findClosestDot(slider, e.clientX);
+          if (dot) updateUiFromDot(dot);
+        });
+        slider.addEventListener('touchstart', function(e) {
+          activeSlider = slider;
+          dragStartTouch = { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
+          var dot = findClosestDot(slider, e.touches[0].clientX);
+          if (dot) updateUiFromDot(dot);
+        }, { passive: true });
       });
+
+      // Global move/end (added once)
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup', onDragEnd);
+      document.addEventListener('touchmove', onDragMove, { passive: true });
+      document.addEventListener('touchend', onDragEnd, { passive: true });
 
       // Sync initial state
       var activeDay = document.querySelector('.day-btn.active');

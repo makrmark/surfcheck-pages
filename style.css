@@ -527,6 +527,7 @@ h2 {
     height: 26px;
     margin: 0 16px;
     cursor: pointer;
+    touch-action: none;
 }
 .tl-slider-track {
     position: absolute;
