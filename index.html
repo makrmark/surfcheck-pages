@@ -508,6 +508,186 @@ h2 {
     }
 }
 
+/* ── Interactive Timeline Chart ──────────────────────── */
+.timeline-chart {
+    width: 100%;
+    margin: 4px 0 2px 0;
+}
+.tl-day {
+    display: none;
+}
+.tl-day-label {
+    font-size: 0.65em;
+    color: #888;
+    text-align: center;
+    margin-bottom: 2px;
+}
+.tl-slots {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 2px;
+}
+.tl-slot {
+    flex: 1;
+    min-width: 0;
+    padding: 4px 2px;
+    border: 1.5px solid #b3d4ff;
+    border-radius: 8px;
+    background: white;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.tl-slot:hover {
+    background: #e6f2ff;
+    border-color: #0066cc;
+}
+.tl-slot.active {
+    background: #0066cc;
+    border-color: #0066cc;
+}
+.tl-slot.active .tl-slot-label,
+.tl-slot.active .tl-slot-metric,
+.tl-slot.active .tl-slot-rating {
+    color: white;
+}
+.tl-slot-label {
+    font-size: 0.65em;
+    font-weight: 700;
+    color: #0066cc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tl-slot-metric {
+    font-size: 0.6em;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+.tl-metric-val {
+    font-weight: 600;
+    color: #0066cc;
+}
+.tl-slot.active .tl-metric-val {
+    color: #fff;
+}
+.tl-compass {
+    color: #888;
+    font-size: 0.9em;
+}
+.tl-wind-metric {
+    color: #666;
+}
+.tl-slot-rating {
+    font-size: 0.55em;
+    color: #f5a623;
+    letter-spacing: -1px;
+}
+.tl-svg-wrap {
+    position: relative;
+    margin-top: 0;
+    padding: 0;
+}
+.tl-chart-svg {
+    display: block;
+}
+.tl-line {
+    fill: none;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+.tl-line-wave {
+    stroke: #4a90d9;
+}
+.tl-line-wind {
+    stroke: #27ae60;
+}
+.tl-line-tide {
+    stroke: #8e44ad;
+    stroke-dasharray: 4,3;
+}
+.tl-dot {
+    stroke: #fff;
+    stroke-width: 1.5;
+}
+.tl-dot-wave {
+    fill: #4a90d9;
+}
+.tl-dot-wind {
+    fill: #27ae60;
+}
+.tl-dot-tide {
+    fill: #8e44ad;
+}
+.tl-svg-zone {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+.tl-svg-zone:hover {
+    background: rgba(0, 102, 204, 0.08);
+}
+.tl-legend {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1px;
+    font-size: 0.55em;
+    color: #888;
+}
+.tl-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+.tl-legend-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 3px;
+    border-radius: 2px;
+}
+.tl-swatch-wave {
+    background: #4a90d9;
+}
+.tl-swatch-wind {
+    background: #27ae60;
+}
+.tl-swatch-tide {
+    background: #8e44ad;
+}
+
+@media (min-width: 600px) {
+    .timeline-chart {
+        margin: 6px 0 4px 0;
+        max-width: 700px;
+    }
+    .tl-slot {
+        padding: 6px 4px;
+        border-width: 2px;
+    }
+    .tl-slot-label {
+        font-size: 0.75em;
+    }
+    .tl-slot-metric {
+        font-size: 0.7em;
+    }
+    .tl-slot-rating {
+        font-size: 0.65em;
+    }
+    .tl-legend {
+        font-size: 0.65em;
+        gap: 14px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -518,26 +698,7 @@ h2 {
       <button class="day-btn" data-day="tomorrow" onclick="showDay('tomorrow')">Tomorrow</button>
       <button class="day-btn outlook-btn" data-day="outlook" onclick="showOutlook()">📊 7-Day</button>
     </nav>
-    <nav class="timeframe-nav">
-      
-      <button class="tf-btn active" data-btn="6–9am" data-day="today" onclick="showTimeframe('6–9am')">🌅 6–9am</button>
-      
-      <button class="tf-btn" data-btn="9–12pm" data-day="today" onclick="showTimeframe('9–12pm')">☀️ 9–12pm</button>
-      
-      <button class="tf-btn" data-btn="12–3pm" data-day="today" onclick="showTimeframe('12–3pm')">🌤️ 12–3pm</button>
-      
-      <button class="tf-btn" data-btn="3–6pm" data-day="today" onclick="showTimeframe('3–6pm')">🌇 3–6pm</button>
-      
-      
-      <button class="tf-btn active" data-btn="6–9am" data-day="tomorrow" onclick="showTimeframe('6–9am')" style="display:none">🌅 6–9am</button>
-      
-      <button class="tf-btn" data-btn="9–12pm" data-day="tomorrow" onclick="showTimeframe('9–12pm')" style="display:none">☀️ 9–12pm</button>
-      
-      <button class="tf-btn" data-btn="12–3pm" data-day="tomorrow" onclick="showTimeframe('12–3pm')" style="display:none">🌤️ 12–3pm</button>
-      
-      <button class="tf-btn" data-btn="3–6pm" data-day="tomorrow" onclick="showTimeframe('3–6pm')" style="display:none">🌇 3–6pm</button>
-      
-    </nav>
+    <div class="timeline-chart" id="timelineChart"></div>
   </header>
 
   
@@ -546,7 +707,7 @@ h2 {
     <h2>🏆 Fri 17th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 Small, weak SSE swell with a short period and a cross breeze makes for a pretty average start across the board.</div>
+      <div class="forecaster-note">💬 Small, weak SSE swell with a cross breeze makes for marginal, mostly closeout conditions across the board.</div>
       
 
       <div class="best-beach-cards">
@@ -574,7 +735,7 @@ h2 {
         
       </div>
 
-      <div class="gear-note">❄ Water feels like 13.9°C so you'll need a 5/4 steamer with booties, gloves, hood | Wear a hood</div>
+      <div class="gear-note">❄ Water feels like 14.1°C so you'll need a 4/3 steamer</div>
 
       
       <hr class="rec-sep">
@@ -588,7 +749,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.9m @ 8s from 155° (SSE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 7 m²·s | Wind-sea: 0.02m</span></span>
+      <span class="value">0.9m @ 9s from 154° (SSE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 7 m²·s | Wind-sea: 0.00m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -596,14 +757,14 @@ h2 {
     </div>
     <div class="condition-item">
       <span class="label">Temp:</span>
-      <span class="value">16.5°C<span class="tooltip">monthly climatology — coastal edge SST off Northern Beaches. Windchill-adjusted combined temp: 13.9°C</span></span>
+      <span class="value">16.5°C<span class="tooltip">monthly climatology — coastal edge SST off Northern Beaches. Windchill-adjusted combined temp: 14.1°C</span></span>
     </div>
   </div>
   <div class="section">
     <h2>🌤️ Weather</h2>
     <div class="condition-item">
       <span class="label">Wind:</span>
-      <span class="value">10 km/h (5 kt) WSW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+      <span class="value">10 km/h (5 kt) SW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Sunrise/set:</span>
@@ -618,7 +779,7 @@ h2 {
     
     <div class="condition-item">
       <span class="label">Rain:</span>
-      <span class="value">98%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
+      <span class="value">92%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
     </div>
     
   </div>
@@ -639,7 +800,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">3°</div>
+      <div class="surf-value">4°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -654,7 +815,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze make for a messy, unexciting session on the long walls.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross breeze produce weak, closeout waves that lack any real push or shape.</div>
   
 </div>
     
@@ -669,7 +830,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">20°</div>
+      <div class="surf-value">19°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -684,7 +845,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle offer some shape, but the cross breeze and lack of power keep it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle offers some rideable lines, but the cross breeze and small size keep it slow and unexciting.</div>
   
 </div>
     
@@ -699,7 +860,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">2°</div>
+      <div class="surf-value">4°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -714,7 +875,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze mean the wedge is not firing and the session is flat.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross breeze create weak, closeout waves despite the good breaker quality.</div>
   
 </div>
     
@@ -729,7 +890,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">20°</div>
+      <div class="surf-value">19°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -744,7 +905,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle offer some shape, but the cross breeze and lack of power keep it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle gives a few workable waves, but the cross breeze and small size limit the fun.</div>
   
 </div>
     
@@ -759,7 +920,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">20°</div>
+      <div class="surf-value">19°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -774,7 +935,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle offer some shape, but the cross breeze and lack of power keep it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle provides some shape, but the cross breeze and small waves keep it from getting good.</div>
   
 </div>
     
@@ -793,7 +954,7 @@ h2 {
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">27%</div>
+      <div class="surf-value">31%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
@@ -804,7 +965,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with a cross-onshore breeze that ruins it.</div>
+  <div class="forecaster-note">💬 Partially shadowed from the small SSE swell, leaving tiny, weak waves with a cross-on breeze ruining any chance.</div>
   
 </div>
     
@@ -815,7 +976,7 @@ h2 {
   </div>
   <div class="surf-info">
     <div class="surf-detail">
-      <div class="surf-value">1-1 ft</div>
+      <div class="surf-value">1-2 ft</div>
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
@@ -823,18 +984,18 @@ h2 {
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">22%</div>
+      <div class="surf-value">26%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Onshore</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with an onshore breeze that makes it a write-off.</div>
+  <div class="forecaster-note">💬 Heavily shadowed from the small SSE swell, resulting in tiny, mushy waves with a cross-on breeze making it a write-off.</div>
   
 </div>
     
@@ -864,7 +1025,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is completely shadowed, leaving no waves and an onshore breeze that makes it a total non-event.</div>
+  <div class="forecaster-note">💬 Heavily shadowed from the small SSE swell, leaving flat, unrideable conditions with an onshore breeze.</div>
   
 </div>
     
@@ -877,39 +1038,39 @@ h2 {
     <h2>🏆 Fri 17th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 A slight improvement with a cleaner ESE swell and a light cross-off breeze, but still small and weak overall.</div>
+      <div class="forecaster-note">💬 Slightly cleaner with a cross-off breeze, but the small SSE swell still limits wave size and power.</div>
       
 
       <div class="best-beach-cards">
         
         <a href="#" class="best-beach-card" data-beach="north-curl-curl">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-wave">3-4 ft</span>
   <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
   <span class="best-beach-card-name">North Curl Curl</span>
 </a>
         
         <a href="#" class="best-beach-card" data-beach="south-curl-curl">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-wave">3-4 ft</span>
   <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
   <span class="best-beach-card-name">South Curl Curl</span>
 </a>
         
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
+        <a href="#" class="best-beach-card" data-beach="freshwater">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
   <span class="best-beach-card-wave">3-4 ft</span>
   <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
+  <span class="best-beach-card-name">Freshwater</span>
 </a>
         
       </div>
 
-      <div class="gear-note">❄ Water feels like 15.5°C so you'll need a 4/3 steamer</div>
+      <div class="gear-note">❄ Water feels like 15.7°C so you'll need a 4/3 steamer</div>
 
       
       <hr class="rec-sep">
-      <div class="board-rec">🏄 Fish, Longboard</div>
+      <div class="board-rec">🏄 Shortboard, Groveller, Fish</div>
       
     </div>
   </div>
@@ -919,7 +1080,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.8m @ 7s from 102° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 4 m²·s | Wind-sea: 0.08m</span></span>
+      <span class="value">0.8m @ 9s from 155° (SSE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 6 m²·s | Wind-sea: 0.04m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -927,14 +1088,14 @@ h2 {
     </div>
     <div class="condition-item">
       <span class="label">Temp:</span>
-      <span class="value">16.5°C<span class="tooltip">monthly climatology — coastal edge SST off Northern Beaches. Windchill-adjusted combined temp: 15.5°C</span></span>
+      <span class="value">16.5°C<span class="tooltip">monthly climatology — coastal edge SST off Northern Beaches. Windchill-adjusted combined temp: 15.7°C</span></span>
     </div>
   </div>
   <div class="section">
     <h2>🌤️ Weather</h2>
     <div class="condition-item">
       <span class="label">Wind:</span>
-      <span class="value">11 km/h (6 kt) SSW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+      <span class="value">12 km/h (7 kt) SSW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Sunrise/set:</span>
@@ -949,7 +1110,7 @@ h2 {
     
     <div class="condition-item">
       <span class="label">Rain:</span>
-      <span class="value">69%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
+      <span class="value">82%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
     </div>
     
   </div>
@@ -970,7 +1131,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">56°</div>
+      <div class="surf-value">3°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -985,7 +1146,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a light cross-off breeze offer clean but unexciting long walls.</div>
+  <div class="forecaster-note">💬 Cross-off breeze cleans up the weak, straight-on swell, but the small waves lack any real push or shape.</div>
   
 </div>
     
@@ -1000,7 +1161,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">33°</div>
+      <div class="surf-value">20°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1015,7 +1176,338 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze produce slow, weak waves that are rideable but not exciting.</div>
+  
+</div>
+    
+    <div class="beach-card beach-card-best" id="beach-north-curl-curl">
+  <div class="beach-name">
+    <span>North Curl Curl</span>
+    <span class="beach-aspect">SSE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">3-4 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">2°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">X-Off</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Shortboard, Groveller, Fish</div>
+  
+  <div class="forecaster-note">💬 Cross-off breeze improves conditions, but the straight-on swell still creates weak, closeout waves.</div>
+  
+</div>
+    
+    <div class="beach-card beach-card-best" id="beach-south-curl-curl">
+  <div class="beach-name">
+    <span>South Curl Curl</span>
+    <span class="beach-aspect">SE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">3-4 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">20°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">Cross</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Shortboard, Groveller, Fish</div>
+  
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze offer some shape, but the small size keeps it underwhelming.</div>
+  
+</div>
+    
+    <div class="beach-card beach-card-best" id="beach-freshwater">
+  <div class="beach-name">
+    <span>Freshwater</span>
+    <span class="beach-aspect">SE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">3-4 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">20°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">Cross</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Shortboard, Groveller, Fish</div>
+  
+  <div class="forecaster-note">💬 Peeling swell angle gives a few workable lines, but the cross breeze and small waves limit the potential.</div>
+  
+</div>
+    
+    <div class="beach-card" id="beach-queenscliff">
+  <div class="beach-name">
+    <span>Queenscliff</span>
+    <span class="beach-aspect">E</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">1-2 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">45°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">27%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">Cross</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+  <div class="board">🏄 Longboard, Log</div>
+  
+  <div class="forecaster-note">💬 Partially shadowed from the small SSE swell, leaving tiny, weak waves with a cross breeze doing little to help.</div>
+  
+</div>
+    
+    <div class="beach-card" id="beach-north-steyne">
+  <div class="beach-name">
+    <span>North Steyne</span>
+    <span class="beach-aspect">E</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">1-1 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">61°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">22%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">X-On</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+  <div class="board">🏄 Longboard, Log</div>
+  
+  <div class="forecaster-note">💬 Heavily shadowed from the small SSE swell, resulting in tiny, mushy waves with a cross-on breeze making it a write-off.</div>
+  
+</div>
+    
+    <div class="beach-card" id="beach-south-steyne">
+  <div class="beach-name">
+    <span>South Steyne</span>
+    <span class="beach-aspect">NE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">1-1 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">56°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">0%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">Onshore</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+  <div class="board">🏄 Longboard, Log</div>
+  
+  <div class="forecaster-note">💬 Heavily shadowed from the small SSE swell, leaving flat, unrideable conditions with an onshore breeze.</div>
+  
+</div>
+    
+  </div>
+</div>
+</div>
+  
+  <div class="timeframe-content" data-tf="12–3pm" data-day="today" style="display:none;">
+  <div class="section">
+    <h2>🏆 Fri 17th July</h2>
+    <div>
+      
+      <div class="forecaster-note">💬 Offshore breeze and mid-tide improve quality, but the small, short-period east swell limits wave size and power.</div>
+      
+
+      <div class="best-beach-cards">
+        
+        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
+  <span class="best-beach-card-badge">🏆 Best Beach</span>
+  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
+  <span class="best-beach-card-name">North Curl Curl</span>
+</a>
+        
+        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
+  <span class="best-beach-card-badge">🏆 Best Beach</span>
+  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
+  <span class="best-beach-card-name">South Curl Curl</span>
+</a>
+        
+        <a href="#" class="best-beach-card" data-beach="freshwater">
+  <span class="best-beach-card-badge">🏆 Best Beach</span>
+  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
+  <span class="best-beach-card-name">Freshwater</span>
+</a>
+        
+      </div>
+
+      <div class="gear-note">❄ Water feels like 16.2°C so you'll need a 4/3 steamer | UV 3.2 — Cap recommended</div>
+
+      
+      <hr class="rec-sep">
+      <div class="board-rec">🏄 Fish, Longboard</div>
+      
+    </div>
+  </div>
+
+  <div class="conditions-grid">
+  <div class="section">
+    <h2>🌊 Water Conditions</h2>
+    <div class="condition-item">
+      <span class="label">Swell:</span>
+      <span class="value">0.8m @ 7s from 100° (E)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 4 m²·s | Wind-sea: 0.06m</span></span>
+    </div>
+    <div class="condition-item">
+      <span class="label">Tide:</span>
+      <span class="value">mid-low tide (0.6m) <svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,9 18,11 35,11" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="tooltip">Harmonic tide model (8 constituents) calibrated for Fort Denison</span></span>
+    </div>
+    <div class="condition-item">
+      <span class="label">Temp:</span>
+      <span class="value">16.5°C<span class="tooltip">monthly climatology — coastal edge SST off Northern Beaches.</span></span>
+    </div>
+  </div>
+  <div class="section">
+    <h2>🌤️ Weather</h2>
+    <div class="condition-item">
+      <span class="label">Wind:</span>
+      <span class="value">16 km/h (8 kt) S<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+    </div>
+    <div class="condition-item">
+      <span class="label">Sunrise/set:</span>
+      <span class="value">🌅 07:00 — 🌇 16:59<span class="tooltip">Sunrise/sunset times for Northern Beaches (calculated from latitude/longitude)</span></span>
+    </div>
+    
+    <div class="condition-item">
+      <span class="label">Air:</span>
+      <span class="value">16°C<span class="tooltip">Open-Meteo temperature forecast at 2m</span></span>
+    </div>
+    
+    
+    <div class="condition-item">
+      <span class="label">Rain:</span>
+      <span class="value">98%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
+    </div>
+    
+  </div>
+</div>
+
+  <div class="section">
+  <h2>🏖️ Beach Conditions</h2>
+  <div class="beach-grid">
+    
+    <div class="beach-card" id="beach-long-reef">
+  <div class="beach-name">
+    <span>Long Reef</span>
+    <span class="beach-aspect">SSE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">2-3 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">58°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">Offshore</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
+  
+  <div class="forecaster-note">💬 Offshore breeze cleans up the mushy, weak swell, but the small waves lack any real push or shape.</div>
+  
+</div>
+    
+    <div class="beach-card" id="beach-dee-why">
+  <div class="beach-name">
+    <span>Dee Why</span>
+    <span class="beach-aspect">SE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">2-3 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">35°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">X-Off</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
+  
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze produce clean, rideable waves, though the small size keeps them slow.</div>
   
 </div>
     
@@ -1030,7 +1522,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">56°</div>
+      <div class="surf-value">58°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1038,14 +1530,14 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">X-Off</div>
+      <div class="surf-value">Offshore</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a light cross-off breeze offer clean but unexciting conditions.</div>
+  <div class="forecaster-note">💬 Offshore breeze improves conditions, but the mushy swell angle creates weak, unexciting waves.</div>
   
 </div>
     
@@ -1060,7 +1552,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">33°</div>
+      <div class="surf-value">35°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1068,18 +1560,18 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Cross</div>
+      <div class="surf-value">X-Off</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze offer the best shape of the day, with clean, rideable lines.</div>
   
 </div>
     
-    <div class="beach-card" id="beach-freshwater">
+    <div class="beach-card beach-card-best" id="beach-freshwater">
   <div class="beach-name">
     <span>Freshwater</span>
     <span class="beach-aspect">SE</span>
@@ -1090,7 +1582,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">33°</div>
+      <div class="surf-value">35°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1098,14 +1590,14 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Cross</div>
+      <div class="surf-value">X-Off</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze provide clean, workable waves, though the small size limits the fun.</div>
   
 </div>
     
@@ -1135,11 +1627,11 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze mean the waves close out, making it a frustrating session.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross breeze create weak, closeout waves despite the offshore swell exposure.</div>
   
 </div>
     
-    <div class="beach-card beach-card-best" id="beach-north-steyne">
+    <div class="beach-card" id="beach-north-steyne">
   <div class="beach-name">
     <span>North Steyne</span>
     <span class="beach-aspect">E</span>
@@ -1150,7 +1642,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">18°</div>
+      <div class="surf-value">16°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1158,14 +1650,14 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">X-On</div>
+      <div class="surf-value">Cross</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross-onshore breeze offer some shape but the wind messes up the face.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze produce some rideable waves, but the small size keeps them underwhelming.</div>
   
 </div>
     
@@ -1180,22 +1672,22 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">56°</div>
+      <div class="surf-value">55°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">89%</div>
+      <div class="surf-value">100%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Onshore</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with an onshore breeze that makes it a write-off.</div>
+  <div class="forecaster-note">💬 Mushy swell angle and a cross-on breeze ruin the tiny waves, making it a complete write-off.</div>
   
 </div>
     
@@ -1203,12 +1695,12 @@ h2 {
 </div>
 </div>
   
-  <div class="timeframe-content" data-tf="12–3pm" data-day="today" style="display:none;">
+  <div class="timeframe-content" data-tf="3–6pm" data-day="today" style="display:none;">
   <div class="section">
     <h2>🏆 Fri 17th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 The best window today with a clean cross-off breeze and a mid-tide that improves shape, but the swell remains small.</div>
+      <div class="forecaster-note">💬 Offshore breeze and mid-tide keep conditions clean, but the small east swell still lacks size and power.</div>
       
 
       <div class="best-beach-cards">
@@ -1236,337 +1728,6 @@ h2 {
         
       </div>
 
-      <div class="gear-note">❄ Water feels like 16.3°C so you'll need a 4/3 steamer</div>
-
-      
-      <hr class="rec-sep">
-      <div class="board-rec">🏄 Fish, Longboard</div>
-      
-    </div>
-  </div>
-
-  <div class="conditions-grid">
-  <div class="section">
-    <h2>🌊 Water Conditions</h2>
-    <div class="condition-item">
-      <span class="label">Swell:</span>
-      <span class="value">0.8m @ 7s from 102° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 4 m²·s | Wind-sea: 0.20m</span></span>
-    </div>
-    <div class="condition-item">
-      <span class="label">Tide:</span>
-      <span class="value">mid-low tide (0.6m) <svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,9 18,11 35,11" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg><span class="tooltip">Harmonic tide model (8 constituents) calibrated for Fort Denison</span></span>
-    </div>
-    <div class="condition-item">
-      <span class="label">Temp:</span>
-      <span class="value">16.5°C<span class="tooltip">monthly climatology — coastal edge SST off Northern Beaches.</span></span>
-    </div>
-  </div>
-  <div class="section">
-    <h2>🌤️ Weather</h2>
-    <div class="condition-item">
-      <span class="label">Wind:</span>
-      <span class="value">12 km/h (6 kt) S<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
-    </div>
-    <div class="condition-item">
-      <span class="label">Sunrise/set:</span>
-      <span class="value">🌅 07:00 — 🌇 16:59<span class="tooltip">Sunrise/sunset times for Northern Beaches (calculated from latitude/longitude)</span></span>
-    </div>
-    
-    <div class="condition-item">
-      <span class="label">Air:</span>
-      <span class="value">16°C<span class="tooltip">Open-Meteo temperature forecast at 2m</span></span>
-    </div>
-    
-    
-    <div class="condition-item">
-      <span class="label">Rain:</span>
-      <span class="value">90%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
-    </div>
-    
-  </div>
-</div>
-
-  <div class="section">
-  <h2>🏖️ Beach Conditions</h2>
-  <div class="beach-grid">
-    
-    <div class="beach-card" id="beach-long-reef">
-  <div class="beach-name">
-    <span>Long Reef</span>
-    <span class="beach-aspect">SSE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">56°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-Off</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean cross-off breeze offer clean but unexciting long walls.</div>
-  
-</div>
-    
-    <div class="beach-card" id="beach-dee-why">
-  <div class="beach-name">
-    <span>Dee Why</span>
-    <span class="beach-aspect">SE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">33°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-Off</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
-  
-</div>
-    
-    <div class="beach-card" id="beach-north-curl-curl">
-  <div class="beach-name">
-    <span>North Curl Curl</span>
-    <span class="beach-aspect">SSE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">56°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-Off</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean cross-off breeze offer clean but unexciting conditions.</div>
-  
-</div>
-    
-    <div class="beach-card beach-card-best" id="beach-south-curl-curl">
-  <div class="beach-name">
-    <span>South Curl Curl</span>
-    <span class="beach-aspect">SE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">33°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-Off</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
-  
-</div>
-    
-    <div class="beach-card beach-card-best" id="beach-freshwater">
-  <div class="beach-name">
-    <span>Freshwater</span>
-    <span class="beach-aspect">SE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">33°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-Off</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
-  
-</div>
-    
-    <div class="beach-card" id="beach-queenscliff">
-  <div class="beach-name">
-    <span>Queenscliff</span>
-    <span class="beach-aspect">E</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">3-4 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">1°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">Cross</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze mean the waves close out, making it a frustrating session.</div>
-  
-</div>
-    
-    <div class="beach-card beach-card-best" id="beach-north-steyne">
-  <div class="beach-name">
-    <span>North Steyne</span>
-    <span class="beach-aspect">E</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">3-4 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">18°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">Cross</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
-  
-</div>
-    
-    <div class="beach-card" id="beach-south-steyne">
-  <div class="beach-name">
-    <span>South Steyne</span>
-    <span class="beach-aspect">NE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">1-1 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">56°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">89%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-On</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-  <div class="board">🏄 Longboard, Log</div>
-  
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with a cross-onshore breeze that makes it a write-off.</div>
-  
-</div>
-    
-  </div>
-</div>
-</div>
-  
-  <div class="timeframe-content" data-tf="3–6pm" data-day="today" style="display:none;">
-  <div class="section">
-    <h2>🏆 Fri 17th July</h2>
-    <div>
-      
-      <div class="forecaster-note">💬 A clean offshore breeze and a mid-tide improve the quality, but the small, weak swell still limits the potential.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">South Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">3-4 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 15.9°C so you'll need a 4/3 steamer</div>
 
       
@@ -1581,7 +1742,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.8m @ 7s from 105° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 4 m²·s | Wind-sea: 0.12m</span></span>
+      <span class="value">0.8m @ 7s from 101° (E)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 4 m²·s | Wind-sea: 0.10m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -1611,7 +1772,7 @@ h2 {
     
     <div class="condition-item">
       <span class="label">Rain:</span>
-      <span class="value">76%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
+      <span class="value">88%<span class="tooltip">Open-Meteo precipitation probability forecast</span></span>
     </div>
     
   </div>
@@ -1632,7 +1793,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">53°</div>
+      <div class="surf-value">57°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1647,7 +1808,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean offshore breeze offer clean but unexciting long walls.</div>
+  <div class="forecaster-note">💬 Offshore breeze cleans up the mushy, weak swell, but the small waves remain slow and unexciting.</div>
   
 </div>
     
@@ -1662,7 +1823,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">30°</div>
+      <div class="surf-value">34°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1677,11 +1838,11 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze offer clean, rideable waves, though the small size keeps them mellow.</div>
   
 </div>
     
-    <div class="beach-card beach-card-best" id="beach-north-curl-curl">
+    <div class="beach-card" id="beach-north-curl-curl">
   <div class="beach-name">
     <span>North Curl Curl</span>
     <span class="beach-aspect">SSE</span>
@@ -1692,7 +1853,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">52°</div>
+      <div class="surf-value">56°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1704,10 +1865,10 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean offshore breeze offer clean but unexciting conditions.</div>
+  <div class="forecaster-note">💬 Offshore breeze improves conditions, but the mushy swell angle still produces weak, unexciting waves.</div>
   
 </div>
     
@@ -1722,7 +1883,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">30°</div>
+      <div class="surf-value">34°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1737,11 +1898,11 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze provide the best shape, with clean, workable lines.</div>
   
 </div>
     
-    <div class="beach-card" id="beach-freshwater">
+    <div class="beach-card beach-card-best" id="beach-freshwater">
   <div class="beach-name">
     <span>Freshwater</span>
     <span class="beach-aspect">SE</span>
@@ -1752,7 +1913,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">30°</div>
+      <div class="surf-value">34°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1764,10 +1925,10 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze offer clean, rideable waves, though the small size limits the fun.</div>
   
 </div>
     
@@ -1782,7 +1943,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">4°</div>
+      <div class="surf-value">0°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1797,7 +1958,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze mean the waves close out, making it a frustrating session.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross breeze create weak, closeout waves despite the offshore swell exposure.</div>
   
 </div>
     
@@ -1812,7 +1973,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">21°</div>
+      <div class="surf-value">17°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1827,7 +1988,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze produce some rideable waves, but the small size keeps them underwhelming.</div>
   
 </div>
     
@@ -1846,7 +2007,7 @@ h2 {
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">57%</div>
+      <div class="surf-value">100%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
@@ -1857,7 +2018,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with a cross-onshore breeze that makes it a write-off.</div>
+  <div class="forecaster-note">💬 Mushy swell angle and a cross-on breeze ruin the tiny waves, making it a complete write-off.</div>
   
 </div>
     
@@ -1870,23 +2031,16 @@ h2 {
     <h2>🏆 Sat 18th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 A very small, weak ESE swell with a short period and a cross breeze makes for a poor start to the day.</div>
+      <div class="forecaster-note">💬 Small, weak east swell with a cross breeze makes for marginal, mostly unexciting conditions.</div>
       
 
       <div class="best-beach-cards">
         
-        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
+        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
   <span class="best-beach-card-wave">2-3 ft</span>
   <span class="best-beach-card-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></span>
-  <span class="best-beach-card-name">South Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="freshwater">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></span>
-  <span class="best-beach-card-name">Freshwater</span>
+  <span class="best-beach-card-name">North Curl Curl</span>
 </a>
         
         <a href="#" class="best-beach-card" data-beach="queenscliff">
@@ -1896,13 +2050,20 @@ h2 {
   <span class="best-beach-card-name">Queenscliff</span>
 </a>
         
+        <a href="#" class="best-beach-card" data-beach="north-steyne">
+  <span class="best-beach-card-badge">🏆 Best Beach</span>
+  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></span>
+  <span class="best-beach-card-name">North Steyne</span>
+</a>
+        
       </div>
 
       <div class="gear-note">❄ Water feels like 13.6°C so you'll need a 5/4 steamer with booties, gloves, hood | Wear a hood</div>
 
       
       <hr class="rec-sep">
-      <div class="board-rec">🏄 Longboard, Log</div>
+      <div class="board-rec">🏄 Fish, Longboard</div>
       
     </div>
   </div>
@@ -1912,7 +2073,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.7m @ 4s from 106° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 2 m²·s | Wind-sea: 0.06m</span></span>
+      <span class="value">0.7m @ 6s from 104° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 3 m²·s | Wind-sea: 0.04m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -1927,7 +2088,7 @@ h2 {
     <h2>🌤️ Weather</h2>
     <div class="condition-item">
       <span class="label">Wind:</span>
-      <span class="value">11 km/h (6 kt) WSW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+      <span class="value">10 km/h (6 kt) WSW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Sunrise/set:</span>
@@ -1963,7 +2124,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">52°</div>
+      <div class="surf-value">54°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -1978,7 +2139,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Very small, weak waves with a mushy angle and a cross breeze offer little to get excited about on the long walls.</div>
+  <div class="forecaster-note">💬 Mushy swell angle and a cross breeze produce weak, slow waves that lack any real push or shape.</div>
   
 </div>
     
@@ -1993,7 +2154,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">29°</div>
+      <div class="surf-value">31°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2001,18 +2162,18 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Cross</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Very small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power makes it a struggle.</div>
+  <div class="forecaster-note">💬 Peeling swell angle offers some shape, but the cross-on breeze and small size keep it slow and unexciting.</div>
   
 </div>
     
-    <div class="beach-card" id="beach-north-curl-curl">
+    <div class="beach-card beach-card-best" id="beach-north-curl-curl">
   <div class="beach-name">
     <span>North Curl Curl</span>
     <span class="beach-aspect">SSE</span>
@@ -2023,7 +2184,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">52°</div>
+      <div class="surf-value">54°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2035,14 +2196,14 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Very small, weak waves with a mushy angle and a cross breeze offer little to get excited about.</div>
+  <div class="forecaster-note">💬 Mushy swell angle and a cross breeze create weak, unexciting waves despite the good exposure.</div>
   
 </div>
     
-    <div class="beach-card beach-card-best" id="beach-south-curl-curl">
+    <div class="beach-card" id="beach-south-curl-curl">
   <div class="beach-name">
     <span>South Curl Curl</span>
     <span class="beach-aspect">SE</span>
@@ -2053,7 +2214,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">29°</div>
+      <div class="surf-value">31°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2061,18 +2222,18 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Cross</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Very small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power makes it a struggle.</div>
+  <div class="forecaster-note">💬 Peeling swell angle gives a few workable lines, but the cross-on breeze and small size limit the fun.</div>
   
 </div>
     
-    <div class="beach-card beach-card-best" id="beach-freshwater">
+    <div class="beach-card" id="beach-freshwater">
   <div class="beach-name">
     <span>Freshwater</span>
     <span class="beach-aspect">SE</span>
@@ -2083,7 +2244,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">29°</div>
+      <div class="surf-value">31°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2091,14 +2252,14 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Cross</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Very small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power makes it a struggle.</div>
+  <div class="forecaster-note">💬 Peeling swell angle provides some shape, but the cross-on breeze and small waves keep it from getting good.</div>
   
 </div>
     
@@ -2113,37 +2274,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">5°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">X-On</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
-  
-  <div class="forecaster-note">💬 Very small, weak waves with a straight-on angle and a cross-onshore breeze mean the waves close out and the wind is poor.</div>
-  
-</div>
-    
-    <div class="beach-card" id="beach-north-steyne">
-  <div class="beach-name">
-    <span>North Steyne</span>
-    <span class="beach-aspect">E</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">22°</div>
+      <div class="surf-value">3°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2155,10 +2286,40 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Very small, weak waves with a peeling angle and an onshore breeze mean the waves are messy and the session is a write-off.</div>
+  <div class="forecaster-note">💬 Straight-on swell and an onshore breeze ruin the small waves, making it a complete write-off.</div>
+  
+</div>
+    
+    <div class="beach-card beach-card-best" id="beach-north-steyne">
+  <div class="beach-name">
+    <span>North Steyne</span>
+    <span class="beach-aspect">E</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">2-3 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">20°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">Onshore</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
+  
+  <div class="forecaster-note">💬 Peeling swell angle offers some potential, but the onshore breeze and small size make it a poor session.</div>
   
 </div>
     
@@ -2177,18 +2338,18 @@ h2 {
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">49%</div>
+      <div class="surf-value">66%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Onshore</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The very small, weak swell is heavily shadowed, leaving no waves and an onshore breeze that makes it a total non-event.</div>
+  <div class="forecaster-note">💬 Partially exposed to the small east swell, but the mushy angle and cross-on breeze leave it flat and unrideable.</div>
   
 </div>
     
@@ -2201,23 +2362,23 @@ h2 {
     <h2>🏆 Sat 18th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 A slight improvement with a light cross-off breeze, but the small, weak swell with a short period still limits the quality.</div>
+      <div class="forecaster-note">💬 Cross-off breeze improves conditions, but the small, short-period east swell still limits wave size and power.</div>
       
 
       <div class="best-beach-cards">
         
-        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
+        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
   <span class="best-beach-card-wave">2-3 ft</span>
   <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Curl Curl</span>
+  <span class="best-beach-card-name">South Curl Curl</span>
 </a>
         
-        <a href="#" class="best-beach-card" data-beach="queenscliff">
+        <a href="#" class="best-beach-card" data-beach="freshwater">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
   <span class="best-beach-card-wave">2-3 ft</span>
   <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">Queenscliff</span>
+  <span class="best-beach-card-name">Freshwater</span>
 </a>
         
         <a href="#" class="best-beach-card" data-beach="north-steyne">
@@ -2229,11 +2390,11 @@ h2 {
         
       </div>
 
-      <div class="gear-note">❄ Water feels like 16.1°C so you'll need a 4/3 steamer</div>
+      <div class="gear-note">❄ Water feels like 16.2°C so you'll need a 4/3 steamer</div>
 
       
       <hr class="rec-sep">
-      <div class="board-rec">🏄 Longboard, Log</div>
+      <div class="board-rec">🏄 Fish, Longboard</div>
       
     </div>
   </div>
@@ -2243,7 +2404,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.8m @ 5s from 105° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 3 m²·s | Wind-sea: 0.14m</span></span>
+      <span class="value">0.7m @ 5s from 104° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 3 m²·s | Wind-sea: 0.08m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -2258,7 +2419,7 @@ h2 {
     <h2>🌤️ Weather</h2>
     <div class="condition-item">
       <span class="label">Wind:</span>
-      <span class="value">8 km/h (4 kt) SSW<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+      <span class="value">10 km/h (5 kt) S<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Sunrise/set:</span>
@@ -2294,7 +2455,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">53°</div>
+      <div class="surf-value">54°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2309,7 +2470,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a light cross-off breeze offer clean but unexciting long walls.</div>
+  <div class="forecaster-note">💬 Cross-off breeze cleans up the mushy, weak swell, but the small waves lack any real push or shape.</div>
   
 </div>
     
@@ -2324,7 +2485,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">30°</div>
+      <div class="surf-value">31°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2332,18 +2493,18 @@ h2 {
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Cross</div>
+      <div class="surf-value">X-Off</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze produce clean, rideable waves, though the small size keeps them slow.</div>
   
 </div>
     
-    <div class="beach-card beach-card-best" id="beach-north-curl-curl">
+    <div class="beach-card" id="beach-north-curl-curl">
   <div class="beach-name">
     <span>North Curl Curl</span>
     <span class="beach-aspect">SSE</span>
@@ -2354,7 +2515,37 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">52°</div>
+      <div class="surf-value">54°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">X-Off</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
+  
+  <div class="forecaster-note">💬 Cross-off breeze improves conditions, but the mushy swell angle still creates weak, unexciting waves.</div>
+  
+</div>
+    
+    <div class="beach-card beach-card-best" id="beach-south-curl-curl">
+  <div class="beach-name">
+    <span>South Curl Curl</span>
+    <span class="beach-aspect">SE</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">2-3 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">31°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2367,43 +2558,13 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a light cross-off breeze offer clean but unexciting conditions.</div>
-  
-</div>
-    
-    <div class="beach-card" id="beach-south-curl-curl">
-  <div class="beach-name">
-    <span>South Curl Curl</span>
-    <span class="beach-aspect">SE</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">30°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">Cross</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Longboard, Log</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze offer the best shape, with clean, workable lines.</div>
   
 </div>
     
-    <div class="beach-card" id="beach-freshwater">
+    <div class="beach-card beach-card-best" id="beach-freshwater">
   <div class="beach-name">
     <span>Freshwater</span>
     <span class="beach-aspect">SE</span>
@@ -2414,7 +2575,37 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">30°</div>
+      <div class="surf-value">31°</div>
+      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">100%</div>
+      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">X-Off</div>
+      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
+    </div>
+  </div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="board">🏄 Fish, Longboard</div>
+  
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze provide clean, rideable waves, though the small size limits the fun.</div>
+  
+</div>
+    
+    <div class="beach-card" id="beach-queenscliff">
+  <div class="beach-name">
+    <span>Queenscliff</span>
+    <span class="beach-aspect">E</span>
+  </div>
+  <div class="surf-info">
+    <div class="surf-detail">
+      <div class="surf-value">2-3 ft</div>
+      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
+    </div>
+    <div class="surf-detail">
+      <div class="surf-value">3°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2427,39 +2618,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
-  
-</div>
-    
-    <div class="beach-card beach-card-best" id="beach-queenscliff">
-  <div class="beach-name">
-    <span>Queenscliff</span>
-    <span class="beach-aspect">E</span>
-  </div>
-  <div class="surf-info">
-    <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
-      <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">4°</div>
-      <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">100%</div>
-      <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
-    </div>
-    <div class="surf-detail">
-      <div class="surf-value">Cross</div>
-      <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
-    </div>
-  </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
-  
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze mean the waves close out, making it a frustrating session.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross breeze create weak, closeout waves despite the offshore swell exposure.</div>
   
 </div>
     
@@ -2474,7 +2635,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">21°</div>
+      <div class="surf-value">20°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2487,9 +2648,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze produce some rideable waves, but the small size keeps them underwhelming.</div>
   
 </div>
     
@@ -2508,18 +2669,18 @@ h2 {
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">57%</div>
+      <div class="surf-value">66%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">Onshore</div>
+      <div class="surf-value">X-On</div>
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with an onshore breeze that makes it a write-off.</div>
+  <div class="forecaster-note">💬 Partially exposed to the small east swell, but the mushy angle and cross-on breeze leave it flat and unrideable.</div>
   
 </div>
     
@@ -2532,7 +2693,7 @@ h2 {
     <h2>🏆 Sat 18th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 The best window tomorrow with a clean offshore breeze and a mid-tide that improves shape, but the swell remains small.</div>
+      <div class="forecaster-note">💬 Offshore breeze and mid-tide improve quality, but the small, short-period east swell still lacks size and power.</div>
       
 
       <div class="best-beach-cards">
@@ -2560,11 +2721,11 @@ h2 {
         
       </div>
 
-      <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer</div>
+      <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer | UV 3.65 — Cap recommended</div>
 
       
       <hr class="rec-sep">
-      <div class="board-rec">🏄 Longboard, Log</div>
+      <div class="board-rec">🏄 Fish, Longboard</div>
       
     </div>
   </div>
@@ -2574,7 +2735,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.8m @ 5s from 103° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 3 m²·s | Wind-sea: 0.18m</span></span>
+      <span class="value">0.7m @ 5s from 106° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 3 m²·s | Wind-sea: 0.18m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -2589,7 +2750,7 @@ h2 {
     <h2>🌤️ Weather</h2>
     <div class="condition-item">
       <span class="label">Wind:</span>
-      <span class="value">14 km/h (7 kt) SSE<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+      <span class="value">15 km/h (8 kt) SSE<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Sunrise/set:</span>
@@ -2625,7 +2786,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">55°</div>
+      <div class="surf-value">52°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2637,10 +2798,10 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean offshore breeze offer clean but unexciting long walls.</div>
+  <div class="forecaster-note">💬 Offshore breeze cleans up the mushy, weak swell, but the small waves remain slow and unexciting.</div>
   
 </div>
     
@@ -2655,7 +2816,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">32°</div>
+      <div class="surf-value">29°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2667,10 +2828,10 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean offshore breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and an offshore breeze offer clean, rideable waves, though the small size keeps them mellow.</div>
   
 </div>
     
@@ -2685,7 +2846,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">54°</div>
+      <div class="surf-value">52°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2698,9 +2859,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean offshore breeze offer clean but unexciting conditions.</div>
+  <div class="forecaster-note">💬 Offshore breeze improves conditions, but the mushy swell angle still produces weak, unexciting waves.</div>
   
 </div>
     
@@ -2715,7 +2876,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">32°</div>
+      <div class="surf-value">29°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2728,9 +2889,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean offshore breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and an offshore breeze provide the best shape, with clean, workable lines.</div>
   
 </div>
     
@@ -2745,7 +2906,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">32°</div>
+      <div class="surf-value">29°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2758,9 +2919,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean offshore breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and an offshore breeze offer clean, rideable waves, though the small size limits the fun.</div>
   
 </div>
     
@@ -2775,7 +2936,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">2°</div>
+      <div class="surf-value">5°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2788,9 +2949,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross-off breeze mean the waves close out, making it a frustrating session.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross-off breeze create weak, closeout waves despite the offshore swell exposure.</div>
   
 </div>
     
@@ -2805,7 +2966,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">19°</div>
+      <div class="surf-value">22°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2818,9 +2979,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
-  <div class="board">🏄 Longboard, Log</div>
+  <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze produce some rideable waves, but the small size keeps them underwhelming.</div>
   
 </div>
     
@@ -2839,7 +3000,7 @@ h2 {
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">77%</div>
+      <div class="surf-value">49%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
@@ -2850,7 +3011,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with a cross breeze that makes it a write-off.</div>
+  <div class="forecaster-note">💬 Partially shadowed from the small east swell, leaving tiny, mushy waves with a cross breeze doing little to help.</div>
   
 </div>
     
@@ -2863,17 +3024,10 @@ h2 {
     <h2>🏆 Sat 18th July</h2>
     <div>
       
-      <div class="forecaster-note">💬 A clean offshore breeze and a low tide improve the quality, but the small, weak swell still limits the potential.</div>
+      <div class="forecaster-note">💬 Offshore breeze and low tide improve conditions, but the small east swell still limits wave size and power.</div>
       
 
       <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Curl Curl</span>
-</a>
         
         <a href="#" class="best-beach-card" data-beach="south-curl-curl">
   <span class="best-beach-card-badge">🏆 Best Beach</span>
@@ -2889,9 +3043,16 @@ h2 {
   <span class="best-beach-card-name">Freshwater</span>
 </a>
         
+        <a href="#" class="best-beach-card" data-beach="north-steyne">
+  <span class="best-beach-card-badge">🏆 Best Beach</span>
+  <span class="best-beach-card-wave">2-3 ft</span>
+  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
+  <span class="best-beach-card-name">North Steyne</span>
+</a>
+        
       </div>
 
-      <div class="gear-note">❄ Water feels like 16.4°C so you'll need a 4/3 steamer</div>
+      <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer</div>
 
       
       <hr class="rec-sep">
@@ -2905,7 +3066,7 @@ h2 {
     <h2>🌊 Water Conditions</h2>
     <div class="condition-item">
       <span class="label">Swell:</span>
-      <span class="value">0.8m @ 6s from 102° (ESE)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 4 m²·s | Wind-sea: 0.12m</span></span>
+      <span class="value">0.7m @ 6s from 100° (E)<span class="tooltip">Swell component — Open-Meteo Marine API (WW3) offshore Sydney. Power: 3 m²·s | Wind-sea: 0.18m</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Tide:</span>
@@ -2920,7 +3081,7 @@ h2 {
     <h2>🌤️ Weather</h2>
     <div class="condition-item">
       <span class="label">Wind:</span>
-      <span class="value">12 km/h (7 kt) SSE<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
+      <span class="value">13 km/h (7 kt) S<span class="tooltip">Open-Meteo Weather API: 10m wind from GFS/ECMWF model</span></span>
     </div>
     <div class="condition-item">
       <span class="label">Sunrise/set:</span>
@@ -2929,7 +3090,7 @@ h2 {
     
     <div class="condition-item">
       <span class="label">Air:</span>
-      <span class="value">16°C<span class="tooltip">Open-Meteo temperature forecast at 2m</span></span>
+      <span class="value">17°C<span class="tooltip">Open-Meteo temperature forecast at 2m</span></span>
     </div>
     
     
@@ -2952,11 +3113,11 @@ h2 {
   </div>
   <div class="surf-info">
     <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
+      <div class="surf-value">1-2 ft</div>
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">56°</div>
+      <div class="surf-value">58°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2969,9 +3130,9 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
+  <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean offshore breeze offer clean but unexciting long walls.</div>
+  <div class="forecaster-note">💬 Offshore breeze cleans up the mushy, weak swell, but the small waves remain slow and unexciting.</div>
   
 </div>
     
@@ -2982,11 +3143,11 @@ h2 {
   </div>
   <div class="surf-info">
     <div class="surf-detail">
-      <div class="surf-value">2-3 ft</div>
+      <div class="surf-value">1-2 ft</div>
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">33°</div>
+      <div class="surf-value">35°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -2999,13 +3160,13 @@ h2 {
     </div>
   </div>
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-  <div class="board">🏄 Fish, Longboard</div>
+  <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze offer clean, rideable waves, though the small size keeps them mellow.</div>
   
 </div>
     
-    <div class="beach-card beach-card-best" id="beach-north-curl-curl">
+    <div class="beach-card" id="beach-north-curl-curl">
   <div class="beach-name">
     <span>North Curl Curl</span>
     <span class="beach-aspect">SSE</span>
@@ -3016,7 +3177,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">56°</div>
+      <div class="surf-value">58°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -3028,10 +3189,10 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a mushy angle and a clean offshore breeze offer clean but unexciting conditions.</div>
+  <div class="forecaster-note">💬 Offshore breeze improves conditions, but the mushy swell angle still produces weak, unexciting waves.</div>
   
 </div>
     
@@ -3046,7 +3207,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">33°</div>
+      <div class="surf-value">35°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -3061,7 +3222,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze provide the best shape, with clean, workable lines.</div>
   
 </div>
     
@@ -3076,7 +3237,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">33°</div>
+      <div class="surf-value">35°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -3091,7 +3252,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a clean cross-off breeze offer the best shape of the day, but still lack power.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross-off breeze offer clean, rideable waves, though the small size limits the fun.</div>
   
 </div>
     
@@ -3121,11 +3282,11 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a straight-on angle and a cross breeze mean the waves close out, making it a frustrating session.</div>
+  <div class="forecaster-note">💬 Straight-on swell and a cross breeze create weak, closeout waves despite the offshore swell exposure.</div>
   
 </div>
     
-    <div class="beach-card" id="beach-north-steyne">
+    <div class="beach-card beach-card-best" id="beach-north-steyne">
   <div class="beach-name">
     <span>North Steyne</span>
     <span class="beach-aspect">E</span>
@@ -3136,7 +3297,7 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">18°</div>
+      <div class="surf-value">16°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
@@ -3148,10 +3309,10 @@ h2 {
       <div class="surf-label">Wind<span class="tooltip">Wind vs beach aspect</span></div>
     </div>
   </div>
-  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+  <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Small, weak waves with a peeling angle and a cross breeze offer some shape, but the lack of power keeps it average.</div>
+  <div class="forecaster-note">💬 Peeling swell angle and a cross breeze produce some rideable waves, but the small size keeps them underwhelming.</div>
   
 </div>
     
@@ -3166,11 +3327,11 @@ h2 {
       <div class="surf-label">Swell<span class="tooltip">Wave height at break</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">56°</div>
+      <div class="surf-value">55°</div>
       <div class="surf-label">AoA<span class="tooltip">Swell angle vs beach aspect</span></div>
     </div>
     <div class="surf-detail">
-      <div class="surf-value">89%</div>
+      <div class="surf-value">100%</div>
       <div class="surf-label">Exposure<span class="tooltip">% swell after headland diffraction</span></div>
     </div>
     <div class="surf-detail">
@@ -3181,7 +3342,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 The small, weak swell is heavily shadowed, leaving tiny, poor-quality waves with a cross-onshore breeze that makes it a write-off.</div>
+  <div class="forecaster-note">💬 Mushy swell angle and a cross-on breeze ruin the tiny waves, making it a complete write-off.</div>
   
 </div>
     
@@ -3195,6 +3356,8 @@ h2 {
         <div class="section">
             <h2>🌊 7-Day Swell Outlook</h2>
             
+            <div class="outlook-llm-note">💬 Small swell building through the weekend, peaking Sunday and Monday with clean offshore winds. East swell favours North Steyne and South Curl Curl. Tuesday fades, then Wednesday/Thursday drops right off. Sunday and Monday are your best bets.</div>
+            <hr class="rec-sep">
             <div style="margin-bottom:4px;font-size:0.75em;color:#999;display:flex;gap:16px;flex-wrap:wrap;">
                 <span><span style="display:inline-block;width:12px;height:12px;background:#b3d4ff;border-radius:2px;vertical-align:middle;"></span> Swell range (min–max)</span>
                 <span><span style="display:inline-block;width:12px;height:3px;background:#0066cc;border-radius:2px;vertical-align:middle;"></span> Avg height</span>
@@ -3204,7 +3367,7 @@ h2 {
             
     <div style="margin-bottom:2px;">
         <svg viewBox="0 0 660 300" style="width:100%;max-width:660px;height:auto;display:block;">
-            <rect width="660" height="300" fill="#f8faff" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0.0</text><line x1="50" y1="201.73333333333335" x2="615" y2="201.73333333333335" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="205.73333333333335" text-anchor="end" font-size="10" fill="#999">0.5</text><line x1="50" y1="131.4666666666667" x2="615" y2="131.4666666666667" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="135.4666666666667" text-anchor="end" font-size="10" fill="#999">1.0</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">1.5</text><text x="8" y="14" font-size="9" fill="#0066cc" font-weight="600">H (m)</text><text x="619" y="14" font-size="9" fill="#e67e22" font-weight="600">T (s)</text><rect x="76.23214285714286" y="131.4666666666667" width="28.249999999999996" height="36.53866666666664" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="78.23214285714286" y1="154.42044444444446" x2="102.48214285714286" y2="154.42044444444446" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="90.35714285714286" cy="118.4983333333333" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="156.94642857142856" y="156.7626666666667" width="28.249999999999996" height="16.863999999999976" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="158.94642857142856" y1="164.8433333333333" x2="183.19642857142856" y2="164.8433333333333" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="171.07142857142856" cy="150.325" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="237.66071428571428" y="66.82133333333337" width="28.249999999999996" height="95.56266666666664" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="239.66071428571428" y1="106.05355555555556" x2="263.9107142857143" y2="106.05355555555556" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="251.78571428571428" cy="92.92333333333332" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="318.375" y="80.87466666666666" width="28.249999999999996" height="25.29600000000002" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="320.375" y1="93.05422222222222" x2="344.625" y2="93.05422222222222" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="332.5" cy="75.46000000000001" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="399.08928571428567" y="106.17066666666668" width="28.249999999999996" height="44.97066666666666" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="401.08928571428567" y1="130.29555555555558" x2="425.33928571428567" y2="130.29555555555558" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="413.21428571428567" cy="77.68166666666667" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="479.8035714285714" y="153.95200000000003" width="28.249999999999996" height="47.78133333333332" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="481.8035714285714" y1="177.84266666666667" x2="506.0535714285714" y2="177.84266666666667" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="493.9285714285714" cy="86.82666666666668" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><rect x="560.5178571428571" y="190.49066666666667" width="28.249999999999996" height="22.48533333333333" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="562.5178571428571" y1="205.12955555555556" x2="586.7678571428571" y2="205.12955555555556" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="574.6428571428571" cy="91.52833333333331" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><path d="M90.4 118.5 L171.1 150.3 L251.8 92.9 L332.5 75.5 L413.2 77.7 L493.9 86.8 L574.6 91.5" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/><text x="619" y="276.0" text-anchor="start" font-size="10" fill="#e67e22">0</text><text x="619" y="226.4" text-anchor="start" font-size="10" fill="#e67e22">2</text><text x="619" y="176.8" text-anchor="start" font-size="10" fill="#e67e22">4</text><text x="619" y="127.20000000000002" text-anchor="start" font-size="10" fill="#e67e22">6</text><text x="619" y="77.6" text-anchor="start" font-size="10" fill="#e67e22">8</text><text x="619" y="28.0" text-anchor="start" font-size="10" fill="#e67e22">10</text>
+            <rect width="660" height="300" fill="#f8faff" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0.0</text><line x1="50" y1="201.73333333333335" x2="615" y2="201.73333333333335" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="205.73333333333335" text-anchor="end" font-size="10" fill="#999">0.5</text><line x1="50" y1="131.4666666666667" x2="615" y2="131.4666666666667" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="135.4666666666667" text-anchor="end" font-size="10" fill="#999">1.0</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">1.5</text><text x="8" y="14" font-size="9" fill="#0066cc" font-weight="600">H (m)</text><text x="619" y="14" font-size="9" fill="#e67e22" font-weight="600">T (s)</text><rect x="76.23214285714286" y="128.656" width="28.249999999999996" height="42.160000000000025" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="78.23214285714286" y1="154.65466666666669" x2="102.48214285714286" y2="154.65466666666669" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="90.35714285714286" cy="79.79999999999998" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SE</text><rect x="156.94642857142856" y="153.95200000000003" width="28.249999999999996" height="25.295999999999964" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="158.94642857142856" y1="169.17644444444448" x2="183.19642857142856" y2="169.17644444444448" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="171.07142857142856" cy="122.83833333333334" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="237.66071428571428" y="69.63200000000003" width="28.249999999999996" height="81.5093333333333" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="239.66071428571428" y1="94.10822222222222" x2="263.9107142857143" y2="94.10822222222222" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="251.78571428571428" cy="94.00833333333335" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="318.375" y="78.06400000000002" width="28.249999999999996" height="25.295999999999992" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="320.375" y1="86.26177777777781" x2="344.625" y2="86.26177777777781" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="332.5" cy="70.86166666666665" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="399.08928571428567" y="103.36000000000001" width="28.249999999999996" height="36.53866666666667" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="401.08928571428567" y1="124.08866666666668" x2="425.33928571428567" y2="124.08866666666668" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="413.21428571428567" cy="75.61500000000001" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="479.8035714285714" y="142.70933333333332" width="28.249999999999996" height="47.78133333333335" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="481.8035714285714" y1="165.78022222222222" x2="506.0535714285714" y2="165.78022222222222" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="493.9285714285714" cy="98.50333333333333" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><rect x="560.5178571428571" y="193.30133333333333" width="28.249999999999996" height="19.674666666666667" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="562.5178571428571" y1="204.07555555555555" x2="586.7678571428571" y2="204.07555555555555" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="574.6428571428571" cy="97.57333333333332" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><path d="M90.4 79.8 L171.1 122.8 L251.8 94.0 L332.5 70.9 L413.2 75.6 L493.9 98.5 L574.6 97.6" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/><text x="619" y="276.0" text-anchor="start" font-size="10" fill="#e67e22">0</text><text x="619" y="226.4" text-anchor="start" font-size="10" fill="#e67e22">2</text><text x="619" y="176.8" text-anchor="start" font-size="10" fill="#e67e22">4</text><text x="619" y="127.20000000000002" text-anchor="start" font-size="10" fill="#e67e22">6</text><text x="619" y="77.6" text-anchor="start" font-size="10" fill="#e67e22">8</text><text x="619" y="28.0" text-anchor="start" font-size="10" fill="#e67e22">10</text>
         </svg>
     </div>
         </div>
@@ -3217,7 +3380,7 @@ h2 {
             
     <div>
         <svg viewBox="0 0 660 300" style="width:100%;max-width:660px;height:auto;display:block;">
-            <rect width="660" height="300" fill="#fafff8" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0</text><line x1="50" y1="166.60000000000002" x2="615" y2="166.60000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="170.60000000000002" text-anchor="end" font-size="10" fill="#999">10</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">20</text><text x="8" y="14" font-size="9" fill="#27ae60" font-weight="600">km/h</text><rect x="76.23214285714286" y="132.872" width="28.249999999999996" height="139.128" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SSW</text><text x="90.35714285714286" y="128.872" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">13</text><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><rect x="156.94642857142856" y="119.17000000000002" width="28.249999999999996" height="152.82999999999998" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SSW</text><text x="171.07142857142856" y="115.17000000000002" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">14</text><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><rect x="237.66071428571428" y="110.738" width="28.249999999999996" height="161.262" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">S</text><text x="251.78571428571428" y="106.738" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">15</text><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><rect x="318.375" y="143.412" width="28.249999999999996" height="128.588" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">NW</text><text x="332.5" y="139.412" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">12</text><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><rect x="399.08928571428567" y="129.71" width="28.249999999999996" height="142.29" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">N</text><text x="413.21428571428567" y="125.71000000000001" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">14</text><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><rect x="479.8035714285714" y="151.844" width="28.249999999999996" height="120.156" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">WNW</text><text x="493.9285714285714" y="147.844" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">11</text><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><rect x="560.5178571428571" y="84.388" width="28.249999999999996" height="187.612" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SW</text><text x="574.6428571428571" y="80.388" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">18</text><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text>
+            <rect width="660" height="300" fill="#fafff8" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0</text><line x1="50" y1="166.60000000000002" x2="615" y2="166.60000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="170.60000000000002" text-anchor="end" font-size="10" fill="#999">10</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">20</text><text x="8" y="14" font-size="9" fill="#27ae60" font-weight="600">km/h</text><rect x="76.23214285714286" y="108.63" width="28.249999999999996" height="163.37" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SSW</text><text x="90.35714285714286" y="104.63" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">16</text><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><rect x="156.94642857142856" y="110.738" width="28.249999999999996" height="161.262" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SSW</text><text x="171.07142857142856" y="106.738" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">15</text><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><rect x="237.66071428571428" y="106.52200000000002" width="28.249999999999996" height="165.47799999999998" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SSW</text><text x="251.78571428571428" y="102.52200000000002" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">16</text><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><rect x="318.375" y="139.196" width="28.249999999999996" height="132.804" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">NNW</text><text x="332.5" y="135.196" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">13</text><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><rect x="399.08928571428567" y="116.00800000000001" width="28.249999999999996" height="155.992" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">N</text><text x="413.21428571428567" y="112.00800000000001" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">15</text><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><rect x="479.8035714285714" y="151.844" width="28.249999999999996" height="120.156" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">NW</text><text x="493.9285714285714" y="147.844" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">11</text><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><rect x="560.5178571428571" y="84.388" width="28.249999999999996" height="187.612" fill="#a8e6a0" rx="2" opacity="0.8"/><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#27ae60" font-weight="500">SW</text><text x="574.6428571428571" y="80.388" text-anchor="middle" font-size="9" fill="#27ae60" font-weight="600">18</text><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text>
         </svg>
     </div>
         </div>
@@ -3231,32 +3394,32 @@ h2 {
             </div>
         <div>
             <svg viewBox="0 0 660 300" style="width:100%;max-width:660px;height:auto;display:block;">
-                <rect width="660" height="300" fill="#fffaf0" rx="4"/><line x1="50" y1="258.97303370786517" x2="615" y2="258.97303370786517" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="262.97303370786517" text-anchor="end" font-size="10" fill="#999">5°</text><line x1="50" y1="199.75955056179777" x2="615" y2="199.75955056179777" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="203.75955056179777" text-anchor="end" font-size="10" fill="#999">10°</text><line x1="50" y1="140.54606741573033" x2="615" y2="140.54606741573033" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="144.54606741573033" text-anchor="end" font-size="10" fill="#999">15°</text><line x1="50" y1="81.3325842696629" x2="615" y2="81.3325842696629" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="85.3325842696629" text-anchor="end" font-size="10" fill="#999">20°</text><text x="8" y="14" font-size="9" fill="#e74c3c" font-weight="600">°C</text><rect x="76.23214285714286" y="126.33483146067417" width="28.249999999999996" height="50.92359550561795" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="78.23214285714286" y1="157.1258426966292" x2="102.48214285714286" y2="157.1258426966292" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="112.48214285714286" cy="137.5149367088608" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="118.48214285714286" y="124.44000000000003" width="14.124999999999998" height="147.55999999999997" fill="#85c1e9" rx="2" opacity="0.7"/><text x="125.54464285714286" y="120.44000000000003" text-anchor="middle" font-size="8" fill="#3498db" font-weight="600">100%</text><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><rect x="156.94642857142856" y="109.75505617977524" width="28.249999999999996" height="72.24044943820229" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="158.94642857142856" y1="150.31629213483146" x2="183.19642857142856" y2="150.31629213483146" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="193.19642857142856" cy="189.81468354430382" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="199.19642857142856" y="192.31760000000003" width="14.124999999999998" height="79.68239999999997" fill="#85c1e9" rx="2" opacity="0.7"/><text x="206.25892857142856" y="188.31760000000003" text-anchor="middle" font-size="8" fill="#3498db" font-weight="600">54%</text><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><rect x="237.66071428571428" y="114.49213483146067" width="28.249999999999996" height="61.58202247191011" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="239.66071428571428" y1="151.74728464419474" x2="263.9107142857143" y2="151.74728464419474" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="273.9107142857143" cy="137.5149367088608" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="279.9107142857143" y="260.1952" width="14.124999999999998" height="11.8048" fill="#85c1e9" rx="2" opacity="0.7"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><rect x="318.375" y="103.83370786516852" width="28.249999999999996" height="103.03146067415733" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="320.375" y1="162.6030898876404" x2="344.625" y2="162.6030898876404" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="354.625" cy="126.30784810126585" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="360.625" y="269.0488" width="14.124999999999998" height="2.9511999999999716" fill="#85c1e9" rx="2" opacity="0.7"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><rect x="399.08928571428567" y="101.46516853932582" width="28.249999999999996" height="113.68988764044946" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="401.08928571428567" y1="162.45505617977528" x2="425.33928571428567" y2="162.45505617977528" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="435.33928571428567" cy="130.04354430379752" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="441.33928571428567" y="269.0488" width="14.124999999999998" height="2.9511999999999716" fill="#85c1e9" rx="2" opacity="0.7"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><rect x="479.8035714285714" y="96.72808988764046" width="28.249999999999996" height="139.7438202247191" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="481.8035714285714" y1="168.47509363295882" x2="506.0535714285714" y2="168.47509363295882" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="516.0535714285713" cy="124.44000000000003" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="522.0535714285713" y="266.0976" width="14.124999999999998" height="5.9024" fill="#85c1e9" rx="2" opacity="0.7"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><rect x="560.5178571428571" y="127.5191011235955" width="28.249999999999996" height="73.4247191011236" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="562.5178571428571" y1="161.8629213483146" x2="586.7678571428571" y2="161.8629213483146" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="596.7678571428571" cy="133.77924050632913" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="602.7678571428571" y="257.244" width="14.124999999999998" height="14.755999999999972" fill="#85c1e9" rx="2" opacity="0.7"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text>
+                <rect width="660" height="300" fill="#fffaf0" rx="4"/><line x1="50" y1="215.6232558139535" x2="615" y2="215.6232558139535" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="219.6232558139535" text-anchor="end" font-size="10" fill="#999">10°</text><line x1="50" y1="154.34418604651165" x2="615" y2="154.34418604651165" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="158.34418604651165" text-anchor="end" font-size="10" fill="#999">15°</text><line x1="50" y1="93.06511627906983" x2="615" y2="93.06511627906983" stroke="#f0e6d6" stroke-width="1"/><text x="44" y="97.06511627906983" text-anchor="end" font-size="10" fill="#999">20°</text><text x="8" y="14" font-size="9" fill="#e74c3c" font-weight="600">°C</text><rect x="76.23214285714286" y="140.86279069767443" width="28.249999999999996" height="46.57209302325583" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="78.23214285714286" y1="169.40862403100778" x2="102.48214285714286" y2="169.40862403100778" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="112.48214285714286" cy="153.952" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="118.48214285714286" y="124.44000000000003" width="14.124999999999998" height="147.55999999999997" fill="#85c1e9" rx="2" opacity="0.7"/><text x="125.54464285714286" y="120.44000000000003" text-anchor="middle" font-size="8" fill="#3498db" font-weight="600">100%</text><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><rect x="156.94642857142856" y="118.80232558139542" width="28.249999999999996" height="78.43720930232553" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="158.94642857142856" y1="163.84244186046516" x2="183.19642857142856" y2="163.84244186046516" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="193.19642857142856" cy="137.35150000000002" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="199.19642857142856" y="181.9884" width="14.124999999999998" height="90.01159999999999" fill="#85c1e9" rx="2" opacity="0.7"/><text x="206.25892857142856" y="177.9884" text-anchor="middle" font-size="8" fill="#3498db" font-weight="600">61%</text><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><rect x="237.66071428571428" y="138.41162790697678" width="28.249999999999996" height="52.69999999999999" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="239.66071428571428" y1="165.06802325581398" x2="263.9107142857143" y2="165.06802325581398" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="273.9107142857143" cy="142.88500000000002" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="279.9107142857143" y="236.5856" width="14.124999999999998" height="35.4144" fill="#85c1e9" rx="2" opacity="0.7"/><text x="286.9732142857143" y="232.5856" text-anchor="middle" font-size="8" fill="#3498db" font-weight="600">24%</text><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><rect x="318.375" y="112.67441860465121" width="28.249999999999996" height="99.27209302325579" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="320.375" y1="170.32781007751942" x2="344.625" y2="170.32781007751942" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="354.625" cy="128.12900000000002" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="360.625" y="272.0" width="14.124999999999998" height="0.0" fill="#85c1e9" rx="2" opacity="0.7"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><rect x="399.08928571428567" y="112.67441860465121" width="28.249999999999996" height="115.20465116279067" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="401.08928571428567" y1="171.14486434108528" x2="425.33928571428567" y2="171.14486434108528" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="435.33928571428567" cy="135.50700000000003" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="441.33928571428567" y="272.0" width="14.124999999999998" height="0.0" fill="#85c1e9" rx="2" opacity="0.7"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><rect x="479.8035714285714" y="97.96744186046516" width="28.249999999999996" height="137.26511627906973" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="481.8035714285714" y1="173.03430232558142" x2="506.0535714285714" y2="173.03430232558142" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="516.0535714285713" cy="126.28450000000001" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="522.0535714285713" y="269.0488" width="14.124999999999998" height="2.9511999999999716" fill="#85c1e9" rx="2" opacity="0.7"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><rect x="560.5178571428571" y="140.86279069767443" width="28.249999999999996" height="72.30930232558143" fill="#ffcccc" rx="2" opacity="0.8"/><line x1="562.5178571428571" y1="172.16618217054264" x2="586.7678571428571" y2="172.16618217054264" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/><circle cx="596.7678571428571" cy="124.44000000000003" r="3" fill="#f39c12" stroke="white" stroke-width="1"/><rect x="602.7678571428571" y="254.2928" width="14.124999999999998" height="17.7072" fill="#85c1e9" rx="2" opacity="0.7"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text>
             </svg>
         </div>
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 05:45:08 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 13:22:51 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
       <summary style="cursor:pointer; color:#666; font-size:0.85em;">📊 Data source status</summary>
       <table style="margin:8px auto; font-size:0.85em; border-collapse:collapse;">
         <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ Open-Meteo Marine API</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">2026-07-16 19:45 UTC</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Marine API</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ Open-Meteo Weather API</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">2026-07-16 19:45 UTC</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Weather API</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ Open-Meteo Weather API</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">2026-07-16 19:45 UTC</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Weather API</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
                 <td style="text-align:left;padding:2px 8px;">⚙️ IMOS RAMSSA L4</td>
@@ -3269,9 +3432,9 @@ h2 {
                 <td style="text-align:right;padding:2px 8px;color:#666;">Local calculation</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ OpenRouter / DeepSeek</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">LLM commentary generated</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ OpenRouter / DeepSeek</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Reused from cache</td>
             </tr>
       </table>
     </details>
@@ -3280,50 +3443,342 @@ h2 {
 
   <div class="watermark">Northern Beaches Surf Check v2.0</div>
 
+  <script id="timeline-data" type="application/json">[
+    
+    {
+      "label": "6–9am",
+      "emoji": "🌅",
+      "day": "today",
+      "date_str": "Fri 17th July",
+      "wave_height": 0.9,
+      "wave_period": 9,
+      "wave_compass": "SSE",
+      "wind_knots": 5,
+      "wind_compass": "SW",
+      "tide_height": 1.20,
+      "overall_rating": 2.0
+    },
+    
+    {
+      "label": "9–12pm",
+      "emoji": "☀️",
+      "day": "today",
+      "date_str": "Fri 17th July",
+      "wave_height": 0.8,
+      "wave_period": 9,
+      "wave_compass": "SSE",
+      "wind_knots": 7,
+      "wind_compass": "SSW",
+      "tide_height": 1.01,
+      "overall_rating": 2.0
+    },
+    
+    {
+      "label": "12–3pm",
+      "emoji": "🌤️",
+      "day": "today",
+      "date_str": "Fri 17th July",
+      "wave_height": 0.8,
+      "wave_period": 7,
+      "wave_compass": "E",
+      "wind_knots": 8,
+      "wind_compass": "S",
+      "tide_height": 0.62,
+      "overall_rating": 2.0
+    },
+    
+    {
+      "label": "3–6pm",
+      "emoji": "🌇",
+      "day": "today",
+      "date_str": "Fri 17th July",
+      "wave_height": 0.8,
+      "wave_period": 7,
+      "wave_compass": "E",
+      "wind_knots": 6,
+      "wind_compass": "S",
+      "tide_height": 0.74,
+      "overall_rating": 2.0
+    },
+    
+    {
+      "label": "6–9am",
+      "emoji": "🌅",
+      "day": "tomorrow",
+      "date_str": "Sat 18th July",
+      "wave_height": 0.7,
+      "wave_period": 6,
+      "wave_compass": "ESE",
+      "wind_knots": 6,
+      "wind_compass": "WSW",
+      "tide_height": 1.08,
+      "overall_rating": 1.0
+    },
+    
+    {
+      "label": "9–12pm",
+      "emoji": "☀️",
+      "day": "tomorrow",
+      "date_str": "Sat 18th July",
+      "wave_height": 0.7,
+      "wave_period": 5,
+      "wave_compass": "ESE",
+      "wind_knots": 5,
+      "wind_compass": "S",
+      "tide_height": 1.19,
+      "overall_rating": 1.5
+    },
+    
+    {
+      "label": "12–3pm",
+      "emoji": "🌤️",
+      "day": "tomorrow",
+      "date_str": "Sat 18th July",
+      "wave_height": 0.7,
+      "wave_period": 5,
+      "wave_compass": "ESE",
+      "wind_knots": 8,
+      "wind_compass": "SSE",
+      "tide_height": 0.76,
+      "overall_rating": 1.5
+    },
+    
+    {
+      "label": "3–6pm",
+      "emoji": "🌇",
+      "day": "tomorrow",
+      "date_str": "Sat 18th July",
+      "wave_height": 0.7,
+      "wave_period": 6,
+      "wave_compass": "E",
+      "wind_knots": 7,
+      "wind_compass": "S",
+      "tide_height": 0.58,
+      "overall_rating": 1.5
+    }
+    
+  ]</script>
+
   <script>
     function showDay(day) {
-      document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
-      document.querySelector('.day-btn[data-day="' + day + '"]').classList.add('active');
-      document.querySelectorAll('.outlook-content').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.timeframe-content').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.tf-btn').forEach(el => {
-        el.style.display = el.getAttribute('data-day') === day ? '' : 'none';
-      });
-      const first = document.querySelector('.timeframe-content[data-day="' + day + '"]');
+      document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
+      var btn = document.querySelector('.day-btn[data-day="' + day + '"]');
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'none'; });
+      document.querySelectorAll('.timeframe-content').forEach(function(el) { el.style.display = 'none'; });
+      // Show first timeframe for this day
+      var first = document.querySelector('.timeframe-content[data-day="' + day + '"]');
       if (first) {
         first.style.display = 'block';
-        const label = first.getAttribute('data-tf');
-        document.querySelectorAll('.tf-btn').forEach(el => {
-          el.classList.remove('active');
-          if (el.getAttribute('data-btn') === label && el.getAttribute('data-day') === day) {
-            el.classList.add('active');
-          }
+        var label = first.getAttribute('data-tf');
+        // Update chart active slot
+        document.querySelectorAll('.tl-slot').forEach(function(el) { el.classList.remove('active'); });
+        document.querySelectorAll('.tl-slot[data-tf="' + label + '"][data-day="' + day + '"]').forEach(function(el) { el.classList.add('active'); });
+        try { localStorage.setItem('surfcheckTimeframe', label); } catch(e) {}
+      }
+      // Show/hide chart for this day
+      var chart = document.getElementById('timelineChart');
+      if (chart) {
+        chart.style.display = '';
+        chart.querySelectorAll('.tl-day').forEach(function(el) {
+          el.style.display = el.getAttribute('data-day') === day ? '' : 'none';
         });
       }
       try { localStorage.setItem('surfcheckDay', day); } catch(e) {}
     }
     function showTimeframe(label) {
-      const activeDay = document.querySelector('.day-btn.active')?.getAttribute('data-day') || 'today';
-      if (activeDay === 'outlook') return;
-      document.querySelectorAll('.timeframe-content').forEach(el => {
-        el.style.display = (el.getAttribute('data-tf') === label && el.getAttribute('data-day') === activeDay) ? 'block' : 'none';
+      var activeDay = document.querySelector('.day-btn.active');
+      var day = activeDay ? activeDay.getAttribute('data-day') : 'today';
+      if (day === 'outlook') return;
+      document.querySelectorAll('.timeframe-content').forEach(function(el) {
+        el.style.display = (el.getAttribute('data-tf') === label && el.getAttribute('data-day') === day) ? 'block' : 'none';
       });
-      document.querySelectorAll('.tf-btn').forEach(el => {
-        el.classList.remove('active');
-        if (el.getAttribute('data-btn') === label && el.getAttribute('data-day') === activeDay) {
-          el.classList.add('active');
-        }
-      });
+      // Update chart active slot
+      document.querySelectorAll('.tl-slot').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.tl-slot[data-tf="' + label + '"][data-day="' + day + '"]').forEach(function(el) { el.classList.add('active'); });
       try { localStorage.setItem('surfcheckTimeframe', label); } catch(e) {}
     }
     function showOutlook() {
-      document.querySelectorAll('.day-btn').forEach(el => el.classList.remove('active'));
-      document.querySelector('.day-btn[data-day="outlook"]').classList.add('active');
-      document.querySelectorAll('.timeframe-content').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.tf-btn').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.outlook-content').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
+      var btn = document.querySelector('.day-btn[data-day="outlook"]');
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('.timeframe-content').forEach(function(el) { el.style.display = 'none'; });
+      document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'block'; });
+      var chart = document.getElementById('timelineChart');
+      if (chart) chart.style.display = 'none';
       try { localStorage.setItem('surfcheckDay', 'outlook'); } catch(e) {}
     }
+
+    function renderTimelineChart() {
+      var container = document.getElementById('timelineChart');
+      if (!container) return;
+      var dataEl = document.getElementById('timeline-data');
+      if (!dataEl) return;
+      var data;
+      try { data = JSON.parse(dataEl.textContent); } catch(e) { return; }
+      if (!data || data.length === 0) return;
+
+      // Group by day
+      var days = ['today', 'tomorrow'];
+      var dayLabels = { 'today': 'Today', 'tomorrow': 'Tomorrow' };
+      var chartHtml = '';
+
+      days.forEach(function(dayId) {
+        var dayData = data.filter(function(d) { return d.day === dayId; });
+        if (dayData.length === 0) return;
+
+        var dateStr = dayData[0] ? dayData[0].date_str : '';
+
+        // Find max values for normalization
+        var maxWave = 0, maxWind = 0, minTide = 0, maxTide = 0;
+        dayData.forEach(function(d) {
+          var wh = d.wave_height;
+          var ws = d.wind_knots;
+          var th = d.tide_height;
+          if (wh > maxWave) maxWave = wh;
+          if (ws > maxWind) maxWind = ws;
+          if (th < minTide) minTide = th;
+          if (th > maxTide) maxTide = th;
+        });
+        maxWave = Math.max(maxWave, 0.5);
+        maxWind = Math.max(maxWind, 5);
+        var tideRange = Math.max(maxTide - minTide, 0.3);
+
+        var n = dayData.length;
+        var slotW = 60; // viewBox width per slot
+        var svgW = n * slotW;
+        var svgH = 72;
+        var pad = 4;
+
+        // Build SVG chart lines
+        var wavePoints = [];
+        var windPoints = [];
+        var tidePoints = [];
+        var dots = [];
+
+        dayData.forEach(function(d, i) {
+          var x = (i + 0.5) * slotW;
+          var wy = svgH - pad - ((d.wave_height) / maxWave) * (svgH - 2 * pad);
+          var wi = svgH - pad - ((d.wind_knots) / maxWind) * (svgH - 2 * pad);
+          var ty = svgH - pad - ((d.tide_height - minTide) / tideRange) * (svgH - 2 * pad);
+          wavePoints.push(x.toFixed(1) + ',' + wy.toFixed(1));
+          windPoints.push(x.toFixed(1) + ',' + wi.toFixed(1));
+          tidePoints.push(x.toFixed(1) + ',' + ty.toFixed(1));
+          dots.push(
+            '<circle cx="' + x.toFixed(1) + '" cy="' + wy.toFixed(1) + '" r="3" class="tl-dot tl-dot-wave"/>',
+            '<circle cx="' + x.toFixed(1) + '" cy="' + wi.toFixed(1) + '" r="3" class="tl-dot tl-dot-wind"/>',
+            '<circle cx="' + x.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="3" class="tl-dot tl-dot-tide"/>'
+          );
+        });
+
+        chartHtml += '<div class="tl-day" data-day="' + dayId + '">' +
+          '<div class="tl-day-label">' + dayLabels[dayId] + ' &middot; ' + dateStr + '</div>' +
+          '<div class="tl-slots">';
+
+        dayData.forEach(function(d, i) {
+          var stars = '';
+          var r = Math.round(d.overall_rating);
+          for (var s = 0; s < r; s++) stars += '★';
+          chartHtml += '<div class="tl-slot" data-tf="' + d.label + '" data-day="' + dayId + '">' +
+            '<div class="tl-slot-label">' + d.emoji + ' ' + d.label + '</div>' +
+            '<div class="tl-slot-metric"><span class="tl-metric-val">' + d.wave_height + 'm</span> <span class="tl-compass">' + d.wave_compass + '</span></div>' +
+            '<div class="tl-slot-metric tl-wind-metric">' + d.wind_knots + 'kt ' + d.wind_compass + '</div>' +
+            '<div class="tl-slot-rating">' + stars + '</div>' +
+            '</div>';
+        });
+
+        chartHtml += '</div>' +
+          '<div class="tl-svg-wrap">' +
+          '<svg width="100%" height="' + svgH + '" viewBox="0 0 ' + svgW + ' ' + svgH + '" class="tl-chart-svg">' +
+          '<polyline points="' + wavePoints.join(' ') + '" class="tl-line tl-line-wave" />' +
+          '<polyline points="' + windPoints.join(' ') + '" class="tl-line tl-line-wind" />' +
+          '<polyline points="' + tidePoints.join(' ') + '" class="tl-line tl-line-tide" />' +
+          dots.join('') +
+          '</svg>' +
+          '<div class="tl-legend">' +
+          '<span class="tl-legend-item"><span class="tl-legend-swatch tl-swatch-wave"></span> Swell</span>' +
+          '<span class="tl-legend-item"><span class="tl-legend-swatch tl-swatch-wind"></span> Wind</span>' +
+          '<span class="tl-legend-item"><span class="tl-legend-swatch tl-swatch-tide"></span> Tide</span>' +
+          '</div>' +
+          '</div>' +
+          '</div>';
+      });
+
+      container.innerHTML = chartHtml;
+
+      // Click handlers on slots
+      container.querySelectorAll('.tl-slot').forEach(function(s) {
+        s.addEventListener('click', function() {
+          var label = this.getAttribute('data-tf');
+          var day = this.getAttribute('data-day');
+          var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
+          if (dayBtn) {
+            // Simulate click to switch day
+            var handler = dayBtn.getAttribute('onclick');
+            if (handler) {
+              // Extract the day argument from onclick
+              var m = handler.match(/['"](\w+)['"]/);
+              if (m) showDay(m[1]);
+            }
+          }
+          showTimeframe(label);
+        });
+      });
+
+      // Create click overlays on SVG chart zones
+      container.querySelectorAll('.tl-svg-wrap').forEach(function(wrap) {
+        var dayEl = wrap.closest('.tl-day');
+        if (!dayEl) return;
+        var day = dayEl.getAttribute('data-day');
+        var slots = dayEl.querySelectorAll('.tl-slot');
+        if (slots.length === 0) return;
+        var svg = wrap.querySelector('.tl-chart-svg');
+        if (!svg) return;
+        var vb = svg.getAttribute('viewBox').split(' ');
+        var vbW = parseFloat(vb[2]);
+        var colW = vbW / slots.length;
+        for (var i = 0; i < slots.length; i++) {
+          (function(idx) {
+            var overlay = document.createElement('div');
+            overlay.className = 'tl-svg-zone';
+            overlay.style.left = ((idx * colW) / vbW * 100).toFixed(2) + '%';
+            overlay.style.width = (colW / vbW * 100).toFixed(2) + '%';
+            var label = slots[idx].getAttribute('data-tf');
+            overlay.setAttribute('data-tf', label);
+            overlay.setAttribute('data-day', day);
+            overlay.addEventListener('click', function() {
+              var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
+              if (dayBtn) {
+                var handler = dayBtn.getAttribute('onclick');
+                if (handler) {
+                  var m = handler.match(/['"](\w+)['"]/);
+                  if (m) showDay(m[1]);
+                }
+              }
+              showTimeframe(label);
+            });
+            wrap.appendChild(overlay);
+          })(i);
+        }
+      });
+
+      // Sync initial state
+      var activeDay = document.querySelector('.day-btn.active');
+      var day = activeDay ? activeDay.getAttribute('data-day') : 'today';
+      if (day === 'outlook') {
+        container.style.display = 'none';
+      } else {
+        container.style.display = '';
+        container.querySelectorAll('.tl-day').forEach(function(el) {
+          el.style.display = el.getAttribute('data-day') === day ? '' : 'none';
+        });
+        // Set first slot active
+        var firstSlot = container.querySelector('.tl-slot[data-day="' + day + '"]');
+        if (firstSlot) firstSlot.classList.add('active');
+      }
+    }
+
+    // Best beach card scroll click
     document.addEventListener('click', function(e) {
       var card = e.target.closest('.best-beach-card');
       if (card) {
@@ -3344,17 +3799,20 @@ h2 {
         }
       }
     });
+
     document.addEventListener('DOMContentLoaded', function() {
-      const savedDay = (function(){ try { return localStorage.getItem('surfcheckDay'); } catch(e){ return null; } })();
+      renderTimelineChart();
+      var savedDay = (function(){ try { return localStorage.getItem('surfcheckDay'); } catch(e){ return null; } })();
       if (savedDay === 'outlook') {
         showOutlook();
       } else if (savedDay && document.querySelector('.timeframe-content[data-day="' + savedDay + '"]')) {
         showDay(savedDay);
       }
-      const saved = (function(){ try { return localStorage.getItem('surfcheckTimeframe'); } catch(e){ return null; } })();
+      var saved = (function(){ try { return localStorage.getItem('surfcheckTimeframe'); } catch(e){ return null; } })();
       if (saved) {
-        const activeDay = document.querySelector('.day-btn.active')?.getAttribute('data-day') || 'today';
-        if (activeDay !== 'outlook' && document.querySelector('.timeframe-content[data-tf="' + saved + '"][data-day="' + activeDay + '"]')) {
+        var activeDay = document.querySelector('.day-btn.active');
+        var day = activeDay ? activeDay.getAttribute('data-day') : 'today';
+        if (day !== 'outlook' && document.querySelector('.timeframe-content[data-tf="' + saved + '"][data-day="' + day + '"]')) {
           showTimeframe(saved);
         }
       }
