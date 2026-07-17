@@ -517,22 +517,22 @@ h2 {
     display: none;
 }
 .tl-day-label {
-    font-size: 0.65em;
+    font-size: 0.55em;
     color: #888;
     text-align: center;
-    margin-bottom: 2px;
+    margin-bottom: 1px;
 }
 .tl-slots {
     display: flex;
-    gap: 4px;
-    margin-bottom: 2px;
+    gap: 3px;
+    margin-bottom: 1px;
 }
 .tl-slot {
     flex: 1;
     min-width: 0;
-    padding: 4px 2px;
-    border: 1.5px solid #b3d4ff;
-    border-radius: 8px;
+    padding: 3px 1px;
+    border: 1px solid #b3d4ff;
+    border-radius: 6px;
     background: white;
     text-align: center;
     cursor: pointer;
@@ -547,12 +547,11 @@ h2 {
     border-color: #0066cc;
 }
 .tl-slot.active .tl-slot-label,
-.tl-slot.active .tl-slot-metric,
-.tl-slot.active .tl-slot-rating {
+.tl-slot.active .tl-slot-metric {
     color: white;
 }
 .tl-slot-label {
-    font-size: 0.65em;
+    font-size: 0.6em;
     font-weight: 700;
     color: #0066cc;
     white-space: nowrap;
@@ -560,12 +559,12 @@ h2 {
     text-overflow: ellipsis;
 }
 .tl-slot-metric {
-    font-size: 0.6em;
+    font-size: 0.5em;
     color: #555;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 .tl-metric-val {
     font-weight: 600;
@@ -581,43 +580,32 @@ h2 {
 .tl-wind-metric {
     color: #666;
 }
-.tl-slot-rating {
-    font-size: 0.55em;
-    color: #f5a623;
-    letter-spacing: -1px;
-}
-.tl-bar-wrap {
-    margin-top: 2px;
-}
-.tl-bars {
-    display: flex;
-    gap: 2px;
-}
-.tl-bar-col {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 2px;
+.tl-svg-wrap {
+    margin-top: 1px;
+    position: relative;
     width: 100%;
-    min-height: 20px;
+    max-width: 100%;
+    line-height: 0;
 }
-
-.tl-bar {
-    width: 60%;
-    min-height: 2px;
-    border-radius: 2px 2px 0 0;
-    transition: height 0.2s;
+.tl-chart-svg {
+    width: 100%;
+    height: auto;
+    display: block;
 }
-.tl-bar-wave {
-    background: #4a90d9;
+.tl-svg-zone {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
 }
-.tl-bar-wind {
-    background: #27ae60;
+.tl-dot-wave {
+    fill: #4a90d9;
 }
-.tl-bar-tide {
-    background: #8e44ad;
+.tl-dot-wind {
+    fill: #27ae60;
+}
+.tl-dot-tide {
+    fill: #8e44ad;
 }
 
 @media (min-width: 600px) {
@@ -3352,7 +3340,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 16:30:55 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-17 16:37:16 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3599,7 +3587,7 @@ h2 {
         var n = dayData.length;
         var slotW = 60; // viewBox width per slot
         var svgW = n * slotW;
-        var svgH = 72;
+        var svgH = 44;
         var pad = 4;
 
         // Build SVG chart lines
@@ -3617,9 +3605,9 @@ h2 {
           windPoints.push(x.toFixed(1) + ',' + wi.toFixed(1));
           tidePoints.push(x.toFixed(1) + ',' + ty.toFixed(1));
           dots.push(
-            '<circle cx="' + x.toFixed(1) + '" cy="' + wy.toFixed(1) + '" r="3" class="tl-dot tl-dot-wave"></circle>',
-            '<circle cx="' + x.toFixed(1) + '" cy="' + wi.toFixed(1) + '" r="3" class="tl-dot tl-dot-wind"></circle>',
-            '<circle cx="' + x.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="3" class="tl-dot tl-dot-tide"></circle>'
+            '<circle cx="' + x.toFixed(1) + '" cy="' + wy.toFixed(1) + '" r="1.5" class="tl-dot tl-dot-wave"></circle>',
+            '<circle cx="' + x.toFixed(1) + '" cy="' + wi.toFixed(1) + '" r="1.5" class="tl-dot tl-dot-wind"></circle>',
+            '<circle cx="' + x.toFixed(1) + '" cy="' + ty.toFixed(1) + '" r="1.5" class="tl-dot tl-dot-tide"></circle>'
           );
         });
 
@@ -3628,31 +3616,21 @@ h2 {
           '<div class="tl-slots">';
 
         dayData.forEach(function(d, i) {
-          var stars = '';
-          var r = Math.round(d.overall_rating);
-          for (var s = 0; s < r; s++) stars += '★';
           chartHtml += '<div class="tl-slot" data-tf="' + d.label + '" data-day="' + dayId + '">' +
             '<div class="tl-slot-label">' + d.emoji + ' ' + d.label + '</div>' +
             '<div class="tl-slot-metric"><span class="tl-metric-val">' + d.wave_height + 'm</span> <span class="tl-compass">' + d.wave_compass + '</span></div>' +
             '<div class="tl-slot-metric tl-wind-metric">' + d.wind_knots + 'kt ' + d.wind_compass + '</div>' +
-            '<div class="tl-slot-rating">' + stars + '</div>' +
             '</div>';
         });
 
         chartHtml += '</div>' +
-          '<div class="tl-bar-wrap">' +
-          '<div class="tl-bars">' +
-          dayData.map(function(d, i) {
-            var wp = Math.round((d.wave_height / maxWave) * 100);
-            var wip = Math.round((d.wind_knots / maxWind) * 100);
-            var tp = Math.round(((d.tide_height - minTide) / tideRange) * 100);
-            return '<div class="tl-bar-col">' +
-              '<div class="tl-bar tl-bar-wave" style="height:' + wp + 'px"></div>' +
-              '<div class="tl-bar tl-bar-wind" style="height:' + wip + 'px"></div>' +
-              '<div class="tl-bar tl-bar-tide" style="height:' + tp + 'px"></div>' +
-              '</div>';
-          }).join('') +
-          '</div>' +
+          '<div class="tl-svg-wrap">' +
+          '<svg class="tl-chart-svg" viewBox="0 0 ' + svgW + ' ' + svgH + '" preserveAspectRatio="xMidYMid meet">' +
+          '<polyline points="' + wavePoints.join(' ') + '" fill="none" stroke="#4a90d9" stroke-width="1.5"></polyline>' +
+          '<polyline points="' + windPoints.join(' ') + '" fill="none" stroke="#27ae60" stroke-width="1.5"></polyline>' +
+          '<polyline points="' + tidePoints.join(' ') + '" fill="none" stroke="#8e44ad" stroke-width="1.5"></polyline>' +
+          dots.join('') +
+          '</svg>' +
           '</div>' +
           '</div>';
       });
