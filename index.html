@@ -3047,7 +3047,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 18:19:59 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 20:10:01 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3221,12 +3221,18 @@ h2 {
     document.addEventListener('DOMContentLoaded', function() {
       initMatrixClicks();
       initBeachListClicks();
-      // Restore saved day
+      // Restore saved day, or default to Tomorrow if after 6pm local time
       var savedDay = (function(){ try { return localStorage.getItem('surfcheckDay'); } catch(e){ return null; } })();
       if (savedDay === 'outlook') {
         showOutlook();
       } else if (savedDay) {
         showDay(savedDay);
+      } else {
+        var hour = new Date().getHours();
+        if (hour >= 18) {
+          showDay('tomorrow');
+        }
+        // else default stays "today" (already in the HTML)
       }
     });
   </script>
