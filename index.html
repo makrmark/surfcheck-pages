@@ -2855,7 +2855,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:33:55 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:36:35 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -2941,12 +2941,17 @@ h2 {
     function initMatrixClicks() {
       document.querySelectorAll('.bm-row[data-beach-name]').forEach(function(row) {
         row.addEventListener('click', function(e) {
-          // Don't trigger if clicking a link inside the cell
           if (e.target.closest('a')) return;
           var name = row.getAttribute('data-beach-name');
           if (!name) return;
-          // Find the matching beach day card in the hidden section
-          var card = document.querySelector('.beach-day-modal-content[data-beach-name="' + name + '"]');
+          // Scope search to the active (visible) daily-overview container
+          var dayContainer = row.closest('.daily-overview');
+          if (!dayContainer || dayContainer.style.display === 'none') {
+            dayContainer = document.querySelector('.daily-overview[style*="display: block"], .daily-overview[style*="display:block"]');
+            if (!dayContainer) dayContainer = document.querySelector('.daily-overview:not([style*="display:none"]):not([style*="display: none"])');
+          }
+          var container = dayContainer || document;
+          var card = container.querySelector('.beach-day-modal-content[data-beach-name="' + name.replace(/"/g, '&quot;') + '"]');
           if (card) {
             openBeachModal(card.outerHTML);
           }
