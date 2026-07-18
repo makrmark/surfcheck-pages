@@ -758,6 +758,21 @@ h2 {
     color: #555;
     margin-bottom: 4px;
 }
+.rating-badge {
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 1px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.beach-heading {
+    font-weight: normal;
+    color: #888;
+    font-size: 0.85em;
+}
 .bd-detail {
     color: #666;
     font-size: 0.85em;
@@ -825,6 +840,236 @@ h2 {
     
     <div class="forecaster-note">💬 Small and weak early, a hint of short-period groundswell. Light offshore winds clean up morning but moderate out of the south by midday, adding some chop. Dropping tide helps sharpen the peaks. Early session worthwhile, but afternoon gets bumpy.</div>
     
+
+    <!-- Conditions section moved to top -->
+    <div class="section">
+      <h2>🌡️ Conditions</h2>
+      
+      <div class="gear-note">🧊 Water feels like 16.5°C so you'll need a 3/2mm steamer. Coldest period is 6-9am with air temp 12°C.</div>
+      
+      <div class="beach-matrix-wrap">
+        <table class="conditions-matrix">
+          <thead>
+            <tr>
+              <th class="bm-header bm-beach-col"></th>
+              
+              <th class="bm-header bm-tf-col">🌅 6–9am</th>
+              
+              <th class="bm-header bm-tf-col">☀️ 9–12pm</th>
+              
+              <th class="bm-header bm-tf-col">🌤️ 12–3pm</th>
+              
+              <th class="bm-header bm-tf-col">🌇 3–6pm</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Swell</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0.7m @ 9s</div>
+                <div class="cm-cell-detail">142° (SE)</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0.7m @ 7s</div>
+                <div class="cm-cell-detail">105° (ESE)</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0.7m @ 7s</div>
+                <div class="cm-cell-detail">102° (ESE)</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0.8m @ 8s</div>
+                <div class="cm-cell-detail">102° (ESE)</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Tide</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,8 18,6 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">1.1m</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,5 35,7" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">1.2m</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,7 18,9 35,11" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">0.8m</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,11 18,11 35,10" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">0.6m</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Water Feels Like</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">13.7°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.3°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.5°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.3°C</div>
+                
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Wind</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">5 kt</div>
+                <div class="cm-cell-detail">SW</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">4 kt</div>
+                <div class="cm-cell-detail">S</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">9 kt</div>
+                <div class="cm-cell-detail">SSE</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">8 kt</div>
+                <div class="cm-cell-detail">S</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Air Temp</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">11.9°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.2°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">17.9°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.2°C</div>
+                
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">UV</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">2</div>
+                <div class="cm-cell-detail">0.44</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">3</div>
+                <div class="cm-cell-detail">0.49</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0</div>
+                <div class="cm-cell-detail">0.14</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Rain %</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">25%</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">14%</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">10%</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">14%</div>
+                
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Sunrise/Sunset</td>
+              
+              <td class="cm-cell" colspan="4">
+                <div class="cm-cell-value">🌅 06:59 — 🌇 17:00</div>
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- End of conditions section -->
+
     <div class="beach-matrix-wrap">
       <table class="beach-matrix">
         <thead>
@@ -1055,45 +1300,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Long Reef</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Long Reef <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 16°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 53°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 56°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 56°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1108,45 +1352,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Dee Why</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Dee Why <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">AoA 7°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 30°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 33°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 33°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1161,45 +1404,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Curl Curl</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">North Curl Curl <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 15.5°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 52.5°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 55.5°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 55.5°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1214,45 +1456,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Curl Curl</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">South Curl Curl <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 7°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 30°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 33°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 33°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1267,45 +1508,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Freshwater</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Freshwater <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 7°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 30°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 33°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 33°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1320,45 +1560,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Queenscliff</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Queenscliff <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 40.75°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-On · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 3.75°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 0.75°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 0.75°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1373,45 +1612,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Steyne</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">North Steyne <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 58.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-On · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 21.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 18.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 18.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1426,45 +1664,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Steyne</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">South Steyne <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">1-1 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">AoA 56.25°</div>
           <div class="bd-detail">Exp 0.2215006369208513%</div>
           <div class="bd-detail">Wind Onshore · SW</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">1-1 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">AoA 56.25°</div>
           <div class="bd-detail">Exp 56.978282473092314%</div>
           <div class="bd-detail">Wind Cross-On · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">1-1 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">AoA 56.25°</div>
           <div class="bd-detail">Exp 89.35973471085157%</div>
           <div class="bd-detail">Wind Cross-On · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">1-1 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">AoA 56.25°</div>
           <div class="bd-detail">Exp 89.35973471085157%</div>
           <div class="bd-detail">Wind Cross-On · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
         </div>
         
       </div>
@@ -1477,14 +1714,7 @@ h2 {
     </div>
     
   </div>
-
-  <div class="section">
-    <h2>🌡️ Conditions</h2>
-    
-    <div class="gear-note">🧊 Water feels like 16.5°C so you'll need a 3/2mm steamer. Coldest period is 6-9am with air temp 12°C.</div>
-    
-    <div class="beach-matrix-wrap">
-      <table class="conditions-matrix">
+  <!-- End of beach section after conditions section -->
         <thead>
           <tr>
             <th class="bm-header bm-beach-col"></th>
@@ -1711,6 +1941,236 @@ h2 {
     
     <div class="forecaster-note">💬 Small but consistent east swell holds all day – building slightly through the morning. Light southerly winds keep it clean offshore from dawn till dusk. Tides start slack, go flat midday, then fall into the afternoon adding shape. Worth a paddle for playful peaks.</div>
     
+
+    <!-- Conditions section moved to top -->
+    <div class="section">
+      <h2>🌡️ Conditions</h2>
+      
+      <div class="gear-note">❄ Water feels like 16.5°C, so wear a 3/2mm steamer. Air temps drop to 13°C early, so consider a hood for the first session. UV low all day, no sunscreen needed.</div>
+      
+      <div class="beach-matrix-wrap">
+        <table class="conditions-matrix">
+          <thead>
+            <tr>
+              <th class="bm-header bm-beach-col"></th>
+              
+              <th class="bm-header bm-tf-col">🌅 6–9am</th>
+              
+              <th class="bm-header bm-tf-col">☀️ 9–12pm</th>
+              
+              <th class="bm-header bm-tf-col">🌤️ 12–3pm</th>
+              
+              <th class="bm-header bm-tf-col">🌇 3–6pm</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Swell</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">1.3m @ 7s</div>
+                <div class="cm-cell-detail">89° (E)</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">1.4m @ 7s</div>
+                <div class="cm-cell-detail">86° (E)</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">1.4m @ 7s</div>
+                <div class="cm-cell-detail">85° (E)</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">1.4m @ 7s</div>
+                <div class="cm-cell-detail">89° (E)</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Tide</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,11 18,8 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">0.9m</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,4 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">1.3m</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,7 35,10" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">1.0m</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 18,12 35,12" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+                <div class="cm-cell-detail">0.5m</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Water Feels Like</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">14.4°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.2°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.5°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.1°C</div>
+                
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Wind</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">4 kt</div>
+                <div class="cm-cell-detail">S</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">6 kt</div>
+                <div class="cm-cell-detail">SSE</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">8 kt</div>
+                <div class="cm-cell-detail">S</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">6 kt</div>
+                <div class="cm-cell-detail">S</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Air Temp</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">13.0°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.0°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">16.6°C</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">15.8°C</div>
+                
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">UV</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">0</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">1</div>
+                <div class="cm-cell-detail">0.29</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">4</div>
+                <div class="cm-cell-detail">0.64</div>
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">1</div>
+                <div class="cm-cell-detail">0.29</div>
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Rain %</td>
+              
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">18%</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">22%</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">24%</div>
+                
+              </td>
+              
+              <td class="cm-cell">
+                <div class="cm-cell-value">10%</div>
+                
+              </td>
+              
+              
+            </tr>
+            
+            <tr class="cm-row">
+              <td class="cm-label-cell">Sunrise/Sunset</td>
+              
+              <td class="cm-cell" colspan="4">
+                <div class="cm-cell-value">🌅 06:58 — 🌇 17:01</div>
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- End of conditions section -->
+
     <div class="beach-matrix-wrap">
       <table class="beach-matrix">
         <thead>
@@ -1941,45 +2401,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Long Reef</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Long Reef <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 69°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 72°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 73°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 69°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -1994,45 +2453,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Dee Why</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Dee Why <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 46°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 49°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 50°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 46°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -2047,45 +2505,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Curl Curl</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">North Curl Curl <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 67.5°</div>
           <div class="bd-detail">Exp 86.07079764250578%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 67.5°</div>
           <div class="bd-detail">Exp 54.88116360940264%</div>
           <div class="bd-detail">Wind Offshore · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 67.5°</div>
           <div class="bd-detail">Exp 47.236655274101466%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 67.5°</div>
           <div class="bd-detail">Exp 86.07079764250578%</div>
           <div class="bd-detail">Wind Offshore · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -2100,45 +2557,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Curl Curl</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">South Curl Curl <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 46°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 49°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 50°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 46°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -2153,45 +2609,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Freshwater</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Freshwater <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 45°</div>
           <div class="bd-detail">Exp 86.07079764250578%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 45°</div>
           <div class="bd-detail">Exp 54.88116360940264%</div>
           <div class="bd-detail">Wind Cross-Off · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 45°</div>
           <div class="bd-detail">Exp 47.236655274101466%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">4-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">AoA 45°</div>
           <div class="bd-detail">Exp 86.07079764250578%</div>
           <div class="bd-detail">Wind Cross-Off · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
         </div>
         
       </div>
@@ -2206,45 +2661,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Queenscliff</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">Queenscliff <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 12.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 15.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">6-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 16.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 12.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
       </div>
@@ -2259,45 +2713,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Steyne</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">North Steyne <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 5.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 2.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">6-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 1.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 5.25°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
       </div>
@@ -2312,45 +2765,44 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Steyne</span>
-        <span class="beach-day-aspect"></span>
+        <span class="beach-day-name">South Steyne <span class="beach-heading">— </span></span>
       </div>
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">6–9am</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 44°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-On · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">9–12pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 41°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-On · SSE</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bd-tf-label">12–3pm</div>
           <div class="bm-cell-wave">6-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 40°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-On · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bd-tf-label">3–6pm</div>
           <div class="bm-cell-wave">5-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">AoA 44°</div>
           <div class="bd-detail">Exp 100.0%</div>
           <div class="bd-detail">Wind Cross-On · S</div>
-          <div class="bd-detail"><span class="rating-badge" style="background:#2980b9">Good</span></div>
         </div>
         
       </div>
@@ -2363,14 +2815,7 @@ h2 {
     </div>
     
   </div>
-
-  <div class="section">
-    <h2>🌡️ Conditions</h2>
-    
-    <div class="gear-note">❄ Water feels like 16.5°C, so wear a 3/2mm steamer. Air temps drop to 13°C early, so consider a hood for the first session. UV low all day, no sunscreen needed.</div>
-    
-    <div class="beach-matrix-wrap">
-      <table class="conditions-matrix">
+  <!-- End of beach section after conditions section -->
         <thead>
           <tr>
             <th class="bm-header bm-beach-col"></th>
@@ -2641,7 +3086,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 13:38:41 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 13:49:47 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">

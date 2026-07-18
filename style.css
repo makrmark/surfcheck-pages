@@ -751,6 +751,21 @@ h2 {
     color: #555;
     margin-bottom: 4px;
 }
+.rating-badge {
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 1px 8px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.beach-heading {
+    font-weight: normal;
+    color: #888;
+    font-size: 0.85em;
+}
 .bd-detail {
     color: #666;
     font-size: 0.85em;
