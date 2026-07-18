@@ -13,7 +13,7 @@ body {
     color: #333;
     max-width: 800px;
     margin: 0 auto;
-    padding: 112px 20px 20px;
+    padding: 100px 20px 20px;
     background-color: #f0f8ff;
     overflow-x: hidden;
 }
@@ -323,8 +323,8 @@ h2 {
 }
 .rec-sep {
     border: none;
-    border-top: 1px solid #d0d8e0;
-    margin: 10px 0 6px 0;
+    border-top: 1.5px solid #b0c8d8;
+    margin: 12px 0 10px 0;
 }
 .forecaster-note {
     font-size: 0.85em;
@@ -925,7 +925,7 @@ h2 {
     color: white;
 }
 .beach-modal-body {
-    padding: 0 20px 20px;
+    padding: 12px 20px 20px;
 }
 .beach-modal-body .beach-card {
     border: none;
