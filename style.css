@@ -648,3 +648,58 @@ h2 {
         font-size: 0.85em;
     }
 }
+
+/* ── Conditions Matrix ─────────────────────────────────────── */
+.conditions-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82em;
+    min-width: 400px;
+}
+.cm-row td {
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.cm-label-cell {
+    font-weight: 600;
+    color: #333;
+    padding: 6px 4px 6px 8px;
+    white-space: nowrap;
+    width: 60px;
+    min-width: 50px;
+}
+.cm-cell {
+    text-align: center;
+    padding: 6px 4px;
+}
+.cm-cell-value {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95em;
+}
+.cm-cell-detail {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 1px;
+}
+.cm-sunrise {
+    font-size: 0.85em;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+@media (max-width: 420px) {
+    .conditions-matrix {
+        font-size: 0.72em;
+        min-width: 320px;
+    }
+    .cm-cell-value {
+        font-size: 0.85em;
+    }
+    .cm-label-cell {
+        font-size: 0.85em;
+    }
+}

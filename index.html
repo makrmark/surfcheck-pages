@@ -656,6 +656,61 @@ h2 {
     }
 }
 
+/* ── Conditions Matrix ─────────────────────────────────────── */
+.conditions-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82em;
+    min-width: 400px;
+}
+.cm-row td {
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.cm-label-cell {
+    font-weight: 600;
+    color: #333;
+    padding: 6px 4px 6px 8px;
+    white-space: nowrap;
+    width: 60px;
+    min-width: 50px;
+}
+.cm-cell {
+    text-align: center;
+    padding: 6px 4px;
+}
+.cm-cell-value {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95em;
+}
+.cm-cell-detail {
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 1px;
+}
+.cm-sunrise {
+    font-size: 0.85em;
+    color: #666;
+    text-align: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+@media (max-width: 420px) {
+    .conditions-matrix {
+        font-size: 0.72em;
+        min-width: 320px;
+    }
+    .cm-cell-value {
+        font-size: 0.85em;
+    }
+    .cm-label-cell {
+        font-size: 0.85em;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -898,6 +953,184 @@ h2 {
       </table>
     </div>
   </div>
+
+  <div class="section">
+    <h2>🌡️ Conditions</h2>
+    <div class="beach-matrix-wrap">
+      <table class="conditions-matrix">
+        <thead>
+          <tr>
+            <th class="bm-header bm-beach-col"></th>
+            
+            <th class="bm-header bm-tf-col">🌅 6–9am</th>
+            
+            <th class="bm-header bm-tf-col">☀️ 9–12pm</th>
+            
+            <th class="bm-header bm-tf-col">🌤️ 12–3pm</th>
+            
+            <th class="bm-header bm-tf-col">🌇 3–6pm</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌊 Swell</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">0.62m @ 9.0s</div>
+              <div class="cm-cell-detail">141° (SE)</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">0.62m @ 7.95s</div>
+              <div class="cm-cell-detail">142° (SE)</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">0.78m @ 6.4s</div>
+              <div class="cm-cell-detail">102° (ESE)</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">0.62m @ 9.75s</div>
+              <div class="cm-cell-detail">143° (SE)</div>
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌊 Tide</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">mid tide (1.1m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,8 18,6 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">mid-high tide (1.2m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,5 35,7" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">mid-low tide (0.8m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,7 18,9 35,11" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">low tide (0.6m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,11 18,11 35,10" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌊 Temp</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌤️ Wind</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">9.0 km/h (4.859611231101511 kt)</div>
+              <div class="cm-cell-detail">WSW</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">8.4 km/h (4.535637149028077 kt)</div>
+              <div class="cm-cell-detail">SSE</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">15.4 km/h (8.315334773218142 kt)</div>
+              <div class="cm-cell-detail">SSE</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">13.6 km/h (7.34341252699784 kt)</div>
+              <div class="cm-cell-detail">S</div>
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌤️ Air</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">12.1°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.7°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">18.1°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.8°C</div>
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌤️ Rain</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">12%</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">12%</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">6%</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">2%</div>
+              
+            </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    <div class="cm-sunrise" style="margin-top:8px;font-size:0.85em;color:#666;text-align:center;">
+      🌅 06:59 — 🌇 17:00
+    </div>
+  </div>
 </div>
   
   <div class="daily-overview" data-day="tomorrow" style="display:none;">
@@ -1126,6 +1359,184 @@ h2 {
           
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🌡️ Conditions</h2>
+    <div class="beach-matrix-wrap">
+      <table class="conditions-matrix">
+        <thead>
+          <tr>
+            <th class="bm-header bm-beach-col"></th>
+            
+            <th class="bm-header bm-tf-col">🌅 6–9am</th>
+            
+            <th class="bm-header bm-tf-col">☀️ 9–12pm</th>
+            
+            <th class="bm-header bm-tf-col">🌤️ 12–3pm</th>
+            
+            <th class="bm-header bm-tf-col">🌇 3–6pm</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌊 Swell</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">1.3m @ 6.95s</div>
+              <div class="cm-cell-detail">89° (E)</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">1.4m @ 7.25s</div>
+              <div class="cm-cell-detail">87° (E)</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">1.38m @ 7.3s</div>
+              <div class="cm-cell-detail">90° (E)</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">1.42m @ 7.6s</div>
+              <div class="cm-cell-detail">85° (E)</div>
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌊 Tide</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">mid-low tide (0.9m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,11 18,8 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">mid-high tide (1.3m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,4 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">mid tide (1.0m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,7 35,10" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">low tide (0.5m)</div>
+              <div class="cm-cell-detail"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 18,12 35,12" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌊 Temp</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.5°C</div>
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌤️ Wind</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">5.1 km/h (2.7537796976241897 kt)</div>
+              <div class="cm-cell-detail">SSE</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">10.8 km/h (5.831533477321814 kt)</div>
+              <div class="cm-cell-detail">S</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">12.1 km/h (6.533477321814255 kt)</div>
+              <div class="cm-cell-detail">SSE</div>
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">13.7 km/h (7.397408207343412 kt)</div>
+              <div class="cm-cell-detail">S</div>
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌤️ Air</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">12.6°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">16.0°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">17.1°C</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">15.9°C</div>
+              
+            </td>
+            
+          </tr>
+          
+          <tr class="cm-row">
+            <td class="cm-label-cell">🌤️ Rain</td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">33%</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">27%</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">24%</div>
+              
+            </td>
+            
+            <td class="cm-cell">
+              <div class="cm-cell-value">20%</div>
+              
+            </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    <div class="cm-sunrise" style="margin-top:8px;font-size:0.85em;color:#666;text-align:center;">
+      🌅 06:58 — 🌇 17:01
     </div>
   </div>
 </div>
@@ -3598,7 +4009,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 10:13:15 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 10:24:12 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
