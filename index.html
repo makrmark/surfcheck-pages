@@ -850,7 +850,7 @@ h2 {
 }
 .beach-modal {
     background: #fff;
-    border-radius: 16px;
+    border-radius: 12px;
     max-width: 480px;
     width: 100%;
     max-height: 90vh;
@@ -859,38 +859,59 @@ h2 {
     box-shadow: 0 8px 40px rgba(0,0,0,0.25);
     animation: modalFadeIn 0.2s ease;
     position: relative;
+    border: 1.5px solid #bfd8f0;
 }
 @keyframes modalFadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-.beach-modal-close {
+.beach-modal-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: linear-gradient(135deg, #e6f2ff 0%, #cce5ff 100%);
+    border-bottom: 1.5px solid #bfd8f0;
+    border-radius: 11px 11px 0 0;
     position: sticky;
     top: 0;
-    float: right;
-    z-index: 1;
-    background: #f0f0f0;
-    border: none;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    font-size: 1.2em;
-    line-height: 36px;
+    z-index: 2;
+}
+.beach-modal-title {
+    font-weight: 700;
+    font-size: 1.05em;
+    color: #0066cc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.beach-modal-close {
+    background: transparent;
+    border: 1.5px solid #99c6e6;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 1.1em;
+    line-height: 1;
     text-align: center;
     cursor: pointer;
-    color: #666;
-    margin: 8px 8px 0 0;
-    transition: background 0.15s;
+    color: #0066cc;
+    transition: background 0.12s, color 0.12s;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .beach-modal-close:hover {
-    background: #ddd;
+    background: #0066cc;
+    color: white;
 }
 .beach-modal-close:active {
-    background: #ccc;
+    background: #004d99;
+    color: white;
 }
 .beach-modal-body {
-    padding: 0 20px 20px;
+    padding: 16px 16px 20px;
 }
 .beach-modal-body .beach-card {
     border: none;
@@ -1017,7 +1038,10 @@ h2 {
   <!-- Beach detail modal (shared) -->
   <div class="beach-modal-overlay" id="beachModalOverlay" onclick="closeBeachModal()">
     <div class="beach-modal" id="beachModal" onclick="event.stopPropagation()">
-      <button class="beach-modal-close" onclick="closeBeachModal()" aria-label="Close">✕</button>
+      <div class="beach-modal-titlebar">
+        <span class="beach-modal-title" id="beachModalTitle">Beach Details</span>
+        <button class="beach-modal-close" onclick="closeBeachModal()" aria-label="Close">✕</button>
+      </div>
       <div class="beach-modal-body" id="beachModalBody"></div>
     </div>
   </div>
@@ -2855,7 +2879,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:49:36 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:55:26 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -2925,8 +2949,18 @@ h2 {
     function openBeachModal(html) {
       var overlay = document.getElementById('beachModalOverlay');
       var body = document.getElementById('beachModalBody');
+      var title = document.getElementById('beachModalTitle');
       if (!overlay || !body) return;
       body.innerHTML = html;
+      if (title) {
+        // Extract beach name from the card content
+        var nameEl = body.querySelector('.beach-day-name, .beach-name');
+        if (nameEl) {
+          title.textContent = '🏖️ ' + nameEl.textContent.trim();
+        } else {
+          title.textContent = '🏖️ Beach Details';
+        }
+      }
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
