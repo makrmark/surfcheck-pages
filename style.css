@@ -312,14 +312,14 @@ h2 {
     font-size: 0.9em;
 }
 .board-rec {
-    display: inline-block;
-    font-weight: bold;
-    color: #8b4513;
-    background: #f5deb3;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.95em;
+    font-size: 0.85em;
+    color: #555;
+    background: #fff8e1;
+    padding: 6px 10px;
+    border-radius: 6px;
     margin-top: 4px;
+    border-left: 3px solid #cc6600;
+    line-height: 1.4;
 }
 .rec-sep {
     border: none;
