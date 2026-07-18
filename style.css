@@ -13,7 +13,7 @@ body {
     color: #333;
     max-width: 800px;
     margin: 0 auto;
-    padding: 130px 20px 20px;
+    padding: 112px 20px 20px;
     background-color: #f0f8ff;
     overflow-x: hidden;
 }
@@ -871,12 +871,33 @@ h2 {
     z-index: 2;
 }
 .beach-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+.beach-modal-title-name {
     font-weight: 700;
     font-size: 1.05em;
     color: #0066cc;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.beach-modal-title-aspect {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f4ff;
+    color: #0055a5;
+    font-weight: 600;
+    font-size: 0.83em;
+    padding: 2px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.5;
+    margin-left: auto;
 }
 .beach-modal-close {
     background: transparent;
@@ -904,7 +925,7 @@ h2 {
     color: white;
 }
 .beach-modal-body {
-    padding: 8px 12px 14px;
+    padding: 0 20px 20px;
 }
 .beach-modal-body .beach-card {
     border: none;

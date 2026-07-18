@@ -20,7 +20,7 @@ body {
     color: #333;
     max-width: 800px;
     margin: 0 auto;
-    padding: 130px 20px 20px;
+    padding: 112px 20px 20px;
     background-color: #f0f8ff;
     overflow-x: hidden;
 }
@@ -878,12 +878,33 @@ h2 {
     z-index: 2;
 }
 .beach-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+.beach-modal-title-name {
     font-weight: 700;
     font-size: 1.05em;
     color: #0066cc;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.beach-modal-title-aspect {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f4ff;
+    color: #0055a5;
+    font-weight: 600;
+    font-size: 0.83em;
+    padding: 2px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1.5;
+    margin-left: auto;
 }
 .beach-modal-close {
     background: transparent;
@@ -911,7 +932,7 @@ h2 {
     color: white;
 }
 .beach-modal-body {
-    padding: 8px 12px 14px;
+    padding: 0 20px 20px;
 }
 .beach-modal-body .beach-card {
     border: none;
@@ -1049,7 +1070,6 @@ h2 {
   
   <div class="daily-overview" data-day="today">
   <div class="section">
-    <h2>🏆 Sat 18th July</h2>
     
     <div class="forecaster-note">💬 Small, weak swell holds all day. Early clean offshore, but wind swings southerly and picks up, making it choppy by midday. Tide drops into the afternoon, offering a slight improvement. Worth a paddle if you're keen, but don't expect much.</div>
     
@@ -1876,7 +1896,6 @@ h2 {
   
   <div class="daily-overview" data-day="tomorrow" style="display:none;">
   <div class="section">
-    <h2>🏆 Sun 19th July</h2>
     
     <div class="forecaster-note">💬 Solid building swell through the morning, holding at a fun size into the afternoon. Light southerly winds keep it cleanest early, getting a little lumpy later. Slack tides early and late help the shape. Worth a paddle — better before lunch.</div>
     
@@ -2751,7 +2770,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 15:00:49 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 15:06:19 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -2817,6 +2836,13 @@ h2 {
       try { localStorage.setItem('surfcheckDay', 'outlook'); } catch(e) {}
     }
 
+    /* ── HTML escape helper ────────────────────────── */
+    function escapeHtml(str) {
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(str));
+      return div.innerHTML;
+    }
+
     /* ── Beach Detail Modal ────────────────────────── */
     function openBeachModal(html) {
       var overlay = document.getElementById('beachModalOverlay');
@@ -2829,9 +2855,13 @@ h2 {
         if (cardEl) {
           var name = cardEl.getAttribute('data-beach-name') || '';
           var aspect = cardEl.getAttribute('data-beach-aspect') || '';
-          title.textContent = '🏖️ ' + name + (aspect ? '  ' + aspect : '');
+          var nameHtml = '<span class="beach-modal-title-name">🏖️ ' + escapeHtml(name) + '</span>';
+          if (aspect) {
+            nameHtml += '<span class="beach-modal-title-aspect">' + escapeHtml(aspect) + '</span>';
+          }
+          title.innerHTML = nameHtml;
         } else {
-          title.textContent = '🏖️ Beach Details';
+          title.innerHTML = '<span class="beach-modal-title-name">🏖️ Beach Details</span>';
         }
       }
       overlay.classList.add('open');
