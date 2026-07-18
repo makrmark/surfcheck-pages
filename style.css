@@ -927,6 +927,12 @@ h2 {
 .beach-modal-body {
     padding: 12px 20px 20px;
 }
+.beach-note-modal {
+    font-size: 0.82em;
+    color: #777;
+    line-height: 1.4;
+    margin-bottom: 4px;
+}
 .beach-modal-body .beach-card {
     border: none;
     background: transparent;
