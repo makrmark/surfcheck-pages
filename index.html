@@ -577,6 +577,75 @@ h2 {
     }
 }
 
+/* ── Daily Overview Card (combined timeframes) ──────────────── */
+.daily-tf-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+.daily-tf-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #fffde7;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    flex-wrap: wrap;
+}
+.daily-tf-emoji {
+    font-size: 1.2em;
+    flex-shrink: 0;
+}
+.daily-tf-label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9em;
+    min-width: 52px;
+    flex-shrink: 0;
+}
+.daily-tf-wave {
+    font-weight: bold;
+    color: #0066cc;
+    font-size: 0.95em;
+    display: inline-block;
+    border: 2px solid #b3d4ff;
+    border-radius: 8px;
+    padding: 2px 10px;
+    background: #f0f8ff;
+    flex-shrink: 0;
+}
+.daily-tf-rating {
+    flex-shrink: 0;
+}
+.daily-tf-beaches {
+    font-size: 0.85em;
+    color: #666;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@media (max-width: 420px) {
+    .daily-tf-card {
+        gap: 8px;
+        padding: 10px 10px;
+    }
+    .daily-tf-wave {
+        font-size: 0.85em;
+        padding: 1px 7px;
+    }
+    .daily-tf-label {
+        font-size: 0.8em;
+        min-width: 44px;
+    }
+    .daily-tf-beaches {
+        width: 100%;
+        padding-left: 28px;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -591,39 +660,100 @@ h2 {
   </header>
 
   
-  <div class="timeframe-content" data-tf="6–9am" data-day="today" style="display:none;">
+  <div class="daily-overview" data-day="today">
   <div class="section">
     <h2>🏆 Sat 18th July</h2>
-    <div>
+    
+    <div class="forecaster-note">💬 Small and weak early with clean but marginal conditions. A slight bump in size midday as the tide drops, but wind turns onshore and choppy. Fading again by afternoon. Not worth rushing out for.</div>
+    
+    <div class="daily-tf-cards">
       
-      <div class="forecaster-note">💬 Light cross breeze and tiny SE swell leave most breaks small and weak, with high tide fattening already marginal waves—only the most exposed spots show any life.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="queenscliff">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">Queenscliff</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
-</a>
-        
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">🌅</div>
+        <div class="daily-tf-label">6–9am</div>
+        <div class="daily-tf-wave">2-3 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+        <div class="daily-tf-beaches">🏆 North Curl Curl, Queenscliff</div>
       </div>
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">☀️</div>
+        <div class="daily-tf-label">9–12pm</div>
+        <div class="daily-tf-wave">2-3 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+        <div class="daily-tf-beaches">🏆 North Curl Curl, Queenscliff</div>
+      </div>
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">🌤️</div>
+        <div class="daily-tf-label">12–3pm</div>
+        <div class="daily-tf-wave">2-3 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+        <div class="daily-tf-beaches">🏆 South Curl Curl, Freshwater</div>
+      </div>
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">🌇</div>
+        <div class="daily-tf-label">3–6pm</div>
+        <div class="daily-tf-wave">3-4 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+        <div class="daily-tf-beaches">🏆 North Curl Curl, Queenscliff</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  
+  <div class="daily-overview" data-day="tomorrow" style="display:none;">
+  <div class="section">
+    <h2>🏆 Sun 19th July</h2>
+    
+    <div class="forecaster-note">💬 Small east swell holds all day. Early morning clean with light offshore wind and low tide—best window. Midday high tide fattens it up. Afternoon wind picks but dropping tide cleans it again. Worth a paddle early or late.</div>
+    
+    <div class="daily-tf-cards">
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">🌅</div>
+        <div class="daily-tf-label">6–9am</div>
+        <div class="daily-tf-wave">4-5 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+        <div class="daily-tf-beaches">🏆 Dee Why, South Curl Curl</div>
+      </div>
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">☀️</div>
+        <div class="daily-tf-label">9–12pm</div>
+        <div class="daily-tf-wave">4-5 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+        <div class="daily-tf-beaches">🏆 Dee Why, South Curl Curl</div>
+      </div>
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">🌤️</div>
+        <div class="daily-tf-label">12–3pm</div>
+        <div class="daily-tf-wave">4-5 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+        <div class="daily-tf-beaches">🏆 Dee Why, South Curl Curl</div>
+      </div>
+      
+      <div class="daily-tf-card">
+        <div class="daily-tf-emoji">🌇</div>
+        <div class="daily-tf-label">3–6pm</div>
+        <div class="daily-tf-wave">6-7 ft</div>
+        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+        <div class="daily-tf-beaches">🏆 Queenscliff, North Steyne</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  
 
+  
+  <div class="timeframe-content" data-tf="6–9am" data-day="today" style="display:none;">
+  <div class="section">
+    <h2>🏆 Sat 18th July — 🌅 6–9am</h2>
+    <div>
       <div class="gear-note">❄ Water feels like 13.9°C so you'll need a 5/4 steamer with booties, gloves, hood | Wear a hood</div>
 
       
@@ -704,7 +834,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Weak 0.6m SE swell wraps in at a peeling angle, but high tide fattens the waves and the cross breeze chops the surface—small and disappointing.</div>
+  <div class="forecaster-note">💬 Peeling 0.6m waves from the SE give long, gentle walls, but the light cross-breeze and small size keep it super-mellow.</div>
   
 </div>
     
@@ -734,7 +864,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.6m SE swell offers no shape, high tide fattens it further, and the cross breeze adds chop—barely rideable.</div>
+  <div class="forecaster-note">💬 Tiny 0.6m straight-on waves with a cross-breeze mean weak, closey conditions that are barely worth paddling out for.</div>
   
 </div>
     
@@ -764,7 +894,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Slightly bigger 0.8m SE swell peels nicely off the wedge, but high tide and a cross breeze keep the waves fat and unexciting.</div>
+  <div class="forecaster-note">💬 The small 0.8m swell wraps around with a peeling angle, but a light crosswind and flat tide keep the waves slow and crumbly.</div>
   
 </div>
     
@@ -794,7 +924,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.8m SE swell closes out on the banks, high tide fattens it, and cross breeze adds chop—poor shape.</div>
+  <div class="forecaster-note">💬 Small 0.8m waves hit straight-on, and a light cross-breeze plus high tide flatten them out into fat, short closeouts.</div>
   
 </div>
     
@@ -824,7 +954,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 0.8m SE swell hits straight-on, so the narrow bay focuses energy but the waves close out—high tide and cross breeze spoil it.</div>
+  <div class="forecaster-note">💬 The narrow bay focuses the small 0.8m swell, but the straight-on angle and cross-breeze create weak, closey waves at high tide.</div>
   
 </div>
     
@@ -854,7 +984,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Best size at 0.9m with a peeling SE swell, but the cross-on breeze chops the face and high tide fattens the bombie—frustrating.</div>
+  <div class="forecaster-note">💬 A 0.9m swell peels nicely off the angle, but the cross-onshore wind and high tide fattens the waves into soft, weak walls.</div>
   
 </div>
     
@@ -884,7 +1014,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 0.9m ESE swell arrives at an extreme angle, creating mushy waves, and the onshore breeze ruins what little shape remains—avoid.</div>
+  <div class="forecaster-note">💬 The 0.9m swell hits at a mushy angle, and an onshore breeze plus high tide makes for gutless, choppy waves with no push.</div>
   
 </div>
     
@@ -914,7 +1044,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 No swell reaches this north-facing corner—completely flat with an onshore breeze, not worth checking.</div>
+  <div class="forecaster-note">💬 Heavily shadowed from the south, this beach sees no waves—flat, with an onshore breeze, it's a complete miss today.</div>
   
 </div>
     
@@ -924,37 +1054,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="9–12pm" data-day="today" style="display:none;">
   <div class="section">
-    <h2>🏆 Sat 18th July</h2>
+    <h2>🏆 Sat 18th July — ☀️ 9–12pm</h2>
     <div>
-      
-      <div class="forecaster-note">💬 Offshore SSE wind cleans up the small SE swell, but high tide slack and weak 0.6m waves keep most breaks marginal—only the best angles show promise.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="queenscliff">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">Queenscliff</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer</div>
 
       
@@ -1035,7 +1136,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Light offshore wind holds up the peeling 0.6m waves cleanly, but high tide slack and small size mean long, slow walls—fun for a log, nothing exciting.</div>
+  <div class="forecaster-note">💬 Still small at 0.6m but now offshore winds hold up the peeling walls, though high tide keeps them fat and lacking any real punch.</div>
   
 </div>
     
@@ -1065,7 +1166,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Offshore breeze tidies the straight-on 0.6m waves, but high tide fattens them and the angle offers no shape—small and weak.</div>
+  <div class="forecaster-note">💬 The tiny 0.6m swell hits almost straight-on; offshore winds clean it up, but high tide flattens the waves into weak, closey dribbles.</div>
   
 </div>
     
@@ -1095,7 +1196,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Offshore wind grooms the peeling 0.7m swell, but high tide slack and modest size leave the wedge fat—a few clean but soft rides.</div>
+  <div class="forecaster-note">💬 Offshore breezes hold up the 0.7m peeling walls, but high tide fattens them, making for slow, soft, longboard-friendly runners.</div>
   
 </div>
     
@@ -1125,7 +1226,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.7m SE swell cleans up with offshore wind, but high tide slack removes any push—weak, fat waves.</div>
+  <div class="forecaster-note">💬 The small 0.7m waves stay straight-on and weak—offshore wind cleans the surface, but high tide robs all power and shape.</div>
   
 </div>
     
@@ -1155,7 +1256,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 0.7m SE swell hits straight-on, offshore wind cleans the face, but high tide slack sucks the energy out of the narrow bay—small and sluggish.</div>
+  <div class="forecaster-note">💬 The narrow bay works hard on the 0.7m swell, but a straight-on angle and high tide produce fat, crumbling closeouts with clean faces.</div>
   
 </div>
     
@@ -1185,7 +1286,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Offshore wind smooths the 0.8m peeling swell at the bombie, but high tide slack fattens the takeoff—better than the cross earlier but still small.</div>
+  <div class="forecaster-note">💬 The 0.8m swell peels nicely, but high tide and a cross-breeze flatten the waves, leaving them gutless and hard to link turns on.</div>
   
 </div>
     
@@ -1215,7 +1316,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Mushy 0.8m ESE swell at an extreme angle, cross wind chops the face, high tide slack—poor conditions overall.</div>
+  <div class="forecaster-note">💬 A mushy 0.8m swell at an extreme angle meets a cross-breeze and high tide, creating slow, lumpy waves with no real drive.</div>
   
 </div>
     
@@ -1245,7 +1346,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Still flat—no swell, cross breeze, not worth a look.</div>
+  <div class="forecaster-note">💬 Completely shadowed from the south, it's flat—offshore wind but zero waves means a beach day, not a surf session.</div>
   
 </div>
     
@@ -1255,37 +1356,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="12–3pm" data-day="today" style="display:none;">
   <div class="section">
-    <h2>🏆 Sat 18th July</h2>
+    <h2>🏆 Sat 18th July — 🌤️ 12–3pm</h2>
     <div>
-      
-      <div class="forecaster-note">💬 Mid-tide slack and light offshore wind improve shape on the building ESE swell—some beaches get clean peeling waves, though size remains modest.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">South Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="freshwater">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">Freshwater</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">3-4 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer</div>
 
       
@@ -1366,7 +1438,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Offshore wind holds up the 0.7m ESE swell at a mushy angle, mid-tide slack gives decent shape—not punchy but rideable.</div>
+  <div class="forecaster-note">💬 Mushy 0.7m waves from an extreme angle, but offshore wind and a mid-tide help them form cleaner, if faster, crumbling walls.</div>
   
 </div>
     
@@ -1396,7 +1468,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Offshore wind grooms the 0.7m ESE swell into clean peeling waves at mid-tide—small but fun with good shape for a log.</div>
+  <div class="forecaster-note">💬 The 0.7m swell now peels at a nice angle, and offshore wind holds up the small peaks over the mid-tide for fun, rideable runners.</div>
   
 </div>
     
@@ -1426,7 +1498,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 0.8m ESE swell at a mushy angle, offshore wind cleans it, mid-tide slack helps—weak but clean, the wedge might offer a brief section.</div>
+  <div class="forecaster-note">💬 Mushy 0.8m waves at a steep angle are cleaned by offshore wind, but the mid-tide gives them just enough shape for short rides.</div>
   
 </div>
     
@@ -1456,7 +1528,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Offshore wind and mid-tide slack combine with a peeling 0.8m ESE swell to produce clean, fun walls—best of the bunch this window.</div>
+  <div class="forecaster-note">💬 Good peeling 0.8m waves from an ideal angle, with offshore wind and mid-tide creating clean, rippable banks for grovelers.</div>
   
 </div>
     
@@ -1486,7 +1558,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Peeling 0.8m ESE swell with offshore wind in the narrow bay at mid-tide—clean, punchy waves for the size.</div>
+  <div class="forecaster-note">💬 The narrow bay focuses the 0.8m swell into peeling waves; offshore wind and mid-tide combine for punchy, clean peaks.</div>
   
 </div>
     
@@ -1516,7 +1588,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.9m ESE swell with cross-off wind—the bombie gets a bit of shape but the angle kills any drive.</div>
+  <div class="forecaster-note">💬 The 0.9m swell hits straight-on—offshore wind and mid-tide offer some shape, but mostly closey, short-lived walls.</div>
   
 </div>
     
@@ -1546,7 +1618,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Peeling 0.9m ESE swell but cross wind chops the face, mid-tide helps—some lefts possible, but messy.</div>
+  <div class="forecaster-note">💬 A 0.9m swell peels at a decent angle, but a onshore breeze messes the face, while mid-tide offers average, lumpy waves.</div>
   
 </div>
     
@@ -1576,7 +1648,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Tiny 0.2m ESE swell barely shows, cross wind—nothing rideable.</div>
+  <div class="forecaster-note">💬 Still flat—0.2m of swell is all that sneaks in, so even with offshore wind and mid-tide, there's nothing rideable.</div>
   
 </div>
     
@@ -1586,37 +1658,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="3–6pm" data-day="today" style="display:none;">
   <div class="section">
-    <h2>🏆 Sat 18th July</h2>
+    <h2>🏆 Sat 18th July — 🌇 3–6pm</h2>
     <div>
-      
-      <div class="forecaster-note">💬 Low tide slack hollows out the small SE swell, but the longer period brings a touch of push—most breaks still struggle with straight-on angles.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="north-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">2-3 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="queenscliff">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">3-4 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">Queenscliff</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">3-4 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer</div>
 
       
@@ -1697,7 +1740,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Peeling 0.6m SE swell with longer period, low tide hollows the waves, offshore wind cleans—fun little walls for a log.</div>
+  <div class="forecaster-note">💬 Peeling 0.6m waves with offshore wind and low tide yield slightly hollow walls, though the small size keeps them forgiving and fun.</div>
   
 </div>
     
@@ -1727,7 +1770,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.6m SE swell, low tide hollows it, cross-off wind—small, dumpy closeouts.</div>
+  <div class="forecaster-note">💬 Tiny 0.6m waves hit straight-on; a cross-off breeze and low tide make for dumpy, closey sections with brief, steep drops.</div>
   
 </div>
     
@@ -1757,7 +1800,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Peeling 0.8m SE swell with low tide hollows the wedge, offshore wind holds—a few punchy ones but still small.</div>
+  <div class="forecaster-note">💬 Offshore wind holds up the peeling 0.8m waves; low tide makes them a bit steeper and punchier, but still small and weak.</div>
   
 </div>
     
@@ -1787,7 +1830,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.8m SE swell, low tide makes it dumpy, cross-off wind—mostly closeouts.</div>
+  <div class="forecaster-note">💬 Straight-on 0.8m waves with a cross-off breeze and low tide dump fast, giving short, steep walls that close out quickly.</div>
   
 </div>
     
@@ -1817,7 +1860,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Straight-on 0.8m SE swell, low tide hollows, cross-off wind—too straight to offer much.</div>
+  <div class="forecaster-note">💬 The 0.8m waves hit straight-on, but cross-off wind and low tide focus the energy into steep, fast, dumpy closeouts on the banks.</div>
   
 </div>
     
@@ -1847,7 +1890,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Peeling 0.9m SE swell with longer period, low tide hollows the bombie, cross wind—some fun barrels but inconsistent.</div>
+  <div class="forecaster-note">💬 The 0.9m swell peels nicely with a cross-breeze; low tide helps the banks produce longer walls with a bit more pace and shape.</div>
   
 </div>
     
@@ -1877,7 +1920,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Mushy 0.9m SE swell at extreme angle, low tide hollows, cross wind—weak and choppy.</div>
+  <div class="forecaster-note">💬 Mushy 0.9m waves at an extreme angle with a cross-breeze and low tide create slow, lumpy, disorganized walls with little drive.</div>
   
 </div>
     
@@ -1907,7 +1950,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
   <div class="board">🏄 Longboard, Log</div>
   
-  <div class="forecaster-note">💬 Still flat—no swell, cross-on breeze.</div>
+  <div class="forecaster-note">💬 Completely flat—shadowed from the southeast, even with offshore wind and low tide, this beach offers nothing.</div>
   
 </div>
     
@@ -1917,37 +1960,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="6–9am" data-day="tomorrow" style="display:none;">
   <div class="section">
-    <h2>🏆 Sun 19th July</h2>
+    <h2>🏆 Sun 19th July — 🌅 6–9am</h2>
     <div>
-      
-      <div class="forecaster-note">💬 A solid east swell builds with clean offshore wind and mid-tide, but short period keeps the waves sectiony—beaches facing east-southeast pick up the best shape.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="dee-why">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">3-4 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">Dee Why</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">4-5 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">South Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="freshwater">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">3-4 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">Freshwater</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 14.2°C so you'll need a 4/3 steamer</div>
 
       
@@ -2028,7 +2042,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Medium 1.1m east swell at a mushy angle, offshore wind and mid-tide help, but the extreme angle kills the shape—weak, open faces.</div>
+  <div class="forecaster-note">💬 Mushy 1.1m waves at a steep angle get cleaned by offshore wind, but the extreme angle means weak, crumbling walls even at mid-tide.</div>
   
 </div>
     
@@ -2058,7 +2072,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 1.1m east swell wraps in at a nice angle, offshore wind grooms it clean, mid-tide gives push—fun, peeling waves for the size.</div>
+  <div class="forecaster-note">💬 The 1.1m swell hits at a mushy but workable angle; offshore wind and mid-tide create clean, soft lines with fun long walls.</div>
   
 </div>
     
@@ -2088,7 +2102,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 1.2m east swell heavily shadowed, mushy angle, offshore wind—little energy reaches, poor shape.</div>
+  <div class="forecaster-note">💬 Partially shadowed, the 1.2m swell arrives mushy; offshore wind cleans the face, but mid-tide can't save the weak, angled peaks.</div>
   
 </div>
     
@@ -2118,7 +2132,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 1.4m east swell with a good angle, offshore wind, mid-tide—bigger and clean, but short period makes it sectiony.</div>
+  <div class="forecaster-note">💬 Nice 1.4m waves at a mushy but open angle; offshore wind and mid-tide shape them into clean, fast walls with fun length.</div>
   
 </div>
     
@@ -2148,7 +2162,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 1.2m east swell peels perfectly through the narrow bay, offshore wind and mid-tide—clean, punchy waves.</div>
+  <div class="forecaster-note">💬 The narrow bay focuses the 1.2m swell into peeling waves; offshore wind and mid-tide produce punchy, clean peaks with long walls.</div>
   
 </div>
     
@@ -2178,7 +2192,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.6m east swell at a peeling angle with cross-off wind, but short period and high energy make the bombie close out—big but messy.</div>
+  <div class="forecaster-note">💬 Big 1.6m waves peel on an angle, but poor breaker quality and a cross-off breeze make for mushy, closey closeouts at mid-tide.</div>
   
 </div>
     
@@ -2208,7 +2222,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.6m east swell straight-on, cross wind, mid-tide—closeout city.</div>
+  <div class="forecaster-note">💬 The 1.6m swell hits straight-on; a cross-breeze and mid-tide create poor breaker quality with fat, closey walls and no shape.</div>
   
 </div>
     
@@ -2238,7 +2252,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.6m east swell at a peeling angle, cross wind—some shape but messy.</div>
+  <div class="forecaster-note">💬 The 1.6m swell peels at a decent angle, but a cross-breeze and mid-tide combine for poor breaker quality—mushy and short-lived waves.</div>
   
 </div>
     
@@ -2248,37 +2262,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="9–12pm" data-day="tomorrow" style="display:none;">
   <div class="section">
-    <h2>🏆 Sun 19th July</h2>
+    <h2>🏆 Sun 19th July — ☀️ 9–12pm</h2>
     <div>
-      
-      <div class="forecaster-note">💬 Increasing east swell with offshore wind, but high tide slack fattens the waves and short period persists—only the best angled breaks hold shape.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="dee-why">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">4-5 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">Dee Why</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">4-5 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">South Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="south-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">5-6 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">South Steyne</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 16.2°C so you'll need a 4/3 steamer</div>
 
       
@@ -2359,7 +2344,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Mushy 1.2m east swell, offshore wind, high tide fattens it—very weak.</div>
+  <div class="forecaster-note">💬 Mushy 1.2m waves at a steep angle, offshore wind tries to clean them, but the extreme angle and high tide make them fat and weak.</div>
   
 </div>
     
@@ -2389,7 +2374,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 1.2m east swell at a mushy angle, cross-off wind, high tide—the angle is poor for this size.</div>
+  <div class="forecaster-note">💬 A mushy 1.2m swell at a workable angle; cross-off wind and high tide produce slow, soft waves that are rideable but unexciting.</div>
   
 </div>
     
@@ -2419,7 +2404,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 1.0m east swell partially shadowed, offshore wind, high tide—weak and fat.</div>
+  <div class="forecaster-note">💬 Partially shadowed, the swell barely reaches 1.0m; offshore wind cleans the face, but high tide and extreme angle kill all power.</div>
   
 </div>
     
@@ -2449,7 +2434,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.5m east swell with a good angle, cross-off wind, but high tide fattens—some rideable waves.</div>
+  <div class="forecaster-note">💬 Solid 1.5m waves at a mushy angle; cross-off wind and high tide offer some shape but the poor breaker quality spoils the fun.</div>
   
 </div>
     
@@ -2479,7 +2464,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 1.0m east swell peels well, cross-off wind, high tide fattens a bit—still clean and fun.</div>
+  <div class="forecaster-note">💬 Partially shadowed, 1.0m swell peels nicely; cross-off wind and high tide create fat, slow walls that are clean but lacking punch.</div>
   
 </div>
     
@@ -2509,7 +2494,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.8m east swell straight-on, cross wind, high tide—big closeouts.</div>
+  <div class="forecaster-note">💬 Big 1.8m waves peel on an angle; a cross-breeze and high tide produce poor breaker quality—mushy, closey closeouts with no shape.</div>
   
 </div>
     
@@ -2539,7 +2524,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.8m east swell straight-on, cross wind—closeouts.</div>
+  <div class="forecaster-note">💬 The 1.8m swell hits almost straight-on; a cross-breeze and high tide create fat, closey walls that break poorly and close out fast.</div>
   
 </div>
     
@@ -2569,7 +2554,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.8m east swell peeling, cross-on wind—messy and fat.</div>
+  <div class="forecaster-note">💬 The 1.8m swell peels at a nice angle, but cross-on wind and high tide ruin shape—poor breaker quality means mushy, bumpy waves.</div>
   
 </div>
     
@@ -2579,37 +2564,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="12–3pm" data-day="tomorrow" style="display:none;">
   <div class="section">
-    <h2>🏆 Sun 19th July</h2>
+    <h2>🏆 Sun 19th July — 🌤️ 12–3pm</h2>
     <div>
-      
-      <div class="forecaster-note">💬 Mid-tide falling and offshore wind improve the east swell—beaches with the right angle get clean peeling waves, though short period limits length.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="dee-why">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">4-5 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">Dee Why</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="south-curl-curl">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">4-5 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">South Curl Curl</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="freshwater">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">4-5 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">Freshwater</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 16.5°C so you'll need a 4/3 steamer | UV 3.45 — Cap recommended</div>
 
       
@@ -2690,7 +2646,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Mushy 1.2m east swell, offshore wind, mid-tide—weak.</div>
+  <div class="forecaster-note">💬 Mushy 1.2m waves at a steep angle; offshore wind and falling tide give them a slight push, but extreme angle keeps them soft.</div>
   
 </div>
     
@@ -2720,7 +2676,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Peeling 1.2m east swell with offshore wind and dropping tide—clean, fun waves, best of the day.</div>
+  <div class="forecaster-note">💬 The 1.2m swell now peels well; offshore wind and falling mid-tide create clean, fun, punchy walls with nice running sections.</div>
   
 </div>
     
@@ -2750,7 +2706,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Mushy 1.5m east swell, offshore wind—bigger but poor angle.</div>
+  <div class="forecaster-note">💬 Big 1.5m waves at a steep angle; offshore wind clears the face, but falling tide and poor breaker quality make them closey and dumpy.</div>
   
 </div>
     
@@ -2780,7 +2736,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Peeling 1.5m east swell, offshore wind, dropping tide—bigger, clean, some good sections.</div>
+  <div class="forecaster-note">💬 Solid 1.5m waves peel at a good angle; offshore wind and falling tide sharpen the banks for punchy, fast, clean walls.</div>
   
 </div>
     
@@ -2810,7 +2766,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Peeling 1.5m east swell, offshore wind, dropping tide—punchy and clean.</div>
+  <div class="forecaster-note">💬 The 1.5m waves peel nicely; offshore wind and falling tide focus the energy, giving clean, rippable peaks with good speed.</div>
   
 </div>
     
@@ -2840,7 +2796,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Straight-on 1.8m east swell, cross-off wind—closeouts and big but not breaking well.</div>
+  <div class="forecaster-note">💬 Big 1.8m waves peel at an angle; a cross-off wind and falling tide create poor breaker quality—mushy, closey closeouts with no shape.</div>
   
 </div>
     
@@ -2870,7 +2826,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Straight-on 1.8m east swell, cross wind—closeout city.</div>
+  <div class="forecaster-note">💬 The 1.8m swell hits straight-on; a cross-breeze and falling tide produce poor breaker quality—fat, closey walls with no drive.</div>
   
 </div>
     
@@ -2900,7 +2856,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Peeling 1.8m east swell, cross wind—some shape but messy.</div>
+  <div class="forecaster-note">💬 The 1.8m swell peels at a nice angle, but cross-breeze and falling tide hurt shape—poor breaker quality creates mushy, bumpy closeouts.</div>
   
 </div>
     
@@ -2910,37 +2866,8 @@ h2 {
   
   <div class="timeframe-content" data-tf="3–6pm" data-day="tomorrow" style="display:none;">
   <div class="section">
-    <h2>🏆 Sun 19th July</h2>
+    <h2>🏆 Sun 19th July — 🌇 3–6pm</h2>
     <div>
-      
-      <div class="forecaster-note">💬 Low tide slack and a longer period east swell create hollow, dumping waves, but many breaks close out or become too dumpy—Freshwater's narrow bay handles it best.</div>
-      
-
-      <div class="best-beach-cards">
-        
-        <a href="#" class="best-beach-card" data-beach="queenscliff">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">6-7 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">Queenscliff</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="north-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">6-7 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">North Steyne</span>
-</a>
-        
-        <a href="#" class="best-beach-card" data-beach="south-steyne">
-  <span class="best-beach-card-badge">🏆 Best Beach</span>
-  <span class="best-beach-card-wave">6-7 ft</span>
-  <span class="best-beach-card-rating"><span class="rating-badge" style="background:#2980b9">Good</span></span>
-  <span class="best-beach-card-name">South Steyne</span>
-</a>
-        
-      </div>
-
       <div class="gear-note">❄ Water feels like 16.1°C so you'll need a 4/3 steamer</div>
 
       
@@ -3021,7 +2948,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Mushy 1.3m east swell, offshore wind, low tide—very dumpy and poor shape.</div>
+  <div class="forecaster-note">💬 Mushy 1.3m waves at a steep angle; offshore wind and low tide make them hollow but the extreme angle kills any real shape.</div>
   
 </div>
     
@@ -3051,7 +2978,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Groveller, Fish</div>
   
-  <div class="forecaster-note">💬 Mushy 1.3m east swell, cross-off wind, low tide—dumpy and weak.</div>
+  <div class="forecaster-note">💬 Mushy 1.3m waves at a steep angle; cross-off wind and low tide create fast, dumpy closeouts with little rideable face.</div>
   
 </div>
     
@@ -3081,7 +3008,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Partially shadowed, mushy 0.7m east swell, offshore wind—small and weak.</div>
+  <div class="forecaster-note">💬 Partially shadowed, only 0.7m waves sneak in; offshore wind and low tide improve shape, giving short, clean, fun runners.</div>
   
 </div>
     
@@ -3111,7 +3038,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 1.6m east swell at a mushy angle, cross-off wind, low tide—dumpy closeouts.</div>
+  <div class="forecaster-note">💬 Solid 1.6m waves at a steep angle; cross-off wind and low tide cause poor breaker quality—dumpy, fast closeouts with no shape.</div>
   
 </div>
     
@@ -3141,7 +3068,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
   <div class="board">🏄 Fish, Longboard</div>
   
-  <div class="forecaster-note">💬 Peeling 0.7m east swell with cross-off wind and low tide—clean, hollow, fun waves in the narrow bay.</div>
+  <div class="forecaster-note">💬 Partially shadowed, 0.7m waves peel nicely; cross-off wind and low tide create clean, punchy peaks with good shape.</div>
   
 </div>
     
@@ -3171,7 +3098,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Peeling 1.9m east swell, cross wind, low tide—big but very dumpy, closeouts.</div>
+  <div class="forecaster-note">💬 Big 1.9m waves peel at a good angle; a cross-breeze and low tide kill shape completely, leaving only fast, lumpy closeouts.</div>
   
 </div>
     
@@ -3201,7 +3128,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Straight-on 1.9m east swell, cross wind, low tide—dangerous closeouts.</div>
+  <div class="forecaster-note">💬 The 1.9m swell hits straight-on; a cross-breeze and low tide destroy shape—poor breaker quality means short, closey, bumpy walls.</div>
   
 </div>
     
@@ -3231,7 +3158,7 @@ h2 {
   <div class="rating-row"><span class="rating-badge" style="background:#2980b9">Good</span> <span class="best-beach-badge">🏆 Best Beach</span></div>
   <div class="board">🏄 Shortboard, Step-Up</div>
   
-  <div class="forecaster-note">💬 Peeling 1.9m east swell, cross-on wind—big and messy.</div>
+  <div class="forecaster-note">💬 The 1.9m swell peels well, but cross-on wind and low tide ruin it—poor breaker quality makes for mushy, bumpy closeouts.</div>
   
 </div>
     
@@ -3245,6 +3172,8 @@ h2 {
         <div class="section">
             <h2>🌊 7-Day Swell Outlook</h2>
             
+            <div class="outlook-llm-note">💬 Swell builds Sunday into Monday, peaking Monday with clean offshore NNW winds—best day for Dee Why or Queenscliff. Tuesday holds fun east swell with light north winds. Wednesday fades but stays clean. Weekend starts small and weak; Thursday gets choppy.</div>
+            <hr class="rec-sep">
             <div style="margin-bottom:4px;font-size:0.75em;color:#999;display:flex;gap:16px;flex-wrap:wrap;">
                 <span><span style="display:inline-block;width:12px;height:12px;background:#b3d4ff;border-radius:2px;vertical-align:middle;"></span> Swell range (min–max)</span>
                 <span><span style="display:inline-block;width:12px;height:3px;background:#0066cc;border-radius:2px;vertical-align:middle;"></span> Avg height</span>
@@ -3287,7 +3216,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 05:47:33 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 10:07:21 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3319,9 +3248,9 @@ h2 {
                 <td style="text-align:right;padding:2px 8px;color:#666;">Local calculation</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ OpenRouter / DeepSeek</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">LLM commentary generated</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ OpenRouter / DeepSeek</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Reused from cache</td>
             </tr>
       </table>
     </details>
@@ -3452,8 +3381,11 @@ h2 {
       var btn = document.querySelector('.day-btn[data-day="' + day + '"]');
       if (btn) btn.classList.add('active');
       document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'none'; });
+      document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
       document.querySelectorAll('.timeframe-content').forEach(function(el) { el.style.display = 'none'; });
-      // Show first timeframe for this day
+      // Show daily overview + first timeframe for this day
+      var overview = document.querySelector('.daily-overview[data-day="' + day + '"]');
+      if (overview) overview.style.display = 'block';
       var first = document.querySelector('.timeframe-content[data-day="' + day + '"]');
       if (first) {
         first.style.display = 'block';
@@ -3516,6 +3448,7 @@ h2 {
       document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
       var btn = document.querySelector('.day-btn[data-day="outlook"]');
       if (btn) btn.classList.add('active');
+      document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
       document.querySelectorAll('.timeframe-content').forEach(function(el) { el.style.display = 'none'; });
       document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'block'; });
       var chart = document.getElementById('timelineChart');
