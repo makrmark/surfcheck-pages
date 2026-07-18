@@ -768,10 +768,22 @@ h2 {
     max-width: 100%;
     box-sizing: border-box;
 }
-.beach-heading {
-    font-weight: normal;
-    color: #888;
+.beach-aspect-box {
+    display: inline-block;
+    background: #e8f4ff;
+    color: #0055a5;
+    font-weight: 600;
     font-size: 0.85em;
+    padding: 2px 10px;
+    border-radius: 4px;
+    margin-left: auto;
+    min-width: 40px;
+    text-align: center;
+}
+.beach-day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .bd-detail {
     color: #666;
@@ -1299,8 +1311,12 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Long Reef <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Long Reef</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Tiny peeling waves with a cross breeze, but the long period gives them just enough push for a longboard.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -1343,16 +1359,17 @@ h2 {
       
       <div class="bd-board">🏄 Fish, Longboard</div>
       
-      
-      <div class="bd-note">💬 Tiny peeling waves with a cross breeze, but the long period gives them just enough push for a longboard.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Dee Why <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Dee Why</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Straight-on, weak swell and a cross breeze leave the waves fat and unappealing.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -1395,16 +1412,17 @@ h2 {
       
       <div class="bd-board">🏄 Fish, Longboard</div>
       
-      
-      <div class="bd-note">💬 Straight-on, weak swell and a cross breeze leave the waves fat and unappealing.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Curl Curl <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">North Curl Curl</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Peeling, waist-high waves with a cross breeze, but the weak swell lacks any real punch.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
@@ -1447,68 +1465,70 @@ h2 {
       
       <div class="bd-board">🏄 Fish, Longboard</div>
       
-      
-      <div class="bd-note">💬 Peeling, waist-high waves with a cross breeze, but the weak swell lacks any real punch.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Curl Curl <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">South Curl Curl</span>
+        <span class="beach-aspect-box"></span>
       </div>
-      <div class="beach-day-cells">
-        
-        <div class="beach-day-cell">
-          <div class="bd-tf-label">6–9am</div>
-          <div class="bm-cell-wave">2-3 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">AoA 7°</div>
-          <div class="bd-detail">Exp 100.0%</div>
-          <div class="bd-detail">Wind Cross · SW</div>
-        </div>
-        
-        <div class="beach-day-cell beach-day-best">
-          <div class="bd-tf-label">9–12pm</div>
-          <div class="bm-cell-wave">2-3 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">AoA 30°</div>
-          <div class="bd-detail">Exp 100.0%</div>
-          <div class="bd-detail">Wind Cross-Off · S</div>
-        </div>
-        
-        <div class="beach-day-cell beach-day-best">
-          <div class="bd-tf-label">12–3pm</div>
-          <div class="bm-cell-wave">2-3 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">AoA 33°</div>
-          <div class="bd-detail">Exp 100.0%</div>
-          <div class="bd-detail">Wind Cross-Off · SSE</div>
-        </div>
-        
-        <div class="beach-day-cell beach-day-best">
-          <div class="bd-tf-label">3–6pm</div>
-          <div class="bm-cell-wave">2-3 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">AoA 33°</div>
-          <div class="bd-detail">Exp 100.0%</div>
-          <div class="bd-detail">Wind Cross-Off · S</div>
-        </div>
-        
-      </div>
-      
-      <div class="bd-board">🏄 Fish, Longboard</div>
-      
       
       <div class="bd-note">💬 Straight-on, weak swell and a cross breeze make for messy, closeout conditions.</div>
       
+      <div class="beach-day-cells">
+        
+        <div class="beach-day-cell">
+          <div class="bd-tf-label">6–9am</div>
+          <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+          <div class="bd-detail">AoA 7°</div>
+          <div class="bd-detail">Exp 100.0%</div>
+          <div class="bd-detail">Wind Cross · SW</div>
+        </div>
+        
+        <div class="beach-day-cell beach-day-best">
+          <div class="bd-tf-label">9–12pm</div>
+          <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+          <div class="bd-detail">AoA 30°</div>
+          <div class="bd-detail">Exp 100.0%</div>
+          <div class="bd-detail">Wind Cross-Off · S</div>
+        </div>
+        
+        <div class="beach-day-cell beach-day-best">
+          <div class="bd-tf-label">12–3pm</div>
+          <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+          <div class="bd-detail">AoA 33°</div>
+          <div class="bd-detail">Exp 100.0%</div>
+          <div class="bd-detail">Wind Cross-Off · SSE</div>
+        </div>
+        
+        <div class="beach-day-cell beach-day-best">
+          <div class="bd-tf-label">3–6pm</div>
+          <div class="bm-cell-wave">2-3 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+          <div class="bd-detail">AoA 33°</div>
+          <div class="bd-detail">Exp 100.0%</div>
+          <div class="bd-detail">Wind Cross-Off · S</div>
+        </div>
+        
+      </div>
+      
+      <div class="bd-board">🏄 Fish, Longboard</div>
+      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Freshwater <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Freshwater</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Straight-on, weak swell and a cross breeze leave the waves fat and unappealing.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -1551,16 +1571,17 @@ h2 {
       
       <div class="bd-board">🏄 Fish, Longboard</div>
       
-      
-      <div class="bd-note">💬 Straight-on, weak swell and a cross breeze leave the waves fat and unappealing.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Queenscliff <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Queenscliff</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Peeling, knee-high waves with a cross-onshore breeze, but the weak swell offers little power.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
@@ -1603,16 +1624,17 @@ h2 {
       
       <div class="bd-board">🏄 Fish, Longboard</div>
       
-      
-      <div class="bd-note">💬 Peeling, knee-high waves with a cross-onshore breeze, but the weak swell offers little power.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Steyne <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">North Steyne</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Mushy, knee-high waves with a cross-onshore breeze, lacking any real push.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
@@ -1655,16 +1677,17 @@ h2 {
       
       <div class="bd-board">🏄 Fish, Longboard</div>
       
-      
-      <div class="bd-note">💬 Mushy, knee-high waves with a cross-onshore breeze, lacking any real push.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Steyne <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">South Steyne</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Heavily shadowed from the swell, leaving a flat, unrideable ocean.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -1706,9 +1729,6 @@ h2 {
       </div>
       
       <div class="bd-board">🏄 Longboard, Log</div>
-      
-      
-      <div class="bd-note">💬 Heavily shadowed from the swell, leaving a flat, unrideable ocean.</div>
       
     </div>
     
@@ -2180,8 +2200,12 @@ h2 {
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Long Reef <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Long Reef</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Mushy, waist-high waves with a clean offshore breeze, but the extreme swell angle robs them of shape.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -2224,16 +2248,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Groveller, Fish</div>
       
-      
-      <div class="bd-note">💬 Mushy, waist-high waves with a clean offshore breeze, but the extreme swell angle robs them of shape.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Dee Why <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Dee Why</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Mushy, waist-high waves with a clean cross-offshore breeze, but the extreme swell angle robs them of shape.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
@@ -2276,16 +2301,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Groveller, Fish</div>
       
-      
-      <div class="bd-note">💬 Mushy, waist-high waves with a clean cross-offshore breeze, but the extreme swell angle robs them of shape.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Curl Curl <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">North Curl Curl</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Mushy, waist-high waves with a clean offshore breeze, but the extreme swell angle robs them of shape.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -2328,16 +2354,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Groveller, Fish</div>
       
-      
-      <div class="bd-note">💬 Mushy, waist-high waves with a clean offshore breeze, but the extreme swell angle robs them of shape.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Curl Curl <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">South Curl Curl</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Mushy, waist-high waves with a clean cross-offshore breeze, but the extreme swell angle robs them of shape.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
@@ -2380,16 +2407,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Groveller, Fish</div>
       
-      
-      <div class="bd-note">💬 Mushy, waist-high waves with a clean cross-offshore breeze, but the extreme swell angle robs them of shape.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Freshwater <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Freshwater</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Peeling, waist-high waves with a clean cross-offshore breeze, offering the best shape of the morning.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
@@ -2432,16 +2460,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Groveller, Fish</div>
       
-      
-      <div class="bd-note">💬 Peeling, waist-high waves with a clean cross-offshore breeze, offering the best shape of the morning.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">Queenscliff <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">Queenscliff</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Peeling, chest-high waves with a cross breeze, but the weak swell offers little power.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -2484,16 +2513,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Step-Up</div>
       
-      
-      <div class="bd-note">💬 Peeling, chest-high waves with a cross breeze, but the weak swell offers little power.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">North Steyne <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">North Steyne</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Straight-on, chest-high waves with a cross breeze, making for closeout conditions.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -2536,16 +2566,17 @@ h2 {
       
       <div class="bd-board">🏄 Shortboard, Step-Up</div>
       
-      
-      <div class="bd-note">💬 Straight-on, chest-high waves with a cross breeze, making for closeout conditions.</div>
-      
     </div>
     
     <hr class="rec-sep">
     <div class="beach-day-card">
       <div class="beach-day-header">
-        <span class="beach-day-name">South Steyne <span class="beach-heading">— </span></span>
+        <span class="beach-day-name">South Steyne</span>
+        <span class="beach-aspect-box"></span>
       </div>
+      
+      <div class="bd-note">💬 Peeling, chest-high waves with a cross-onshore breeze, but the weak swell offers little power.</div>
+      
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
@@ -2587,9 +2618,6 @@ h2 {
       </div>
       
       <div class="bd-board">🏄 Shortboard, Step-Up</div>
-      
-      
-      <div class="bd-note">💬 Peeling, chest-high waves with a cross-onshore breeze, but the weak swell offers little power.</div>
       
     </div>
     
@@ -2646,7 +2674,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 13:56:38 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:01:09 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
