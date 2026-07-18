@@ -824,3 +824,173 @@ h2 {
     text-align: center;
     margin-top: 2px;
 }
+
+/* ── Beach Detail Modal ──────────────────────── */
+.beach-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.beach-modal-overlay.open {
+    display: flex;
+}
+.beach-modal {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+    animation: modalFadeIn 0.2s ease;
+    position: relative;
+}
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.beach-modal-close {
+    position: sticky;
+    top: 0;
+    float: right;
+    z-index: 1;
+    background: #f0f0f0;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    line-height: 36px;
+    text-align: center;
+    cursor: pointer;
+    color: #666;
+    margin: 8px 8px 0 0;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+.beach-modal-close:hover {
+    background: #ddd;
+}
+.beach-modal-close:active {
+    background: #ccc;
+}
+.beach-modal-body {
+    padding: 0 20px 20px;
+}
+.beach-modal-body .beach-card {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+.beach-modal-body .beach-card-best {
+    background: transparent;
+    border: none;
+}
+.beach-modal-body .beach-day-card {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin-top: 0;
+}
+.beach-modal-body .beach-day-header {
+    margin-bottom: 12px;
+}
+.beach-modal-body .beach-day-name {
+    font-size: 1.4em;
+}
+
+/* ── Compact Beach List (timeframe view) ──────── */
+.beach-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 12px;
+}
+.beach-list-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #f8f9fa;
+    border: 1.5px solid #e6f2ff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.beach-list-row:hover {
+    background: #eef6ff;
+    border-color: #99ccff;
+}
+.beach-list-row:active {
+    background: #dceeff;
+}
+.beach-list-row-beach {
+    font-weight: bold;
+    color: #0066cc;
+    font-size: 1em;
+    min-width: 80px;
+}
+.beach-list-row-wave {
+    font-weight: bold;
+    color: #0066cc;
+    display: inline-block;
+    border: 2px solid #b3d4ff;
+    border-radius: 8px;
+    padding: 1px 10px;
+    background: #f0f8ff;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+.beach-list-row .rating-badge {
+    font-size: 0.75em;
+    padding: 1px 8px;
+    white-space: nowrap;
+}
+.beach-list-row-exp {
+    font-size: 0.8em;
+    color: #888;
+    margin-left: auto;
+    white-space: nowrap;
+}
+.beach-list-row:first-child {
+    border-color: #ffd700;
+    background: #fffde7;
+}
+.beach-list-row:first-child:hover {
+    background: #fff8d0;
+}
+
+/* ── Matrix rows clickable for modal ──────────── */
+.bm-row {
+    cursor: pointer;
+    transition: background 0.12s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.bm-row:hover {
+    background: #eef6ff;
+}
+.bm-row:active {
+    background: #dceeff;
+}
+.bm-row-best:hover {
+    background: #fff8d0;
+}
+.bm-row-best:active {
+    background: #ffeaa0;
+}
+
+/* Hide beach day cards from normal flow, show in modal */
+.beach-day-cards-section {
+    display: none;
+}
