@@ -703,3 +703,70 @@ h2 {
         font-size: 0.85em;
     }
 }
+
+/* Whole-day beach detail cards */
+.beach-day-card {
+    margin-top: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+}
+.beach-day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.beach-day-name {
+    font-weight: bold;
+    font-size: 1em;
+    color: #333;
+}
+.beach-day-aspect {
+    font-size: 0.8em;
+    color: #888;
+}
+.beach-day-cells {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+.beach-day-cell {
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    padding: 6px;
+    background: #fafafa;
+    font-size: 0.8em;
+    min-width: 0;
+}
+.beach-day-best {
+    border-color: #ffd700;
+    background: #fffef0;
+}
+.bd-tf-label {
+    font-weight: bold;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 4px;
+}
+.bd-detail {
+    color: #666;
+    font-size: 0.85em;
+    line-height: 1.3;
+}
+.bd-board {
+    font-size: 0.85em;
+    color: #8b4513;
+    margin-top: 2px;
+}
+.bd-note {
+    font-size: 0.8em;
+    color: #555;
+    background: #f0fff0;
+    border-left: 2px solid #4caf50;
+    padding: 3px 5px;
+    margin-top: 4px;
+    border-radius: 3px;
+    line-height: 1.3;
+}
