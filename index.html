@@ -842,7 +842,6 @@ h2 {
       <button class="day-btn" data-day="tomorrow" onclick="showDay('tomorrow')">Tomorrow</button>
       <button class="day-btn outlook-btn" data-day="outlook" onclick="showOutlook()">📊 7-Day</button>
     </nav>
-    <div class="timeline-chart" id="timelineChart"></div>
   </header>
 
   
@@ -2694,7 +2693,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:10:15 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 14:11:25 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -2737,122 +2736,6 @@ h2 {
 
   <div class="watermark">Northern Beaches Surf Check v2.0</div>
 
-  <script id="timeline-data" type="application/json">[
-    
-    {
-      "label": "6–9am",
-      "emoji": "🌅",
-      "day": "today",
-      "date_str": "Sat 18th July",
-      "wave_height": 0.7,
-      "wave_period": 9,
-      "wave_compass": "SE",
-      "wind_knots": 5,
-      "wind_compass": "SW",
-      "tide_height": 1.08,
-      "overall_rating": 1.5
-    },
-    
-    {
-      "label": "9–12pm",
-      "emoji": "☀️",
-      "day": "today",
-      "date_str": "Sat 18th July",
-      "wave_height": 0.7,
-      "wave_period": 7,
-      "wave_compass": "ESE",
-      "wind_knots": 4,
-      "wind_compass": "S",
-      "tide_height": 1.19,
-      "overall_rating": 2.0
-    },
-    
-    {
-      "label": "12–3pm",
-      "emoji": "🌤️",
-      "day": "today",
-      "date_str": "Sat 18th July",
-      "wave_height": 0.7,
-      "wave_period": 7,
-      "wave_compass": "ESE",
-      "wind_knots": 9,
-      "wind_compass": "SSE",
-      "tide_height": 0.76,
-      "overall_rating": 2.0
-    },
-    
-    {
-      "label": "3–6pm",
-      "emoji": "🌇",
-      "day": "today",
-      "date_str": "Sat 18th July",
-      "wave_height": 0.8,
-      "wave_period": 8,
-      "wave_compass": "ESE",
-      "wind_knots": 8,
-      "wind_compass": "S",
-      "tide_height": 0.58,
-      "overall_rating": 2.0
-    },
-    
-    {
-      "label": "6–9am",
-      "emoji": "🌅",
-      "day": "tomorrow",
-      "date_str": "Sun 19th July",
-      "wave_height": 1.3,
-      "wave_period": 7,
-      "wave_compass": "E",
-      "wind_knots": 4,
-      "wind_compass": "S",
-      "tide_height": 0.89,
-      "overall_rating": 3.0
-    },
-    
-    {
-      "label": "9–12pm",
-      "emoji": "☀️",
-      "day": "tomorrow",
-      "date_str": "Sun 19th July",
-      "wave_height": 1.4,
-      "wave_period": 7,
-      "wave_compass": "E",
-      "wind_knots": 6,
-      "wind_compass": "SSE",
-      "tide_height": 1.29,
-      "overall_rating": 3.0
-    },
-    
-    {
-      "label": "12–3pm",
-      "emoji": "🌤️",
-      "day": "tomorrow",
-      "date_str": "Sun 19th July",
-      "wave_height": 1.4,
-      "wave_period": 7,
-      "wave_compass": "E",
-      "wind_knots": 8,
-      "wind_compass": "S",
-      "tide_height": 0.96,
-      "overall_rating": 3.0
-    },
-    
-    {
-      "label": "3–6pm",
-      "emoji": "🌇",
-      "day": "tomorrow",
-      "date_str": "Sun 19th July",
-      "wave_height": 1.4,
-      "wave_period": 7,
-      "wave_compass": "E",
-      "wind_knots": 6,
-      "wind_compass": "S",
-      "tide_height": 0.49,
-      "overall_rating": 2.5
-    }
-    
-  ]</script>
-
   <script>
     function showDay(day) {
       document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
@@ -2860,183 +2743,19 @@ h2 {
       if (btn) btn.classList.add('active');
       document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'none'; });
       document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
-      // Show daily overview for this day
       var overview = document.querySelector('.daily-overview[data-day="' + day + '"]');
       if (overview) overview.style.display = 'block';
-      // Update slider for this day
-      var chart = document.getElementById('timelineChart');
-      if (chart) {
-        chart.style.display = '';
-        chart.querySelectorAll('.tl-day').forEach(function(el) {
-          el.style.display = el.getAttribute('data-day') === day ? 'block' : 'none';
-        });
-        var firstDot = chart.querySelector('.tl-slider-dot[data-day="' + day + '"]');
-        if (firstDot) {
-          chart.querySelectorAll('.tl-slider-dot').forEach(function(d) { d.classList.remove('active'); });
-          firstDot.classList.add('active');
-          updateInfoBar(day, firstDot.getAttribute('data-tf'));
-        }
-      }
       try { localStorage.setItem('surfcheckDay', day); } catch(e) {}
     }
-    function updateInfoBar(day, label) {
-      var infoEl = document.getElementById('tl-info-' + day);
-      if (!infoEl) return;
-      var dataEl = document.getElementById('timeline-data');
-      if (!dataEl) return;
-      try {
-        var d = JSON.parse(dataEl.textContent).filter(function(x) { return x.day === day && x.label === label; })[0];
-        if (d) infoEl.textContent = d.emoji + ' ' + d.label + ' \u00b7 ' + d.wave_height + 'm ' + d.wave_compass + ' \u00b7 ' + d.wind_knots + 'kt ' + d.wind_compass;
-      } catch(e) {}
+    function showOutlook() {
+      document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
+      var btn = document.querySelector('.day-btn.outlook-btn');
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
+      document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = ''; });
+      try { localStorage.setItem('surfcheckDay', 'outlook'); } catch(e) {}
     }
-
-
-    function renderTimelineChart() {
-      var container = document.getElementById('timelineChart');
-      if (!container) return;
-      var dataEl = document.getElementById('timeline-data');
-      if (!dataEl) return;
-      var data;
-      try { data = JSON.parse(dataEl.textContent); } catch(e) { return; }
-      if (!data || data.length === 0) return;
-
-      var days = ['today', 'tomorrow'];
-      var chartHtml = '';
-
-      function makeInfo(day, label) {
-        var item = data.filter(function(x) { return x.day === day && x.label === label; })[0];
-        if (!item) item = data.filter(function(x) { return x.day === day; })[0];
-        if (!item) return '';
-        return item.emoji + ' ' + item.label + ' \u00b7 ' + item.wave_height + 'm ' + item.wave_compass + ' \u00b7 ' + item.wind_knots + 'kt ' + item.wind_compass;
-      }
-
-      days.forEach(function(dayId) {
-        var dayData = data.filter(function(d) { return d.day === dayId; });
-        if (dayData.length === 0) return;
-        var firstLabel = dayData[0] ? dayData[0].label : '';
-        var count = dayData.length;
-
-        chartHtml += '<div class="tl-day" data-day="' + dayId + '">' +
-          '<div class="tl-info-bar" id="tl-info-' + dayId + '">' + makeInfo(dayId, firstLabel) + '</div>' +
-          '<div class="tl-slider">' +
-          '<div class="tl-slider-track"></div>';
-
-        dayData.forEach(function(d, i) {
-          var pct = count > 1 ? Math.round(i / (count - 1) * 100) : 50;
-          chartHtml += '<div class="tl-slider-dot" data-tf="' + d.label + '" data-day="' + dayId + '" style="left:' + pct + '%"></div>';
-        });
-
-        chartHtml += '</div></div>';
-      });
-
-      container.innerHTML = chartHtml;
-
-      // ---- Drag-handler on slider ----
-      function findClosestDot(slider, clientX) {
-        var rect = slider.getBoundingClientRect();
-        var pct = (clientX - rect.left) / rect.width * 100;
-        var dots = slider.querySelectorAll('.tl-slider-dot');
-        var best = null, bestDist = Infinity;
-        dots.forEach(function(d) {
-          var dist = Math.abs(parseFloat(d.style.left) - pct);
-          if (dist < bestDist) { bestDist = dist; best = d; }
-        });
-        return best;
-      }
-
-      var activeSlider = null;
-      var dragStartTouch = null;
-
-      function updateUiFromDot(dot) {
-        if (!dot) return;
-        var day = dot.getAttribute('data-day');
-        var label = dot.getAttribute('data-tf');
-        var slider = dot.closest('.tl-slider');
-        slider.querySelectorAll('.tl-slider-dot').forEach(function(d) { d.classList.remove('active'); });
-        dot.classList.add('active');
-        var infoEl = document.getElementById('tl-info-' + day);
-        if (infoEl) {
-          var item = data.filter(function(x) { return x.day === day && x.label === label; })[0];
-          if (item) infoEl.textContent = item.emoji + ' ' + item.label + ' \u00b7 ' + item.wave_height + 'm ' + item.wave_compass + ' \u00b7 ' + item.wind_knots + 'kt ' + item.wind_compass;
-        }
-      }
-
-      function navToDot(dot) {
-        if (!dot) return;
-        var day = dot.getAttribute('data-day');
-        var label = dot.getAttribute('data-tf');
-        var dayBtn = document.querySelector('.day-btn[data-day="' + day + '"]');
-        if (dayBtn) {
-          var handler = dayBtn.getAttribute('onclick');
-          if (handler) {
-            var m = handler.match(/[\x27"](\w+)[\x27"]/);
-            if (m) showDay(m[1]);
-          }
-        }
-        updateUiFromDot(dot);
-      }
-
-      function onDragMove(e) {
-        if (!activeSlider) return;
-        var clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        var dot = findClosestDot(activeSlider, clientX);
-        if (dot) updateUiFromDot(dot);
-      }
-
-      function onDragEnd(e) {
-        if (!activeSlider) return;
-        // For touch: check if vertical scroll happened (don't navigate if scrolled away)
-        if (e.changedTouches && dragStartTouch) {
-          var dy = Math.abs(e.changedTouches[0].clientY - dragStartTouch.clientY);
-          if (dy > 30) { activeSlider = null; dragStartTouch = null; return; }
-        }
-        var activeDot = activeSlider.querySelector('.tl-slider-dot.active');
-        if (activeDot) navToDot(activeDot);
-        activeSlider = null;
-        dragStartTouch = null;
-      }
-
-      // Per-slider start
-      container.querySelectorAll('.tl-slider').forEach(function(slider) {
-        slider.addEventListener('mousedown', function(e) {
-          activeSlider = slider;
-          dragStartTouch = { clientX: e.clientX, clientY: e.clientY };
-          var dot = findClosestDot(slider, e.clientX);
-          if (dot) updateUiFromDot(dot);
-        });
-        slider.addEventListener('touchstart', function(e) {
-          activeSlider = slider;
-          dragStartTouch = { clientX: e.touches[0].clientX, clientY: e.touches[0].clientY };
-          var dot = findClosestDot(slider, e.touches[0].clientX);
-          if (dot) updateUiFromDot(dot);
-        }, { passive: true });
-      });
-
-      // Global move/end (added once)
-      document.addEventListener('mousemove', onDragMove);
-      document.addEventListener('mouseup', onDragEnd);
-      document.addEventListener('touchmove', onDragMove, { passive: true });
-      document.addEventListener('touchend', onDragEnd, { passive: true });
-
-      // Sync initial state
-      var activeDay = document.querySelector('.day-btn.active');
-      var day = activeDay ? activeDay.getAttribute('data-day') : 'today';
-      if (day === 'outlook') {
-        container.style.display = 'none';
-      } else {
-        container.style.display = '';
-        container.querySelectorAll('.tl-day').forEach(function(el) {
-          el.style.display = el.getAttribute('data-day') === day ? 'block' : 'none';
-        });
-        var firstDot = container.querySelector('.tl-slider-dot[data-day="' + day + '"]');
-        if (firstDot) firstDot.classList.add('active');
-      }
-    }
-
-
-
     document.addEventListener('DOMContentLoaded', function() {
-      renderTimelineChart();
       var savedDay = (function(){ try { return localStorage.getItem('surfcheckDay'); } catch(e){ return null; } })();
       if (savedDay === 'outlook') {
         showOutlook();
