@@ -577,72 +577,82 @@ h2 {
     }
 }
 
-/* ── Daily Overview Card (combined timeframes) ──────────────── */
-.daily-tf-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+/* ── Beach Matrix Table (daily overview) ──────────────────── */
+.beach-matrix-wrap {
+    overflow-x: auto;
     margin-top: 12px;
+    -webkit-overflow-scrolling: touch;
 }
-.daily-tf-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 14px;
-    background: #fffde7;
-    border: 2px solid #ffd700;
-    border-radius: 10px;
-    flex-wrap: wrap;
+.beach-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+    min-width: 480px;
 }
-.daily-tf-emoji {
-    font-size: 1.2em;
-    flex-shrink: 0;
-}
-.daily-tf-label {
+.bm-header {
+    padding: 8px 6px;
+    text-align: center;
     font-weight: 600;
     color: #555;
-    font-size: 0.9em;
-    min-width: 52px;
-    flex-shrink: 0;
+    border-bottom: 2px solid #ddd;
+    white-space: nowrap;
 }
-.daily-tf-wave {
+.bm-beach-col {
+    text-align: left;
+    width: 100px;
+    min-width: 80px;
+}
+.bm-tf-col {
+    width: auto;
+}
+.bm-row td {
+    padding: 6px 4px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+.bm-beach-cell {
+    font-weight: 600;
+    color: #333;
+    padding-left: 4px;
+    white-space: nowrap;
+}
+.bm-cell {
+    text-align: center;
+    padding: 8px 4px;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+.bm-cell-best {
+    background: #fffde7;
+    box-shadow: inset 0 0 0 2px #ffd700;
+    border-radius: 6px;
+}
+.bm-row-best .bm-beach-cell {
+    color: #8b6914;
+}
+.bm-cell-wave {
     font-weight: bold;
     color: #0066cc;
     font-size: 0.95em;
-    display: inline-block;
-    border: 2px solid #b3d4ff;
-    border-radius: 8px;
-    padding: 2px 10px;
-    background: #f0f8ff;
-    flex-shrink: 0;
+    margin-bottom: 2px;
 }
-.daily-tf-rating {
-    flex-shrink: 0;
-}
-.daily-tf-beaches {
+.bm-cell-rating {
     font-size: 0.85em;
-    color: #666;
-    flex-shrink: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+}
+.bm-cell-rating .rating-badge {
+    font-size: 0.8em;
+    padding: 1px 8px;
 }
 @media (max-width: 420px) {
-    .daily-tf-card {
-        gap: 8px;
-        padding: 10px 10px;
+    .beach-matrix {
+        font-size: 0.75em;
+        min-width: 360px;
     }
-    .daily-tf-wave {
+    .bm-cell-wave {
         font-size: 0.85em;
-        padding: 1px 7px;
     }
-    .daily-tf-label {
-        font-size: 0.8em;
-        min-width: 44px;
-    }
-    .daily-tf-beaches {
-        width: 100%;
-        padding-left: 28px;
+    .bm-beach-cell {
+        font-size: 0.85em;
     }
 }
 
@@ -666,40 +676,226 @@ h2 {
     
     <div class="forecaster-note">💬 Small and weak early with clean but marginal conditions. A slight bump in size midday as the tide drops, but wind turns onshore and choppy. Fading again by afternoon. Not worth rushing out for.</div>
     
-    <div class="daily-tf-cards">
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">🌅</div>
-        <div class="daily-tf-label">6–9am</div>
-        <div class="daily-tf-wave">2-3 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-        <div class="daily-tf-beaches">🏆 North Curl Curl, Queenscliff</div>
-      </div>
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">☀️</div>
-        <div class="daily-tf-label">9–12pm</div>
-        <div class="daily-tf-wave">2-3 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-        <div class="daily-tf-beaches">🏆 North Curl Curl, Queenscliff</div>
-      </div>
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">🌤️</div>
-        <div class="daily-tf-label">12–3pm</div>
-        <div class="daily-tf-wave">2-3 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-        <div class="daily-tf-beaches">🏆 South Curl Curl, Freshwater</div>
-      </div>
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">🌇</div>
-        <div class="daily-tf-label">3–6pm</div>
-        <div class="daily-tf-wave">3-4 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-        <div class="daily-tf-beaches">🏆 North Curl Curl, Queenscliff</div>
-      </div>
-      
+    <div class="beach-matrix-wrap">
+      <table class="beach-matrix">
+        <thead>
+          <tr>
+            <th class="bm-header bm-beach-col"></th>
+            
+            <th class="bm-header bm-tf-col">🌅 6–9am</th>
+            
+            <th class="bm-header bm-tf-col">☀️ 9–12pm</th>
+            
+            <th class="bm-header bm-tf-col">🌤️ 12–3pm</th>
+            
+            <th class="bm-header bm-tf-col">🌇 3–6pm</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr class="bm-row">
+            <td class="bm-beach-cell">Long Reef</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">1-2 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row">
+            <td class="bm-beach-cell">Dee Why</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">1-2 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">North Curl Curl</td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">South Curl Curl</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">Freshwater</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">Queenscliff</td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">North Steyne</td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row">
+            <td class="bm-beach-cell">South Steyne</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">1-1 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">1-1 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">1-1 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">1-1 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+            </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -710,40 +906,226 @@ h2 {
     
     <div class="forecaster-note">💬 Small east swell holds all day. Early morning clean with light offshore wind and low tide—best window. Midday high tide fattens it up. Afternoon wind picks but dropping tide cleans it again. Worth a paddle early or late.</div>
     
-    <div class="daily-tf-cards">
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">🌅</div>
-        <div class="daily-tf-label">6–9am</div>
-        <div class="daily-tf-wave">4-5 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-        <div class="daily-tf-beaches">🏆 Dee Why, South Curl Curl</div>
-      </div>
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">☀️</div>
-        <div class="daily-tf-label">9–12pm</div>
-        <div class="daily-tf-wave">4-5 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-        <div class="daily-tf-beaches">🏆 Dee Why, South Curl Curl</div>
-      </div>
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">🌤️</div>
-        <div class="daily-tf-label">12–3pm</div>
-        <div class="daily-tf-wave">4-5 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-        <div class="daily-tf-beaches">🏆 Dee Why, South Curl Curl</div>
-      </div>
-      
-      <div class="daily-tf-card">
-        <div class="daily-tf-emoji">🌇</div>
-        <div class="daily-tf-label">3–6pm</div>
-        <div class="daily-tf-wave">6-7 ft</div>
-        <div class="daily-tf-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-        <div class="daily-tf-beaches">🏆 Queenscliff, North Steyne</div>
-      </div>
-      
+    <div class="beach-matrix-wrap">
+      <table class="beach-matrix">
+        <thead>
+          <tr>
+            <th class="bm-header bm-beach-col"></th>
+            
+            <th class="bm-header bm-tf-col">🌅 6–9am</th>
+            
+            <th class="bm-header bm-tf-col">☀️ 9–12pm</th>
+            
+            <th class="bm-header bm-tf-col">🌤️ 12–3pm</th>
+            
+            <th class="bm-header bm-tf-col">🌇 3–6pm</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr class="bm-row">
+            <td class="bm-beach-cell">Long Reef</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">Dee Why</td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row">
+            <td class="bm-beach-cell">North Curl Curl</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">South Curl Curl</td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">Freshwater</td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">4-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">2-3 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">Queenscliff</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">6-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">North Steyne</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">6-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+          </tr>
+          
+          <tr class="bm-row bm-row-best">
+            <td class="bm-beach-cell">South Steyne</td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave">5-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave">6-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+          </tr>
+          
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -3216,7 +3598,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 10:07:21 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-18 10:13:15 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
