@@ -732,6 +732,19 @@ h2 {
     grid-template-columns: repeat(4, 1fr);
     gap: 6px;
 }
+.beach-day-header-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 4px;
+}
+.beach-day-header-cell {
+    text-align: center;
+    font-size: 0.78em;
+    font-weight: 600;
+    color: #666;
+    padding: 2px 0;
+}
 .beach-day-cell {
     border: 1px solid #e8e8e8;
     border-radius: 6px;
@@ -899,6 +912,7 @@ h2 {
     flex-shrink: 0;
     line-height: 1.5;
     margin-left: auto;
+    margin-right: 8px;
 }
 .beach-modal-close {
     background: transparent;
