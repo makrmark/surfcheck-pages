@@ -99,7 +99,7 @@
     <section>
         <h2>🌊 Overview</h2>
         <p>Northern Beaches Surf Check is an automated surf reporting system for Sydney's Northern Beaches. It runs daily at 5:45 AM via a macOS launch agent, fetches live marine and meteorological data, processes it into a detailed surf report, and deploys it as a static webpage via GitHub Pages.</p>
-        <p>This page explains how the surf report is generated — the data sources, calculations, and decisions behind every rating and recommendation.</p>
+        <p>This page explains how the surf report is generated — the data sources, calculations, and decisions behind every rating and recommendation. The system now evaluates <strong>three swell components</strong> (primary, secondary, tertiary) from the spectral wave model, classifies them by period into <strong>Groundswell</strong> and <strong>Windswell</strong>, and uses the best component for each beach's rating.</p>
     </section>
 
     <section>
@@ -117,11 +117,13 @@
         <p>If the S3 endpoint is unreachable or the NetCDF file cannot be parsed, the system falls back to monthly climatological averages.</p>
 
         <h3>Open-Meteo Marine API</h3>
-        <p>Provides hourly wave and wind forecasts for the Sydney coast (-33.78, 151.30):</p>
+        <p>Provides hourly wave forecasts for the Sydney coast (-33.78, 151.30) using the ECMWF WAM spectral wave model:</p>
         <ul>
+            <li><strong>Swell Components</strong> — The model partitions the wave spectrum into up to <strong>three swell components</strong> (primary, secondary, tertiary). Each has its own height, period, and direction. The system evaluates all three and picks the best one per beach.</li>
             <li><strong>Wave Height</strong> — Significant wave height in metres (H<sub>s</sub>)</li>
             <li><strong>Wave Period</strong> — Peak wave period in seconds</li>
             <li><strong>Wave Direction</strong> — Direction waves are coming from, in degrees from north</li>
+            <li><strong>Wind Sea</strong> — Locally-generated wind chop, shown separately in the conditions table</li>
             <li><strong>Wind Speed & Direction</strong> — 10m wind speed and direction</li>
         </ul>
 
@@ -170,6 +172,39 @@
         <p>This is why a 0.8m wave at Dee Why (flat) produces barely a ripple while the same swell at South Steyne (steep) generates a clean breaking wave.</p>
 
         <p>All heights are <strong>face height</strong> in Australian convention — the vertical trough-to-crest of the breaking wave.</p>
+    </section>
+
+    <section>
+        <h2>🌊 Multi-Swell Evaluation</h2>
+        <p>The Open-Meteo spectral wave model partitions the wave spectrum into up to <strong>three swell components</strong> (primary, secondary, tertiary), each with its own height, period, and direction, plus a separate wind-sea (locally generated chop) component. The system now evaluates <strong>all available components</strong> for each beach individually.</p>
+
+        <h3>How It Works</h3>
+        <p>For each beach, the system computes the effective height, attack angle, and overall rating for:</p>
+        <ol>
+            <li><strong>Primary swell</strong> — the dominant spectral component</li>
+            <li><strong>Secondary swell</strong> — second spectral component (when available)</li>
+            <li><strong>Tertiary swell</strong> — third spectral component (when available)</li>
+        </ol>
+        <p>The component that produces the <strong>best precise rating</strong> for that beach is used. This means:</p>
+        <ul>
+            <li>A south-facing beach like Long Reef might use the primary S swell</li>
+            <li>An east-facing beach like North Steyne might switch to the secondary E swell if it's larger</li>
+            <li>Each beach gets its own optimal swell component, rather than being forced to use the primary</li>
+        </ul>
+
+        <h3>Swell Type Classification</h3>
+        <p>Rather than labelling components as "primary", "secondary", etc., the conditions table classifies each by its period into meaningful surfing categories:</p>
+
+        <table>
+            <tr><th>Type</th><th>Period</th><th>Source</th><th>Quality</th></tr>
+            <tr><td>Groundswell</td><td>≥ 10s</td><td>Distant storms, organised long-period energy</td><td>🟢 Clean, powerful</td></tr>
+            <tr><td>Windswell</td><td>&lt; 10s</td><td>Local or regional winds, short-period chop</td><td>🟡 Weak, less organised</td></tr>
+            <tr><td>Wind Sea</td><td>N/A</td><td>Locally generated wind chop at the beach</td><td>🔴 Bumpy, messy</td></tr>
+        </table>
+
+        <p>The classification uses peak period (when available) or mean period as a fallback. The best component of each type is displayed in its own row in the Conditions table, making it easy to see at a glance whether there's proper groundswell running or just windswell.</p>
+
+        <p>Each beach card also shows which swell component was active in its tooltip, e.g. <em>"Active: secondary swell (1.2m @ 12s 80°)"</em> when a non-primary component scored best for that beach.</p>
     </section>
 
     <section>
@@ -235,9 +270,21 @@
 
         <h3>2. Wave Quality Factor (multiplicative)</h3>
         <div class="formula">
-            wave_quality = wind_quality × attack_factor × tide_factor × embayment_factor × breaker_quality × wind_sea_quality
+            wave_quality = wind_quality × attack_factor × tide_factor × embayment_factor × breaker_quality × wind_sea_quality × groundswell_factor
         </div>
-        <p>Six factors multiplied together (not averaged) — one bad factor heavily penalises the score.</p>
+        <p><strong>Seven</strong> factors multiplied together (not averaged) — one bad factor heavily penalises the score.</p>
+
+        <h3>3. Groundswell Quality Factor</h3>
+        <p>Rewards organised long-period energy and penalises short-period windswell. The factor is applied per swell component based on its period:</p>
+        <table>
+            <tr><th>Period</th><th>Factor</th><th>Meaning</th></tr>
+            <tr><td>≥ 12s</td><td>1.30</td><td>Proper long-period groundswell, clean organised lines</td></tr>
+            <tr><td>≥ 10s</td><td>1.15</td><td>Decent groundswell, good energy</td></tr>
+            <tr><td>≥ 8s</td><td>1.00</td><td>Mixed, some organisation</td></tr>
+            <tr><td>≥ 6s</td><td>0.75</td><td>Short-period windswell, weak/pitchy</td></tr>
+            <tr><td>&lt; 6s</td><td>0.50</td><td>Wind-driven chop</td></tr>
+        </table>
+        <p>This means a 1.2m wave at 12s scores significantly higher than the same height at 6s, even before considering the effective height calculation (which also rewards longer periods through shoaling amplification).</p>
 
         <h3>Final Rating</h3>
         <div class="formula">
@@ -398,7 +445,6 @@
         <ul>
             <li>Wiegel diffraction curves assume idealised headland geometry</li>
             <li>Single offshore data point for all beaches — no local wind effects</li>
-            <li>IMOS SST query requires AWS CLI</li>
             <li>No tide graph — tide is shown as text only</li>
             <li>Board recommendations are static rules, not per-beach calibrated</li>
         </ul>
