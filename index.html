@@ -618,7 +618,9 @@ h2 {
 }
 /* ── Best beaches filter toggle ──────────────────── */
 .bm-best-toggle {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
     cursor: pointer;
     font-size: 0.75em;
     padding: 2px 8px;
@@ -634,6 +636,13 @@ h2 {
     background: #fff8e1;
     border-color: #ffd700;
     color: #8b6914;
+}
+.bm-best-icon {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.bm-best-toggle.active .bm-best-icon {
+    transform: rotate(180deg) scale(0.85);
 }
 .bm-cell {
     text-align: center;
@@ -1119,7 +1128,7 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()"><span class="bm-best-icon">⭐</span> Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -1352,7 +1361,7 @@ h2 {
       <table class="conditions-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
+            <th></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -2127,7 +2136,7 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()"><span class="bm-best-icon">⭐</span> Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -2360,7 +2369,7 @@ h2 {
       <table class="conditions-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
+            <th></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
