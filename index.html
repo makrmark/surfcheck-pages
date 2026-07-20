@@ -1065,6 +1065,75 @@ h2 {
     display: none;
 }
 
+/* ── Best Beach Filter ──────────────────────────── */
+.bm-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    padding: 2px 8px 2px 4px;
+    border-radius: 16px;
+    background: #fffde7;
+    border: 1.5px solid #ffd700;
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #8b6914;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+.bm-filter:hover {
+    background: #fff8c8;
+    border-color: #e6be00;
+    box-shadow: 0 1px 6px rgba(255, 215, 0, 0.35);
+}
+.bm-filter:active {
+    transform: scale(0.95);
+}
+.bm-filter.off {
+    background: #f0f4f8;
+    border-color: #b0c8d8;
+    color: #777;
+}
+.bm-filter.off:hover {
+    background: #e6ecf2;
+    border-color: #99b0c0;
+}
+.bm-filter-icon {
+    font-size: 1.1em;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+.bm-filter.off .bm-filter-icon {
+    transform: rotate(360deg);
+}
+
+/* ── Filter Animation ───────────────────────────── */
+.bm-row {
+    transition: opacity 0.4s ease, max-height 0.45s ease, padding 0.4s ease, border-width 0.4s ease, margin 0.4s ease;
+    overflow: hidden;
+    max-height: 80px;
+}
+.bm-row.bm-row-hidden {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+    margin: 0;
+    pointer-events: none;
+}
+.bm-row.bm-row-hidden td {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-width: 0;
+    line-height: 0;
+}
+.bm-row.bm-row-hidden .bm-cell-wave, .bm-row.bm-row-hidden .bm-cell-rating {
+    opacity: 0;
+}
+
 </style>
 </head>
 <body>
@@ -1100,7 +1169,11 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col">
+              <span class="bm-filter" id="beachFilter" onclick="toggleBestFilter()" title="Show only best beaches">
+                <span class="bm-filter-icon">⭐</span> Best
+              </span>
+            </th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -2108,7 +2181,11 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col">
+              <span class="bm-filter" id="beachFilter2" onclick="toggleBestFilter()" title="Show only best beaches">
+                <span class="bm-filter-icon">⭐</span> Best
+              </span>
+            </th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -3323,6 +3400,49 @@ h2 {
     })();
 
     /* ── Init on DOM ready ────────────────────────── */
+    /* ── Best Beach Filter ──────────────────────────── */
+    var BEST_FILTER_KEY = 'surfcheckBestOnly';
+
+    function toggleBestFilter() {
+      var filterEl = document.getElementById('beachFilter');
+      var currentlyOn = !filterEl.classList.contains('off');
+      setBestFilter(!currentlyOn);
+    }
+
+    function setBestFilter(showFiltered) {
+      var filterEl = document.getElementById('beachFilter');
+      var filterEl2 = document.getElementById('beachFilter2');
+      if (!filterEl) return;
+
+      if (showFiltered) {
+        filterEl.classList.remove('off');
+        if (filterEl2) filterEl2.classList.remove('off');
+      } else {
+        filterEl.classList.add('off');
+        if (filterEl2) filterEl2.classList.add('off');
+      }
+
+      try { localStorage.setItem(BEST_FILTER_KEY, showFiltered ? '1' : '0'); } catch(e) {}
+
+      applyBestFilter(showFiltered);
+    }
+
+    function applyBestFilter(showFiltered) {
+      document.querySelectorAll('.daily-overview').forEach(function(container) {
+        var table = container.querySelector('.beach-matrix');
+        if (!table) return;
+        var rows = table.querySelectorAll('tbody .bm-row');
+        rows.forEach(function(row) {
+          var isBest = row.classList.contains('bm-row-best');
+          if (showFiltered && !isBest) {
+            row.classList.add('bm-row-hidden');
+          } else {
+            row.classList.remove('bm-row-hidden');
+          }
+        });
+      });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       initMatrixClicks();
       initBeachListClicks();
@@ -3339,6 +3459,11 @@ h2 {
         }
         // else default stays "today" (already in the HTML)
       }
+
+      // Apply best-beach filter (default: on / best only)
+      var savedFilter = (function(){ try { return localStorage.getItem(BEST_FILTER_KEY); } catch(e){ return null; } })();
+      var showOnlyBest = savedFilter !== null ? savedFilter === '1' : true;
+      setBestFilter(showOnlyBest);
     });
   </script>
 </body>
