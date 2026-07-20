@@ -616,6 +616,25 @@ h2 {
     padding-left: 4px;
     white-space: nowrap;
 }
+/* ── Best beaches filter toggle ──────────────────── */
+.bm-best-toggle {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 0.75em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+    color: #999;
+    margin-left: 4px;
+    transition: all 0.15s;
+    user-select: none;
+}
+.bm-best-toggle.active {
+    background: #fff8e1;
+    border-color: #ffd700;
+    color: #8b6914;
+}
 .bm-cell {
     text-align: center;
     padding: 8px 4px;
@@ -1100,7 +1119,7 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -1333,7 +1352,7 @@ h2 {
       <table class="conditions-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -2108,7 +2127,7 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -2341,7 +2360,7 @@ h2 {
       <table class="conditions-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" id="bestToggle1" onclick="toggleBestFilter()">⭐ Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -3323,6 +3342,24 @@ h2 {
     })();
 
     /* ── Init on DOM ready ────────────────────────── */
+
+    /* ── Best beaches filter toggle ────────────────── */
+    var bestFilterOn = false;
+    (function() {
+      try { bestFilterOn = localStorage.getItem("surfcheckBestFilter") === "true"; } catch(e) {}
+      if (bestFilterOn) {
+        document.querySelectorAll(".bm-row-best").forEach(function(r) { r.style.display = ""; });
+        document.querySelectorAll(".bm-row:not(.bm-row-best)").forEach(function(r) { r.style.display = "none"; });
+        document.querySelectorAll(".bm-best-toggle").forEach(function(t) { t.classList.add("active"); });
+      }
+    })();
+    function toggleBestFilter() {
+      bestFilterOn = !bestFilterOn;
+      document.querySelectorAll(".bm-row-best").forEach(function(r) { r.style.display = bestFilterOn ? "" : ""; });
+      document.querySelectorAll(".bm-row:not(.bm-row-best)").forEach(function(r) { r.style.display = bestFilterOn ? "none" : ""; });
+      document.querySelectorAll(".bm-best-toggle").forEach(function(t) { t.classList.toggle("active"); });
+      try { localStorage.setItem("surfcheckBestFilter", bestFilterOn); } catch(e) {}
+    }
     document.addEventListener('DOMContentLoaded', function() {
       initMatrixClicks();
       initBeachListClicks();
