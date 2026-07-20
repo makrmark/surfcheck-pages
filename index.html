@@ -694,6 +694,34 @@ h2 {
     display: none !important;
 }
 
+/* ── UV Index Cell Styling ────────────────────────────── */
+.uv-cell {
+    font-weight: 700;
+}
+.uv-low {
+    color: #27ae60;
+    background: #eafaf1;
+}
+.uv-moderate {
+    color: #f39c12;
+    background: #fef9e7;
+}
+.uv-high {
+    color: #e67e22;
+    background: #fdf2e9;
+}
+.uv-very-high {
+    color: #e74c3c;
+    background: #fdedec;
+}
+.uv-extreme {
+    color: #8e44ad;
+    background: #f4ecf7;
+}
+.uv-unknown {
+    color: #999;
+}
+
 /* ── Conditions Matrix ─────────────────────────────────────── */
 .conditions-matrix {
     width: 100%;
@@ -1130,7 +1158,7 @@ h2 {
   <div class="daily-overview" data-day="today">
   <div class="section">
     
-    <div class="forecaster-note">💬 Early morning offers clean offshore winds and head-high waves (5ft) but low tide and chilly temps. Conditions deteriorate through the day as wind swings onshore, making the afternoon choppy. Best to paddle out in the early window for quality waves. Tide filling by late morning may improve shape slightly.</div>
+    <div class="forecaster-note">💬 Early morning offers clean offshore winds and solid 5ft surf, but the tide is slack and air temps are freezing. Conditions deteriorate through the day as wind swings onshore and tide rises, making the afternoon choppy. Best windows are early for quality, though it's cold.</div>
     
     <hr class="rec-sep">
 
@@ -1357,14 +1385,14 @@ h2 {
     </div>
     
     <hr class="rec-sep">
-    <div class="board-rec">🏄 Shortboard or fish for the 4-5ft waves. Early offshore winds allow sizing down, but afternoon onshore chop may favour a slightly larger groveller.</div>
+    <div class="board-rec">🏄 5ft waves with offshore early – a shortboard or groveller works well. As wind turns onshore and chop increases, consider a fish or step-up for extra foam and control.</div>
     
   </div>
 
   <div class="section">
     <h2>🌡️ Conditions</h2>
     
-    <div class="gear-note">🧊 4/3mm wetsuit with hood recommended (feels-like 12.6°C). Hat and sunscreen essential due to UV 4.0 in the afternoon.</div>
+    <div class="gear-note">🧊 Water feels like 12.6°C early – wear a 5/4mm wetsuit with booties, gloves, and hood. UV peaks at 4.0 midday – bring hat and sunscreen.</div>
     
     <hr class="rec-sep">
     <div class="beach-matrix-wrap">
@@ -1578,24 +1606,24 @@ h2 {
             <td class="cm-label-cell">UV</td>
             
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-low">
               <div class="cm-cell-value">0</div>
-              
+              <div class="cm-cell-detail">Low</div>
             </td>
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-low">
               <div class="cm-cell-value">2</div>
-              <div class="cm-cell-detail">0.45</div>
+              <div class="cm-cell-detail">Low</div>
             </td>
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-moderate">
               <div class="cm-cell-value">4</div>
-              <div class="cm-cell-detail">0.66</div>
+              <div class="cm-cell-detail">Moderate</div>
             </td>
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-low">
               <div class="cm-cell-value">1</div>
-              <div class="cm-cell-detail">0.3</div>
+              <div class="cm-cell-detail">Low</div>
             </td>
             
             
@@ -2138,7 +2166,7 @@ h2 {
   <div class="daily-overview" data-day="tomorrow" style="display:none;">
   <div class="section">
     
-    <div class="forecaster-note">💬 Small chest-high swell persists all day with light offshore winds improving early, then fading to onshore by afternoon. Tide rises then drops, so morning windows offer cleaner conditions. Not great but worth a paddle if you're keen.</div>
+    <div class="forecaster-note">💬 Small, clean surf with light offshore winds early, becoming variable later. Waves remain around 3ft but lack power. Best window is 12-3pm with offshore breeze and moderate UV. A low-key day for beginners or longboarders.</div>
     
     <hr class="rec-sep">
 
@@ -2365,14 +2393,14 @@ h2 {
     </div>
     
     <hr class="rec-sep">
-    <div class="board-rec">🏄 3ft chest-high with light offshore winds: a groveller or fish works well. For the clean early windows, a shortboard is fine. Later onshore chop favours extra foam.</div>
+    <div class="board-rec">🏄 Groveller or fish (2-4ft weak waves). Offshore winds allow sizing down, but extra volume helps with the lack of punch. Longboard also works.</div>
     
   </div>
 
   <div class="section">
     <h2>🌡️ Conditions</h2>
     
-    <div class="gear-note">❄ 4/3mm wetsuit recommended (feels-like 12.5°C early). 🧊 hood advisable for 6-9am. UV 4.0 at midday: hat & sunscreen needed.</div>
+    <div class="gear-note">🧊 4/3mm wetsuit with hood for coldest 12.5°C feels-like. Hat and sunscreen needed due to UV 4.0 at midday.</div>
     
     <hr class="rec-sep">
     <div class="beach-matrix-wrap">
@@ -2586,24 +2614,24 @@ h2 {
             <td class="cm-label-cell">UV</td>
             
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-low">
               <div class="cm-cell-value">0</div>
-              
+              <div class="cm-cell-detail">Low</div>
             </td>
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-low">
               <div class="cm-cell-value">2</div>
-              <div class="cm-cell-detail">0.46</div>
+              <div class="cm-cell-detail">Low</div>
             </td>
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-moderate">
               <div class="cm-cell-value">4</div>
-              <div class="cm-cell-detail">0.65</div>
+              <div class="cm-cell-detail">Moderate</div>
             </td>
             
-            <td class="cm-cell">
+            <td class="cm-cell uv-cell uv-low">
               <div class="cm-cell-value">1</div>
-              <div class="cm-cell-detail">0.29</div>
+              <div class="cm-cell-detail">Low</div>
             </td>
             
             
@@ -3190,7 +3218,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-21 07:13:45 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-21 07:28:41 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">

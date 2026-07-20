@@ -687,6 +687,34 @@ h2 {
     display: none !important;
 }
 
+/* ── UV Index Cell Styling ────────────────────────────── */
+.uv-cell {
+    font-weight: 700;
+}
+.uv-low {
+    color: #27ae60;
+    background: #eafaf1;
+}
+.uv-moderate {
+    color: #f39c12;
+    background: #fef9e7;
+}
+.uv-high {
+    color: #e67e22;
+    background: #fdf2e9;
+}
+.uv-very-high {
+    color: #e74c3c;
+    background: #fdedec;
+}
+.uv-extreme {
+    color: #8e44ad;
+    background: #f4ecf7;
+}
+.uv-unknown {
+    color: #999;
+}
+
 /* ── Conditions Matrix ─────────────────────────────────────── */
 .conditions-matrix {
     width: 100%;
