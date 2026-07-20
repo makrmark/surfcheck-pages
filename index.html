@@ -1111,27 +1111,24 @@ h2 {
 
 /* ── Filter Animation ───────────────────────────── */
 .bm-row {
-    transition: opacity 0.4s ease, max-height 0.45s ease, padding 0.4s ease, border-width 0.4s ease, margin 0.4s ease;
+    transition: opacity 0.35s ease, height 0.35s ease;
     overflow: hidden;
-    max-height: 80px;
+    height: auto;
+}
+.bm-row td {
+    transition: padding 0.35s ease, border-width 0.35s ease;
 }
 .bm-row.bm-row-hidden {
     opacity: 0;
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-width: 0;
-    margin: 0;
+    height: 0 !important;
     pointer-events: none;
 }
 .bm-row.bm-row-hidden td {
-    padding-top: 0;
-    padding-bottom: 0;
-    border-width: 0;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom-width: 0 !important;
     line-height: 0;
-}
-.bm-row.bm-row-hidden .bm-cell-wave, .bm-row.bm-row-hidden .bm-cell-rating {
-    opacity: 0;
+    font-size: 0;
 }
 
 </style>
