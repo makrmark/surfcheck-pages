@@ -1110,13 +1110,7 @@ h2 {
 }
 
 /* ── Filter Animation ───────────────────────────── */
-.bm-row {
-    transition: opacity 0.35s ease;
-}
-.bm-row.bm-row-hidden {
-    opacity: 0;
-    pointer-events: none;
-}
+/* No animation — instant toggle for clean table row hide/show */
 
 </style>
 </head>
@@ -3419,21 +3413,9 @@ h2 {
         rows.forEach(function(row) {
           var isBest = row.classList.contains('bm-row-best');
           if (showFiltered && !isBest) {
-            // Fade out, then hide
-            row.classList.add('bm-row-hidden');
-            clearTimeout(row._filterTimer);
-            row._filterTimer = setTimeout(function() {
-              row.style.display = 'none';
-            }, 380);
+            row.style.display = 'none';
           } else {
-            // Show first, then fade in
-            clearTimeout(row._filterTimer);
-            if (row.style.display === 'none') {
-              row.style.display = 'table-row';
-              // Force reflow
-              void row.offsetHeight;
-            }
-            row.classList.remove('bm-row-hidden');
+            row.style.display = '';
           }
         });
       });
