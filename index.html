@@ -656,6 +656,44 @@ h2 {
     }
 }
 
+/* ── Best Toggle ──────────────────────────────────────────── */
+.bm-best-toggle {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 0.78em;
+    font-weight: 600;
+    color: #888;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+}
+.bm-best-toggle:hover {
+    background: #eef6ff;
+    color: #0066cc;
+}
+.bm-best-toggle.active {
+    color: #8b6914;
+    background: #fffde7;
+}
+.bm-best-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 1.1em;
+    line-height: 1;
+}
+.bm-best-toggle.active .bm-best-icon {
+    transform: rotate(180deg) scale(0.85);
+}
+
+/* ── Row hiding for best toggle ─────────────────────────── */
+.bm-row-hide {
+    display: none !important;
+}
+
 /* ── Conditions Matrix ─────────────────────────────────────── */
 .conditions-matrix {
     width: 100%;
@@ -1100,7 +1138,7 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" onclick="toggleBestRows()" role="button" tabindex="0"><span class="bm-best-icon">⭐</span> Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -2106,7 +2144,7 @@ h2 {
       <table class="beach-matrix">
         <thead>
           <tr>
-            <th class="bm-header bm-beach-col"></th>
+            <th class="bm-header bm-beach-col"><span class="bm-best-toggle" onclick="toggleBestRows()" role="button" tabindex="0"><span class="bm-best-icon">⭐</span> Best</span></th>
             
             <th class="bm-header bm-tf-col">🌅 6–9am</th>
             
@@ -3145,7 +3183,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-21 05:47:41 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-21 06:29:51 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
@@ -3189,6 +3227,18 @@ h2 {
   <div class="watermark">Northern Beaches Surf Check v2.0</div>
 
   <script>
+    /* ── Best Toggle ──────────────────────────────── */
+    function toggleBestRows() {
+      var toggles = document.querySelectorAll('.bm-best-toggle');
+      toggles.forEach(function(t) { t.classList.toggle('active'); });
+      var isActive = toggles.length > 0 && toggles[0].classList.contains('active');
+      document.querySelectorAll('.bm-row').forEach(function(row) {
+        if (!row.classList.contains('bm-row-best')) {
+          row.classList.toggle('bm-row-hide', isActive);
+        }
+      });
+    }
+
     /* ── Day Navigation ────────────────────────────── */
     function showDay(day) {
       document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
