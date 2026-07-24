@@ -45,21 +45,25 @@ h1 {
 }
 .day-nav {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     justify-content: center;
     margin-bottom: 6px;
     width: 100%;
 }
 .day-btn {
-    padding: 4px 16px;
+    padding: 2px 8px;
     border: 1.5px solid #0066cc;
     border-radius: 20px;
     background: white;
     color: #0066cc;
-    font-size: 0.8em;
+    font-size: 0.75em;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
+}
+@media (max-width: 400px) {
+    .day-btn { padding: 2px 6px; font-size: 0.7em; }
+    .day-nav { gap: 3px; }
 }
 .day-btn:hover {
     background: #e6f2ff;
@@ -4148,7 +4152,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-24 19:50:19 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-24 19:57:05 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
