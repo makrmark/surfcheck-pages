@@ -92,23 +92,23 @@
 </head>
 <body>
     <header>
-        <h1>🏄‍♂️ About Northern Beaches Surf Check</h1>
-        <p class="back-link"><a href="./index.html">← Back to Surf Report</a></p>
+        <h1>\U0001f3c4\u200d♂\ufe0f About Northern Beaches Surf Check</h1>
+        <p class="back-link"><a href="./index.html">\u2190 Back to Surf Report</a></p>
     </header>
 
     <section>
-        <h2>🌊 Overview</h2>
-        <p>Northern Beaches Surf Check is an automated surf reporting system for Sydney's Northern Beaches. It runs daily at 5:45 AM via a macOS launch agent, fetches live marine and meteorological data, processes it into a detailed surf report, and deploys it as a static webpage via GitHub Pages.</p>
-        <p>This page explains how the surf report is generated — the data sources, calculations, and decisions behind every rating and recommendation. The system now evaluates <strong>three swell components</strong> (primary, secondary, tertiary) from the spectral wave model, classifies them by period into <strong>Groundswell</strong> and <strong>Windswell</strong>, and uses the best component for each beach's rating.</p>
+        <h2>\U0001f30a Overview</h2>
+        <p>Northern Beaches Surf Check is an automated surf reporting system for Sydney's Northern Beaches. It runs daily at 5:45 AM via a cron job on WSL2, fetches live marine and meteorological data, processes it through a physics-based surf model, generates a detailed HTML report, and deploys it to GitHub Pages.</p>
+        <p>This page explains how the surf report is generated \u2014 the data sources, calculations, and decisions behind every rating and recommendation. The system evaluates <strong>three swell components</strong> (primary, secondary, tertiary) from the spectral wave model, classifies them by period into <strong>Groundswell</strong> and <strong>Windswell</strong>, and uses the best component for each beach's rating.</p>
     </section>
 
     <section>
-        <h2>📡 Data Sources</h2>
+        <h2>\U0001f4e1 Data Sources</h2>
 
         <h3>IMOS Satellite SST (Real-Time Water Temperature)</h3>
         <p>Instead of relying on monthly averages, the system fetches <strong>real-time sea surface temperature</strong> from the <strong>Integrated Marine Observing System (IMOS)</strong> via their public S3 bucket:</p>
         <ul>
-            <li><strong>Product:</strong> RAMSSA L4 — Regional Australian Multi-Sensor SST Analysis (9 km resolution, gap-free)</li>
+            <li><strong>Product:</strong> RAMSSA L4 \u2014 Regional Australian Multi-Sensor SST Analysis (9 km resolution, gap-free)</li>
             <li><strong>Bucket:</strong> <code>s3://imos-data/IMOS/SRS/SST/ghrsst/L4/RAMSSA/</code></li>
             <li><strong>Access:</strong> Public bucket, accessed via <code>aws s3 cp --no-sign-request</code></li>
             <li><strong>Query:</strong> Downloads the latest NetCDF file, extracts SST for the Northern Beaches coastal edge (first ocean pixel offshore)</li>
@@ -119,71 +119,71 @@
         <h3>Open-Meteo Marine API</h3>
         <p>Provides hourly wave forecasts for the Sydney coast (-33.78, 151.30) using the ECMWF WAM spectral wave model:</p>
         <ul>
-            <li><strong>Swell Components</strong> — The model partitions the wave spectrum into up to <strong>three swell components</strong> (primary, secondary, tertiary). Each has its own height, period, and direction. The system evaluates all three and picks the best one per beach.</li>
-            <li><strong>Wave Height</strong> — Significant wave height in metres (H<sub>s</sub>)</li>
-            <li><strong>Wave Period</strong> — Peak wave period in seconds</li>
-            <li><strong>Wave Direction</strong> — Direction waves are coming from, in degrees from north</li>
-            <li><strong>Wind Sea</strong> — Locally-generated wind chop, shown separately in the conditions table</li>
-            <li><strong>Wind Speed & Direction</strong> — 10m wind speed and direction</li>
+            <li><strong>Swell Components</strong> \u2014 The model partitions the wave spectrum into up to <strong>three swell components</strong> (primary, secondary, tertiary). Each has its own height, period, and direction. The system evaluates all three and picks the best one per beach.</li>
+            <li><strong>Wave Height</strong> \u2014 Significant wave height in metres (H<sub>s</sub>)</li>
+            <li><strong>Wave Period</strong> \u2014 Peak wave period in seconds</li>
+            <li><strong>Wave Direction</strong> \u2014 Direction waves are coming from, in degrees from north</li>
+            <li><strong>Wind Sea</strong> \u2014 Locally-generated wind chop, shown separately in the conditions table</li>
+            <li><strong>Wind Speed & Direction</strong> \u2014 10m wind speed and direction</li>
         </ul>
 
-        <h3>Tide Data — Harmonic Tide Model (8 Constituents)</h3>
+        <h3>Tide Data \u2014 Harmonic Tide Model (8 Constituents)</h3>
         <p>The system uses a <strong>harmonic tide model</strong> with 8 constituents (M2, S2, N2, K2, K1, O1, P1, Q1) calibrated for Fort Denison. See the Tide section below for full details. The model covers >95% of tidal variance.</p>
     </section>
 
     <section>
-        <h2>🌊 Effective Wave Height at Each Beach</h2>
-        <p>The system computes <strong>effective height</strong> — the face height of the breaking wave at each beach — by applying two corrections to the offshore swell:</p>
+        <h2>\U0001f30a Effective Wave Height at Each Beach</h2>
+        <p>The system computes <strong>effective height</strong> \u2014 the face height of the breaking wave at each beach \u2014 by applying two corrections to the offshore swell:</p>
 
-        <h3>1. Headland Diffraction — Wiegel's Curves</h3>
+        <h3>1. Headland Diffraction \u2014 Wiegel's Curves</h3>
         <p>Each beach has a <strong>primary aspect</strong> and an <strong>L/R window</strong> defined in <code>beaches.json</code>. Swell arriving inside the window is fully exposed (K<sub>d</sub> = 1.0). Outside the window, energy is reduced by Wiegel diffraction:</p>
 
         <table>
             <tr><th>Shadow angle</th><th>K<sub>d</sub></th><th>Height retained</th></tr>
-            <tr><td>0° (inside window)</td><td>1.00</td><td>100%</td></tr>
-            <tr><td>10° past</td><td>0.70</td><td>70%</td></tr>
-            <tr><td>30° past</td><td>0.40</td><td>40%</td></tr>
-            <tr><td>60° past</td><td>0.225</td><td>22.5%</td></tr>
-            <tr><td>90° past</td><td>0.15</td><td>15%</td></tr>
+            <tr><td>0\u00b0 (inside window)</td><td>1.00</td><td>100%</td></tr>
+            <tr><td>10\u00b0 past</td><td>0.70</td><td>70%</td></tr>
+            <tr><td>30\u00b0 past</td><td>0.40</td><td>40%</td></tr>
+            <tr><td>60\u00b0 past</td><td>0.225</td><td>22.5%</td></tr>
+            <tr><td>90\u00b0 past</td><td>0.15</td><td>15%</td></tr>
         </table>
-        <p>The K<sub>d</sub> values are further adjusted for wave period: longer-period groundswell (16s) wraps around headlands more effectively, increasing K<sub>d</sub> by up to 1.24×, while short-period windswell (6s) diffracts less, reducing K<sub>d</sub> to 0.84× the table value.</p>
+        <p>K<sub>d</sub> is adjusted for wave period: longer-period groundswell (16s) wraps around headlands more effectively, increasing K<sub>d</sub> by up to 1.24\u00d7, while short-period windswell (6s) diffracts less, reducing K<sub>d</sub> to 0.84\u00d7 via <code>0.6 + 0.04 \u00d7 T</code>.</p>
 
         <h3>2. Shoaling Amplification</h3>
         <p>Longer-period waves carry more energy and amplify more as they rise up the shoreface before breaking:</p>
 
         <table>
             <tr><th>Period</th><th>Shoal Factor</th><th>Example</th></tr>
-            <tr><td>&lt; 6s (windswell)</td><td>1.0×</td><td>No amplification</td></tr>
-            <tr><td>10s</td><td>~1.2×</td><td>1.0m → 1.2m</td></tr>
-            <tr><td>14s</td><td>~1.4×</td><td>1.0m → 1.4m</td></tr>
-            <tr><td>≥ 18s (groundswell)</td><td>1.6×</td><td>1.0m → 1.6m</td></tr>
+            <tr><td>&lt; 6s (windswell)</td><td>1.0\u00d7</td><td>No amplification</td></tr>
+            <tr><td>10s</td><td>~1.2\u00d7</td><td>1.0m \u2192 1.2m</td></tr>
+            <tr><td>14s</td><td>~1.4\u00d7</td><td>1.0m \u2192 1.4m</td></tr>
+            <tr><td>\u2265 18s (groundswell)</td><td>1.6\u00d7</td><td>1.0m \u2192 1.6m</td></tr>
         </table>
 
         <div class="formula">
-            effective_height = offshore_height × K<sub>d</sub> × shoal_factor(period, slope)
+            effective_height = offshore_height \u00d7 K<sub>d</sub> \u00d7 shoal_factor(period, slope)
         </div>
-        <p>The shoal factor is now adjusted per beach based on shoreface slope:</p>
+        <p>The shoal factor is adjusted per beach based on shoreface slope:</p>
         <table>
             <tr><th>Slope class</th><th>Modifier</th><th>Beaches</th></tr>
-            <tr><td>Flat</td><td>×0.85</td><td>Long Reef, Dee Why</td></tr>
-            <tr><td>Moderate</td><td>×1.00</td><td>Curl Curl, Freshwater</td></tr>
-            <tr><td>Steep</td><td>×1.15</td><td>North Steyne, South Steyne</td></tr>
+            <tr><td>Flat</td><td>\u00d70.85</td><td>Long Reef, Queenscliff, North Steyne, South Steyne</td></tr>
+            <tr><td>Moderate</td><td>\u00d71.00</td><td>Dee Why</td></tr>
+            <tr><td>Steep</td><td>\u00d71.15</td><td>North Curl Curl, South Curl Curl, Freshwater</td></tr>
         </table>
-        <p>This is why a 0.8m wave at Dee Why (flat) produces barely a ripple while the same swell at South Steyne (steep) generates a clean breaking wave.</p>
+        <p>This is why a 0.8m wave at Long Reef (flat) produces barely a ripple while the same swell at North Curl Curl (steep) generates a clean breaking wave.</p>
 
-        <p>All heights are <strong>face height</strong> in Australian convention — the vertical trough-to-crest of the breaking wave.</p>
+        <p>All heights are <strong>face height</strong> in Australian convention \u2014 the vertical trough-to-crest of the breaking wave.</p>
     </section>
 
     <section>
-        <h2>🌊 Multi-Swell Evaluation</h2>
-        <p>The Open-Meteo spectral wave model partitions the wave spectrum into up to <strong>three swell components</strong> (primary, secondary, tertiary), each with its own height, period, and direction, plus a separate wind-sea (locally generated chop) component. The system now evaluates <strong>all available components</strong> for each beach individually.</p>
+        <h2>\U0001f30a Multi-Swell Evaluation</h2>
+        <p>The Open-Meteo spectral wave model partitions the wave spectrum into up to <strong>three swell components</strong> (primary, secondary, tertiary), each with its own height, period, and direction, plus a separate wind-sea (locally generated chop) component. The system evaluates <strong>all available components</strong> for each beach individually.</p>
 
         <h3>How It Works</h3>
         <p>For each beach, the system computes the effective height, attack angle, and overall rating for:</p>
         <ol>
-            <li><strong>Primary swell</strong> — the dominant spectral component</li>
-            <li><strong>Secondary swell</strong> — second spectral component (when available)</li>
-            <li><strong>Tertiary swell</strong> — third spectral component (when available)</li>
+            <li><strong>Primary swell</strong> \u2014 the dominant spectral component</li>
+            <li><strong>Secondary swell</strong> \u2014 second spectral component (when available)</li>
+            <li><strong>Tertiary swell</strong> \u2014 third spectral component (when available)</li>
         </ol>
         <p>The component that produces the <strong>best precise rating</strong> for that beach is used. This means:</p>
         <ul>
@@ -197,168 +197,167 @@
 
         <table>
             <tr><th>Type</th><th>Period</th><th>Source</th><th>Quality</th></tr>
-            <tr><td>Groundswell</td><td>≥ 10s</td><td>Distant storms, organised long-period energy</td><td>🟢 Clean, powerful</td></tr>
-            <tr><td>Windswell</td><td>&lt; 10s</td><td>Local or regional winds, short-period chop</td><td>🟡 Weak, less organised</td></tr>
-            <tr><td>Wind Sea</td><td>N/A</td><td>Locally generated wind chop at the beach</td><td>🔴 Bumpy, messy</td></tr>
+            <tr><td>Groundswell</td><td>\u2265 10s</td><td>Distant storms, organised long-period energy</td><td>\U0001f7e2 Clean, powerful</td></tr>
+            <tr><td>Windswell</td><td>&lt; 10s</td><td>Local or regional winds, short-period chop</td><td>\U0001f7e1 Weak, less organised</td></tr>
+            <tr><td>Wind Sea</td><td>N/A</td><td>Locally generated wind chop at the beach</td><td>\U0001f534 Bumpy, messy</td></tr>
         </table>
 
         <p>The classification uses peak period (when available) or mean period as a fallback. The best component of each type is displayed in its own row in the Conditions table, making it easy to see at a glance whether there's proper groundswell running or just windswell.</p>
 
-        <p>Each beach card also shows which swell component was active in its tooltip, e.g. <em>"Active: secondary swell (1.2m @ 12s 80°)"</em> when a non-primary component scored best for that beach.</p>
+        <p>Each beach also shows which swell component was active in its tooltip, e.g. <em>"Active: secondary swell (1.2m @ 12s 80\u00b0)"</em> when a non-primary component scored best for that beach.</p>
     </section>
 
     <section>
-        <h2>🌊 Breaker Index Quality</h2>
-        <p>Even when a wave reaches the beach, it may not break cleanly. The <strong>breaker index</strong> γ<sub>b</sub> = H<sub>b</sub> / h<sub>b</sub> (wave height ÷ water depth at the break line) determines how the wave breaks. The depth at the break line is estimated from tide height and beach slope:</p>
+        <h2>\U0001f30a Breaker Index Quality</h2>
+        <p>Even when a wave reaches the beach, it may not break cleanly. The <strong>breaker index</strong> \u03b3<sub>b</sub> = H<sub>b</sub> / h<sub>b</sub> (wave height \u00f7 water depth at the break line) determines how the wave breaks. The depth at the break line is estimated from tide height and beach slope:</p>
         <table>
-            <tr><th>γ<sub>b</sub></th><th>Break type</th><th>Quality factor</th></tr>
+            <tr><th>\u03b3<sub>b</sub></th><th>Break type</th><th>Quality factor</th></tr>
             <tr><td>&lt; 0.6</td><td>Surging / doesn't break</td><td>0.4</td></tr>
-            <tr><td>0.6–0.8</td><td>Spilling / mushy</td><td>0.7</td></tr>
-            <tr><td>0.8–1.0</td><td>Plunging / clean</td><td>1.0</td></tr>
+            <tr><td>0.6\u20130.8</td><td>Spilling / mushy</td><td>0.7</td></tr>
+            <tr><td>0.8\u20131.0</td><td>Plunging / clean</td><td>1.0</td></tr>
             <tr><td>&gt; 1.0</td><td>Collapsing / dumpy</td><td>0.5</td></tr>
         </table>
-        <p>The breaker quality factor is multiplied into the overall wave quality alongside wind, attack angle, tide, and embayment. This is why small waves on a flat beach at low tide often score lower than you'd expect from the height alone — they simply don't rear up into a breaking face.</p>
+        <p>The breaker quality factor is multiplied into the overall wave quality alongside wind, attack angle, tide, and embayment. This is why small waves on a flat beach at low tide often score lower than you'd expect from the height alone \u2014 they simply don't rear up into a breaking face.</p>
+    </section>
 
     <section>
-    <section>
-        <h2>🌊 Tide Height Calculation — 8-Constituent Harmonic Model</h2>
+        <h2>\U0001f30a Tide Height Calculation \u2014 8-Constituent Harmonic Model</h2>
         <p>The system uses a <strong>harmonic tide model</strong> with 8 astronomical constituents calibrated for Fort Denison (Sydney Harbour), covering over 95% of tidal variance:</p>
 
         <div class="formula">
-            tide(t) = MSL + Σ A<sub>i</sub> × sin(2π × t / T<sub>i</sub> − φ<sub>i</sub>)
+            tide(t) = MSL + \u03a3 A<sub>i</sub> \u00d7 sin(2\u03c0 \u00d7 t / T<sub>i</sub> \u2212 \u03c6<sub>i</sub>)
         </div>
 
         <table>
             <tr><th>Constituent</th><th>Amplitude (m)</th><th>Period (h)</th><th>Description</th></tr>
-            <tr><td>M2</td><td>0.52</td><td>12.42</td><td>Principal lunar — largest component</td></tr>
-            <tr><td>S2</td><td>0.21</td><td>12.00</td><td>Principal solar — spring/neap driver</td></tr>
-            <tr><td>N2</td><td>0.10</td><td>12.66</td><td>Lunar elliptic — modulates spring/neap intensity</td></tr>
-            <tr><td>K2</td><td>0.06</td><td>11.97</td><td>Lunisolar — diurnal inequality</td></tr>
-            <tr><td>K1</td><td>0.08</td><td>23.93</td><td>Lunisolar diurnal — daily asymmetry</td></tr>
-            <tr><td>O1</td><td>0.05</td><td>25.82</td><td>Principal lunar diurnal — daily asymmetry</td></tr>
-            <tr><td>P1</td><td>0.03</td><td>24.07</td><td>Principal solar diurnal — daily asymmetry</td></tr>
-            <tr><td>Q1</td><td>0.02</td><td>26.87</td><td>Lunar elliptic diurnal — minor refinement</td></tr>
+            <tr><td>M2</td><td>0.52</td><td>12.42</td><td>Principal lunar \u2014 largest component</td></tr>
+            <tr><td>S2</td><td>0.21</td><td>12.00</td><td>Principal solar \u2014 spring/neap driver</td></tr>
+            <tr><td>N2</td><td>0.10</td><td>12.66</td><td>Lunar elliptic \u2014 modulates spring/neap intensity</td></tr>
+            <tr><td>K2</td><td>0.06</td><td>11.97</td><td>Lunisolar \u2014 diurnal inequality</td></tr>
+            <tr><td>K1</td><td>0.08</td><td>23.93</td><td>Lunisolar diurnal \u2014 daily asymmetry</td></tr>
+            <tr><td>O1</td><td>0.05</td><td>25.82</td><td>Principal lunar diurnal \u2014 daily asymmetry</td></tr>
+            <tr><td>P1</td><td>0.03</td><td>24.07</td><td>Principal solar diurnal \u2014 daily asymmetry</td></tr>
+            <tr><td>Q1</td><td>0.02</td><td>26.87</td><td>Lunar elliptic diurnal \u2014 minor refinement</td></tr>
         </table>
 
         <p>MSL = 0.9 m (Mean Sea Level relative to Chart Datum). The model uses an epoch-based calculation (since Jan 1, 2000). Phase angles are calibrated for Sydney Harbour.</p>
 
         <h3>Tide Trend, Speed & Range</h3>
-        <p>The trend (rising/falling/slack) is determined by the harmonic model directly. Spring vs neap classification uses the tidal range (spring if &gt; 1.2m). Tide speed reflects how fast the water is moving through each 3-hour forecast window — fastest at mid-tide, slack near high/low.</p>
+        <p>The trend (rising/falling/slack) is determined by the harmonic model directly. Spring vs neap classification uses the tidal range (spring if &gt; 1.2m). Tide speed reflects how fast the water is moving through each 3-hour forecast window \u2014 fastest at mid-tide, slack near high/low. Each timeframe includes a small inline SVG tide sparkline showing the 3-hour trend.</p>
     </section>
 
     <section>
-    <section>
-        <h2>⭐ Surf Quality Rating — Color-Coded Badges</h2>
-        <p>Each beach's rating is displayed as a <strong>color-coded pill badge</strong> instead of stars — instantly scannable by colour:</p>
+        <h2>\u2b50 Surf Quality Rating \u2014 Color-Coded Badges</h2>
+        <p>Each beach's rating is displayed as a <strong>color-coded pill badge</strong> instead of stars \u2014 instantly scannable by colour:</p>
 
         <table>
             <tr><th>Score</th><th>Badge</th><th>Colour</th></tr>
-            <tr><td>4.5 – 5.0</td><td>Epic</td><td style="color:#7b2d8e;font-weight:700;">🟣 Purple</td></tr>
-            <tr><td>3.5 – 4.0</td><td>Great</td><td style="color:#27ae60;font-weight:700;">🟢 Green</td></tr>
-            <tr><td>2.5 – 3.0</td><td>Good</td><td style="color:#2980b9;font-weight:700;">🔵 Blue</td></tr>
-            <tr><td>1.5 – 2.0</td><td>Fair</td><td style="color:#f39c12;font-weight:700;">🟡 Amber</td></tr>
-            <tr><td>0 – 1.0</td><td>Poor</td><td style="color:#e74c3c;font-weight:700;">🟠 Red</td></tr>
+            <tr><td>4.5 \u2013 5.0</td><td>Epic</td><td style="color:#7b2d8e;font-weight:700;">\U0001f7e3 Purple</td></tr>
+            <tr><td>3.5 \u2013 4.0</td><td>Great</td><td style="color:#27ae60;font-weight:700;">\U0001f7e2 Green</td></tr>
+            <tr><td>2.5 \u2013 3.0</td><td>Good</td><td style="color:#2980b9;font-weight:700;">\U0001f535 Blue</td></tr>
+            <tr><td>1.5 \u2013 2.0</td><td>Fair</td><td style="color:#f39c12;font-weight:700;">\U0001f7e1 Amber</td></tr>
+            <tr><td>0 \u2013 1.0</td><td>Poor</td><td style="color:#e74c3c;font-weight:700;">\U0001f7e0 Red</td></tr>
         </table>
 
-        <p>The badge replaces the old star system (★½☆) and provides a 1:1 mapping from score to label.</p>
+        <p>The badge replaces the old star system (\u2605\u00bd\u2606) and provides a 1:1 mapping from score to label.</p>
 
         <h3>1. Wave Height Score</h3>
         <div class="formula">
-            wave_height_score = min(5, 5 × (effective_height / 1.83)<sup>0.85</sup>)
+            wave_height_score = min(5, 5 \u00d7 (effective_height / 1.83)<sup>0.85</sup>)
         </div>
-        <p>Capped at <strong>1.83m (6 ft / overhead)</strong> — beyond that, height plateaus and quality factors differentiate.</p>
+        <p>Capped at <strong>1.83m (6 ft / overhead)</strong> \u2014 beyond that, height plateaus and quality factors differentiate.</p>
 
         <h3>2. Wave Quality Factor (multiplicative)</h3>
         <div class="formula">
-            wave_quality = wind_quality × attack_factor × tide_factor × embayment_factor × breaker_quality × wind_sea_quality × groundswell_factor
+            wave_quality = wind_quality \u00d7 attack_factor \u00d7 tide_factor \u00d7 embayment_factor \u00d7 breaker_quality \u00d7 wind_sea_quality \u00d7 groundswell_factor
         </div>
-        <p><strong>Seven</strong> factors multiplied together (not averaged) — one bad factor heavily penalises the score.</p>
+        <p><strong>Seven</strong> factors multiplied together (not averaged) \u2014 one bad factor heavily penalises the score.</p>
 
         <h3>3. Groundswell Quality Factor</h3>
         <p>Rewards organised long-period energy and penalises short-period windswell. The factor is applied per swell component based on its period:</p>
         <table>
             <tr><th>Period</th><th>Factor</th><th>Meaning</th></tr>
-            <tr><td>≥ 12s</td><td>1.30</td><td>Proper long-period groundswell, clean organised lines</td></tr>
-            <tr><td>≥ 10s</td><td>1.15</td><td>Decent groundswell, good energy</td></tr>
-            <tr><td>≥ 8s</td><td>1.00</td><td>Mixed, some organisation</td></tr>
-            <tr><td>≥ 6s</td><td>0.75</td><td>Short-period windswell, weak/pitchy</td></tr>
+            <tr><td>\u2265 12s</td><td>1.30</td><td>Proper long-period groundswell, clean organised lines</td></tr>
+            <tr><td>\u2265 10s</td><td>1.15</td><td>Decent groundswell, good energy</td></tr>
+            <tr><td>\u2265 8s</td><td>1.00</td><td>Mixed, some organisation</td></tr>
+            <tr><td>\u2265 6s</td><td>0.75</td><td>Short-period windswell, weak/pitchy</td></tr>
             <tr><td>&lt; 6s</td><td>0.50</td><td>Wind-driven chop</td></tr>
         </table>
         <p>This means a 1.2m wave at 12s scores significantly higher than the same height at 6s, even before considering the effective height calculation (which also rewards longer periods through shoaling amplification).</p>
 
         <h3>Final Rating</h3>
         <div class="formula">
-            rating = wave_height_score × (0.5 + wave_quality / 2)
+            rating = wave_height_score \u00d7 (0.5 + wave_quality / 2)
         </div>
-        <p>Wave height carries <strong>twice the weight</strong> of quality. Because quality is a <strong>product</strong>, a single bad factor (e.g. onshore wind) ruins the score regardless of wave height — just like in real surfing.</p>
+        <p>Wave height carries <strong>twice the weight</strong> of quality. Because quality is a <strong>product</strong>, a single bad factor (e.g. onshore wind) ruins the score regardless of wave height \u2014 just like in real surfing.</p>
     </section>
 
     <section>
-        <h2>🏄 Board Recommendations</h2>
+        <h2>\U0001f3c4 Board Recommendations</h2>
         <p>Board selection is based on effective face height, with adjustments for wave period and quality. On poor quality days (onshore wind, ugly tide, sloppy conditions), the effective height is adjusted downward so the system recommends more volume.</p>
 
         <h3>Base Thresholds (ideal conditions)</h3>
         <table>
             <tr><th>Face Height</th><th>Feet</th><th>Boards</th></tr>
             <tr><td>&lt; 0.3m</td><td>&lt; 1 ft</td><td>Longboard, Log</td></tr>
-            <tr><td>0.3–0.6m</td><td>1–2 ft</td><td>Longboard, Funboard</td></tr>
-            <tr><td>0.6–1.0m</td><td>2–3 ft</td><td>Groveller, Fish, Funboard</td></tr>
-            <tr><td>1.0–1.5m</td><td>3–5 ft</td><td>Shortboard, Fish, Mid-Length</td></tr>
-            <tr><td>1.5–2.0m</td><td>5–7 ft</td><td>Shortboard, Mid-Length, Step-Up</td></tr>
-            <tr><td>2.0–2.5m</td><td>7–8 ft</td><td>Shortboard, Step-Up</td></tr>
+            <tr><td>0.3\u20130.6m</td><td>1\u20132 ft</td><td>Longboard, Funboard</td></tr>
+            <tr><td>0.6\u20131.0m</td><td>2\u20133 ft</td><td>Groveller, Fish, Funboard</td></tr>
+            <tr><td>1.0\u20131.5m</td><td>3\u20135 ft</td><td>Shortboard, Fish, Mid-Length</td></tr>
+            <tr><td>1.5\u20132.0m</td><td>5\u20137 ft</td><td>Shortboard, Mid-Length, Step-Up</td></tr>
+            <tr><td>2.0\u20132.5m</td><td>7\u20138 ft</td><td>Shortboard, Step-Up</td></tr>
             <tr><td>&gt; 2.5m</td><td>&gt; 8 ft</td><td>Step-Up</td></tr>
         </table>
 
         <h3>Period Adjustments</h3>
         <ul>
-            <li><strong>&lt; 8s (windswell):</strong> Favour more volume — e.g. Shortboard → Fish/Funboard</li>
-            <li><strong>≥ 12s (groundswell) + ≥ 1.2m:</strong> Favour Step-Up for power</li>
+            <li><strong>&lt; 8s (windswell):</strong> Favour more volume \u2014 e.g. Shortboard \u2192 Fish/Funboard</li>
+            <li><strong>\u2265 12s (groundswell) + \u2265 1.2m:</strong> Favour Step-Up for power</li>
         </ul>
 
         <h3>Quality Adjustment</h3>
         <p>When <code>wave_quality</code> is poor, the effective height is reduced for board selection:</p>
         <div class="formula">
-            adj_height = effective_height × (0.7 + wave_quality × 0.3)
+            adj_height = effective_height \u00d7 (0.7 + wave_quality \u00d7 0.3)
         </div>
-        <p>Perfect conditions (quality = 1.0) → adj = effective height (no change). Terrible conditions (quality = 0.2) → adj = 76% of actual (bump up one volume category).</p>
+        <p>Perfect conditions (quality = 1.0) \u2192 adj = effective height (no change). Terrible conditions (quality = 0.2) \u2192 adj = 76% of actual (bump up one volume category).</p>
     </section>
 
     <section>
-        <h2>🌡️ Wetsuit Guide</h2>
-        <p>Wetsuit recommendations are based on <strong>real-time sea surface temperature</strong> from the IMOS RAMSSA L4 satellite analysis, queried daily:</p>
+        <h2>\U0001f321\ufe0f Wetsuit Guide</h2>
+        <p>Wetsuit recommendations are based on a <strong>combined feels-like index</strong> that blends real-time SST (IMOS RAMSSA L4) with windchill-adjusted air temperature. Each timeframe gets its own recommendation based on its own windchill conditions.</p>
         <ul>
-            <li><strong>≥ 22°C:</strong> Boardshorts or rash vest</li>
-            <li><strong>20–21°C:</strong> Spring suit (2 mm)</li>
-            <li><strong>17–19°C:</strong> 3/2 steamer</li>
-            <li><strong>14–16°C:</strong> 4/3 steamer</li>
-            <li><strong>&lt; 14°C:</strong> 5/4 steamer with booties, gloves, hood</li>
+            <li><strong>\u2265 22\u00b0C:</strong> Boardshorts or rash vest</li>
+            <li><strong>20\u201321\u00b0C:</strong> Spring suit (2 mm)</li>
+            <li><strong>17\u201319\u00b0C:</strong> 3/2 steamer</li>
+            <li><strong>14\u201316\u00b0C:</strong> 4/3 steamer</li>
+            <li><strong>&lt; 14\u00b0C:</strong> 5/4 steamer with booties, gloves, hood</li>
         </ul>
-        <p>Falls back to monthly climatology if the satellite data is unavailable.</p>
+        <p>Windchill (NWS formula) is applied when air temp \u2264 10\u00b0C and wind \u2265 4.8 km/h. Combined temp = 0.65\u00d7SST + 0.35\u00d7windchill_air. Falls back to monthly climatology if satellite data is unavailable.</p>
     </section>
 
     <section>
-        <h2>🏖️ Beach Orientations</h2>
-        <p>Each beach has a <strong>primary aspect</strong> — the direction the beach face points towards the ocean (degrees from north) — plus left and right offsets defining the direct swell window. These are configured in <code>beaches.json</code>:</p>
+        <h2>\U0001f3d7\ufe0f Beach Orientations</h2>
+        <p>Each beach has a <strong>primary aspect</strong> \u2014 the direction the beach face points towards the ocean (degrees from north) \u2014 plus left and right offsets defining the direct swell window. These are configured in <code>beaches.json</code>:</p>
 
         <table>
-            <tr><th>Beach</th><th>Aspect (°)</th><th>Left offset</th><th>Right offset</th><th>Slope</th><th>Direction</th></tr>
-            <tr><td>Long Reef</td><td>158°</td><td>78°</td><td>22°</td><td>Flat</td><td>SSE</td></tr>
-            <tr><td>Dee Why</td><td>135°</td><td>67.5°</td><td>33.75°</td><td>Flat</td><td>SE</td></tr>
-            <tr><td>North Curl Curl</td><td>157.5°</td><td>67.5°</td><td>11.25°</td><td>Moderate</td><td>SSE</td></tr>
-            <tr><td>South Curl Curl</td><td>135°</td><td>90°</td><td>22.5°</td><td>Moderate</td><td>SE</td></tr>
-            <tr><td>Freshwater</td><td>135°</td><td>35°</td><td>22.5°</td><td>Moderate</td><td>SE</td></tr>
-            <tr><td>Queenscliff</td><td>112.5°</td><td>45°</td><td>45°</td><td>Steep</td><td>ESE</td></tr>
-            <tr><td>North Steyne</td><td>90°</td><td>45°</td><td>45°</td><td>Steep</td><td>E</td></tr>
-            <tr><td>South Steyne</td><td>68°</td><td>45.5°</td><td>22°</td><td>Steep</td><td>ENE</td></tr>
+            <tr><th>Beach</th><th>Aspect (\u00b0)</th><th>Left offset</th><th>Right offset</th><th>Slope</th><th>Direction</th></tr>
+            <tr><td>Long Reef</td><td>158\u00b0</td><td>78\u00b0</td><td>22\u00b0</td><td>Flat</td><td>SSE</td></tr>
+            <tr><td>Dee Why</td><td>135\u00b0</td><td>67.5\u00b0</td><td>33.75\u00b0</td><td>Moderate</td><td>SE</td></tr>
+            <tr><td>North Curl Curl</td><td>157.5\u00b0</td><td>67.5\u00b0</td><td>11.25\u00b0</td><td>Steep</td><td>SSE</td></tr>
+            <tr><td>South Curl Curl</td><td>135\u00b0</td><td>90\u00b0</td><td>22.5\u00b0</td><td>Steep</td><td>SE</td></tr>
+            <tr><td>Freshwater</td><td>135\u00b0</td><td>67.5\u00b0</td><td>22.5\u00b0</td><td>Steep</td><td>SE</td></tr>
+            <tr><td>Queenscliff</td><td>101.25\u00b0</td><td>45\u00b0</td><td>45\u00b0</td><td>Flat</td><td>EESE</td></tr>
+            <tr><td>North Steyne</td><td>83.75\u00b0</td><td>61.25\u00b0</td><td>61.25\u00b0</td><td>Flat</td><td>E</td></tr>
+            <tr><td>South Steyne</td><td>45\u00b0</td><td>45.5\u00b0</td><td>56.25\u00b0</td><td>Flat</td><td>NE</td></tr>
         </table>
-        <p>Each beach has a slope class (flat/moderate/steep) that affects shoaling amplification and breaker quality.</p>
+        <p>Each beach has a slope class (flat/moderate/steep) that affects shoaling amplification and breaker quality. The <code>bay_width</code> attribute (wide/narrow) drives the <strong>Embayment Factor</strong> \u2014 see below.</p>
 
-        <p>Swell arriving within the window (aspect − left to aspect + right) is fully exposed. Outside it, energy is reduced by Wiegel diffraction around headlands.</p>
-        <p>The total window angle (left + right offset) also drives the <strong>Embayment Factor</strong> — see below.</p>
+        <p>Swell arriving within the window (aspect \u2212 left to aspect + right) is fully exposed. Outside it, energy is reduced by Wiegel diffraction around headlands.</p>
+        <p>The total window angle (left + right offset) also drives the <strong>Embayment Factor</strong> \u2014 see below.</p>
     </section>
 
     <section>
-        <h2>🏞️ Embayment Factor</h2>
+        <h2>\U0001f3de\ufe0f Embayment Factor</h2>
         <p>The <strong>embayment factor</strong> measures how well a beach's physical layout accommodates the incoming swell. It answers the question: <em>"Is this beach wide enough for this wave, or will it close out?"</em></p>
 
         <h3>The Theory</h3>
@@ -366,74 +365,82 @@
         <div class="formula">
             W / L<sub>b</sub>
         </div>
-        <p>Where <strong>W</strong> is the beach width between headlands (proxied by the total angular window in degrees), and <strong>L<sub>b</sub></strong> is the wave's sub-wavelength — how much lateral room the wave rotation needs.</p>
+        <p>Where <strong>W</strong> is the beach width between headlands (proxied by the <code>bay_width</code> attribute: wide \u2192 90\u00b0, narrow \u2192 57.5\u00b0), and <strong>L<sub>b</sub></strong> is the wave's energy demand \u2014 how much lateral room the wave rotation needs.</p>
         <ul>
-            <li><strong>W / L<sub>b</sub> &lt; 2</strong> → The beach is too narrow. Wave energy cannot spread out; the basin fills up faster than it drains → <strong>close-out</strong>.</li>
-            <li><strong>W / L<sub>b</sub> ≥ 6</strong> → Plenty of lateral room. Sandbars fracture into deep channels; water escapes. Clean, triangular A-frame peaks peel left and right → <strong>sweet spot</strong>.</li>
+            <li><strong>W / L<sub>b</sub> &lt; 2</strong> \u2192 The beach is too narrow. Wave energy cannot spread out; the basin fills up faster than it drains \u2192 <strong>close-out</strong>.</li>
+            <li><strong>W / L<sub>b</sub> \u2265 6</strong> \u2192 Plenty of lateral room. Sandbars fracture into deep channels; water escapes. Clean, triangular A-frame peaks peel left and right \u2192 <strong>sweet spot</strong>.</li>
         </ul>
 
         <h3>Our Implementation</h3>
         <p>We compute the embayment factor from two inputs:</p>
         <div class="formula">
-            W = left_offset + right_offset (degrees, from beaches.json)<br>
-            Demand = effective_height × (period² / 100)<br>
+            W = bay_width (degrees, from beaches.json)<br>
+            Demand = effective_height \u00d7 (period\u00b2 / 100)<br>
             Ratio = W / Demand<br>
-            embayment_factor = map(Ratio → 0.30–1.00)
+            embayment_factor = map(Ratio \u2192 0.30\u20131.00)
         </div>
-        <p>The <code>period²</code> term is crucial — longer-period groundswell carries exponentially more energy and needs far more lateral room. A 1m wave at 6s and a 1m wave at 16s are completely different beasts in an enclosed bay.</p>
+        <p>The <code>period\u00b2</code> term is crucial \u2014 longer-period groundswell carries exponentially more energy and needs far more lateral room. A 1m wave at 6s and a 1m wave at 16s are completely different beasts in an enclosed bay.</p>
 
         <h3>Real-World Behaviour</h3>
         <table>
-            <tr><th>Beach</th><th>Window</th><th>Small day (0.7m@8s)</th><th>Big day (2.5m@14s)</th></tr>
-            <tr><td>Freshwater</td><td>57.5°</td><td>1.00 ✅ fun punchy peaks</td><td>0.53 ⚠️ close-out risk</td></tr>
-            <tr><td>Long Reef</td><td>90°</td><td>1.00 ✅ plenty of room</td><td>0.63 ✅ handles it</td></tr>
-            <tr><td>Curl Curl</td><td>90°</td><td>1.00 ✅ plenty of room</td><td>0.63 ✅ handles it</td></tr>
+            <tr><th>Beach</th><th>Bay</th><th>Small day (0.7m@8s)</th><th>Big day (2.5m@14s)</th></tr>
+            <tr><td>Freshwater</td><td>Narrow</td><td>1.00 \u2705 fun punchy peaks</td><td>0.53 \u26a0\ufe0f close-out risk</td></tr>
+            <tr><td>Long Reef</td><td>Wide</td><td>1.00 \u2705 plenty of room</td><td>0.63 \u2705 handles it</td></tr>
+            <tr><td>South Curl Curl</td><td>Wide</td><td>1.00 \u2705 plenty of room</td><td>0.63 \u2705 handles it</td></tr>
         </table>
         <p>This matches local knowledge: Freshwater closes out on big southerly groundswell while Long Reef and Curl Curl handle it. On small days, Freshwater's tight profile actually sharpens the waves into fun, punchy peaks.</p>
 
         <h3>Display</h3>
         <p>Rather than a separate column, the embayment factor is shown as a <strong>conditional emoji</strong> next to the beach name on each card:</p>
         <ul>
-            <li><strong>≥ 75%</strong> — no emoji (beach has enough room) ✅</li>
-            <li><strong>50–75%</strong> — ⚠️ warning (constrained, marginal quality)</li>
-            <li><strong>&lt; 50%</strong> — 🚫 danger (close-out risk, seek a wider beach)</li>
+            <li><strong>\u2265 75%</strong> \u2014 no emoji (beach has enough room)</li>
+            <li><strong>50\u201375%</strong> \u2014 \u26a0\ufe0f warning (constrained, marginal quality)</li>
+            <li><strong>&lt; 50%</strong> \u2014 \U0001f6ab danger (close-out risk, seek a wider beach)</li>
         </ul>
         <p>This keeps the card layout clean while giving an instant visual read on which beaches are constrained by their layout for today's particular swell size and period.</p>
     </section>
 
     <section>
-        <h2>🤖 LLM-Powered Surf Notes</h2>
-        <p>When the <code>OPENROUTER_API_KEY</code> environment variable is set, the system generates a <strong>brief, one-sentence surf note</strong> for each beach at each timeframe using an LLM (DeepSeek via OpenRouter).</p>
-        <p>The LLM receives all the computed numerical data — swell height/period, embayment, attack angle, wind quality, tide factor — and synthesises it into a concise, colloquial note explaining the overall experience and the key factor driving it. Notes are cached using a content-addressed SHA-256 hash of the prompt — when the underlying data hasn't changed, the cached response is reused, avoiding redundant API calls.</p>
-        <p>Each note appears as a green-tinted bubble below the beach card data. The LLM call is made once for all timeframes in a single API request. A 7-day outlook note is also generated.</p>
+        <h2>\U0001f916 LLM-Powered Surf Notes</h2>
+        <p>When the <code>OPENROUTER_API_KEY</code> environment variable is set, the system generates surf commentary using an LLM (DeepSeek via OpenRouter) at three levels:</p>
+        <ul>
+            <li><strong>Daily assessment</strong> \u2014 A paragraph summarising the day's conditions across all beaches, displayed at the top of each day</li>
+            <li><strong>Per-beach notes</strong> \u2014 A one-sentence qualitative note for each beach, displayed in the beach detail card</li>
+            <li><strong>7-day outlook</strong> \u2014 A forecast summary for the week ahead, shown in the outlook section</li>
+        </ul>
+        <p>The LLM receives all the computed numerical data \u2014 swell height/period, embayment, attack angle, wind quality, tide factor \u2014 and synthesises it into concise, colloquial notes explaining the overall experience and the key factor driving it. Notes are cached using a content-addressed SHA-256 hash of the prompt \u2014 when the underlying data hasn't changed, the cached response is reused, avoiding redundant API calls. Every prompt and response is logged to <code>~/.surforecast/llm_training_log.jsonl</code> for future fine-tuning.</p>
     </section>
 
     <section>
-        <h2>📁 Project Architecture</h2>
+        <h2>\U0001f4c1 Project Architecture</h2>
         <p>The codebase is organised into focused modules:</p>
         <ul>
-            <li><strong><code>surf_report.py</code></strong> — Orchestrator: fetches data, computes conditions, renders templates, writes output</li>
-            <li><strong><code>data/</code></strong> — Data modules: <code>config.py</code>, <code>marine.py</code>, <code>weather.py</code>, <code>wind.py</code>, <code>tides.py</code>, <code>surf.py</code></li>
-            <li><strong><code>templates/</code></strong> — Jinja2 HTML templates: <code>base.html</code>, <code>timeframe.html</code>, <code>beach_card.html</code>, <code>conditions_grid.html</code>, <code>outlook.html</code>, <code>error.html</code></li>
-            <li><strong><code>css/</code></strong> — CSS source files (<code>style.css</code>, <code>error.css</code>) copied to <code>docs/</code> at build time</li>
-            <li><strong><code>imos_sst.py</code></strong> — Real-time SST from IMOS S3</li>
-            <li><strong><code>llm_report.py</code></strong> — LLM surf commentary</li>
-            <li><strong><code>datastore.py</code></strong> — SQLite cache layer</li>
+            <li><strong><code>surf_report.py</code></strong> \u2014 Orchestrator: fetches data, computes conditions, renders templates, writes output. Also builds the beach\u00d7timeframe matrices and conditions matrices for the daily overview.</li>
+            <li><strong><code>data/</code></strong> \u2014 Data modules: <code>config.py</code> (config, logging, beach loading), <code>marine.py</code>, <code>weather.py</code>, <code>wind.py</code>, <code>tides.py</code> (harmonic tide model), <code>surf.py</code> (ratings, exposure, diffraction, embayment, board recs), <code>charts.py</code> (SVG chart generation)</li>
+            <li><strong><code>templates/</code></strong> \u2014 Jinja2 HTML templates: <code>base.html</code> (full page layout with day nav), <code>daily_overview.html</code> (per-day beach matrix, conditions matrix, beach cards), <code>error.html</code> (fallback error page)</li>
+            <li><strong><code>css/</code></strong> \u2014 CSS source files (<code>style.css</code>, <code>error.css</code>) copied to <code>docs/</code> at build time</li>
+            <li><strong><code>imos_sst.py</code></strong> \u2014 Real-time SST from IMOS S3 RAMSSA L4</li>
+            <li><strong><code>llm_report.py</code></strong> \u2014 LLM surf commentary (daily assessment, per-beach notes, outlook)</li>
+            <li><strong><code>datastore.py</code></strong> \u2014 SQLite-backed API response cache with TTL expiry and stale fallback</li>
+            <li><strong><code>clear_cache.py</code></strong> \u2014 CLI cache invalidation script</li>
+            <li><strong><code>beaches.json</code></strong> \u2014 Beach configuration (aspect, L/R offsets, slope, bay_width)</li>
+            <li><strong><code>deploy.sh</code></strong> \u2014 Deployment script that runs <code>surf_report.py</code>, commits, and pushes to GitHub Pages</li>
         </ul>
-        <p>HTML is rendered via Jinja2 templates (not f-strings), keeping presentation separate from logic. Never edit files in <code>docs/</code> directly — edit the source files and run <code>./venv/bin/python surf_report.py</code> to regenerate.</p>
+        <p>HTML is rendered via Jinja2 templates (not f-strings), keeping presentation separate from logic. Never edit files in <code>docs/</code> directly \u2014 edit the source files and run <code>./venv/bin/python surf_report.py</code> to regenerate.</p>
     </section>
 
     <section>
-        <h2>🤖 Automation & Deployment</h2>
+        <h2>\U0001f916 Automation & Deployment</h2>
         <ol>
-            <li><strong>5:45 AM daily</strong> — macOS launch agent triggers <code>surf_report.py</code></li>
-            <li>Python script fetches live data from Open-Meteo APIs</li>
+            <li><strong>5:45 AM daily</strong> \u2014 WSL2 cron job triggers <code>deploy.sh</code></li>
+            <li><code>deploy.sh</code> sources environment variables, activates the Python venv, and runs <code>surf_report.py</code></li>
+            <li>Python script fetches live data from Open-Meteo APIs (marine, weather, wind)</li>
             <li>Queries IMOS S3 bucket for real-time SST</li>
-            <li>Calculates beach-specific conditions, ratings, and recommendations</li>
-            <li>Calls OpenRouter API for LLM-powered surf notes (content-addressed cache avoids redundant calls)</li>
-            <li>Renders HTML via Jinja2 templates (<code>templates/*.html</code>) with color-coded quality badges</li>
+            <li>Calculates beach-specific conditions, ratings, and recommendations for 8 timeframes \u00d7 8 beaches</li>
+            <li>Calls OpenRouter API for LLM-powered surf commentary (daily assessment, per-beach notes, 7-day outlook) \u2014 content-addressed cache avoids redundant calls</li>
+            <li>Renders HTML via Jinja2 templates (<code>templates/base.html</code>, <code>templates/daily_overview.html</code>) with color-coded quality badges</li>
             <li>Copies CSS source files (<code>css/style.css</code>, <code>css/error.css</code>) to <code>docs/</code></li>
-            <li>Writes <code>docs/index.html</code></li>
+            <li>Writes <code>docs/index.html</code> with inline CSS</li>
             <li>Commits changes to the local git repository</li>
             <li>Pushes to GitHub, which triggers automatic GitHub Pages rebuild</li>
             <li>Live site updates within minutes</li>
@@ -441,19 +448,21 @@
     </section>
 
     <section>
-        <h2>⚠️ Known Limitations</h2>
+        <h2>\u26a0\ufe0f Known Limitations</h2>
         <ul>
-            <li>Wiegel diffraction curves assume idealised headland geometry</li>
-            <li>Single offshore data point for all beaches — no local wind effects</li>
-            <li>No tide graph — tide is shown as text only</li>
+            <li>Wiegel diffraction curves assume idealised headland geometry \u2014 real headlands have irregular shapes, cliffs, and varying distances to the beach</li>
+            <li>Single offshore data point for all beaches \u2014 no local wind effects or terrain channelling</li>
+            <li>No tide graph \u2014 tide is shown as an inline SVG sparkline, but no full daily curve</li>
             <li>Board recommendations are static rules, not per-beach calibrated</li>
+            <li>SST is a single coastal value; real-world variation of 1\u20132\u00b0C between beaches is not captured</li>
+            <li>IMOS SST pipeline requires <code>aws s3 cp --no-sign-request</code> and <code>numpy</code> on the host</li>
         </ul>
     </section>
 
     <div class="footer">
-        <p><a href="./index.html">← Back to Surf Report</a></p>
-        <p>Northern Beaches Surf Check — Automated surf report for Sydney beaches</p>
-        <p>Data sources: Open-Meteo (marine & wind), harmonic tide model (8 constituents, Fort Denison), IMOS RAMSSA L4 (SST)</p>
+        <p><a href="./index.html">\u2190 Back to Surf Report</a></p>
+        <p>Northern Beaches Surf Check \u2014 Automated surf report for Sydney beaches</p>
+        <p>Data sources: Open-Meteo (marine, wind, weather), harmonic tide model (8 constituents, Fort Denison), IMOS RAMSSA L4 (SST)</p>
     </div>
 </body>
 </html>
