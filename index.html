@@ -1135,6 +1135,52 @@ h2 {
     display: none;
 }
 
+/* Per-beach card tide row */
+.bd-tide-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    font-size: 0.78em;
+    color: #555;
+}
+.bd-tide-label {
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* Per-beach card wind row */
+.bd-wind-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 2px;
+}
+
+/* Beach day cells scrollable container */
+.beach-day-cells {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    gap: 8px;
+    padding: 4px;
+}
+.beach-day-cells::-webkit-scrollbar {
+    height: 4px;
+}
+.beach-day-cells::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+/* Make beach day cards themselves scrollable when expanded */
+.beach-day-card {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
 </style>
 </head>
 <body>
@@ -1682,6 +1728,10 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross wind early, then clean up by midday as the wind drops. The long period gives it punch, but the high tide fattens it up. Best window is 12-3pm for clean, peeling walls.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1699,28 +1749,40 @@ h2 {
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
       </div>
@@ -1739,6 +1801,10 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1756,28 +1822,40 @@ h2 {
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
       </div>
@@ -1796,6 +1874,10 @@ h2 {
       <div class="bd-note">💬 Waist-high waves with a cross wind early, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 12-3pm for clean, fun waves.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1813,28 +1895,40 @@ h2 {
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
       </div>
@@ -1853,6 +1947,10 @@ h2 {
       <div class="bd-note">💬 Waist-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1870,28 +1968,40 @@ h2 {
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 99%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
       </div>
@@ -1910,6 +2020,10 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1927,28 +2041,40 @@ h2 {
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 99%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
       </div>
@@ -1967,6 +2093,10 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1984,28 +2114,40 @@ h2 {
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 99%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
       </div>
@@ -2024,6 +2166,10 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with an offshore wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2041,28 +2187,40 @@ h2 {
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 78%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 79%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 81%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 82%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
       </div>
@@ -2081,6 +2239,10 @@ h2 {
       <div class="bd-note">💬 Ankle to knee high waves with an offshore wind in the morning, but the swell is heavily shadowed. The high tide fattens it up, but the waves are too small to ride. Best to skip this spot today.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2098,28 +2260,40 @@ h2 {
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 13%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.4903328196061487" y2="12.930113390114409" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.4903328196061487,12.930113390114409 3.556918760926246,10.552778212412676 4.582458447466291,13.531161725550525" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">9</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 13%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="11.562833599002373" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,11.562833599002373 3.54977021871491,9.538052628489774 4.096761978365739,12.640197050478228" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">7</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 14%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="6.483419843596536" y2="18.284543681071963" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="6.483419843596536,18.284543681071963 6.0995314118703226,15.158023303401798 8.999121700245508,16.38882635814301" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 13%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.47405820304786" y2="16.251925334130974" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.47405820304786,16.251925334130974 13.417626665278473,15.489871362992021 15.605800532224313,13.22395099192527" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -2658,6 +2832,10 @@ h2 {
       <div class="bd-note">💬 Early morning offers waist high with a clean cross breeze holding the faces open for long crumbly walls. As the tide drops very low, the waves fatten up and lose shape. Best window is before 9am for the cleanest crumbly rides.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2675,28 +2853,40 @@ h2 {
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -2715,6 +2905,10 @@ h2 {
       <div class="bd-note">💬 Waist high walls with cross-off winds early give clean, if weak, peaks. As the tide bottoms out, the waves become slower and require more paddle power. The morning window before low tide is the pick for cleaner shape.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2732,28 +2926,40 @@ h2 {
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -2772,6 +2978,10 @@ h2 {
       <div class="bd-note">💬 Waist high early with clean cross winds and good breaker quality offers the best chance at fun lefts. The wedge at the northern end may have a bit more push. But by midday, the size drops and the shape fades.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2789,28 +2999,40 @@ h2 {
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -2829,6 +3051,10 @@ h2 {
       <div class="bd-note">💬 Similar to North Curl but with a slight cross-off early. Waist high waves peel nicely in the rip bowl at the southern end. The afternoon sees the swell fade and the wind shift cross, making it softer.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2846,28 +3072,40 @@ h2 {
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -2886,6 +3124,10 @@ h2 {
       <div class="bd-note">💬 The narrow bay focuses the waist-high SSE swell into punchier peaks than the open beaches. Early morning cross-off winds keep it clean. As the tide drops low, the waves get fat and harder to hold. Best early.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2903,28 +3145,40 @@ h2 {
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -2943,6 +3197,10 @@ h2 {
       <div class="bd-note">💬 Offshore winds early make the waist-high waves stand up nicely on the steep bank. Best window is the morning low tide, where the waves become hollow and fun. By afternoon, the onshore wind messes it up, so get out early.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2960,28 +3218,40 @@ h2 {
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
       </div>
@@ -3000,6 +3270,10 @@ h2 {
       <div class="bd-note">💬 Surprisingly, the morning is poor despite offshore wind—maybe the low tide makes the shorebreak too dumpy. The afternoon brings an onshore breeze but the rising tide fattens the waves, creating fun beginner-friendly walls. Best window is the afternoon mid-tide.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3017,28 +3291,40 @@ h2 {
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 83%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 83%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           <div class="bd-detail">Exp 84%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 85%</div>
-          <div class="bd-detail">Wind Cross-On</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross-On</span>
+          </div>
         </div>
         
       </div>
@@ -3057,6 +3343,10 @@ h2 {
       <div class="bd-note">💬 Ankle to knee high all day with no swell reaching this shadowed beach. The poor quality and heavy shadowing mean it's not worth the drive. Morning has a cross-off but flat waves. Skip it.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3074,28 +3364,40 @@ h2 {
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 10%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.012334187208836" y2="9.528976393813508" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.012334187208836,9.528976393813508 3.8190047384021946,8.098906319633935 3.6541464762369222,11.244589354110843" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">4</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 9%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1108049346437614" y2="11.407910185362079" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1108049346437614,11.407910185362079 3.5588147132332186,9.42555095355509 4.051583278109947,12.536769226429774" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">3</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 9%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="18.15677008332985" y2="6.196435644333706" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="18.15677008332985,6.196435644333706 16.350004308824055,8.77676458384403 15.018756784340852,5.921895054678583" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 9%</div>
-          <div class="bd-detail">Wind Onshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="16.79238622200495" y2="4.095468739085435" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="16.79238622200495,4.095468739085435 15.766846535464905,7.073852252223283 13.700260594144808,4.696517074521551" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Onshore</span>
+          </div>
         </div>
         
       </div>
@@ -3634,6 +3936,10 @@ h2 {
       <div class="bd-note">💬 Tiny ankle-to-knee-high waves all day from a weak SE swell. The low tide window offers slightly cleaner shape, but the poor breaker quality keeps it mushy. Best for a log or a longboard if you're desperate.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3651,28 +3957,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
       </div>
@@ -3691,6 +4009,10 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves with offshore wind early, turning cross-off by midday. The low tide brings fair shape, but the weak swell keeps it small and slow. Not worth the wet suit.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3708,28 +4030,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
       </div>
@@ -3748,6 +4082,10 @@ h2 {
       <div class="bd-note">💬 Consistently ankle-to-knee-high waves from a weak SE swell. The low tide offers fair shape, but the narrow window limits quality. A log is your best bet for the tiny, crumbly walls.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3765,28 +4103,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
       </div>
@@ -3805,6 +4155,10 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves all day with offshore wind early. The low tide brings fair shape, but the weak swell keeps it small and slow. Best for a longboard or a paddle.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3822,28 +4176,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
       </div>
@@ -3862,6 +4228,10 @@ h2 {
       <div class="bd-note">💬 Tiny ankle-to-knee-high waves from a weak SE swell. The low tide offers slightly cleaner shape, but the poor breaker quality keeps it mushy. A log is your best bet for the small, crumbly walls.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3879,28 +4249,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
       </div>
@@ -3919,6 +4301,10 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves with offshore wind early, turning cross-off by midday. The low tide brings fair shape, but the weak swell keeps it small and slow. Not worth the wet suit.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3936,28 +4322,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 100%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
       </div>
@@ -3976,6 +4374,10 @@ h2 {
       <div class="bd-note">💬 Consistently ankle-to-knee-high waves from a weak SE swell. The low tide offers fair shape, but the poor breaker quality keeps it mushy. Best for a log or a longboard if you're desperate.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3993,28 +4395,40 @@ h2 {
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 99%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 99%</div>
-          <div class="bd-detail">Wind Offshore</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Offshore</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 99%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
           <div class="bd-detail">Exp 93%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
       </div>
@@ -4033,6 +4447,10 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves all day, heavily shadowed from the weak SE swell. The low tide offers fair shape, but the poor breaker quality keeps it mushy. Best for a longboard or a paddle.</div>
       <hr class="rec-sep">
       
+      <div class="bd-tide-row">
+        <span class="bd-tide-label">🌊 Tide</span>
+        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4050,28 +4468,40 @@ h2 {
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 21%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.9809412823046895" y2="5.91408550234408" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.9809412823046895,5.91408550234408 5.126624316781597,5.749227240178805 3.696554242602025,8.555897791372166" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 27%</div>
-          <div class="bd-detail">Wind Cross-Off</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="1.1367302228901277" y2="8.437166400997626" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="1.1367302228901277,8.437166400997626 4.096761978365739,7.35980294952177 3.5497702187149085,10.461947371510224" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross-Off</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 29%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="3.207613777995051" y2="4.095468739085437" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="3.207613777995051,4.095468739085437 6.299739405855192,4.696517074521553 4.2331534645350954,7.0738522522232845" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">6</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           <div class="bd-detail">Exp 23%</div>
-          <div class="bd-detail">Wind Cross</div>
+          <div class="bd-wind-row">
+            <span style="position:relative;display:inline-flex;align-items:center;gap:2px;"><svg width="20" height="20" viewBox="0 0 20 20" style="vertical-align:middle;display:inline-block;"><circle cx="10" cy="10" r="9" fill="none" stroke="#999" stroke-width="0.5"/><text x="10" y="11" text-anchor="middle" font-size="5" fill="#666" dominant-baseline="central">N</text><line x1="10" y1="10" x2="2.451964888491183" y2="5.098248684864756" stroke="#0066cc" stroke-width="2" stroke-linecap="round"/><polygon points="2.451964888491183,5.098248684864756 5.597647922968091,5.263106947030029 3.8820349626707555,7.904919236058115" fill="#0066cc"/></svg><span style="font-size:9px;color:#555;font-weight:600;">5</span></span>
+            <span class="bd-detail">Cross</span>
+          </div>
         </div>
         
       </div>
@@ -4135,26 +4565,26 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 11:59:19 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 12:20:59 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
       <summary style="cursor:pointer; color:#666; font-size:0.85em;">📊 Data source status</summary>
       <table style="margin:8px auto; font-size:0.85em; border-collapse:collapse;">
         <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ Open-Meteo Marine API</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">2026-07-26 01:59 UTC</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Marine API</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ Open-Meteo Weather API</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">2026-07-26 01:59 UTC</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Weather API</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ Open-Meteo Weather API</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">2026-07-26 01:59 UTC</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Weather API</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
                 <td style="text-align:left;padding:2px 8px;">✅ IMOS RAMSSA L4</td>
@@ -4167,9 +4597,9 @@ h2 {
                 <td style="text-align:right;padding:2px 8px;color:#666;">Local calculation</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ OpenRouter / DeepSeek</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">LLM commentary generated</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ OpenRouter / DeepSeek</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Reused from cache</td>
             </tr>
       </table>
     </details>

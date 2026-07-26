@@ -1127,3 +1127,49 @@ h2 {
 .beach-day-cards-section {
     display: none;
 }
+
+/* Per-beach card tide row */
+.bd-tide-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    font-size: 0.78em;
+    color: #555;
+}
+.bd-tide-label {
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* Per-beach card wind row */
+.bd-wind-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    margin-top: 2px;
+}
+
+/* Beach day cells scrollable container */
+.beach-day-cells {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    gap: 8px;
+    padding: 4px;
+}
+.beach-day-cells::-webkit-scrollbar {
+    height: 4px;
+}
+.beach-day-cells::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 2px;
+}
+
+/* Make beach day cards themselves scrollable when expanded */
+.beach-day-card {
+    max-height: 80vh;
+    overflow-y: auto;
+}
