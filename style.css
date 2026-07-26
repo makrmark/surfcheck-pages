@@ -1172,6 +1172,14 @@ h2 {
     height: 24px;
     display: block;
 }
+.cm-wind-svg {
+    padding: 2px 10px !important;
+}
+.cm-wind-svg svg {
+    width: 100%;
+    height: 28px;
+    display: block;
+}
 
 /* Beach card whole-day SVG rows */
 .bd-tide-wind-sep {
