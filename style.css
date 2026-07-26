@@ -1177,7 +1177,7 @@ h2 {
 }
 .cm-wind-svg svg {
     width: 100%;
-    height: 28px;
+    height: auto;
     display: block;
 }
 
@@ -1204,7 +1204,6 @@ h2 {
 .bd-svg-row svg {
     flex: 1;
     min-width: 0;
-    height: 24px;
     display: block;
 }
 
