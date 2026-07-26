@@ -1203,6 +1203,7 @@ h2 {
 }
 .bd-svg-row svg {
     flex: 1;
+    min-width: 0;
     height: 24px;
     display: block;
 }
