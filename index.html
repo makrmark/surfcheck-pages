@@ -1225,11 +1225,10 @@ h2 {
 }
 
 /* Beach day cells scrollable container */
+/* Beach day cells grid (override if flex set elsewhere) */
 .beach-day-cells {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 8px;
     padding: 4px;
 }
@@ -1774,25 +1773,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -1834,25 +1829,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -1894,25 +1885,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -1954,25 +1941,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 99%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2014,25 +1997,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 99%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2074,25 +2053,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 99%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4-5 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2134,25 +2109,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 78%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 79%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3-4 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 81%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 82%</div>
         </div>
         
       </div>
@@ -2194,25 +2165,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 13%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 13%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 14%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 13%</div>
         </div>
         
       </div>
@@ -2738,25 +2705,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2798,25 +2761,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2858,25 +2817,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2918,25 +2873,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -2978,25 +2929,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -3038,25 +2985,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2-3 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -3098,25 +3041,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 83%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 83%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          <div class="bd-detail">Exp 84%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 85%</div>
         </div>
         
       </div>
@@ -3158,25 +3097,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 10%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 9%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 9%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 9%</div>
         </div>
         
       </div>
@@ -3702,25 +3637,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -3762,25 +3693,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -3822,25 +3749,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -3882,25 +3805,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -3942,25 +3861,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -4002,25 +3917,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 100%</div>
         </div>
         
       </div>
@@ -4062,25 +3973,21 @@ h2 {
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 99%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 99%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 99%</div>
         </div>
         
         <div class="beach-day-cell beach-day-best">
           <div class="bm-cell-wave">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#f39c12">Fair</span></div>
-          <div class="bd-detail">Exp 93%</div>
         </div>
         
       </div>
@@ -4122,25 +4029,21 @@ h2 {
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 21%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 27%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 29%</div>
         </div>
         
         <div class="beach-day-cell">
           <div class="bm-cell-wave">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-          <div class="bd-detail">Exp 23%</div>
         </div>
         
       </div>
@@ -4211,7 +4114,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 13:39:12 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 13:44:09 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
