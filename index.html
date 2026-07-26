@@ -1170,6 +1170,42 @@ h2 {
     display: block;
 }
 
+/* Conditions matrix whole-day tide cell */
+.cm-tide-svg {
+    padding: 2px 10px !important;
+}
+.cm-tide-svg svg {
+    width: 100%;
+    height: 24px;
+    display: block;
+}
+
+/* Beach card whole-day SVG rows */
+.bd-tide-wind-sep {
+    margin-top: 4px !important;
+    margin-bottom: 4px !important;
+}
+.bd-svg-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 4px;
+}
+.bd-svg-label {
+    font-size: 0.8em;
+    width: 22px;
+    flex-shrink: 0;
+    text-align: center;
+}
+.bd-svg-label-wind {
+    font-size: 0.9em;
+}
+.bd-svg-row svg {
+    flex: 1;
+    height: 24px;
+    display: block;
+}
+
 /* Per-beach card wind row */
 .bd-wind-row {
     display: flex;
@@ -1577,27 +1613,9 @@ h2 {
           <tr class="cm-row">
             <td class="cm-label-cell">Tide</td>
             
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,7 18,12 35,15" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.5m</div>
+            <td class="cm-cell cm-tide-svg" colspan="4">
+              <div class="cm-cell-value"><svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
             </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,15 18,14 35,9" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.3m</div>
-            </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,9 18,4 35,1" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">1.3m</div>
-            </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,1 18,2 35,6" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">1.5m</div>
-            </td>
-            
             
           </tr>
           
@@ -1811,6 +1829,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A longboard or hybrid will glide through the crumbly walls. The high tide fattens it up, so extra foam helps. A fish could work if you want more maneuverability.</div>
@@ -1879,6 +1906,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -1949,6 +1985,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A grovel shortboard or fish will work for the waist-high waves. The low tide hollows it out, so a wider tail helps. A longboard could work for the morning chop.</div>
@@ -2017,6 +2062,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -2087,6 +2141,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A shortboard or grovel board will handle the chest-high waves. The low tide hollows it out, so a tighter rocker helps. A fish could work for the morning chop.</div>
@@ -2155,6 +2218,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -2225,6 +2297,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A shortboard or grovel board will handle the chest-high waves. The low tide hollows it out, so a tighter rocker helps. A fish could work for the morning chop.</div>
@@ -2293,6 +2374,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 100,17 200,5 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.3813699708047817" y2="16.278977081200097" stroke="#46bf6f" stroke-width="2" stroke-linecap="round"/><polygon points="3.3813699708047817,16.278977081200097 5.218335251978202,14.165790256576335 6.129926084458241,16.813242268254424" fill="#46bf6f"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">9k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="15.215537243668512" stroke="#35c676" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,15.215537243668512 98.58460350298101,13.415731936546203 99.07081840044842,16.173193644980387" fill="#35c676"/><line x1="196.66666666666666" y1="14" x2="193.93154876724174" y2="20.44353397416708" stroke="#16d383" stroke-width="2" stroke-linecap="round"/><polygon points="193.93154876724174,20.44353397416708 193.59031460570733,17.66440474957138 196.16772819537417,18.758451909341346" fill="#16d383"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">3k</text><line x1="290.0" y1="14" x2="295.03537860237054" y2="18.862608593212983" stroke="#20cf7f" stroke-width="2" stroke-linecap="round"/><polygon points="295.03537860237054,18.862608593212983 292.3185505687978,18.185227285533912 294.26359400608294,16.17107584458569" fill="#20cf7f"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -2657,27 +2747,9 @@ h2 {
           <tr class="cm-row">
             <td class="cm-label-cell">Tide</td>
             
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,5 18,10 35,14" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.7m</div>
+            <td class="cm-cell cm-tide-svg" colspan="4">
+              <div class="cm-cell-value"><svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
             </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,14 18,14 35,11" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.3m</div>
-            </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,11 18,6 35,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">1.1m</div>
-            </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,2 18,2 35,5" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">1.5m</div>
-            </td>
-            
             
           </tr>
           
@@ -2891,6 +2963,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A high-volume longboard or fish will glide those weak waist-high walls best through the morning. As the tide drops very low, a hybrid with more foam helps keep speed.</div>
@@ -2959,6 +3040,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -3029,6 +3119,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A grovel shortboard or fish for the early waist-high waves. If you're chasing the wedge at the northern end, a shortboard with a bit more rocker.</div>
@@ -3097,6 +3196,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -3167,6 +3275,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 A performance shortboard or hybrid will handle the punchy waist-high waves best. The low tide later calls for more foam to glide on fat sections.</div>
@@ -3235,6 +3352,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -3305,6 +3431,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 An onshore breeze and fat waist-high waves call for a funboard or longboard. The afternoon high tide will make the waves soft, so more volume helps.</div>
@@ -3373,6 +3508,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 100,18 200,8 299,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.0095932567179835" y2="13.633648306299396" stroke="#1dd080" stroke-width="2" stroke-linecap="round"/><polygon points="3.0095932567179835,13.633648306299396 5.5044115244454135,12.362474907028664 5.357870846965172,15.158637604341472" fill="#1dd080"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">4k</text><line x1="103.33333333333333" y1="14" x2="96.41951494916736" y2="15.095041255281616" stroke="#14d383" stroke-width="2" stroke-linecap="round"/><polygon points="96.41951494916736,15.095041255281616 98.59552364124688,13.33294416034207 99.03354014335953,16.098471514008455" fill="#14d383"/><line x1="196.66666666666666" y1="14" x2="203.0108211759232" y2="11.041672167815104" stroke="#24cd7d" stroke-width="2" stroke-linecap="round"/><polygon points="203.0108211759232,11.041672167815104 201.4048071541403,13.33529789182428 200.2214760212663,10.797636088121662" fill="#24cd7d"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">5k</text><line x1="290.0" y1="14" x2="295.2829670615594" y2="9.407586797066449" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="295.2829670615594,9.407586797066449 294.3713762290794,12.055038808744536 292.53441094790594,9.941851984120774" fill="#32c777"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -3737,27 +3881,9 @@ h2 {
           <tr class="cm-row">
             <td class="cm-label-cell">Tide</td>
             
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,4 18,8 35,12" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.9m</div>
+            <td class="cm-cell cm-tide-svg" colspan="4">
+              <div class="cm-cell-value"><svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
             </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,12 18,14 35,12" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.3m</div>
-            </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,12 18,8 35,4" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">0.9m</div>
-            </td>
-            
-            <td class="cm-cell">
-              <div class="cm-cell-value"><svg width="36" height="16" viewBox="0 0 36 16" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="15" x2="35" y2="15" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="35" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,4 18,2 35,4" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-              <div class="cm-cell-detail">1.5m</div>
-            </td>
-            
             
           </tr>
           
@@ -3971,6 +4097,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 Longboard or log for the tiny, weak waves. The low tide might offer a slightly cleaner face, but it's still a paddle-fest.</div>
@@ -4039,6 +4174,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -4109,6 +4253,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 Longboard or log for the tiny, weak waves. The low tide might give a bit of shape, but it's still a struggle for any real ride.</div>
@@ -4177,6 +4330,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -4247,6 +4409,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 Longboard or log for the tiny, weak waves. The low tide might offer a slightly cleaner face, but it's still a paddle-fest.</div>
@@ -4315,6 +4486,15 @@ h2 {
           </div>
         </div>
         
+      </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
       </div>
       
       <hr class="rec-sep">
@@ -4385,6 +4565,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 Longboard or log for the tiny, weak waves. The low tide might give a bit of shape, but it's still a struggle for any real ride.</div>
@@ -4454,6 +4643,15 @@ h2 {
         </div>
         
       </div>
+      <hr class="rec-sep bd-tide-wind-sep">
+      <div class="bd-svg-row">
+        <span class="bd-svg-label">🌊</span>
+        <svg width="300" height="20" viewBox="0 0 300 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="299" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="299" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 100,17 200,11 299,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      </div>
+      <div class="bd-svg-row">
+        <span class="bd-svg-label bd-svg-label-wind">💨</span>
+        <svg width="300" height="28" viewBox="0 0 300 28" style="vertical-align:middle;display:block;width:100%;overflow:visible;"><line x1="10" y1="14" x2="290" y2="14" stroke="#e0e0e0" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="10.0" y1="14" x2="3.762954330681425" y2="10.822066501823173" stroke="#2fc979" stroke-width="2" stroke-linecap="round"/><polygon points="3.762954330681425,10.822066501823173 6.5591170279942315,10.675525824342929 5.287943628723501,13.17034409207036" fill="#2fc979"/><text x="10.0" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="103.33333333333333" y1="14" x2="96.43967906224788" y2="12.784462756331486" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="96.43967906224788,12.784462756331486 99.07081840044842,11.826806355019613 98.58460350298101,14.584268063453797" fill="#26cc7c"/><line x1="196.66666666666666" y1="14" x2="191.38369960510724" y2="9.40758679706645" stroke="#32c777" stroke-width="2" stroke-linecap="round"/><polygon points="191.38369960510724,9.40758679706645 194.1322557187607,9.941851984120778 192.29529043758728,12.055038808744538" fill="#32c777"/><text x="196.66666666666666" y="31" text-anchor="middle" font-size="8" fill="#666" font-weight="500">6k</text><line x1="290.0" y1="14" x2="284.129306024382" y2="10.18752675489481" stroke="#26cc7c" stroke-width="2" stroke-linecap="round"/><polygon points="284.129306024382,10.18752675489481 286.9254687216948,10.334067432375052 285.4004794236527,12.68234502262224" fill="#26cc7c"/></svg>
+      </div>
       
       <hr class="rec-sep">
       <div class="bd-board">🏄 Longboard or hybrid for the minimal energy. The offshore wind early is the only highlight, but the waves are too small for anything else.</div>
@@ -4514,7 +4712,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 12:46:52 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 12:51:16 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
