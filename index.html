@@ -1149,6 +1149,27 @@ h2 {
     font-weight: 600;
 }
 
+/* Beach matrix full-width tide row */
+.tide-row {
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fafafa;
+}
+.tide-label {
+    text-align: center;
+    font-size: 0.85em;
+    padding: 2px 6px !important;
+    vertical-align: middle;
+}
+.tide-cell {
+    padding: 2px 10px !important;
+}
+.tide-cell svg {
+    width: 100%;
+    height: 24px;
+    display: block;
+}
+
 /* Per-beach card wind row */
 .bd-wind-row {
     display: flex;
@@ -1429,6 +1450,14 @@ h2 {
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
             </td>
             
+          </tr>
+          
+          
+          <tr class="tide-row">
+            <td class="bm-label-cell tide-label">🌊</td>
+            <td class="tide-cell" colspan="4">
+              <svg width="600" height="24" viewBox="0 0 600 24" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="23" x2="599" y2="23" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="599" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,14 51,19 101,22 150,23 200,21 250,17 300,11 350,6 400,2 450,1 499,3 549,7 599,12" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+            </td>
           </tr>
           
         </tbody>
@@ -1728,10 +1757,6 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross wind early, then clean up by midday as the wind drops. The long period gives it punch, but the high tide fattens it up. Best window is 12-3pm for clean, peeling walls.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1801,10 +1826,6 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1874,10 +1895,6 @@ h2 {
       <div class="bd-note">💬 Waist-high waves with a cross wind early, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 12-3pm for clean, fun waves.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -1947,10 +1964,6 @@ h2 {
       <div class="bd-note">💬 Waist-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2020,10 +2033,6 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2093,10 +2102,6 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with a cross-off wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2166,10 +2171,6 @@ h2 {
       <div class="bd-note">💬 Chest-high waves with an offshore wind in the morning, then clean up by midday. The low tide hollows it out, but the high tide fattens it up. Best window is 9-12pm for clean, peeling waves.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2239,10 +2240,6 @@ h2 {
       <div class="bd-note">💬 Ankle to knee high waves with an offshore wind in the morning, but the swell is heavily shadowed. The high tide fattens it up, but the waves are too small to ride. Best to skip this spot today.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,16 27,17 53,5 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2533,6 +2530,14 @@ h2 {
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
             </td>
             
+          </tr>
+          
+          
+          <tr class="tide-row">
+            <td class="bm-label-cell tide-label">🌊</td>
+            <td class="tide-cell" colspan="4">
+              <svg width="600" height="24" viewBox="0 0 600 24" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="23" x2="599" y2="23" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="599" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 51,16 101,20 150,22 200,22 250,19 300,14 350,9 400,5 450,2 499,2 549,5 599,9" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+            </td>
           </tr>
           
         </tbody>
@@ -2832,10 +2837,6 @@ h2 {
       <div class="bd-note">💬 Early morning offers waist high with a clean cross breeze holding the faces open for long crumbly walls. As the tide drops very low, the waves fatten up and lose shape. Best window is before 9am for the cleanest crumbly rides.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2905,10 +2906,6 @@ h2 {
       <div class="bd-note">💬 Waist high walls with cross-off winds early give clean, if weak, peaks. As the tide bottoms out, the waves become slower and require more paddle power. The morning window before low tide is the pick for cleaner shape.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -2978,10 +2975,6 @@ h2 {
       <div class="bd-note">💬 Waist high early with clean cross winds and good breaker quality offers the best chance at fun lefts. The wedge at the northern end may have a bit more push. But by midday, the size drops and the shape fades.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3051,10 +3044,6 @@ h2 {
       <div class="bd-note">💬 Similar to North Curl but with a slight cross-off early. Waist high waves peel nicely in the rip bowl at the southern end. The afternoon sees the swell fade and the wind shift cross, making it softer.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3124,10 +3113,6 @@ h2 {
       <div class="bd-note">💬 The narrow bay focuses the waist-high SSE swell into punchier peaks than the open beaches. Early morning cross-off winds keep it clean. As the tide drops low, the waves get fat and harder to hold. Best early.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3197,10 +3182,6 @@ h2 {
       <div class="bd-note">💬 Offshore winds early make the waist-high waves stand up nicely on the steep bank. Best window is the morning low tide, where the waves become hollow and fun. By afternoon, the onshore wind messes it up, so get out early.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3270,10 +3251,6 @@ h2 {
       <div class="bd-note">💬 Surprisingly, the morning is poor despite offshore wind—maybe the low tide makes the shorebreak too dumpy. The afternoon brings an onshore breeze but the rising tide fattens the waves, creating fun beginner-friendly walls. Best window is the afternoon mid-tide.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3343,10 +3320,6 @@ h2 {
       <div class="bd-note">💬 Ankle to knee high all day with no swell reaching this shadowed beach. The poor quality and heavy shadowing mean it's not worth the drive. Morning has a cross-off but flat waves. Skip it.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,13 27,18 53,8 79,2" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -3637,6 +3610,14 @@ h2 {
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
             </td>
             
+          </tr>
+          
+          
+          <tr class="tide-row">
+            <td class="bm-label-cell tide-label">🌊</td>
+            <td class="tide-cell" colspan="4">
+              <svg width="600" height="24" viewBox="0 0 600 24" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="23" x2="599" y2="23" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="599" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,8 51,12 101,17 150,20 200,21 250,20 300,17 350,13 400,8 450,5 499,3 549,4 599,7" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+            </td>
           </tr>
           
         </tbody>
@@ -3936,10 +3917,6 @@ h2 {
       <div class="bd-note">💬 Tiny ankle-to-knee-high waves all day from a weak SE swell. The low tide window offers slightly cleaner shape, but the poor breaker quality keeps it mushy. Best for a log or a longboard if you're desperate.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4009,10 +3986,6 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves with offshore wind early, turning cross-off by midday. The low tide brings fair shape, but the weak swell keeps it small and slow. Not worth the wet suit.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4082,10 +4055,6 @@ h2 {
       <div class="bd-note">💬 Consistently ankle-to-knee-high waves from a weak SE swell. The low tide offers fair shape, but the narrow window limits quality. A log is your best bet for the tiny, crumbly walls.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4155,10 +4124,6 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves all day with offshore wind early. The low tide brings fair shape, but the weak swell keeps it small and slow. Best for a longboard or a paddle.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4228,10 +4193,6 @@ h2 {
       <div class="bd-note">💬 Tiny ankle-to-knee-high waves from a weak SE swell. The low tide offers slightly cleaner shape, but the poor breaker quality keeps it mushy. A log is your best bet for the small, crumbly walls.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4301,10 +4262,6 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves with offshore wind early, turning cross-off by midday. The low tide brings fair shape, but the weak swell keeps it small and slow. Not worth the wet suit.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4374,10 +4331,6 @@ h2 {
       <div class="bd-note">💬 Consistently ankle-to-knee-high waves from a weak SE swell. The low tide offers fair shape, but the poor breaker quality keeps it mushy. Best for a log or a longboard if you're desperate.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4447,10 +4400,6 @@ h2 {
       <div class="bd-note">💬 Ankle-to-knee-high waves all day, heavily shadowed from the weak SE swell. The low tide offers fair shape, but the poor breaker quality keeps it mushy. Best for a longboard or a paddle.</div>
       <hr class="rec-sep">
       
-      <div class="bd-tide-row">
-        <span class="bd-tide-label">🌊 Tide</span>
-        <svg width="80" height="20" viewBox="0 0 80 20" style="vertical-align:middle;display:inline-block;overflow:visible;"><line x1="1" y1="19" x2="79" y2="19" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><line x1="1" y1="1" x2="79" y2="1" stroke="#ccc" stroke-width="0.8" stroke-dasharray="2,2"/><polyline points="1,10 27,17 53,11 79,3" fill="none" stroke="#0066cc" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      </div>
       <div class="beach-day-header-row">
         
         <div class="beach-day-header-cell">6–9am</div>
@@ -4565,7 +4514,7 @@ h2 {
     </div>
 
   <div class="footer">
-    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 12:20:59 AEST</p>
+    <p class="timestamp" style="margin-bottom: 12px; font-size: 0.9em;">Generated: 2026-07-26 12:46:52 AEST</p>
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-size: 0.9em;">About this site →</a></p>
     <p>Northern Beaches Surf Check - Automated surf report for Sydney beaches</p>
     <details style="margin-top:10px; text-align:left; display:inline-block;">
