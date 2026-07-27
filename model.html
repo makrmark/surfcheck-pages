@@ -150,19 +150,19 @@
     <h3>2.2 Wave Quality (8 Factors, 0&ndash;2 Scale, Weighted)</h3>
     <p><strong>2026-07-27 restructure:</strong> Each quality factor is 0&ndash;2 with 1 = neutral performance. Factors are combined via weighted geometric mean so each factor's importance is proportional to its weight.</p>
     <pre>factors = {
-    wind:        max(0, min(2, bwq &middot; 1.6 + 0.2)),         weight = 0.10
-    period:      max(0, min(2, (gs &minus; 0.5) &middot; 1.6 + 0.5)), weight = 0.08
-    breaker:     max(0, min(2, (brk &minus; 0.4) &middot; 2.0 + 0.4)), weight = 0.06
-    wind_sea:    max(0, min(2, wsq &middot; 1.2)),              weight = 0.04
-    tide:        max(0, min(2, (tdv &minus; 0.3) &middot; 2.0 + 0.2)), weight = 0.04
-    sandbar:     max(0, min(2, (bar &minus; 0.5) &middot; 1.5 + 0.5)), weight = 0.04
-    variability: max(0, min(2, (sv &minus; 0.6) &middot; 2.0 + 0.3)), weight = 0.03
+    wind:        max(0, min(2, bwq &middot; 1.6 + 0.2)),         weight = 0.14
+    period:      max(0, min(2, (gs &minus; 0.5) &middot; 1.6 + 0.5)), weight = 0.11
+    breaker:     max(0, min(2, (brk &minus; 0.4) &middot; 2.0 + 0.4)), weight = 0.09
+    wind_sea:    max(0, min(2, wsq &middot; 1.2)),              weight = 0.07
+    tide:        max(0, min(2, (tdv &minus; 0.3) &middot; 2.0 + 0.2)), weight = 0.06
+    sandbar:     max(0, min(2, (bar &minus; 0.5) &middot; 1.5 + 0.5)), weight = 0.06
+    variability: max(0, min(2, (sv &minus; 0.6) &middot; 2.0 + 0.3)), weight = 0.04
     embayment:   max(0, min(2, (embay &minus; 0.5) &middot; 1.5 + 0.5)), weight = 0.03
 }
 
 quality_multiplier = &Pi;(1 + weight &middot; (factor &minus; 1))
-// Neutral (all 1.0) &rarr; 1.000; perfect (all 2.0) &rarr; 1.503; terrible (all 0) &rarr; 0.648</pre>
-    <p>Weights sum to 0.40. Re-anchored 2026-07-27: typical conditions now hit 1.0 (neutral) instead of drifting positive. Mappings calibrated so an offshore breeze at Dee Why gives wind factor ~1.6, not 2.0.</p>
+// Neutral (all 1.0) &rarr; 1.000; perfect (all 2.0) &rarr; 1.776; terrible (all 0) &rarr; 0.533</pre>
+    <p>Weights sum to 0.60. Quality now has &plusmn;78% swing on the rating (was &plusmn;50%). The 0-2 range is unusual for scoring schemes, but it's the right fit for <em>multiplicative</em> scoring — most schemes use 0-1 or 1-5 because they're additive. 0-2 with 1=neutral is clean: below 1=penalty, above 1=bonus, 0=zero the rating, 2=double it.</p>
 
     <h4>2.2.1 Wind Quality (bwq)</h4>
     <p>Two-component model &mdash; beach-relative wind (onshore/offshore) blended with swell-relative wind (face/back alignment):</p>
@@ -255,15 +255,15 @@ quality_multiplier = &Pi;(1 + weight &middot; (factor &minus; 1))
     <h2>3. Final Rating</h2>
     <pre>rating = min(5.0, max(0.0, height_score &middot; quality_multiplier))</pre>
     <p>Rating = height &times; quality. Multiplicative, not additive &mdash; big waves get properly penalised for poor quality (a clean 3ft day should beat a blown-out 6ft day). The height score provides the foundation; quality scales it up or down.</p>
-    <p><strong>Key behaviours with this formula (recalibrated 2026-07-27):</strong></p>
+    <p><strong>Key behaviours with this formula (weights increased 2026-07-27):</strong></p>
     <ul>
-        <li>1ft with perfect quality &rarr; 1.14 (Fair) &mdash; basically trash, even perfect</li>
-        <li>2ft with perfect quality &rarr; 2.79 (Good) &mdash; maxes at Good, never Great</li>
-        <li>2ft with typical quality &rarr; 2.09 (Good) &mdash; typical conditions</li>
-        <li>3ft with good quality &rarr; 3.19 (Great) &mdash; decent size, decent quality</li>
+        <li>1ft with perfect quality &rarr; 1.35 (Fair) &mdash; basically trash, even perfect</li>
+        <li>2ft with perfect quality &rarr; 3.30 (Great) &mdash; theoretical max, all 8 factors at 2.0 (impossible)</li>
+        <li>2ft with good quality &rarr; 2.16 (Good) &mdash; realistic best case stays Good</li>
+        <li>3ft with good quality &rarr; 3.33 (Great) &mdash; decent size, decent quality</li>
         <li>6ft with good quality &rarr; 5.00 (Epic) &mdash; big AND clean = amazing</li>
-        <li>6ft with poor quality &rarr; 3.79 (Great) &mdash; big but messy, properly penalised</li>
-        <li>6ft with terrible quality &rarr; 2.95 (Good) &mdash; blown-out big waves still rideable</li>
+        <li>6ft with poor quality &rarr; 3.47 (Great) &mdash; big but messy, properly penalised</li>
+        <li>6ft with terrible quality &rarr; 2.43 (Good) &mdash; blown-out big waves still rideable</li>
     </ul>
 
     <table>
