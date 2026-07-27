@@ -50,7 +50,8 @@
   &rarr; 1. Refraction (Snell's law for parallel contours)
   &rarr; 2. Diffraction (cosine-squared Fresnel, period-dependent)
   &rarr; 3. Shoaling (linear wave theory, Newton-Raphson wavenumber solver)
-  &rarr; 4. Iterative breaker loop (H_b / h_b = 0.78)
+  &rarr; 4. Sandbar check (bar top speed bump, if bar present)
+  &rarr; 5. Iterative breaker loop (H_b / h_b = 0.78)
   &rarr; breaker height (= face height)</pre>
     <p>The Sydney coastline general shore-normal is roughly ESE (100&deg;). Each beach uses its own aspect from <code>beaches.json</code> as the local shore-normal for refraction.</p>
 
@@ -76,7 +77,18 @@
     &theta; = shadow_angle &middot; (10 / T)   (period-adjusted)
     K<sub>d</sub> &isin; [0.05, 1.0]</pre>
 
-    <h3>1.4 Shoaling + Iterative Breaker Loop</h3>
+    <h3>1.4 Sandbar Speed Bump</h3>
+    <p>If the beach has a sandbar (defined by <code>bar_depth_cd</code> in <code>beaches.json</code>), the bar acts as a <strong>speed bump</strong> in the depth profile. Before the iterative breaker loop, the model checks whether the wave would break at the bar top:</p>
+    <pre>bar_top = bar_depth_cd + tide_height
+    if bar_top &lt; start_depth:
+        K<sub>s</sub>(bar_top) = &radic;(c<sub>g0</sub> / c<sub>g</sub>(bar_top))
+        H = H<sub>offshore</sub> &middot; K<sub>s</sub>(bar_top) &middot; K<sub>d</sub>
+        if H / bar_top &gt;= 0.78:
+            &rarr; bar-induced break     (was_bar_break = True)</pre>
+    <p>If the wave trips at the bar, this is a <strong>bar-induced break</strong>. The wave breaks over the bar (typically hollow, pitching), reforms in the deeper trough behind the bar, and runs up the beach face as a smaller wave. If the wave doesn't trip at the bar, it passes over and continues to the beach-face break via the normal loop.</p>
+    <p>This is tide-dependent: low tide exposes the bar (shallower bar top = more likely to trip), high tide deepens the bar (wave passes over it).</p>
+
+    <h3>1.5 Shoaling + Iterative Breaker Loop</h3>
     <p><strong>This replaces the old fixed-depth shoaling at 10m, the slope modifier, the period-based face height multiplier, and the depth-limited cap &mdash; all with one physical calculation.</strong></p>
     <p>Starting from 10m depth (plus tide height), the wave steps down toward the beach in 0.5m increments. At each step, the shoaling coefficient is computed from linear wave theory (Newton-Raphson wavenumber solver), and the breaker criterion is checked:</p>
     <pre>h = 10.0 + tide_height
@@ -99,9 +111,10 @@
         <tr><td>Swell period</td><td>Period-based face height multiplier</td><td>Natural: longer period = larger Ks at any depth = trips earlier</td></tr>
         <tr><td>Depth limit</td><td>Fixed 7.8m cap at 10m</td><td>Natural: breaker criterion at actual depth</td></tr>
         <tr><td>Face height</td><td>Arbitrary period multiplier</td><td>Natural: breaker height IS the face height</td></tr>
+        <tr><td>Sandbar</td><td>Generic tide-only modifier</td><td>Speed bump check at bar top; bar-induced break detected</td></tr>
     </table>
 
-    <h3>1.5 Wind Hold-Up Boost</h3>
+    <h3>1.6 Wind Hold-Up Boost</h3>
     <p>Offshore wind hitting the wave face head-on holds the wave up, making it taller. A post-breaker wind boost is applied to the breaker height:</p>
     <pre>wind_vs_swell = |wind_dir &minus; swell_dir| (wrapped to 0&ndash;180&deg;)
     hold_up = (1 &minus; cos(wind_vs_swell)) / 2
@@ -110,7 +123,7 @@
     face_height = breaker_height &middot; wind_boost</pre>
     <p>Wind opposite to the swell source (180&deg; apart) = hits the face directly = max 25% boost. Wind aligned with the swell source (0&deg;) = off the back = no boost.</p>
 
-    <h3>1.6 Height Range from Spectral Width</h3>
+    <h3>1.7 Height Range from Spectral Width</h3>
     <p>When the swell spectrum is broad, heights display as a range. The T<sub>p</sub>/T<sub>m</sub> gap proxies spectral width:</p>
     <pre>ratio = T<sub>p</sub> / T<sub>m</sub>  (clamped to 2.5)
     lower_mult = max(0.75, 1.0 &minus; (ratio &minus; 1.0) &middot; 0.1)
@@ -145,6 +158,14 @@
     blend = min(speed / 30, 1) &middot; 0.4</pre>
 
     <h4>2.2.2 Breaker Quality (brk)</h4>
+    <p><strong>Bar-induced break</strong> (when <code>was_bar_break = True</code>): quality depends on whether the wave reforms cleanly in the trough behind the bar.</p>
+    <pre>reformed_height = H<sub>breaker</sub> &middot; 0.5   (wave loses ~50% over the bar)
+    trough_depth = bar_trough_depth_cd + tide_height
+    if reformed_height &lt; 0.78 &middot; trough_depth:
+        quality = 0.95 (good bar) or 0.85 (average bar)   &larr; clean reform, hollow lip
+    else:
+        quality = 0.25                                      &larr; close-out, unrideable</pre>
+    <p><strong>Beach-face break</strong> (no bar, or wave passed over the bar): quality depends on tide height relative to slope-dependent ideal ratio.</p>
     <pre>depth = tide_height + 1.0m
     delta = H<sub>breaker</sub> / max(depth, 0.5)
     ideal = 0.3 + 0.2 &middot; slope_modifier
@@ -175,8 +196,18 @@
     </table>
 
     <h4>2.2.7 Bar Quality Modifier (bar)</h4>
-    <p>Tide-dependent boost for sandbar beaches (all except Long Reef):</p>
-    <pre>tide &lt; 0.3m &rarr; 0.95, 0.3&ndash;0.8m &rarr; 1.00&rarr;1.15, 0.8&ndash;1.3m &rarr; 1.15, 1.3&ndash;1.8m &rarr; 1.15&rarr;0.90, &gt; 1.8m &rarr; 0.90</pre>
+    <p>Uses each beach&#39;s <code>bar_depth_cd</code> (bar top depth at chart datum) to shift the tide windows to match the actual bar depth, and <code>bar_quality</code> to adjust the sweet spot width.</p>
+    <pre>depth_over_bar = tide_height &minus; bar_depth_cd
+    // Negative = bar exposed, Positive = water over the bar
+
+    // Good bar (Dee Why, North Curl Curl, Freshwater):
+    &lt; &minus;0.5m &rarr; 0.90       &larr; exposed, close-out
+    &minus;0.5&ndash;0.2m &rarr; 0.90&rarr;1.15  &larr; ramping up
+    0.2&ndash;0.8m &rarr; 1.15        &larr; sweet spot
+    0.8&ndash;1.5m &rarr; 1.15&rarr;0.85  &larr; tapering off
+    &gt; 1.5m &rarr; 0.85            &larr; too deep, fatten up
+
+    // Average bar: narrower sweet spot, peaks at 1.05</pre>
 
     <hr>
 
