@@ -140,7 +140,7 @@
     <p>Beyond overhead, the height score plateaus and quality factors differentiate.</p>
 
     <h3>2.2 Wave Quality (7 Factors, Multiplicative)</h3>
-    <pre>wq = bwq &middot; embay &middot; brk &middot; wsq &middot; gs_factor &middot; sv &middot; bar</pre>
+<pre>wq = min(1.0, bwq &middot; embay &middot; brk &middot; wsq &middot; gs_factor &middot; sv &middot; bar)</pre>
     <div class="todo-box">TODO: Replace pure multiplication with weighted harmonic mean or weighted sum. Correlated factors (bar and breaker both depend on tide) double-penalise.</div>
 
     <h4>2.2.1 Wind Quality (bwq)</h4>
