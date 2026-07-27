@@ -60,7 +60,7 @@
     <pre>H_combined = &radic;(H&#x2081;&sup2; + H&#x2082;&sup2; + H&#x2083;&sup2;)</pre>
     <p>The <strong>dominant component</strong> (largest effective height contribution) sets the wave period, direction, and quality character.</p>
 
-    <h3>1.2 Refraction (Snell's Law for Parallel Contours)</h3>
+    <h3>1.2 Refraction (Snell's Law for Parallel Contours, Bend Capped)</h3>
     <p>As waves approach the coast, their phase velocity decreases in shallower water, causing the wave rays to bend toward the shore-normal. This is computed using Snell's law:</p>
     <pre>sin(&alpha;&#x2081;&#x2080;) / c&#x2081;&#x2080; = sin(&alpha;&#x2080;) / c&#x2080;
     where:
@@ -68,8 +68,9 @@
       c&#x2081;&#x2080; = phase velocity at 10m depth (from shoaling solver)
       &alpha;&#x2080; = angle between deep-water ray and shore-normal
       &alpha;&#x2081;&#x2080; = refracted angle at 10m depth</pre>
+    <p>The total bending <code>|&alpha;&#x2080;| &minus; |&alpha;&#x2081;&#x2080;|</code> is <strong>capped at 15&deg;</strong>. At extreme offshore angles (e.g. a 114&deg; approach from SSE into a NE-facing beach), the raw Snell's law would bend the wave by 50&deg;+ &mdash; unrealistically wrapping it around the headland. The cap prevents this while still allowing modest, physically plausible bending for moderate angles.</p>
     <p>The refracted direction replaces the raw offshore direction in both the diffraction calculation and the attack angle. This prevents the model from using an offshore ray angle that's no longer valid by the time the wave reaches the headland shadow zone.</p>
-    <p>For a typical S swell (180&deg;) at an SE beach (135&deg;), the 45&deg; offshore angle refracts to approximately 21&deg; at 10m depth.</p>
+    <p class="todo-box">TODO (#3): Replace the single-step refraction at 10m with a multi-depth ray-tracing grid that accounts for the continental shelf bathymetry. This would naturally handle extreme angles through gradual refraction across multiple depth steps rather than an artificial cap.</p>
 
     <h3>1.3 Headland Diffraction</h3>
     <p>Each beach has a swell window defined by its aspect angle and left/right offsets. Swell arriving inside the window passes without loss. Outside the window, energy is reduced by a <strong>cosine-squared Fresnel diffraction model</strong>, period-dependent:</p>
