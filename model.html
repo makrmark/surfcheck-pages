@@ -140,13 +140,21 @@
     <p>Beyond overhead, the height score plateaus and quality factors differentiate.</p>
 
     <h3>2.2 Wave Quality (7 Factors, Multiplicative)</h3>
-    <pre>wq = bwq &middot; embay &middot; brk &middot; wsq &middot; gs_factor &middot; bar</pre>
+    <pre>wq = bwq &middot; embay &middot; brk &middot; wsq &middot; gs_factor &middot; sv &middot; bar</pre>
     <div class="todo-box">TODO: Replace pure multiplication with weighted harmonic mean or weighted sum. Correlated factors (bar and breaker both depend on tide) double-penalise.</div>
 
     <h4>2.2.1 Wind Quality (bwq)</h4>
     <p>Two-component model &mdash; beach-relative wind (onshore/offshore) blended with swell-relative wind (face/back alignment):</p>
+    <p><strong>2026-07-27 fix:</strong> The beach-relative values were previously inverted. Offshore wind should be the highest quality (holds the wave face up) and onshore wind the lowest (crumbles the wave). Waves break toward the beach, so the wave face is always shoreward.</p>
     <pre>// Beach-relative: exponential speed penalty by direction band
-    beach_q = f(|wind_dir &minus; beach_aspect|, speed)
+    // Waves break toward the beach, so the wave face is shoreward:
+    //   Offshore wind (from behind beach, diff &asymp; 180&deg;) = hits the face = GOOD
+    //   Onshore wind (from ocean, diff &asymp; 0&deg;) = hits the back = BAD
+    diff &le; 30&deg; (onshore):     beach_q = 0.25 - (speed/80)&sup2;
+    diff &le; 60&deg; (cross-on):    beach_q = 0.35 - (speed/100)&sup2;
+    diff &le; 120&deg; (cross):     beach_q = 0.60 - (speed/120)&sup2;
+    diff &le; 150&deg; (cross-off): beach_q = 0.85 - (speed/150)&sup2;
+    else (offshore):                beach_q = 1.00 - (speed/200)&sup2;
 
     // Swell-relative: wind opposite to swell source = on face = boost
     wind_vs_swell = |wind_dir &minus; swell_dir| (wrapped to 0&ndash;180&deg;)
@@ -172,20 +180,32 @@
     quality = 1.0 &minus; min(|delta &minus; ideal| &middot; 2.0, 1.0)</pre>
 
     <h4>2.2.3 Embayment Factor (embay)</h4>
+    <p><strong>2026-07-27 update:</strong> Narrow bays now get a 5% quality boost on small swells (ratio &lt; 0.5), reflecting the energy-focusing effect that makes waves feel punchier than they would on an open beach.</p>
     <pre>openness = 0.25 (narrow) or 0.9 (wide)
     energy = H<sub>breaker</sub> &middot; T
     capacity = 50 &middot; openness
-    ratio = energy / capacity  &rarr; piecewise 1.0 &rarr; 0.3</pre>
+    ratio = energy / capacity
+    if ratio &lt; 0.5:
+        return 1.05 (narrow) or 1.0 (wide)   &larr; energy focus boost
+    else:
+        piecewise 0.9 &rarr; 0.3</pre>
 
     <h4>2.2.4 Tide Factor (tdv)</h4>
+    <p><strong>2026-07-27 update:</strong> Trend bonus changed from asymmetric (+0.1 rising, -0.05 falling) to symmetric &plusmn;0.075 to match the equal-and-opposite nature of tidal push/suck.</p>
     <pre>base: &lt; 0.4m &rarr; 0.6, 0.4&ndash;0.8m &rarr; 0.8, 0.8&ndash;1.2m &rarr; 0.9, &gt; 1.5m &rarr; 0.5
-    trend: rising +0.1, falling &minus;0.05</pre>
+    trend: rising +0.075, falling &minus;0.075</pre>
 
     <h4>2.2.5 Wind-Sea Quality (wsq)</h4>
     <pre>wsr = H<sub>wind_wave</sub> / H<sub>dominant_swell</sub>
     wsq = 1.0 if wsr &le; 0.25, else max(0.7, 1 &minus; (wsr &minus; 0.25) / 2.5)</pre>
 
-    <h4>2.2.6 Groundswell Quality Factor (gs_factor)</h4>
+    <h4>2.2.6 Swell Variability Quality (sv)</h4>
+    <p><strong>2026-07-27 new:</strong> Broad-spectrum (messy) conditions penalised via T<sub>p</sub>/T<sub>m</sub> gap. A narrow spectrum means organised swell with clean lines. A broad spectrum means mixed energy and poorer quality.</p>
+    <pre>ratio = T<sub>p</sub> / T<sub>m</sub>  (clamped to 2.5)
+    sv = max(0.70, 1.0 &minus; (ratio &minus; 1.0) &middot; 0.2)
+    // ratio=1.0 (tight) &rarr; 1.00, ratio=1.5 (moderate) &rarr; 0.90, ratio=2.5 (messy) &rarr; 0.70</pre>
+
+    <h4>2.2.7 Groundswell Quality Factor (gs_factor)</h4>
     <table>
         <tr><th>Period</th><th>Factor</th></tr>
         <tr><td>&ge; 12s</td><td>1.30</td></tr>
@@ -195,7 +215,7 @@
         <tr><td>&lt; 6s</td><td>0.50</td></tr>
     </table>
 
-    <h4>2.2.7 Bar Quality Modifier (bar)</h4>
+    <h4>2.2.8 Bar Quality Modifier (bar)</h4>
     <p>Uses each beach&#39;s <code>bar_depth_cd</code> (bar top depth at chart datum) to shift the tide windows to match the actual bar depth, and <code>bar_quality</code> to adjust the sweet spot width.</p>
     <pre>depth_over_bar = tide_height &minus; bar_depth_cd
     // Negative = bar exposed, Positive = water over the bar
