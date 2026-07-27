@@ -136,16 +136,16 @@
 
     <h3>2.1 Wave Height Score (Logarithmic)</h3>
     <p><strong>2026-07-27 restructure (second pass):</strong> Height is the foundation. Double-exponential to crush low end — 1ft is barely surfable, 2ft can reach Good with perfect conditions but never Great.</p>
-    <pre>height_score = min(5.0, 5.0 &middot; (1 &minus; exp(&minus;(H<sub>breaker</sub> / 1.0)<sup>1.5</sup>)))
+    <pre>height_score = min(5.0, 5.0 &middot; (1 &minus; exp(&minus;(H<sub>breaker</sub> / 1.3)<sup>1.5</sup>)))
 
-    10cm (unsurfable) &rarr; 0.19
-    1ft (0.3m)       &rarr; 0.76  (trash)
-    2ft (0.6m)       &rarr; 1.86  (can reach Good with perfect quality)
-    3ft (0.9m)       &rarr; 2.87
-    4ft (1.2m)       &rarr; 3.66
-    6ft (1.8m)       &rarr; 4.55  (asymptoting toward 5)
-    Double Over (3m)  &rarr; 4.97</pre>
-    <p>Double overhead hits 5. Beyond that it's academic — nobody charges bigger with a 5-star quality score.</p>
+    10cm (unsurfable) &rarr; 0.12
+    1ft (0.3m)       &rarr; 0.52  (trash)
+    2ft (0.6m)       &rarr; 1.35  (maxes at Good with perfect quality)
+    3ft (0.9m)       &rarr; 2.19  (maxes at Great with perfect quality)
+    4ft (1.2m)       &rarr; 2.94
+    6ft (1.8m)       &rarr; 4.02  (good quality = Epic)
+    Double Over (3m)  &rarr; 4.85</pre>
+    <p>Double overhead asymptotes at 5. The curve is aggressively compressed so 2ft can never reach Great and 3ft can never reach Epic, even with perfect quality. Big waves (6ft+) still need decent quality for Epic — a messy 6ft day rates Great.</p>
 
     <h3>2.2 Wave Quality (8 Factors, 0&ndash;2 Scale, Weighted)</h3>
     <p><strong>2026-07-27 restructure:</strong> Each quality factor is 0&ndash;2 with 1 = neutral performance. Factors are combined via weighted geometric mean so each factor's importance is proportional to its weight.</p>
@@ -255,15 +255,16 @@ quality_multiplier = &Pi;(1 + weight &middot; (factor &minus; 1))
     <h2>3. Final Rating</h2>
     <pre>rating = min(5.0, max(0.0, height_score &middot; quality_multiplier))</pre>
     <p>Rating = height &times; quality. Multiplicative, not additive &mdash; big waves get properly penalised for poor quality (a clean 3ft day should beat a blown-out 6ft day). The height score provides the foundation; quality scales it up or down.</p>
-    <p><strong>Key behaviours with this formula (weights increased 2026-07-27):</strong></p>
+    <p><strong>Key behaviours with this formula (final calibration 2026-07-27):</strong></p>
     <ul>
-        <li>1ft with perfect quality &rarr; 1.35 (Fair) &mdash; basically trash, even perfect</li>
-        <li>2ft with perfect quality &rarr; 3.30 (Great) &mdash; theoretical max, all 8 factors at 2.0 (impossible)</li>
-        <li>2ft with good quality &rarr; 2.16 (Good) &mdash; realistic best case stays Good</li>
-        <li>3ft with good quality &rarr; 3.33 (Great) &mdash; decent size, decent quality</li>
-        <li>6ft with good quality &rarr; 5.00 (Epic) &mdash; big AND clean = amazing</li>
-        <li>6ft with poor quality &rarr; 3.47 (Great) &mdash; big but messy, properly penalised</li>
-        <li>6ft with terrible quality &rarr; 2.43 (Good) &mdash; blown-out big waves still rideable</li>
+        <li>1ft with perfect quality &rarr; 0.93 (Poor) &mdash; basically trash, even perfect</li>
+        <li>2ft with perfect quality &rarr; 2.39 (Good) &mdash; maxes at Good, never Great</li>
+        <li>2ft with good quality &rarr; 1.56 (Fair) &mdash; small wave with decent conditions</li>
+        <li>3ft with perfect quality &rarr; 3.89 (Great) &mdash; maxes at Great, never Epic</li>
+        <li>3ft with good quality &rarr; 2.54 (Good) &mdash; decent size, decent quality</li>
+        <li>6ft with good quality &rarr; 4.67 (Epic) &mdash; big AND clean = amazing</li>
+        <li>6ft with poor quality &rarr; 3.06 (Great) &mdash; big but messy, properly penalised</li>
+        <li>6ft with terrible quality &rarr; 2.14 (Good) &mdash; blown-out big waves still rideable</li>
     </ul>
 
     <table>
