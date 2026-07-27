@@ -134,14 +134,34 @@
 
     <h2>2. Surf Quality Rating</h2>
 
-    <h3>2.1 Wave Height Score</h3>
-    <pre>whs = min(5, 5 &middot; (H<sub>breaker</sub> / 1.83)<sup>0.85</sup>)
-    where 1.83m = 6ft (overhead reference)</pre>
-    <p>Beyond overhead, the height score plateaus and quality factors differentiate.</p>
+    <h3>2.1 Wave Height Score (Logarithmic)</h3>
+    <p><strong>2026-07-27 restructure:</strong> Height is the foundation. Logarithmic so returns diminish as waves get bigger.</p>
+    <pre>height_score = min(5.0, 5.0 &middot; (1 &minus; exp(&minus;H<sub>breaker</sub> / 0.8)))
 
-    <h3>2.2 Wave Quality (7 Factors, Multiplicative)</h3>
-<pre>wq = min(1.0, bwq &middot; embay &middot; brk &middot; wsq &middot; gs_factor &middot; sv &middot; bar)</pre>
-    <div class="todo-box">TODO: Replace pure multiplication with weighted harmonic mean or weighted sum. Correlated factors (bar and breaker both depend on tide) double-penalise.</div>
+    10cm (unsurfable) &rarr; 0.59
+    1ft (0.3m)       &rarr; 1.56
+    2ft (0.6m)       &rarr; 2.64
+    3ft (0.9m)       &rarr; 3.38
+    6ft (1.8m)       &rarr; 4.47
+    Double Over (3m)  &rarr; 4.88</pre>
+    <p>Double overhead is the ceiling. Beyond that returns are negligible.</p>
+
+    <h3>2.2 Wave Quality (8 Factors, 0&ndash;2 Scale, Weighted)</h3>
+    <p><strong>2026-07-27 restructure:</strong> Each quality factor is 0&ndash;2 with 1 = neutral performance. Factors are combined via weighted geometric mean so each factor's importance is proportional to its weight.</p>
+    <pre>factors = {
+    wind:        max(0, min(2, 0.2 + bwq &middot; 1.8)),         weight = 0.10
+    period:      max(0, min(2, 0.3 + (gs &minus; 0.5) &middot; 1.5)), weight = 0.08
+    breaker:     max(0, min(2, 0.2 + (brk &minus; 0.4) &middot; 2.5)), weight = 0.06
+    wind_sea:    max(0, min(2, 0.2 + (wsq &minus; 0.65) &middot; 3.5)), weight = 0.04
+    tide:        max(0, min(2, (tdv &minus; 0.15) &middot; 2.0)),    weight = 0.04
+    sandbar:     max(0, min(2, 0.2 + (bar &minus; 0.4) &middot; 2.0)), weight = 0.04
+    variability: max(0, min(2, 0.2 + (sv &minus; 0.65) &middot; 3.5)), weight = 0.03
+    embayment:   max(0, min(2, 0.2 + (embay &minus; 0.5) &middot; 2.5)), weight = 0.03
+}
+
+quality_multiplier = &Pi;(1 + weight &middot; (factor &minus; 1))
+// Neutral (all 1.0) &rarr; 1.000; perfect (all 2.0) &rarr; 1.475; terrible (all 0) &rarr; 0.662</pre>
+    <p>Weights sum to 0.40. This limits the quality multiplier to roughly &plusmn;50%, so height remains the dominant factor. A 2ft wave can never reach Epic regardless of quality.</p>
 
     <h4>2.2.1 Wind Quality (bwq)</h4>
     <p>Two-component model &mdash; beach-relative wind (onshore/offshore) blended with swell-relative wind (face/back alignment):</p>
@@ -232,10 +252,18 @@
     <hr>
 
     <h2>3. Final Rating</h2>
-    <pre>height_part = whs &middot; 0.4
-    quality_part = wq &middot; 5.0 &middot; 0.6
-    rating = clamp(height_part + quality_part, 0, 5)</pre>
-    <p>Height 40%, quality 60%. Decoupled so small clean days rate properly.</p>
+    <pre>rating = min(5.0, max(0.0, height_score &middot; quality_multiplier))</pre>
+    <p>Rating = height &times; quality. Multiplicative, not additive &mdash; big waves get properly penalised for poor quality (a clean 3ft day should beat a blown-out 6ft day). The height score provides the foundation; quality scales it up or down.</p>
+    <p><strong>Key behaviours with this formula:</strong></p>
+    <ul>
+        <li>2ft with perfect quality &rarr; 3.89 (Great) &mdash; small but clean, can't reach Epic</li>
+        <li>2ft with average quality &rarr; 2.64 (Good) &mdash; small and OK conditions</li>
+        <li>2ft with poor quality &rarr; 1.75 (Fair) &mdash; small and bad, not worth it</li>
+        <li>6ft with good quality &rarr; 4.95 (Epic) &mdash; big AND clean = amazing</li>
+        <li>6ft with poor quality &rarr; 3.73 (Great) &mdash; big but messy, properly penalised</li>
+        <li>3ft with good quality &rarr; 4.06 (Epic) &mdash; need decent size + good conditions</li>
+        <li>1ft with perfect quality &rarr; 2.31 (Good) &mdash; tiny can't punch through</li>
+    </ul>
 
     <table>
         <tr><th>Score</th><th>Badge</th><th>Colour</th></tr>
