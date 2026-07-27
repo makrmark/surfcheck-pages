@@ -15,91 +15,27 @@
             padding: 20px;
             background: #fafafa;
         }
-        header {
-            text-align: center;
-            padding: 30px 0 20px;
-            border-bottom: 2px solid #0066cc;
-            margin-bottom: 30px;
-        }
+        header { text-align: center; padding: 30px 0 20px; border-bottom: 2px solid #0066cc; margin-bottom: 30px; }
         h1 { color: #0066cc; font-size: 1.6em; }
         .subtitle { color: #666; font-size: 0.9em; margin-top: 5px; }
-        h2 {
-            color: #0066cc;
-            border-bottom: 2px solid #e6f2ff;
-            padding-bottom: 8px;
-            margin: 30px 0 15px;
-            font-size: 1.25em;
-        }
-        h3 {
-            color: #2c3e50;
-            margin: 20px 0 8px;
-            font-size: 1.05em;
-        }
-        h4 {
-            color: #555;
-            margin: 12px 0 5px;
-            font-size: 0.95em;
-        }
+        h2 { color: #0066cc; border-bottom: 2px solid #e6f2ff; padding-bottom: 8px; margin: 30px 0 15px; font-size: 1.25em; }
+        h3 { color: #2c3e50; margin: 20px 0 8px; font-size: 1.05em; }
+        h4 { color: #555; margin: 12px 0 5px; font-size: 0.95em; }
         p, li { font-size: 0.92em; color: #444; }
         ul, ol { padding-left: 20px; }
         li { margin-bottom: 4px; }
-        code {
-            background: #f0f0f0;
-            padding: 1px 5px;
-            border-radius: 3px;
-            font-size: 0.88em;
-            color: #c7254e;
-        }
+        code { background: #f0f0f0; padding: 1px 5px; border-radius: 3px; font-size: 0.88em; color: #c7254e; }
         pre {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            border-left: 3px solid #0066cc;
-            padding: 12px 15px;
-            border-radius: 0 5px 5px 0;
-            overflow-x: auto;
-            font-size: 0.82em;
-            line-height: 1.5;
-            margin: 10px 0;
+            background: #f5f5f5; border: 1px solid #ddd; border-left: 3px solid #0066cc;
+            padding: 12px 15px; border-radius: 0 5px 5px 0; overflow-x: auto;
+            font-size: 0.82em; line-height: 1.5; margin: 10px 0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-            font-size: 0.9em;
-        }
-        th, td {
-            text-align: left;
-            padding: 5px 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background: #f0f8ff;
-            font-weight: 600;
-        }
-        .note {
-            background: #fffbe6;
-            border-left: 3px solid #f0ad4e;
-            padding: 10px 14px;
-            margin: 10px 0;
-            border-radius: 0 4px 4px 0;
-            font-size: 0.9em;
-        }
-        .todo-box {
-            background: #f0f0f0;
-            border-left: 3px solid #999;
-            padding: 8px 14px;
-            margin: 10px 0;
-            border-radius: 0 4px 4px 0;
-            font-size: 0.85em;
-            color: #666;
-        }
-        .fn { color: #7b2d8e; }
-        .kwd { color: #d73a49; }
-        .num { color: #005cc5; }
-        @media (max-width: 600px) {
-            h1 { font-size: 1.3em; }
-            body { padding: 12px; }
-        }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.9em; }
+        th, td { text-align: left; padding: 5px 10px; border-bottom: 1px solid #ddd; }
+        th { background: #f0f8ff; font-weight: 600; }
+        .note { background: #fffbe6; border-left: 3px solid #f0ad4e; padding: 10px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 0.9em; }
+        .todo-box { background: #f0f0f0; border-left: 3px solid #999; padding: 8px 14px; margin: 10px 0; border-radius: 0 4px 4px 0; font-size: 0.85em; color: #666; }
+        @media (max-width: 600px) { h1 { font-size: 1.3em; } body { padding: 12px; } }
     </style>
 </head>
 <body>
@@ -108,98 +44,96 @@
         <p class="subtitle">Technical reference &mdash; wave height and quality calculations</p>
     </header>
 
-    <h2>1. Wave Height</h2>
+    <h2>1. Wave Height Pipeline</h2>
+    <p>The wave height at each beach is computed through a four-stage pipeline:</p>
+    <pre>offshore swell
+  &rarr; 1. Refraction (Snell's law for parallel contours)
+  &rarr; 2. Diffraction (cosine-squared Fresnel, period-dependent)
+  &rarr; 3. Shoaling (linear wave theory, Newton-Raphson wavenumber solver)
+  &rarr; 4. Iterative breaker loop (H_b / h_b = 0.78)
+  &rarr; breaker height (= face height)</pre>
+    <p>The Sydney coastline general shore-normal is roughly ESE (100&deg;). Each beach uses its own aspect from <code>beaches.json</code> as the local shore-normal for refraction.</p>
 
     <h3>1.1 Combined Swell Energy</h3>
-    <p>All available swell components (primary, secondary, tertiary) are evaluated for each beach. Their effective heights (after shoaling and diffraction) are combined via <strong>root-sum-square (RSS)</strong> energy addition:</p>
+    <p>All available swell components (primary, secondary, tertiary) are evaluated for each beach. Their effective heights (after the full pipeline) are combined via <strong>root-sum-square (RSS)</strong> energy addition:</p>
     <pre>H_combined = &radic;(H&#x2081;&sup2; + H&#x2082;&sup2; + H&#x2083;&sup2;)</pre>
-    <p>Components with negligible height (&lt; 0.01m after diffraction) are excluded. The <strong>dominant component</strong> (largest effective height contribution) sets the wave period, direction, and quality character for the beach.</p>
+    <p>The <strong>dominant component</strong> (largest effective height contribution) sets the wave period, direction, and quality character.</p>
 
-    <h3>1.2 Headland Diffraction</h3>
-    <p>Each beach has a swell window defined by its aspect angle and left/right offsets. Swell arriving inside the window passes without loss. Outside the window, energy is reduced by a <strong>cosine-squared Fresnel diffraction model</strong>:</p>
+    <h3>1.2 Refraction (Snell's Law for Parallel Contours)</h3>
+    <p>As waves approach the coast, their phase velocity decreases in shallower water, causing the wave rays to bend toward the shore-normal. This is computed using Snell's law:</p>
+    <pre>sin(&alpha;&#x2081;&#x2080;) / c&#x2081;&#x2080; = sin(&alpha;&#x2080;) / c&#x2080;
+    where:
+      c&#x2080; = gT / 2&pi;  (deep water celerity)
+      c&#x2081;&#x2080; = phase velocity at 10m depth (from shoaling solver)
+      &alpha;&#x2080; = angle between deep-water ray and shore-normal
+      &alpha;&#x2081;&#x2080; = refracted angle at 10m depth</pre>
+    <p>The refracted direction replaces the raw offshore direction in both the diffraction calculation and the attack angle. This prevents the model from using an offshore ray angle that's no longer valid by the time the wave reaches the headland shadow zone.</p>
+    <p>For a typical S swell (180&deg;) at an SE beach (135&deg;), the 45&deg; offshore angle refracts to approximately 21&deg; at 10m depth.</p>
+
+    <h3>1.3 Headland Diffraction</h3>
+    <p>Each beach has a swell window defined by its aspect angle and left/right offsets. Swell arriving inside the window passes without loss. Outside the window, energy is reduced by a <strong>cosine-squared Fresnel diffraction model</strong>, period-dependent:</p>
     <pre>K<sub>d</sub> = cos&sup2;(&theta; &middot; &pi;/2 &middot; 90&deg;)
-    where &theta; = shadow_angle &middot; (10 / T)
+    &theta; = shadow_angle &middot; (10 / T)   (period-adjusted)
     K<sub>d</sub> &isin; [0.05, 1.0]</pre>
-    <p><strong>Period dependence:</strong> Longer period swells diffract more (wrap around headlands more effectively). The effective shadow angle is scaled by a period factor: <code>10 / max(T, 3)</code>.</p>
 
-    <h3>1.3 Shoaling</h3>
-    <p>Wave shoaling is computed using <strong>linear wave theory</strong> at a reference depth of 10m. The dispersion relation is solved via Newton-Raphson iteration (3 iterations) to obtain the wavenumber <em>k</em>, then the shoaling coefficient is:</p>
-    <pre>K<sub>s</sub> = &radic;(c<sub>g0</sub> / c<sub>g</sub>)
-    c<sub>g0</sub> = group velocity in deep water
-    c<sub>g</sub> = n &middot; c at 10m depth
-    n = 0.5 &middot; (1 + 2kh / sinh(2kh))
-    K<sub>s</sub> &ge; 1.0 &middot; slope_modifier</pre>
-    <p><strong>Slope modifier:</strong> The per-beach slope modifier is <em>inverted</em> for shoaling. Flat beaches shoal waves more over their longer approach zone, while steep reflective beaches transition faster and shoal less:</p>
+    <h3>1.4 Shoaling + Iterative Breaker Loop</h3>
+    <p><strong>This replaces the old fixed-depth shoaling at 10m, the slope modifier, the period-based face height multiplier, and the depth-limited cap &mdash; all with one physical calculation.</strong></p>
+    <p>Starting from 10m depth (plus tide height), the wave steps down toward the beach in 0.5m increments. At each step, the shoaling coefficient is computed from linear wave theory (Newton-Raphson wavenumber solver), and the breaker criterion is checked:</p>
+    <pre>h = 10.0 + tide_height
+    while h >= 0.5:
+        K<sub>s</sub> = &radic;(c<sub>g0</sub> / c<sub>g</sub>(h))   (shoaling to depth h)
+        H = H<sub>offshore</sub> &middot; K<sub>s</sub> &middot; K<sub>d</sub>
+        if H / h >= 0.78:          &larr; depth-limited breaker criterion
+            return H               &larr; this is the breaker height (face height)
+        h -= 0.5</pre>
+    <p>The shoaling coefficient uses the dispersion relation solved via Hunt's approximation + 3 Newton-Raphson iterations:</p>
+    <pre>&omega;&sup2; = gk &middot; tanh(kh)
+    K<sub>s</sub> = &radic;(c<sub>g0</sub> / c<sub>g</sub>)
+    c<sub>g</sub> = n &middot; &omega;/k,  n = 0.5(1 + 2kh / sinh(2kh))</pre>
+
+    <h4>What the loop naturally handles</h4>
     <table>
-        <tr><th>Slope</th><th>Quality modifier</th><th>Shoaling modifier (inverted)</th></tr>
-        <tr><td>Steep</td><td>1.15</td><td>0.87 (1/1.15)</td></tr>
-        <tr><td>Moderate</td><td>1.00</td><td>1.00</td></tr>
-        <tr><td>Flat</td><td>0.85</td><td>1.18 (1/0.85)</td></tr>
-    </table>
-    <div class="note">The slope modifier has a <strong>dual role</strong>: it amplifies shoaling for flat beaches (inverted) while also influencing breaker quality (normal direction). Steep beaches produce punchier waves at higher height-to-depth ratios.</div>
-
-    <h3>1.4 Depth-Limited Breaking Cap</h3>
-    <p>After shoaling and diffraction, the effective height is capped by the depth-limited breaker criterion:</p>
-    <pre>H &le; &gamma; &middot; h
-    &gamma; = 0.78 (breaker index)
-    h = 10m (reference depth)
-    H_max &asymp; 7.8m</pre>
-    <p>This only activates for extreme swells (&gt;~6m at the 10m contour). For typical Sydney surf (1&ndash;4m), no cap is applied.</p>
-    <div class="todo-box">TODO: Replace fixed-depth cap with an iterative solver that finds the actual breaker depth from the beach slope profile and incident wave parameters.</div>
-
-    <h3>1.5 Face Height Conversion</h3>
-    <p>The visible face of a breaking wave is significantly taller than the significant wave height. Face height is estimated from the nearshore effective height using a <strong>period-based multiplier</strong>:</p>
-    <pre>face_height = H_effective &middot; period_factor &middot; wind_boost
-    period_factor = 0.7 + T &middot; 0.07
-    period_factor &isin; [1.0, 2.0]
-    total_multiplier &isin; [1.0, 2.5]</pre>
-    <table>
-        <tr><th>Period</th><th>Period factor</th><th>Example (2m swell)</th></tr>
-        <tr><td>6s (windswell)</td><td>1.1&times;</td><td>2.2m face</td></tr>
-        <tr><td>10s</td><td>1.4&times;</td><td>2.8m face</td></tr>
-        <tr><td>12s</td><td>1.5&times;</td><td>3.0m face</td></tr>
-        <tr><td>14s</td><td>1.7&times;</td><td>3.4m face</td></tr>
-        <tr><td>16s</td><td>1.8&times;</td><td>3.6m face</td></tr>
+        <tr><th>Factor</th><th>Old approach</th><th>New approach</th></tr>
+        <tr><td>Beach slope</td><td>Fudge modifier on Ks at 10m</td><td>Natural: depth-stepping physics; no slope modifier needed</td></tr>
+        <tr><td>Tide</td><td>Separate tide factor modifier</td><td>Natural: starting depth = 10m + tide; higher tide = more room to shoal</td></tr>
+        <tr><td>Swell period</td><td>Period-based face height multiplier</td><td>Natural: longer period = larger Ks at any depth = trips earlier</td></tr>
+        <tr><td>Depth limit</td><td>Fixed 7.8m cap at 10m</td><td>Natural: breaker criterion at actual depth</td></tr>
+        <tr><td>Face height</td><td>Arbitrary period multiplier</td><td>Natural: breaker height IS the face height</td></tr>
     </table>
 
-    <h3>1.6 Wind Hold-Up Boost</h3>
-    <p>Offshore wind hitting the wave face head-on holds the wave up, making it taller and steeper. A wind boost multiplier is computed from wind speed and the angle between wind direction and swell source direction:</p>
+    <h3>1.5 Wind Hold-Up Boost</h3>
+    <p>Offshore wind hitting the wave face head-on holds the wave up, making it taller. A post-breaker wind boost is applied to the breaker height:</p>
     <pre>wind_vs_swell = |wind_dir &minus; swell_dir| (wrapped to 0&ndash;180&deg;)
     hold_up = (1 &minus; cos(wind_vs_swell)) / 2
     strength = clamp((wind_speed &minus; 5) / 35, 0, 1)
-    wind_boost = 1.0 + hold_up &middot; strength &middot; 0.25</pre>
-    <p>Wind opposite to the swell source (180&deg; apart) hits the wave face directly &rarr; max hold-up. Wind aligned with the swell source (0&deg;) goes off the back &rarr; no boost. The boost ramps linearly between 5&ndash;40 km/h, capping at 25% additional face height.</p>
+    wind_boost = 1.0 + hold_up &middot; strength &middot; 0.25
+    face_height = breaker_height &middot; wind_boost</pre>
+    <p>Wind opposite to the swell source (180&deg; apart) = hits the face directly = max 25% boost. Wind aligned with the swell source (0&deg;) = off the back = no boost.</p>
 
-    <h3>1.7 Height Range from Spectral Width</h3>
-    <p>When the swell spectrum is broad (mixed conditions), heights are displayed as a range rather than a single value. The gap between peak period (T<sub>p</sub>) and mean period (T<sub>m</sub>) is used as a proxy for spectral width:</p>
+    <h3>1.6 Height Range from Spectral Width</h3>
+    <p>When the swell spectrum is broad, heights display as a range. The T<sub>p</sub>/T<sub>m</sub> gap proxies spectral width:</p>
     <pre>ratio = T<sub>p</sub> / T<sub>m</sub>  (clamped to 2.5)
     lower_mult = max(0.75, 1.0 &minus; (ratio &minus; 1.0) &middot; 0.1)
     upper_mult = 1.0 + (ratio &minus; 1.0) &middot; 0.4
-    H_lower = H_effective &middot; lower_mult
-    H_upper = H_effective &middot; upper_mult</pre>
+    H_range = [H_eff &middot; lower_mult, H_eff &middot; upper_mult]</pre>
 
     <hr>
 
     <h2>2. Surf Quality Rating</h2>
 
     <h3>2.1 Wave Height Score</h3>
-    <pre>whs = min(5, 5 &middot; (H_effective / 1.83)<sup>0.85</sup>)
+    <pre>whs = min(5, 5 &middot; (H<sub>breaker</sub> / 1.83)<sup>0.85</sup>)
     where 1.83m = 6ft (overhead reference)</pre>
     <p>Beyond overhead, the height score plateaus and quality factors differentiate.</p>
 
     <h3>2.2 Wave Quality (7 Factors, Multiplicative)</h3>
     <pre>wq = bwq &middot; embay &middot; brk &middot; wsq &middot; gs_factor &middot; bar</pre>
-    <div class="todo-box">TODO: The multiplicative approach means any single 0.5 factor halves the score regardless of other conditions. Correlated factors (bar and breaker both depend on tide) compound the issue. Planned replacement: weighted harmonic mean or weighted sum.</div>
+    <div class="todo-box">TODO: Replace pure multiplication with weighted harmonic mean or weighted sum. Correlated factors (bar and breaker both depend on tide) double-penalise.</div>
 
     <h4>2.2.1 Wind Quality (bwq)</h4>
-    <p>Two-component model blending beach-relative wind (onshore/offshore) with swell-relative wind (face/back alignment):</p>
+    <p>Two-component model &mdash; beach-relative wind (onshore/offshore) blended with swell-relative wind (face/back alignment):</p>
     <pre>// Beach-relative: exponential speed penalty by direction band
     beach_q = f(|wind_dir &minus; beach_aspect|, speed)
-    // Bands: 0&ndash;30&deg; (offshore) &rarr; 1.0 &minus; (s/80)&sup2;
-    //        30&ndash;60&deg; (cross-off) &rarr; 0.8 &minus; (s/100)&sup2;
-    //        60&ndash;120&deg; (cross) &rarr; 0.5 &minus; (s/120)&sup2;
-    //        120&ndash;150&deg; (cross-on) &rarr; 0.3 &minus; (s/150)&sup2;
-    //        150&ndash;180&deg; (onshore) &rarr; 0.1 &minus; (s/200)&sup2;
 
     // Swell-relative: wind opposite to swell source = on face = boost
     wind_vs_swell = |wind_dir &minus; swell_dir| (wrapped to 0&ndash;180&deg;)
@@ -209,72 +143,49 @@
 
     bwq = beach_q &middot; (1 &minus; blend) + (beach_q &middot; swell_mod) &middot; blend
     blend = min(speed / 30, 1) &middot; 0.4</pre>
-    <p>The blend weights swell alignment more heavily at higher wind speeds.</p>
 
     <h4>2.2.2 Breaker Quality (brk)</h4>
-    <p>Estimates how cleanly the wave breaks from the height-to-depth ratio at the break line:</p>
     <pre>depth = tide_height + 1.0m
-    delta = H_effective / max(depth, 0.5)
+    delta = H<sub>breaker</sub> / max(depth, 0.5)
     ideal = 0.3 + 0.2 &middot; slope_modifier
-    // steep: ideal=0.53, moderate: ideal=0.50, flat: ideal=0.47
     quality = 1.0 &minus; min(|delta &minus; ideal| &middot; 2.0, 1.0)</pre>
-    <p>Steeper beaches have a higher ideal height-to-depth ratio &mdash; they produce punchier, more critical waves. Flatter beaches break at lower ratios.</p>
 
     <h4>2.2.3 Embayment Factor (embay)</h4>
-    <p>Measures how well the beach's physical layout accommodates the incoming swell energy:</p>
     <pre>openness = 0.25 (narrow) or 0.9 (wide)
-    energy = H_effective &middot; T
+    energy = H<sub>breaker</sub> &middot; T
     capacity = 50 &middot; openness
-    ratio = energy / capacity
-    piecewise: ratio &lt; 0.5 &rarr; 1.0
-               ratio &lt; 1.0 &rarr; 0.9 &rarr; 0.7
-               ratio &lt; 2.0 &rarr; 0.7 &rarr; 0.5
-               else &rarr; 0.5 &rarr; 0.3 (close-out)</pre>
-    <p>Narrow beaches (Freshwater) close out on big swells but produce punchy peaks on small days. Wide beaches (Long Reef, Curl Curl) handle size better.</p>
+    ratio = energy / capacity  &rarr; piecewise 1.0 &rarr; 0.3</pre>
 
     <h4>2.2.4 Tide Factor (tdv)</h4>
-    <pre>base: &lt; 0.4m &rarr; 0.6
-         0.4&ndash;0.8m &rarr; 0.8
-         0.8&ndash;1.2m &rarr; 0.9 (sweet spot)
-         1.2&ndash;1.5m &rarr; 0.7
-         &gt; 1.5m &rarr; 0.5
+    <pre>base: &lt; 0.4m &rarr; 0.6, 0.4&ndash;0.8m &rarr; 0.8, 0.8&ndash;1.2m &rarr; 0.9, &gt; 1.5m &rarr; 0.5
     trend: rising +0.1, falling &minus;0.05</pre>
 
     <h4>2.2.5 Wind-Sea Quality (wsq)</h4>
-    <p>Penalises quality when local wind chop exceeds 25% of the dominant swell height:</p>
-    <pre>wsr = H_wind_wave / H_dominant_swell
-    wsq = 1.0 if wsr &le; 0.25
-    wsq = max(0.7, 1 &minus; (wsr &minus; 0.25) / 2.5) if wsr &gt; 0.25</pre>
+    <pre>wsr = H<sub>wind_wave</sub> / H<sub>dominant_swell</sub>
+    wsq = 1.0 if wsr &le; 0.25, else max(0.7, 1 &minus; (wsr &minus; 0.25) / 2.5)</pre>
 
     <h4>2.2.6 Groundswell Quality Factor (gs_factor)</h4>
-    <p>Rewards long-period organised groundswell and penalises short-period wind-driven chop:</p>
     <table>
-        <tr><th>Period</th><th>Factor</th><th>Meaning</th></tr>
-        <tr><td>&ge; 12s</td><td>1.30</td><td>Proper long-period groundswell, clean organised lines</td></tr>
-        <tr><td>&ge; 10s</td><td>1.15</td><td>Decent groundswell, good energy</td></tr>
-        <tr><td>&ge; 8s</td><td>1.00</td><td>Mixed, some organisation</td></tr>
-        <tr><td>&ge; 6s</td><td>0.75</td><td>Short-period windswell, weak/pitchy</td></tr>
-        <tr><td>&lt; 6s</td><td>0.50</td><td>Wind-driven chop</td></tr>
+        <tr><th>Period</th><th>Factor</th></tr>
+        <tr><td>&ge; 12s</td><td>1.30</td></tr>
+        <tr><td>&ge; 10s</td><td>1.15</td></tr>
+        <tr><td>&ge; 8s</td><td>1.00</td></tr>
+        <tr><td>&ge; 6s</td><td>0.75</td></tr>
+        <tr><td>&lt; 6s</td><td>0.50</td></tr>
     </table>
 
     <h4>2.2.7 Bar Quality Modifier (bar)</h4>
-    <p>Tide-dependent quality boost for beaches with sandbars (all beaches except Long Reef, which is a flat rock platform):</p>
-    <pre>tide &lt; 0.3m &rarr; 0.95 (exposed bar, close-out)
-    tide 0.3&ndash;0.8m &rarr; 1.00 &rarr; 1.15 (ramping up)
-    tide 0.8&ndash;1.3m &rarr; 1.15 (sweet spot)
-    tide 1.3&ndash;1.8m &rarr; 1.15 &rarr; 0.90 (tapering off)
-    tide &gt; 1.8m &rarr; 0.90 (too deep over the bar)</pre>
+    <p>Tide-dependent boost for sandbar beaches (all except Long Reef):</p>
+    <pre>tide &lt; 0.3m &rarr; 0.95, 0.3&ndash;0.8m &rarr; 1.00&rarr;1.15, 0.8&ndash;1.3m &rarr; 1.15, 1.3&ndash;1.8m &rarr; 1.15&rarr;0.90, &gt; 1.8m &rarr; 0.90</pre>
 
     <hr>
 
     <h2>3. Final Rating</h2>
-    <p>The final rating is a <strong>decoupled combination</strong> of height score and quality:</p>
     <pre>height_part = whs &middot; 0.4
     quality_part = wq &middot; 5.0 &middot; 0.6
     rating = clamp(height_part + quality_part, 0, 5)</pre>
-    <p>Height contributes 40%, quality 60%. This decoupling prevents big messy waves from rating well just because they're big, and lets small clean days (e.g. 0.3m glassy) rate properly (~3.1 vs ~1.0 under the old height-only model).</p>
+    <p>Height 40%, quality 60%. Decoupled so small clean days rate properly.</p>
 
-    <h3>Badge Mapping</h3>
     <table>
         <tr><th>Score</th><th>Badge</th><th>Colour</th></tr>
         <tr><td>4.5&ndash;5.0</td><td>Epic</td><td style="color:#7b2d8e;">Purple</td></tr>
@@ -286,30 +197,9 @@
 
     <hr>
 
-    <h2>4. Board Recommendation</h2>
-    <p>Board selection is based on effective face height, with adjustments for swell period and quality:</p>
-    <pre>adj_height = H_effective &middot; (0.7 + wq &middot; 0.3)
-    // Good conditions (wq=1.0): no adjustment
-    // Poor conditions (wq=0.2): adj = 76% (bump up one volume category)</pre>
-    <table>
-        <tr><th>Effective height</th><th>Boards</th></tr>
-        <tr><td>&lt; 0.3m</td><td>Longboard, Log</td></tr>
-        <tr><td>0.3&ndash;0.6m</td><td>Longboard, Funboard</td></tr>
-        <tr><td>0.6&ndash;1.0m</td><td>Groveller, Fish, Funboard</td></tr>
-        <tr><td>1.0&ndash;1.5m</td><td>Shortboard, Fish, Mid-Length</td></tr>
-        <tr><td>1.5&ndash;2.0m</td><td>Shortboard, Mid-Length, Step-Up</td></tr>
-        <tr><td>2.0&ndash;3.0m</td><td>Step-Up, Mini-Gun</td></tr>
-        <tr><td>&gt; 3.0m</td><td>Gun</td></tr>
-    </table>
-    <p>Long period (&ge;12s, &ge;1.2m) favours Step-Up. Short period (&lt;8s) favours more volume.</p>
-
-    <hr>
-
-    <h2>5. Open TODOs</h2>
+    <h2>4. Open TODOs</h2>
     <ul>
-        <li><strong>Refraction</strong> &mdash; Add Snell's law refraction from depth contours. Wave bending is a larger effect than diffraction for most Sydney beaches but requires bathymetry data.</li>
-        <li><strong>Weighted scoring</strong> &mdash; Replace pure multiplicative quality factors with weighted harmonic mean or weighted sum so correlated factors (bar and breaker both depend on tide) don't double-penalise.</li>
-        <li><strong>Iterative breaker depth</strong> &mdash; Replace the fixed 10m depth-limited cap with an iterative solver that finds the actual breaker depth from the beach slope profile.</li>
+        <li><strong>Weighted scoring</strong> &mdash; Replace multiplicative quality factors with weighted harmonic mean so correlated factors don't compound.</li>
     </ul>
 
 </body>
