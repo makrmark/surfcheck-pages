@@ -44,18 +44,18 @@ h1 {
     width: 100%;
 }
 .day-btn {
-    padding: 2px 8px;
+    padding: 5px 14px;
     border: 1.5px solid #0066cc;
     border-radius: 20px;
     background: white;
     color: #0066cc;
-    font-size: 0.75em;
-    font-weight: 600;
+    font-size: 0.85em;
+    font-weight: 700;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
 }
 @media (max-width: 400px) {
-    .day-btn { padding: 2px 6px; font-size: 0.7em; }
+    .day-btn { padding: 4px 10px; font-size: 0.8em; }
     .day-nav { gap: 3px; }
 }
 .day-btn:hover {
