@@ -739,6 +739,12 @@ h2 {
     width: 60px;
     min-width: 50px;
 }
+.cm-label-sub {
+    font-size: 0.78em;
+    font-weight: 500;
+    color: #888;
+    line-height: 1.2;
+}
 .cm-cell {
     text-align: center;
     padding: 6px 4px;
