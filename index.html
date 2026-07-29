@@ -4643,9 +4643,11 @@ h2 {
         }
       }
       var scrollY = window.scrollY;
+      var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       overlay.classList.add('open');
       document.body.style.position = 'fixed';
       document.body.style.top = '-' + scrollY + 'px';
+      document.body.style.paddingRight = scrollbarWidth + 'px';
       document.body.style.width = '100%';
     }
     function closeBeachModal() {
@@ -4653,6 +4655,7 @@ h2 {
       if (!overlay) return;
       var scrollY = parseInt(document.body.style.top) * -1 || 0;
       overlay.classList.remove('open');
+      document.body.style.paddingRight = '';
       document.body.style.position = '';
       document.body.style.top = '';
       document.body.style.width = '';
@@ -4706,7 +4709,17 @@ h2 {
       if (e.key === 'Escape') closeBeachModal();
     });
 
-
+    /* ── Mobile touch prevention: stop background scroll through overlay ── */
+    (function() {
+      var overlay = document.getElementById('beachModalOverlay');
+      if (overlay) {
+        overlay.addEventListener('touchmove', function(e) {
+          if (!e.target.closest('#beachModal')) {
+            e.preventDefault();
+          }
+        }, { passive: false });
+      }
+    })();
 
     /* ── Init on DOM ready ────────────────────────── */
     document.addEventListener('DOMContentLoaded', function() {
