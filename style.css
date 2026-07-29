@@ -935,7 +935,7 @@ h2 {
     border-radius: 12px;
     max-width: 480px;
     width: 100%;
-    max-height: 90vh;
+    max-height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     box-shadow: 0 8px 40px rgba(0,0,0,0.25);
@@ -1238,11 +1238,7 @@ h2 {
     border-radius: 2px;
 }
 
-/* Make beach day cards themselves scrollable when expanded */
-.beach-day-card {
-    max-height: 80vh;
-    overflow-y: auto;
-}
+/* Beach cards in the modal — let the modal handle vertical scrolling */
 
 /* ── Surf Compass (inside beach-day-cell) ────────────── */
 .sc-sep {
@@ -1257,14 +1253,14 @@ h2 {
     margin-top: 2px;
 }
 .sc-compass-wrap svg {
-    width: 72px;
-    height: 72px;
+    width: 60px;
+    height: 60px;
     max-width: 100%;
 }
 
 @media (max-width: 420px) {
     .sc-compass-wrap svg {
-        width: 62px;
-        height: 62px;
+        width: 52px;
+        height: 52px;
     }
 }
