@@ -45,13 +45,15 @@ h1 {
 }
 .day-nav {
     display: flex;
-    gap: 4px;
-    justify-content: center;
-    margin-bottom: 6px;
+    gap: 8px;
+    justify-content: space-between;
+    margin-bottom: 8px;
     width: 100%;
 }
 .day-btn {
-    padding: 5px 14px;
+    flex: 1;
+    min-width: 0;
+    padding: 8px 8px;
     border: 1.5px solid #0066cc;
     border-radius: 20px;
     background: white;
@@ -62,8 +64,8 @@ h1 {
     transition: background 0.15s, color 0.15s;
 }
 @media (max-width: 400px) {
-    .day-btn { padding: 4px 10px; font-size: 0.8em; }
-    .day-nav { gap: 3px; }
+    .day-btn { padding: 7px 6px; font-size: 0.8em; }
+    .day-nav { gap: 6px; }
 }
 .day-btn:hover {
     background: #e6f2ff;
@@ -4528,7 +4530,7 @@ h2 {
 
   <div class="footer">
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-weight: 600; font-size: 0.9em;">About this site →</a></p>
-    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-07-30 09:45:02 AEST</p>
+    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-07-30 09:49:58 AEST</p>
     <details style="margin:10px 0; text-align:left; display:inline-block;">
       <summary style="cursor:pointer; color:#666; font-size:0.85em; font-weight:600;">📊 Data source status</summary>
       <table style="margin:4px 0 0 0; font-size:0.85em; border-collapse:collapse;">
