@@ -4645,21 +4645,21 @@ h2 {
       var scrollY = window.scrollY;
       var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       overlay.classList.add('open');
-      document.body.style.position = 'fixed';
-      document.body.style.top = '-' + scrollY + 'px';
+      // Prevent scrolling: html overflow blocks desktop scroll, touch handler blocks mobile
+      document.documentElement.style.overflow = 'hidden';
+      // Compensate for scrollbar disappearing (prevents content left-shift)
       document.body.style.paddingRight = scrollbarWidth + 'px';
-      document.body.style.width = '100%';
+      // Mark overlay with saved scroll position for restoration
+      overlay.dataset.scrollY = scrollY;
     }
     function closeBeachModal() {
       var overlay = document.getElementById('beachModalOverlay');
       if (!overlay) return;
-      var scrollY = parseInt(document.body.style.top) * -1 || 0;
+      var scrollY = parseInt(overlay.dataset.scrollY) || 0;
       overlay.classList.remove('open');
+      document.documentElement.style.overflow = '';
       document.body.style.paddingRight = '';
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, scrollY);
+      if (scrollY > 0) window.scrollTo(0, scrollY);
     }
 
     /* ── Init matrix row clicks (daily overview) ──── */
