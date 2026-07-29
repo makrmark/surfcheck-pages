@@ -1243,3 +1243,28 @@ h2 {
     max-height: 80vh;
     overflow-y: auto;
 }
+
+/* ── Surf Compass (inside beach-day-cell) ────────────── */
+.sc-sep {
+    margin: 4px 0;
+    border: none;
+    border-top: 1px solid #d5d5d5;
+}
+.sc-compass-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
+}
+.sc-compass-wrap svg {
+    width: 72px;
+    height: 72px;
+    max-width: 100%;
+}
+
+@media (max-width: 420px) {
+    .sc-compass-wrap svg {
+        width: 62px;
+        height: 62px;
+    }
+}
