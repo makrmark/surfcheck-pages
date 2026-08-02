@@ -227,7 +227,54 @@ quality_multiplier = &Sigma;(weight &middot; factor) / &Sigma;(weight)
 
     <hr>
 
-    <h2>3. Final Rating</h2>
+    <h2>3. Data Sources</h2>
+
+    <h3>3.1 Open-Meteo Forecast (Tomorrow+, Outlook)</h3>
+    <p>The forecast model (ECMWF WAM spectral wave model) is fetched daily at 05:45 from the Open-Meteo Marine API for the Sydney offshore coordinate (-33.78, 151.30). It provides 3 swell components (primary, secondary, tertiary) plus wind-wave data across 7 days. This data is cached with a 6-hour TTL and used for Tomorrow, &Uuml;bermorgan, and the 7-day outlook.</p>
+
+    <h3>3.2 Botany Offshore Buoy (Today Observations)</h3>
+    <p><strong>2026-08-02 addition:</strong> The Port Authority NSW Botany Offshore directional wave buoy provides real-time observations that replace the Open-Meteo forecast for <strong>Today&rsquo;s</strong> hourly slots. The buoy measures:</p>
+    <table>
+        <tr><th>Parameter</th><th>Symbol</th><th>Unit</th></tr>
+        <tr><td>Significant wave height</td><td>H<sub>s</sub></td><td>m</td></tr>
+        <tr><td>Peak wave period</td><td>T<sub>p</sub></td><td>s</td></tr>
+        <tr><td>Zero-crossing period</td><td>T<sub>z</sub></td><td>s</td></tr>
+        <tr><td>Mean direction</td><td>Dir</td><td>&deg;</td></tr>
+        <tr><td>Maximum wave height</td><td>H<sub>max</sub></td><td>m</td></tr>
+    </table>
+    <p>Buoy data is fetched from <code>wavewindtide.portauthoritynsw.com.au</code> and cached for 15 minutes. On each Today-only re-run, the observation replaces the forecast for Today&rsquo;s 24 hourly slots <em>in the marine data dict</em>. Secondary, tertiary, and wind-wave components are zeroed (the buoy gives total sea state, not component breakdown).</p>
+
+    <h3>3.3 Data Logging & Correlation Tracking</h3>
+    <p><strong>2026-08-02 addition:</strong> Every forecast fetch and buoy observation is logged to the SQLite database (<code>observation_log</code> table) for long-term trend analysis. Use <code>get_correlation_summary(days=30)</code> to compare Open-Meteo forecasts against real buoy readings over time.</p>
+    <pre>Table: observation_log
+    Columns: id, logged_at, source, hs, tp, tz, dir, hmax, meta
+
+    Sources:
+      openmeteo   &mdash; hourly forecast data (logged per-hour)
+      botany_buoy &mdash; Botany Offshore buoy observation (logged per-fetch)</pre>
+
+    <h3>3.4 Update Schedule</h3>
+    <table>
+        <tr><th>Time</th><th>Type</th><th>Data source</th></tr>
+        <tr><td>05:45 daily</td><td>Full forecast</td><td>Fresh Open-Meteo + Botany buoy &mdash; all days regenerated</td></tr>
+        <tr><td>08:00</td><td>Today-only</td><td>Fresh Botany buoy &mdash; Today updated, Tomorrow+ from cache</td></tr>
+        <tr><td>11:00</td><td>Today-only</td><td>Fresh Botany buoy &mdash; Today updated, Tomorrow+ from cache</td></tr>
+        <tr><td>14:00</td><td>Today-only</td><td>Fresh Botany buoy &mdash; Today updated, Tomorrow+ from cache</td></tr>
+    </table>
+    <p>The Today-only re-runs use <code>surf_report.py --today-only</code> which skips the Open-Meteo API call and merges fresh buoy data into the cached marine forecast. Tomorrow+ days keep their cached Open-Meteo data, unchanged until the next 05:45 full run.</p>
+
+    <h3>3.5 File Map</h3>
+    <table>
+        <tr><th>File</th><th>Purpose</th></tr>
+        <tr><td><code>data/buoy_obs.py</code></td><td>Scrape Botany Offshore buoy from Port Authority NSW. Caches 15 min.</td></tr>
+        <tr><td><code>data/comparison_log.py</code></td><td>Log forecast + observation to SQLite for correlation analysis.</td></tr>
+        <tr><td><code>data/marine.py</code></td><td>Dual source: buoy for Today, Open-Meteo for Tomorrow+. Merge function replaces Today&rsquo;s hourly values with observations.</td></tr>
+        <tr><td><code>deploy_today.sh</code></td><td>Lightweight deploy for Today-only re-runs. Runs <code>surf_report.py --today-only</code>.</td></tr>
+    </table>
+
+    <hr>
+
+    <h2>4. Final Rating</h2
     <pre>rating = min(5.0, max(0.0, height_score &middot; quality_multiplier))</pre>
     <p>Rating = height &times; quality. Multiplicative, not additive &mdash; big waves get properly penalised for poor quality (a clean 3ft day should beat a blown-out 6ft day). The height score provides the foundation; quality scales it up or down.</p>
     <p><strong>Key behaviours with this formula (final calibration 2026-07-27, weighted sum):</strong></p>
