@@ -642,6 +642,19 @@ h2 {
     font-size: 0.95em;
     margin-bottom: 2px;
 }
+/* Swell data source border indicators */
+.bm-cell-wave.swell-historical {
+    border-bottom: 3px solid #9b59b6;
+    padding-bottom: 1px;
+}
+.bm-cell-wave.swell-live {
+    border-bottom: 3px solid #27ae60;
+    padding-bottom: 1px;
+}
+.bm-cell-wave.swell-forecast {
+    border-bottom: 3px solid #2980b9;
+    padding-bottom: 1px;
+}
 .bm-cell-rating {
     font-size: 0.85em;
 }
@@ -1304,7 +1317,7 @@ h2 {
   <div class="daily-overview" data-day="today">
   <div class="section">
     
-    <div class="forecaster-note">💬 Clean offshore lines early with shoulder-high sets, best in the morning windows. Tide fattens up around high slack midday, softening the waves. The arvo sees a slight cross-off shift as the tide drops, keeping things fun but less consistent. A solid day for the Northern Beaches.</div>
+    <div class="forecaster-note">💬 Clean offshore all day, with shoulder-high swell holding steady. Morning tide is low and slack, offering hollow takeoffs. High tide around midday fattens things up a touch, then the arvo low tide returns shape as the wind swings cross-off. A solid day with consistent waves.</div>
     
     <hr class="rec-sep">
 
@@ -1330,22 +1343,22 @@ h2 {
             <td class="bm-beach-cell">Long Reef</td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-            </td>
-            
-            <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
@@ -1355,22 +1368,22 @@ h2 {
             <td class="bm-beach-cell">Dee Why</td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
@@ -1380,22 +1393,22 @@ h2 {
             <td class="bm-beach-cell">North Curl Curl</td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
@@ -1405,47 +1418,47 @@ h2 {
             <td class="bm-beach-cell">South Curl Curl</td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
           </tr>
           
-          <tr class="bm-row" data-beach-name="Freshwater">
+          <tr class="bm-row bm-row-best" data-beach-name="Freshwater">
             <td class="bm-beach-cell">Freshwater</td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#27ae60">Great</span></div>
+            </td>
+            
+            <td class="bm-cell bm-cell-best">
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-            </td>
-            
-            <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
@@ -1455,22 +1468,22 @@ h2 {
             <td class="bm-beach-cell">Queenscliff</td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-            </td>
-            
-            <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell bm-cell-best">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
@@ -1480,22 +1493,22 @@ h2 {
             <td class="bm-beach-cell">North Steyne</td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-5 ft</div>
+              <div class="bm-cell-wave swell-historical">4-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-5 ft</div>
+              <div class="bm-cell-wave swell-historical">4-7 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">3-6 ft</div>
+              <div class="bm-cell-wave swell-historical">3-6 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
             </td>
             
@@ -1505,22 +1518,22 @@ h2 {
             <td class="bm-beach-cell">South Steyne</td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">1-2 ft</div>
+              <div class="bm-cell-wave swell-historical">3-4 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave swell-historical">3-5 ft</div>
+              <div class="bm-cell-rating"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+            </td>
+            
+            <td class="bm-cell">
+              <div class="bm-cell-wave swell-historical">1 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
             </td>
             
             <td class="bm-cell">
-              <div class="bm-cell-wave">1-2 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-            </td>
-            
-            <td class="bm-cell">
-              <div class="bm-cell-wave">1-2 ft</div>
-              <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
-            </td>
-            
-            <td class="bm-cell">
-              <div class="bm-cell-wave">1-2 ft</div>
+              <div class="bm-cell-wave swell-historical">1-2 ft</div>
               <div class="bm-cell-rating"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
             </td>
             
@@ -1531,14 +1544,14 @@ h2 {
     </div>
     
     <hr class="rec-sep">
-    <div class="board-rec">🏄 Morning: shortboard or groveler for the clean shoulder-high sets. Midday: more foam helps on the fat tide. Arvo: fish or hybrid for the dropping tide.</div>
+    <div class="board-rec">🏄 Morning low tide hollows — ride a shortboard or step-up. High tide midday fattens it — switch to a grovel shortboard or fish. Arvo low tide returns shape, back to the shortboard. Fin setup: thruster for control.</div>
     
   </div>
 
   <div class="section">
     <h2>🌡️ Conditions</h2>
     
-    <div class="gear-note">❄ 3mm wetsuit. Add hat + sunscreen for midday UV. Morning chill bites, but warms up fast.</div>
+    <div class="gear-note">Morning is freezing — 4mm wetsuit 🧊 with hood + boots + gloves. By midday, ditch the hood and gloves but keep the 4mm. UV is moderate, so a hat + sunscreen for the arvo.</div>
     
     <hr class="rec-sep">
     <div class="beach-matrix-wrap">
@@ -1564,13 +1577,13 @@ h2 {
             
             
             <td class="cm-cell">
-              <div class="cm-cell-value">1.1m @ 7s</div>
-              <div class="cm-cell-detail">164° (SSE)</div>
+              <div class="cm-cell-value">1.2m @ 7s</div>
+              <div class="cm-cell-detail">144° (SE)</div>
             </td>
             
             <td class="cm-cell">
-              <div class="cm-cell-value">1.1m @ 7s</div>
-              <div class="cm-cell-detail">164° (SSE)</div>
+              <div class="cm-cell-value">1.2m @ 7s</div>
+              <div class="cm-cell-detail">138° (SE)</div>
             </td>
             
             <td class="cm-cell">
@@ -1801,25 +1814,25 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.5 46.1 A 35 35 0 0 1 40.0 5.0" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.9" cy="7.5" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.5 46.1 A 35 35 0 0 1 40.0 5.0" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.9" cy="7.5" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.5 46.1 A 35 35 0 0 1 40.0 5.0" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.9" cy="7.5" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.5 46.1 A 35 35 0 0 1 40.0 5.0" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.9" cy="7.5" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -1828,7 +1841,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -1873,25 +1886,25 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -1900,7 +1913,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -1945,26 +1958,26 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.0 40.0 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.6" cy="7.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.0 40.0 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.6" cy="7.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.0 40.0 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.6" cy="7.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.0 40.0 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.6" cy="7.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
           <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 5.0 40.0 A 35 35 0 0 1 33.2 5.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="26.6" cy="7.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="47.2" y2="65.0" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="49.4,72.7 43.8,66.9 51.0,64.9" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
@@ -1972,7 +1985,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2017,26 +2030,26 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 15.3 64.7 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 15.3 64.7 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 15.3 64.7 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 15.3 64.7 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
           
           <hr class="sc-sep">
           <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 15.3 64.7 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="47.2" y2="65.0" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="49.4,72.7 43.8,66.9 51.0,64.9" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
@@ -2044,7 +2057,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2089,25 +2102,25 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#27ae60">Great</span></div>
+          
+          <hr class="sc-sep">
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
+          
+        </div>
+        
+        <div class="beach-day-cell beach-day-best">
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          
-          <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 7.7 53.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="15.3" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
-          
-        </div>
-        
-        <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2116,7 +2129,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2161,25 +2174,25 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 10.9 59.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.7" cy="33.2" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
-          
-        </div>
-        
-        <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
-          
-          <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 10.9 59.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.7" cy="33.2" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 10.9 59.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.7" cy="33.2" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
+          
+          <hr class="sc-sep">
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 10.9 59.4 A 35 35 0 0 1 26.6 7.7" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.7" cy="33.2" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
+          
+        </div>
+        
+        <div class="beach-day-cell">
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2188,7 +2201,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell beach-day-best">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2233,25 +2246,25 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-5 ft</div>
+          <div class="bm-cell-wave swell-historical">4-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 26.6 72.3 A 35 35 0 0 1 15.3 15.3" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.2" cy="43.8" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 26.6 72.3 A 35 35 0 0 1 15.3 15.3" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.2" cy="43.8" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-5 ft</div>
+          <div class="bm-cell-wave swell-historical">4-7 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 26.6 72.3 A 35 35 0 0 1 15.3 15.3" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.2" cy="43.8" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 26.6 72.3 A 35 35 0 0 1 15.3 15.3" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="5.2" cy="43.8" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2260,7 +2273,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">3-6 ft</div>
+          <div class="bm-cell-wave swell-historical">3-6 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
@@ -2305,25 +2318,25 @@ h2 {
       <div class="beach-day-cells">
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">1-2 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+          <div class="bm-cell-wave swell-historical">3-4 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 40.3 75.0 A 35 35 0 0 1 5.7 33.2" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="64.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 40.3 75.0 A 35 35 0 0 1 5.7 33.2" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="64.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="55.6" y2="60.8" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="60.5,67.2 53.2,63.8 59.2,59.3" fill="#0066cc"/><line x1="40" y1="40" x2="24.7" y2="19.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="20.0,12.5 27.2,16.0 21.1,20.4" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">1-2 ft</div>
-          <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
+          <div class="bm-cell-wave swell-historical">3-5 ft</div>
+          <div class="bd-rating-pill"><span class="rating-badge" style="background:#2980b9">Good</span></div>
           
           <hr class="sc-sep">
-          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 40.3 75.0 A 35 35 0 0 1 5.7 33.2" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="64.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="32.8" y2="15.0" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="30.6,7.3 36.2,13.1 29.0,15.1" fill="#c0392b"/></svg></div>
+          <div class="sc-compass-wrap"><svg width="80" height="80" viewBox="0 0 80 80" style="vertical-align:middle;display:inline-block;overflow:visible;"><circle cx="40" cy="40" r="34" fill="none" stroke="#c8c8c8" stroke-width="0.8"/><line x1="40" y1="6" x2="40" y2="74" stroke="#e8e8e8" stroke-width="0.5"/><line x1="6" y1="40" x2="74" y2="40" stroke="#e8e8e8" stroke-width="0.5"/><text x="40" y="4" text-anchor="middle" font-size="8" fill="#888" font-weight="600" font-family="sans-serif">N</text><circle cx="40" cy="40" r="2" fill="#444"/><path d="M 40.3 75.0 A 35 35 0 0 1 5.7 33.2" fill="none" stroke="#c9a94e" stroke-width="3" stroke-linecap="round"/><circle cx="15.3" cy="64.7" r="3" fill="#a07820"/><line x1="40" y1="40" x2="62.3" y2="53.4" stroke="#0066cc" stroke-width="3" stroke-linecap="round"/><polygon points="69.1,57.5 61.2,57.1 65.0,50.7" fill="#0066cc"/><line x1="40" y1="40" x2="22.6" y2="20.7" stroke="#c0392b" stroke-width="3" stroke-linecap="round"/><polygon points="17.2,14.7 24.8,17.5 19.2,22.5" fill="#c0392b"/></svg></div>
           
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">1-2 ft</div>
+          <div class="bm-cell-wave swell-historical">1 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           
           <hr class="sc-sep">
@@ -2332,7 +2345,7 @@ h2 {
         </div>
         
         <div class="beach-day-cell">
-          <div class="bm-cell-wave">1-2 ft</div>
+          <div class="bm-cell-wave swell-historical">1-2 ft</div>
           <div class="bd-rating-pill"><span class="rating-badge" style="background:#e74c3c">Poor</span></div>
           
           <hr class="sc-sep">
@@ -4487,7 +4500,7 @@ h2 {
         <div class="section">
             <h2>🌊 7-Day Swell Outlook</h2>
             
-            <div class="outlook-llm-note">💬 Small and weak week ahead. Monday offers the best chance with a fading SSE swell and clean NW wind, making Long Reef or North Curly worth a look. The rest of the week is tiny, though Thursday's light W wind might make South Curly or Freshwater fun on a log. Weekend stays small, but Sunday's building ENE swell could give South Steyne a few punchy peaks.</div>
+            <div class="outlook-llm-note">💬 Monday's your best bet with a building SSE swell and clean NW offshore — Long Reef and North Curl Curl will have fun, crumbly walls. The rest of the week goes tiny and weak; Tuesday through Sunday are small and inconsistent, barely worth padd</div>
             <hr class="rec-sep">
             <div style="margin-bottom:4px;font-size:0.75em;color:#999;display:flex;gap:16px;flex-wrap:wrap;">
                 <span><span style="display:inline-block;width:12px;height:12px;background:#b3d4ff;border-radius:2px;vertical-align:middle;"></span> Swell range (min–max)</span>
@@ -4497,7 +4510,7 @@ h2 {
             </div>
             <div style="margin-bottom:2px;">
         <svg viewBox="0 0 660 300" style="width:100%;max-width:660px;height:auto;display:block;">
-            <rect width="660" height="300" fill="#f8faff" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0.0</text><line x1="50" y1="201.73333333333335" x2="615" y2="201.73333333333335" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="205.73333333333335" text-anchor="end" font-size="10" fill="#999">0.5</text><line x1="50" y1="131.4666666666667" x2="615" y2="131.4666666666667" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="135.4666666666667" text-anchor="end" font-size="10" fill="#999">1.0</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">1.5</text><text x="8" y="14" font-size="9" fill="#0066cc" font-weight="600">H (m)</text><text x="619" y="14" font-size="9" fill="#e67e22" font-weight="600">T (s)</text><rect x="76.23214285714286" y="124.44" width="28.249999999999996" height="0.0" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="78.23214285714286" y1="124.44" x2="102.48214285714286" y2="124.44" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="90.35714285714286" cy="133.74" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="156.94642857142856" y="193.30133333333333" width="28.249999999999996" height="28.106666666666683" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="158.94642857142856" y1="210.9851111111111" x2="183.19642857142856" y2="210.9851111111111" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="171.07142857142856" cy="72.26527777777778" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="237.66071428571428" y="221.40800000000002" width="28.249999999999996" height="2.8106666666666342" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="239.66071428571428" y1="223.51600000000002" x2="263.9107142857143" y2="223.51600000000002" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="251.78571428571428" cy="102.01666666666665" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="318.375" y="198.92266666666666" width="28.249999999999996" height="25.295999999999992" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="320.375" y1="212.74177777777777" x2="344.625" y2="212.74177777777777" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="332.5" cy="115.36388888888888" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SE</text><rect x="399.08928571428567" y="212.976" width="28.249999999999996" height="14.053333333333342" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="401.08928571428567" y1="222.81333333333333" x2="425.33928571428567" y2="222.81333333333333" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="413.21428571428567" cy="116.39722222222224" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="479.8035714285714" y="187.68" width="28.249999999999996" height="47.78133333333332" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="481.8035714285714" y1="225.97533333333334" x2="506.0535714285714" y2="225.97533333333334" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="493.9285714285714" cy="150.23888888888888" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="560.5178571428571" y="179.248" width="28.249999999999996" height="33.72800000000001" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="562.5178571428571" y1="195.1751111111111" x2="586.7678571428571" y2="195.1751111111111" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="574.6428571428571" cy="153.76944444444442" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><path d="M90.4 133.7 L171.1 72.3 L251.8 102.0 L332.5 115.4 L413.2 116.4 L493.9 150.2 L574.6 153.8" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/><text x="619" y="276.0" text-anchor="start" font-size="10" fill="#e67e22">0</text><text x="619" y="234.66666666666669" text-anchor="start" font-size="10" fill="#e67e22">2</text><text x="619" y="193.33333333333334" text-anchor="start" font-size="10" fill="#e67e22">4</text><text x="619" y="152.0" text-anchor="start" font-size="10" fill="#e67e22">6</text><text x="619" y="110.66666666666669" text-anchor="start" font-size="10" fill="#e67e22">8</text><text x="619" y="69.33333333333331" text-anchor="start" font-size="10" fill="#e67e22">10</text><text x="619" y="28.0" text-anchor="start" font-size="10" fill="#e67e22">12</text>
+            <rect width="660" height="300" fill="#f8faff" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0.0</text><line x1="50" y1="201.73333333333335" x2="615" y2="201.73333333333335" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="205.73333333333335" text-anchor="end" font-size="10" fill="#999">0.5</text><line x1="50" y1="131.4666666666667" x2="615" y2="131.4666666666667" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="135.4666666666667" text-anchor="end" font-size="10" fill="#999">1.0</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">1.5</text><text x="8" y="14" font-size="9" fill="#0066cc" font-weight="600">H (m)</text><text x="619" y="14" font-size="9" fill="#e67e22" font-weight="600">T (s)</text><rect x="76.23214285714286" y="82.28" width="28.249999999999996" height="82.91466666666665" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="78.23214285714286" y1="112.31900000000002" x2="102.48214285714286" y2="112.31900000000002" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="90.35714285714286" cy="121.21944444444443" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="156.94642857142856" y="193.30133333333333" width="28.249999999999996" height="28.106666666666683" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="158.94642857142856" y1="210.9851111111111" x2="183.19642857142856" y2="210.9851111111111" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="171.07142857142856" cy="72.26527777777778" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="237.66071428571428" y="221.40800000000002" width="28.249999999999996" height="2.8106666666666342" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="239.66071428571428" y1="223.51600000000002" x2="263.9107142857143" y2="223.51600000000002" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="251.78571428571428" cy="102.01666666666665" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="318.375" y="198.92266666666666" width="28.249999999999996" height="25.295999999999992" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="320.375" y1="212.74177777777777" x2="344.625" y2="212.74177777777777" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="332.5" cy="115.36388888888888" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SE</text><rect x="399.08928571428567" y="212.976" width="28.249999999999996" height="14.053333333333342" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="401.08928571428567" y1="222.81333333333333" x2="425.33928571428567" y2="222.81333333333333" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="413.21428571428567" cy="116.39722222222224" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="479.8035714285714" y="187.68" width="28.249999999999996" height="47.78133333333332" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="481.8035714285714" y1="225.97533333333334" x2="506.0535714285714" y2="225.97533333333334" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="493.9285714285714" cy="150.23888888888888" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">E</text><rect x="560.5178571428571" y="179.248" width="28.249999999999996" height="33.72800000000001" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="562.5178571428571" y1="195.1751111111111" x2="586.7678571428571" y2="195.1751111111111" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="574.6428571428571" cy="153.76944444444442" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><path d="M90.4 121.2 L171.1 72.3 L251.8 102.0 L332.5 115.4 L413.2 116.4 L493.9 150.2 L574.6 153.8" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/><text x="619" y="276.0" text-anchor="start" font-size="10" fill="#e67e22">0</text><text x="619" y="234.66666666666669" text-anchor="start" font-size="10" fill="#e67e22">2</text><text x="619" y="193.33333333333334" text-anchor="start" font-size="10" fill="#e67e22">4</text><text x="619" y="152.0" text-anchor="start" font-size="10" fill="#e67e22">6</text><text x="619" y="110.66666666666669" text-anchor="start" font-size="10" fill="#e67e22">8</text><text x="619" y="69.33333333333331" text-anchor="start" font-size="10" fill="#e67e22">10</text><text x="619" y="28.0" text-anchor="start" font-size="10" fill="#e67e22">12</text>
         </svg>
     </div>
         </div>
@@ -4530,7 +4543,7 @@ h2 {
 
   <div class="footer">
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-weight: 600; font-size: 0.9em;">About this site →</a></p>
-    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-08-03 15:47:50 AEST</p>
+    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-08-03 17:43:39 AEST</p>
     <details style="margin:10px 0; text-align:left; display:inline-block;">
       <summary style="cursor:pointer; color:#666; font-size:0.85em; font-weight:600;">📊 Data source status</summary>
       <table style="margin:4px 0 0 0; font-size:0.85em; border-collapse:collapse;">
@@ -4547,7 +4560,7 @@ h2 {
 <tr>
                 <td style="text-align:left;padding:2px 8px;">✅ Botany Offshore Buoy</td>
                 <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">Hs=1.05m, Tp=15.98s, Dir=164.0° at at 1540, 3 Aug 2026</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Hs=1.14m, Tp=16.01s, Dir=161.0° at at 1740, 3 Aug 2026</td>
             </tr>
 <tr>
                 <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Marine API</td>
