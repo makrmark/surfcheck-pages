@@ -635,19 +635,7 @@ h2 {
     font-size: 0.95em;
     margin-bottom: 2px;
 }
-/* Swell data source border indicators */
-.bm-cell-wave.swell-historical {
-    border-bottom: 3px solid #9b59b6;
-    padding-bottom: 1px;
-}
-.bm-cell-wave.swell-live {
-    border-bottom: 3px solid #27ae60;
-    padding-bottom: 1px;
-}
-.bm-cell-wave.swell-forecast {
-    border-bottom: 3px solid #2980b9;
-    padding-bottom: 1px;
-}
+
 .bm-cell-rating {
     font-size: 0.85em;
 }
