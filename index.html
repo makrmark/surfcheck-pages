@@ -1277,6 +1277,204 @@ h2 {
     }
 }
 
+/* ── Region Map ──────────────────────────────────────── */
+.region-map-container {
+    margin-bottom: 25px;
+}
+.map-section {
+    padding: 10px;
+}
+.region-map {
+    width: 100%;
+    height: 480px;
+    border-radius: 8px;
+    border: 1px solid #d0d0d0;
+    z-index: 1;
+}
+@media (max-width: 600px) {
+    .region-map {
+        height: 420px;
+    }
+}
+
+/* Swell compass arrow overlay */
+.map-compass {
+    background: transparent;
+    border: none;
+}
+.compass-arrow {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+.compass-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #004d99;
+    background: rgba(255,255,255,0.85);
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin-top: 2px;
+    border: 1px solid rgba(0,102,204,0.4);
+}
+
+/* Beach pins */
+.map-beach-marker {
+    background: transparent;
+    border: none;
+}
+.beach-pin {
+    background: #fff;
+    border: 2.5px solid #999;
+    border-radius: 8px;
+    padding: 3px 8px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.12s;
+}
+.beach-pin:hover {
+    transform: scale(1.08);
+}
+.pin-wave {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0055a5;
+    white-space: nowrap;
+    line-height: 1.1;
+}
+.pin-rating {
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 5px;
+    margin-top: 2px;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+/* Wind arrows */
+.map-wind-marker {
+    background: transparent;
+    border: none;
+}
+.wind-arrow {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+.wind-arrow svg {
+    display: block;
+}
+
+/* Slider */
+.map-slider-wrap {
+    margin-top: 12px;
+    padding: 8px 4px 4px;
+}
+.map-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    gap: 2px;
+}
+.map-slider-tick {
+    flex: 1;
+    text-align: center;
+    font-size: 0.62em;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1px 2px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.map-slider-tick.active {
+    color: #0066cc;
+    font-weight: 700;
+    background: #e6f2ff;
+}
+.map-slider {
+    width: 100%;
+    margin: 4px 0;
+    accent-color: #0066cc;
+    cursor: pointer;
+}
+.map-slider-info {
+    text-align: center;
+    font-size: 0.85em;
+    color: #333;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+.msi-date { font-weight: 700; color: #0066cc; }
+.msi-tf { font-weight: 600; }
+.msi-swell { color: #0066cc; font-weight: 600; }
+.msi-wind { color: #555; }
+.msi-tide { color: #555; }
+.msi-sep { color: #bbb; }
+
+/* Map button */
+.map-btn {
+    border-color: #16a085;
+    color: #16a085;
+}
+.map-btn:hover {
+    background: #e6f7f3;
+}
+.day-btn.active.map-btn {
+    background: #16a085;
+    border-color: #16a085;
+    color: white;
+}
+
+/* Beach popup */
+.beach-popup-container .leaflet-popup-content-wrapper {
+    border-radius: 10px;
+}
+.beach-popup {
+    font-size: 0.85em;
+}
+.bp-name {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #0066cc;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #e6f2ff;
+    padding-bottom: 4px;
+}
+.bp-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 2px 0;
+}
+.bp-label {
+    color: #888;
+    font-weight: 600;
+}
+.bp-val {
+    color: #333;
+    font-weight: 600;
+    text-align: right;
+}
+.bp-note {
+    font-size: 0.8em;
+    color: #555;
+    background: #f0fff0;
+    border-left: 3px solid #4caf50;
+    padding: 4px 8px;
+    margin-top: 6px;
+    border-radius: 4px;
+    line-height: 1.4;
+}
+
+/* Hide leaflet attribution control (kept minimal) */
+.leaflet-control-attribution {
+    font-size: 9px;
+}
+
 </style>
 </head>
 <body>
@@ -1287,6 +1485,7 @@ h2 {
       <button class="day-btn" data-day="tomorrow" onclick="showDay('tomorrow')">Tue</button>
       <button class="day-btn" data-day="ubermorgan" onclick="showDay('ubermorgan')">Wed</button>
       <button class="day-btn outlook-btn" data-day="outlook" onclick="showOutlook()">7-Day</button>
+      <button class="day-btn map-btn" data-day="map" onclick="showMap()">🗺️ Map</button>
     </nav>
   </header>
 
@@ -1651,8 +1850,8 @@ h2 {
             </td>
             
             <td class="cm-cell">
-              <div class="cm-cell-value">—</div>
-              
+              <div class="cm-cell-value">1.6m @ 5s</div>
+              <div class="cm-cell-detail">56° (NE)</div>
             </td>
             
             <td class="cm-cell">
@@ -4555,7 +4754,7 @@ h2 {
             </div>
             <div style="margin-bottom:2px;">
         <svg viewBox="0 0 660 300" style="width:100%;max-width:660px;height:auto;display:block;">
-            <rect width="660" height="300" fill="#f8faff" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0.0</text><line x1="50" y1="201.73333333333335" x2="615" y2="201.73333333333335" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="205.73333333333335" text-anchor="end" font-size="10" fill="#999">0.5</text><line x1="50" y1="131.4666666666667" x2="615" y2="131.4666666666667" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="135.4666666666667" text-anchor="end" font-size="10" fill="#999">1.0</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">1.5</text><text x="8" y="14" font-size="9" fill="#0066cc" font-weight="600">H (m)</text><text x="619" y="14" font-size="9" fill="#e67e22" font-weight="600">T (s)</text><rect x="76.23214285714286" y="94.92800000000003" width="28.249999999999996" height="81.5093333333333" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="78.23214285714286" y1="137.08800000000002" x2="102.48214285714286" y2="137.08800000000002" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="90.35714285714286" cy="97.36666666666665" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><rect x="81.88214285714287" y="14.824000000000012" width="16.949999999999996" height="43.565333333333314" fill="none" stroke="#9933cc" stroke-width="1.2" rx="2" opacity="0.6"/><circle cx="90.35714285714286" cy="46.44400000000002" r="4" fill="none" stroke="#9933cc" stroke-width="2.5"/><circle cx="90.35714285714286" cy="46.44400000000002" r="1.2" fill="#9933cc"/><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><rect x="156.94642857142856" y="168.00533333333334" width="28.249999999999996" height="50.591999999999985" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="158.94642857142856" y1="192.24733333333333" x2="183.19642857142856" y2="192.24733333333333" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="171.07142857142856" cy="78.61166666666668" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="237.66071428571428" y="170.81600000000003" width="28.249999999999996" height="44.97066666666663" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="239.66071428571428" y1="197.51733333333334" x2="263.9107142857143" y2="197.51733333333334" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="251.78571428571428" cy="96.59166666666667" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="318.375" y="162.38400000000001" width="28.249999999999996" height="67.45599999999999" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="320.375" y1="194.58955555555553" x2="344.625" y2="194.58955555555553" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="332.5" cy="112.66" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SE</text><rect x="399.08928571428567" y="162.38400000000001" width="28.249999999999996" height="25.295999999999992" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="401.08928571428567" y1="171.5186666666667" x2="425.33928571428567" y2="171.5186666666667" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="413.21428571428567" cy="113.53833333333336" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="479.8035714285714" y="196.112" width="28.249999999999996" height="25.29600000000002" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="481.8035714285714" y1="210.63377777777777" x2="506.0535714285714" y2="210.63377777777777" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="493.9285714285714" cy="71.94666666666666" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">S</text><rect x="560.5178571428571" y="221.40800000000002" width="28.249999999999996" height="8.431999999999988" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="562.5178571428571" y1="226.91222222222223" x2="586.7678571428571" y2="226.91222222222223" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="574.6428571428571" cy="50.711666666666645" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">S</text><path d="M90.4 97.4 L171.1 78.6 L251.8 96.6 L332.5 112.7 L413.2 113.5 L493.9 71.9 L574.6 50.7" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/><text x="90.35714285714286" y="284" text-anchor="middle" font-size="8" fill="#9933cc" font-weight="500">NE</text><text x="619" y="276.0" text-anchor="start" font-size="10" fill="#e67e22">0</text><text x="619" y="226.4" text-anchor="start" font-size="10" fill="#e67e22">2</text><text x="619" y="176.8" text-anchor="start" font-size="10" fill="#e67e22">4</text><text x="619" y="127.20000000000002" text-anchor="start" font-size="10" fill="#e67e22">6</text><text x="619" y="77.6" text-anchor="start" font-size="10" fill="#e67e22">8</text><text x="619" y="28.0" text-anchor="start" font-size="10" fill="#e67e22">10</text>
+            <rect width="660" height="300" fill="#f8faff" rx="4"/><line x1="50" y1="272.0" x2="615" y2="272.0" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="276.0" text-anchor="end" font-size="10" fill="#999">0.0</text><line x1="50" y1="201.73333333333335" x2="615" y2="201.73333333333335" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="205.73333333333335" text-anchor="end" font-size="10" fill="#999">0.5</text><line x1="50" y1="131.4666666666667" x2="615" y2="131.4666666666667" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="135.4666666666667" text-anchor="end" font-size="10" fill="#999">1.0</text><line x1="50" y1="61.20000000000002" x2="615" y2="61.20000000000002" stroke="#e0e4ec" stroke-width="1"/><text x="44" y="65.20000000000002" text-anchor="end" font-size="10" fill="#999">1.5</text><text x="8" y="14" font-size="9" fill="#0066cc" font-weight="600">H (m)</text><text x="619" y="14" font-size="9" fill="#e67e22" font-weight="600">T (s)</text><rect x="76.23214285714286" y="94.92800000000003" width="28.249999999999996" height="81.5093333333333" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="78.23214285714286" y1="137.08800000000002" x2="102.48214285714286" y2="137.08800000000002" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="90.35714285714286" cy="97.36666666666665" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><rect x="81.88214285714287" y="14.824000000000012" width="16.949999999999996" height="43.565333333333314" fill="none" stroke="#9933cc" stroke-width="1.2" rx="2" opacity="0.6"/><circle cx="90.35714285714286" cy="43.08681481481483" r="4" fill="none" stroke="#9933cc" stroke-width="2.5"/><circle cx="90.35714285714286" cy="43.08681481481483" r="1.2" fill="#9933cc"/><text x="90.35714285714286" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Mon</text><text x="90.35714285714286" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ENE</text><rect x="156.94642857142856" y="168.00533333333334" width="28.249999999999996" height="50.591999999999985" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="158.94642857142856" y1="192.24733333333333" x2="183.19642857142856" y2="192.24733333333333" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="171.07142857142856" cy="78.61166666666668" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="171.07142857142856" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Tue</text><text x="171.07142857142856" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">ESE</text><rect x="237.66071428571428" y="170.81600000000003" width="28.249999999999996" height="44.97066666666663" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="239.66071428571428" y1="197.51733333333334" x2="263.9107142857143" y2="197.51733333333334" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="251.78571428571428" cy="96.59166666666667" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="251.78571428571428" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Wed</text><text x="251.78571428571428" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="318.375" y="162.38400000000001" width="28.249999999999996" height="67.45599999999999" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="320.375" y1="194.58955555555553" x2="344.625" y2="194.58955555555553" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="332.5" cy="112.66" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="332.5" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Thu</text><text x="332.5" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SE</text><rect x="399.08928571428567" y="162.38400000000001" width="28.249999999999996" height="25.295999999999992" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="401.08928571428567" y1="171.5186666666667" x2="425.33928571428567" y2="171.5186666666667" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="413.21428571428567" cy="113.53833333333336" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="413.21428571428567" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Fri</text><text x="413.21428571428567" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">SSE</text><rect x="479.8035714285714" y="196.112" width="28.249999999999996" height="25.29600000000002" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="481.8035714285714" y1="210.63377777777777" x2="506.0535714285714" y2="210.63377777777777" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="493.9285714285714" cy="71.94666666666666" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="493.9285714285714" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sat</text><text x="493.9285714285714" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">S</text><rect x="560.5178571428571" y="221.40800000000002" width="28.249999999999996" height="8.431999999999988" fill="#b3d4ff" rx="2" opacity="0.7"/><line x1="562.5178571428571" y1="226.91222222222223" x2="586.7678571428571" y2="226.91222222222223" stroke="#0066cc" stroke-width="2.5" stroke-linecap="round"/><circle cx="574.6428571428571" cy="50.711666666666645" r="3.5" fill="#e67e22" stroke="white" stroke-width="1"/><text x="574.6428571428571" y="296" text-anchor="middle" font-size="10" fill="#555" font-weight="500">Sun</text><text x="574.6428571428571" y="14" text-anchor="middle" font-size="10" fill="#0066cc" font-weight="500">S</text><path d="M90.4 97.4 L171.1 78.6 L251.8 96.6 L332.5 112.7 L413.2 113.5 L493.9 71.9 L574.6 50.7" fill="none" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/><text x="90.35714285714286" y="284" text-anchor="middle" font-size="8" fill="#9933cc" font-weight="500">NE</text><text x="619" y="276.0" text-anchor="start" font-size="10" fill="#e67e22">0</text><text x="619" y="226.4" text-anchor="start" font-size="10" fill="#e67e22">2</text><text x="619" y="176.8" text-anchor="start" font-size="10" fill="#e67e22">4</text><text x="619" y="127.20000000000002" text-anchor="start" font-size="10" fill="#e67e22">6</text><text x="619" y="77.6" text-anchor="start" font-size="10" fill="#e67e22">8</text><text x="619" y="28.0" text-anchor="start" font-size="10" fill="#e67e22">10</text>
         </svg>
     </div>
         </div>
@@ -4586,9 +4785,270 @@ h2 {
     </div>
 </div>
 
+  <div class="region-map-container" id="regionMapContainer" style="display:none;">
+  <div class="section map-section">
+    <div id="regionMap" class="region-map"></div>
+    <div class="map-slider-wrap">
+      <div class="map-slider-labels" id="mapSliderLabels"></div>
+      <input type="range" id="mapSlider" class="map-slider" min="0" max="11" value="0" step="1">
+      <div class="map-slider-info" id="mapSliderInfo"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<script>
+(function() {
+  'use strict';
+
+  var mapData = {"beaches": [{"aspect": 158, "aspect_compass": "SSE", "lat": null, "lng": null, "name": "Long Reef"}, {"aspect": 135, "aspect_compass": "SE", "lat": null, "lng": null, "name": "Dee Why"}, {"aspect": 157.5, "aspect_compass": "SSE", "lat": null, "lng": null, "name": "North Curl Curl"}, {"aspect": 135, "aspect_compass": "SE", "lat": null, "lng": null, "name": "South Curl Curl"}, {"aspect": 135, "aspect_compass": "SE", "lat": null, "lng": null, "name": "Freshwater"}, {"aspect": 101.25, "aspect_compass": "E", "lat": null, "lng": null, "name": "Queenscliff"}, {"aspect": 83.75, "aspect_compass": "E", "lat": null, "lng": null, "name": "North Steyne"}, {"aspect": 45, "aspect_compass": "NE", "lat": null, "lng": null, "name": "South Steyne"}], "frames": [{"beaches": [{"attack_angle": "78", "board": "Shortboard, Groveller, Fish", "exposure": "85", "face_ft": "4 ft", "llm_note": "Mild chest-high SSE swell runs through the morning, with light offshore winds holding up the long walls. Low tide around 9am hollows the inner shorebreak for spilling peaks. Best window 9-12pm; by midday the swell drops to waist-high and the rising tide fattens it up.", "name": "Long Reef", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9677766395311737, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high sets with moderate WNW offshore winds from 9am carve clean, moderate walls. Low tide adds a bit of punch to the spilling waves. Best window 9-12pm; later the outgoing tide and dropping swell leave waist-high mushy lines.", "name": "Dee Why", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9677766395311737, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "60", "face_ft": "3 ft", "llm_note": "Morning chest-high waves with offshore NNW winds produce spilling, shorebreak action. The low tide around 9am helps the wedge fire with plunging sections. Best window 9-12pm; after lunch the swell drops to waist-high and the westerly wind fattens the waves.", "name": "North Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9677766395311737, "wind_strength": "Gale"}, {"attack_angle": "69", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high spilling shorebreak in the morning, with clean offshore winds from 9am. Low tide brings plunging peaks on the rip bowl. Best window 9-12pm; later the swell drops to waist-high and the westerly wind softens the shape.", "name": "South Curl Curl", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9677766395311737, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high moderate walls with offshore WNW winds from 9am. Low tide draws the shape into clean spilling lines. Best window 9-12pm; by afternoon the swell fades to waist-high and the rising tide fattens the waves.", "name": "Freshwater", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9677766395311737, "wind_strength": "Gale"}, {"attack_angle": "35", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-long walls in the morning, with light offshore winds from 9am. Low tide hollows the inner shorebreak for spilling sections. Best window 9-12pm; later the swell drops to waist-high and the high tide makes the waves dumpy.", "name": "Queenscliff", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8054354509177994, "wind_strength": "Gale"}, {"attack_angle": "18", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high waves all day, with moderate WNW offshore winds from 9am cleaning up the spilling walls. Low tide around 9am gives the waves a bit of shape. Best window 9-12pm; the afternoon sees the swell fade and the tide fatten the waves.", "name": "North Steyne", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8054354509177994, "wind_strength": "Gale"}, {"attack_angle": "21", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high surging walls in the morning, but the headland shadows the swell. Offshore winds from 9am keep the faces clean, but the waves lack punch. Best window 9-12pm; later the swell drops to ankle-knee high and the westerly wind makes it messy.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.40172861225009104, "wind_strength": "Gale"}], "date_str": "", "day": "today", "emoji": "\ud83c\udf05", "swell_compass": "ENE", "swell_dir_deg": 66, "swell_height": 1.26, "swell_period": 6.15, "tide_height": 0.51, "tide_summary": "low tide (0.5m)", "timeframe": "6\u20139am", "wind_compass": "NW", "wind_dir_deg": 322, "wind_knots": 14.794816414686824}, {"beaches": [{"attack_angle": "78", "board": "Shortboard, Groveller, Fish", "exposure": "88", "face_ft": "3-4 ft", "llm_note": "Mild chest-high SSE swell runs through the morning, with light offshore winds holding up the long walls. Low tide around 9am hollows the inner shorebreak for spilling peaks. Best window 9-12pm; by midday the swell drops to waist-high and the rising tide fattens it up.", "name": "Long Reef", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9515366547377475, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high sets with moderate WNW offshore winds from 9am carve clean, moderate walls. Low tide adds a bit of punch to the spilling waves. Best window 9-12pm; later the outgoing tide and dropping swell leave waist-high mushy lines.", "name": "Dee Why", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9515366547377475, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "67", "face_ft": "3-4 ft", "llm_note": "Morning chest-high waves with offshore NNW winds produce spilling, shorebreak action. The low tide around 9am helps the wedge fire with plunging sections. Best window 9-12pm; after lunch the swell drops to waist-high and the westerly wind fattens the waves.", "name": "North Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9515366547377475, "wind_strength": "Gale"}, {"attack_angle": "69", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high spilling shorebreak in the morning, with clean offshore winds from 9am. Low tide brings plunging peaks on the rip bowl. Best window 9-12pm; later the swell drops to waist-high and the westerly wind softens the shape.", "name": "South Curl Curl", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9515366547377475, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high moderate walls with offshore WNW winds from 9am. Low tide draws the shape into clean spilling lines. Best window 9-12pm; by afternoon the swell fades to waist-high and the rising tide fattens the waves.", "name": "Freshwater", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9515366547377475, "wind_strength": "Gale"}, {"attack_angle": "35", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-long walls in the morning, with light offshore winds from 9am. Low tide hollows the inner shorebreak for spilling sections. Best window 9-12pm; later the swell drops to waist-high and the high tide makes the waves dumpy.", "name": "Queenscliff", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.7932716803543347, "wind_strength": "Gale"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high waves all day, with moderate WNW offshore winds from 9am cleaning up the spilling walls. Low tide around 9am gives the waves a bit of shape. Best window 9-12pm; the afternoon sees the swell fade and the tide fatten the waves.", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.40145503150588163, "wind_strength": "Gale"}, {"attack_angle": "21", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high surging walls in the morning, but the headland shadows the swell. Offshore winds from 9am keep the faces clean, but the waves lack punch. Best window 9-12pm; later the swell drops to ankle-knee high and the westerly wind makes it messy.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.40145503150588163, "wind_strength": "Gale"}], "date_str": "", "day": "today", "emoji": "\u2600\ufe0f", "swell_compass": "ENE", "swell_dir_deg": 66, "swell_height": 1.14, "swell_period": 6.9, "tide_height": 0.31, "tide_summary": "low tide (0.3m)", "timeframe": "9\u201312pm", "wind_compass": "NNW", "wind_dir_deg": 329, "wind_knots": 14.200863930885529}, {"beaches": [{"attack_angle": "78", "board": "Shortboard, Groveller, Fish", "exposure": "98", "face_ft": "4-5 ft", "llm_note": "Mild chest-high SSE swell runs through the morning, with light offshore winds holding up the long walls. Low tide around 9am hollows the inner shorebreak for spilling peaks. Best window 9-12pm; by midday the swell drops to waist-high and the rising tide fattens it up.", "name": "Long Reef", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9851121811321979, "wind_strength": "Gale"}, {"attack_angle": "61", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high sets with moderate WNW offshore winds from 9am carve clean, moderate walls. Low tide adds a bit of punch to the spilling waves. Best window 9-12pm; later the outgoing tide and dropping swell leave waist-high mushy lines.", "name": "Dee Why", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9851121811321979, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "88", "face_ft": "4 ft", "llm_note": "Morning chest-high waves with offshore NNW winds produce spilling, shorebreak action. The low tide around 9am helps the wedge fire with plunging sections. Best window 9-12pm; after lunch the swell drops to waist-high and the westerly wind fattens the waves.", "name": "North Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9851121811321979, "wind_strength": "Gale"}, {"attack_angle": "61", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high spilling shorebreak in the morning, with clean offshore winds from 9am. Low tide brings plunging peaks on the rip bowl. Best window 9-12pm; later the swell drops to waist-high and the westerly wind softens the shape.", "name": "South Curl Curl", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9851121811321979, "wind_strength": "Gale"}, {"attack_angle": "61", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high moderate walls with offshore WNW winds from 9am. Low tide draws the shape into clean spilling lines. Best window 9-12pm; by afternoon the swell fades to waist-high and the rising tide fattens the waves.", "name": "Freshwater", "rating": 3.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#27ae60\"\u003eGreat\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9851121811321979, "wind_strength": "Gale"}, {"attack_angle": "27", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "5 ft", "llm_note": "Chest-long walls in the morning, with light offshore winds from 9am. Low tide hollows the inner shorebreak for spilling sections. Best window 9-12pm; later the swell drops to waist-high and the high tide makes the waves dumpy.", "name": "Queenscliff", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8067413107990425, "wind_strength": "Gale"}, {"attack_angle": "10", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high waves all day, with moderate WNW offshore winds from 9am cleaning up the spilling walls. Low tide around 9am gives the waves a bit of shape. Best window 9-12pm; the afternoon sees the swell fade and the tide fatten the waves.", "name": "North Steyne", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8067413107990425, "wind_strength": "Gale"}, {"attack_angle": "29", "board": "Shortboard, Step-Up", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high surging walls in the morning, but the headland shadows the swell. Offshore winds from 9am keep the faces clean, but the waves lack punch. Best window 9-12pm; later the swell drops to ankle-knee high and the westerly wind makes it messy.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.34615351548671686, "wind_strength": "Gale"}], "date_str": "", "day": "today", "emoji": "\ud83c\udf24\ufe0f", "swell_compass": "ENE", "swell_dir_deg": 74, "swell_height": 1.04, "swell_period": 7.85, "tide_height": 1.24, "tide_summary": "mid-high tide (1.2m)", "timeframe": "12\u20133pm", "wind_compass": "NW", "wind_dir_deg": 317, "wind_knots": 19.438444924406046}, {"beaches": [{"attack_angle": "78", "board": "Shortboard, Groveller, Fish", "exposure": "86", "face_ft": "3-4 ft", "llm_note": "Mild chest-high SSE swell runs through the morning, with light offshore winds holding up the long walls. Low tide around 9am hollows the inner shorebreak for spilling peaks. Best window 9-12pm; by midday the swell drops to waist-high and the rising tide fattens it up.", "name": "Long Reef", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9615411871449424, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "99", "face_ft": "4-5 ft", "llm_note": "Chest-high sets with moderate WNW offshore winds from 9am carve clean, moderate walls. Low tide adds a bit of punch to the spilling waves. Best window 9-12pm; later the outgoing tide and dropping swell leave waist-high mushy lines.", "name": "Dee Why", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9615411871449424, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "68", "face_ft": "3 ft", "llm_note": "Morning chest-high waves with offshore NNW winds produce spilling, shorebreak action. The low tide around 9am helps the wedge fire with plunging sections. Best window 9-12pm; after lunch the swell drops to waist-high and the westerly wind fattens the waves.", "name": "North Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9615411871449424, "wind_strength": "Gale"}, {"attack_angle": "72", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high spilling shorebreak in the morning, with clean offshore winds from 9am. Low tide brings plunging peaks on the rip bowl. Best window 9-12pm; later the swell drops to waist-high and the westerly wind softens the shape.", "name": "South Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9615411871449424, "wind_strength": "Gale"}, {"attack_angle": "68", "board": "Shortboard, Groveller, Fish", "exposure": "99", "face_ft": "4-5 ft", "llm_note": "Chest-high moderate walls with offshore WNW winds from 9am. Low tide draws the shape into clean spilling lines. Best window 9-12pm; by afternoon the swell fades to waist-high and the rising tide fattens the waves.", "name": "Freshwater", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9615411871449424, "wind_strength": "Gale"}, {"attack_angle": "38", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-long walls in the morning, with light offshore winds from 9am. Low tide hollows the inner shorebreak for spilling sections. Best window 9-12pm; later the swell drops to waist-high and the high tide makes the waves dumpy.", "name": "Queenscliff", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.7990832890633152, "wind_strength": "Gale"}, {"attack_angle": "21", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Waist-high waves all day, with moderate WNW offshore winds from 9am cleaning up the spilling walls. Low tide around 9am gives the waves a bit of shape. Best window 9-12pm; the afternoon sees the swell fade and the tide fatten the waves.", "name": "North Steyne", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.7990832890633152, "wind_strength": "Gale"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4 ft", "llm_note": "Waist-high surging walls in the morning, but the headland shadows the swell. Offshore winds from 9am keep the faces clean, but the waves lack punch. Best window 9-12pm; later the swell drops to ankle-knee high and the westerly wind makes it messy.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.3935782337114732, "wind_strength": "Gale"}], "date_str": "", "day": "today", "emoji": "\ud83c\udf07", "swell_compass": "ENE", "swell_dir_deg": 63, "swell_height": 1.06, "swell_period": 7.8, "tide_height": 1.51, "tide_summary": "high tide (1.5m)", "timeframe": "3\u20136pm", "wind_compass": "NW", "wind_dir_deg": 321, "wind_knots": 15.280777537796975}, {"beaches": [{"attack_angle": "78", "board": "Fish, Longboard", "exposure": "94", "face_ft": "2 ft", "llm_note": "Waist-high walls early, clean but weak. The afternoon S swell bumps it to chest-high, but the high tide fattens the long walls into dumpy, slow rides. Best window: late morning low tide for longer, cleaner slides.", "name": "Long Reef", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.4847635305727631, "wind_strength": "Strong"}, {"attack_angle": "66", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Consistent waist-high peelers with a clean cross-off wind all morning. Low tide hollows the moderate walls, offering the best shape. The afternoon S swell brings chest-high but surging waves on the rising tide.", "name": "Dee Why", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8968763687761827, "wind_strength": "Strong"}, {"attack_angle": "68", "board": "Fish, Longboard", "exposure": "79", "face_ft": "1-2 ft", "llm_note": "Early waist-high shorebreak with a cross wind, but the low tide window from 9\u201312 delivers plunging, punchy waves. Afternoon gets chest-high but surging and fat on the high tide. Best bet: late morning.", "name": "North Curl Curl", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.4847635305727631, "wind_strength": "Strong"}, {"attack_angle": "66", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Clean, waist-high spilling shorebreak all day, with the best shape at low tide turning into plunging peaks. The afternoon chest-high S swell brings surging waves, but the offshore wind keeps it rideable. Morning is prime.", "name": "South Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8968763687761827, "wind_strength": "Strong"}, {"attack_angle": "66", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high spilling walls with a cross-off wind, best at low tide for clean peelers. The afternoon chest-high S swell gets dumpy on the high tide, but the narrow bay focuses energy. Morning low tide is the window.", "name": "Freshwater", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8968763687761827, "wind_strength": "Strong"}, {"attack_angle": "32", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high long walls with offshore wind all day, cleanest at low tide when the spilling waves hold up. The afternoon chest-high S swell turns dumpy on the high tide, but the offshore stays steady. Late morning is best.", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "15", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high surging to spilling walls with offshore wind, best at low tide for cleaner faces. The afternoon stays waist-high but turns dumpy on the high tide. Late morning offers the best shape.", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "24", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high long walls with a cross-off wind, cleanest at low tide with spilling sections. The afternoon stays waist-high but gets dumpy and fair with a cross breeze. Morning low tide is the pick.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8968763687761827, "wind_strength": "Strong"}], "date_str": "", "day": "tomorrow", "emoji": "\ud83c\udf05", "swell_compass": "ENE", "swell_dir_deg": 69, "swell_height": 0.48, "swell_period": 7.65, "tide_height": 0.73, "tide_summary": "mid-low tide (0.7m)", "timeframe": "6\u20139am", "wind_compass": "W", "wind_dir_deg": 261, "wind_knots": 10.907127429805614}, {"beaches": [{"attack_angle": "74", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high walls early, clean but weak. The afternoon S swell bumps it to chest-high, but the high tide fattens the long walls into dumpy, slow rides. Best window: late morning low tide for longer, cleaner slides.", "name": "Long Reef", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.5040807542824668, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Consistent waist-high peelers with a clean cross-off wind all morning. Low tide hollows the moderate walls, offering the best shape. The afternoon S swell brings chest-high but surging waves on the rising tide.", "name": "Dee Why", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8827082551411679, "wind_strength": "Moderate"}, {"attack_angle": "68", "board": "Fish, Longboard", "exposure": "98", "face_ft": "2 ft", "llm_note": "Early waist-high shorebreak with a cross wind, but the low tide window from 9\u201312 delivers plunging, punchy waves. Afternoon gets chest-high but surging and fat on the high tide. Best bet: late morning.", "name": "North Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8827082551411679, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Clean, waist-high spilling shorebreak all day, with the best shape at low tide turning into plunging peaks. The afternoon chest-high S swell brings surging waves, but the offshore wind keeps it rideable. Morning is prime.", "name": "South Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8827082551411679, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high spilling walls with a cross-off wind, best at low tide for clean peelers. The afternoon chest-high S swell gets dumpy on the high tide, but the narrow bay focuses energy. Morning low tide is the window.", "name": "Freshwater", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8827082551411679, "wind_strength": "Moderate"}, {"attack_angle": "17", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high long walls with offshore wind all day, cleanest at low tide when the spilling waves hold up. The afternoon chest-high S swell turns dumpy on the high tide, but the offshore stays steady. Late morning is best.", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "0", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high surging to spilling walls with offshore wind, best at low tide for cleaner faces. The afternoon stays waist-high but turns dumpy on the high tide. Late morning offers the best shape.", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "39", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high long walls with a cross-off wind, cleanest at low tide with spilling sections. The afternoon stays waist-high but gets dumpy and fair with a cross breeze. Morning low tide is the pick.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8827082551411679, "wind_strength": "Moderate"}], "date_str": "", "day": "tomorrow", "emoji": "\u2600\ufe0f", "swell_compass": "E", "swell_dir_deg": 84, "swell_height": 0.4, "swell_period": 8.05, "tide_height": 0.28, "tide_summary": "low tide (0.3m)", "timeframe": "9\u201312pm", "wind_compass": "W", "wind_dir_deg": 278, "wind_knots": 6.587473002159826}, {"beaches": [{"attack_angle": "78", "board": "Fish, Longboard", "exposure": "99", "face_ft": "2 ft", "llm_note": "Waist-high walls early, clean but weak. The afternoon S swell bumps it to chest-high, but the high tide fattens the long walls into dumpy, slow rides. Best window: late morning low tide for longer, cleaner slides.", "name": "Long Reef", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.5021494964133031, "wind_strength": "Moderate"}, {"attack_angle": "60", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Consistent waist-high peelers with a clean cross-off wind all morning. Low tide hollows the moderate walls, offering the best shape. The afternoon S swell brings chest-high but surging waves on the rising tide.", "name": "Dee Why", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8878743161231627, "wind_strength": "Moderate"}, {"attack_angle": "68", "board": "Fish, Longboard", "exposure": "90", "face_ft": "2 ft", "llm_note": "Early waist-high shorebreak with a cross wind, but the low tide window from 9\u201312 delivers plunging, punchy waves. Afternoon gets chest-high but surging and fat on the high tide. Best bet: late morning.", "name": "North Curl Curl", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.5021494964133031, "wind_strength": "Moderate"}, {"attack_angle": "60", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Clean, waist-high spilling shorebreak all day, with the best shape at low tide turning into plunging peaks. The afternoon chest-high S swell brings surging waves, but the offshore wind keeps it rideable. Morning is prime.", "name": "South Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8878743161231627, "wind_strength": "Moderate"}, {"attack_angle": "60", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high spilling walls with a cross-off wind, best at low tide for clean peelers. The afternoon chest-high S swell gets dumpy on the high tide, but the narrow bay focuses energy. Morning low tide is the window.", "name": "Freshwater", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8878743161231627, "wind_strength": "Moderate"}, {"attack_angle": "26", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high long walls with offshore wind all day, cleanest at low tide when the spilling waves hold up. The afternoon chest-high S swell turns dumpy on the high tide, but the offshore stays steady. Late morning is best.", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "9", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2 ft", "llm_note": "Waist-high surging to spilling walls with offshore wind, best at low tide for cleaner faces. The afternoon stays waist-high but turns dumpy on the high tide. Late morning offers the best shape.", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "30", "board": "Fish, Longboard", "exposure": "100", "face_ft": "1-2 ft", "llm_note": "Waist-high long walls with a cross-off wind, cleanest at low tide with spilling sections. The afternoon stays waist-high but gets dumpy and fair with a cross breeze. Morning low tide is the pick.", "name": "South Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8878743161231627, "wind_strength": "Moderate"}], "date_str": "", "day": "tomorrow", "emoji": "\ud83c\udf24\ufe0f", "swell_compass": "ENE", "swell_dir_deg": 75, "swell_height": 0.38, "swell_period": 8.05, "tide_height": 1.02, "tide_summary": "mid tide (1.0m)", "timeframe": "12\u20133pm", "wind_compass": "W", "wind_dir_deg": 262, "wind_knots": 7.559395248380129}, {"beaches": [{"attack_angle": "12", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3 ft", "llm_note": "Waist-high walls early, clean but weak. The afternoon S swell bumps it to chest-high, but the high tide fattens the long walls into dumpy, slow rides. Best window: late morning low tide for longer, cleaner slides.", "name": "Long Reef", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8520852913865007, "wind_strength": "Moderate"}, {"attack_angle": "34", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3 ft", "llm_note": "Consistent waist-high peelers with a clean cross-off wind all morning. Low tide hollows the moderate walls, offering the best shape. The afternoon S swell brings chest-high but surging waves on the rising tide.", "name": "Dee Why", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "11", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3 ft", "llm_note": "Early waist-high shorebreak with a cross wind, but the low tide window from 9\u201312 delivers plunging, punchy waves. Afternoon gets chest-high but surging and fat on the high tide. Best bet: late morning.", "name": "North Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8520852913865007, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Shortboard, Groveller, Fish", "exposure": "93", "face_ft": "3 ft", "llm_note": "Clean, waist-high spilling shorebreak all day, with the best shape at low tide turning into plunging peaks. The afternoon chest-high S swell brings surging waves, but the offshore wind keeps it rideable. Morning is prime.", "name": "South Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Shortboard, Groveller, Fish", "exposure": "93", "face_ft": "3 ft", "llm_note": "Waist-high spilling walls with a cross-off wind, best at low tide for clean peelers. The afternoon chest-high S swell gets dumpy on the high tide, but the narrow bay focuses energy. Morning low tide is the window.", "name": "Freshwater", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Shortboard, Groveller, Fish", "exposure": "93", "face_ft": "3 ft", "llm_note": "Waist-high long walls with offshore wind all day, cleanest at low tide when the spilling waves hold up. The afternoon chest-high S swell turns dumpy on the high tide, but the offshore stays steady. Late morning is best.", "name": "Queenscliff", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "7", "board": "Fish, Longboard", "exposure": "53", "face_ft": "2-3 ft", "llm_note": "Waist-high surging to spilling walls with offshore wind, best at low tide for cleaner faces. The afternoon stays waist-high but turns dumpy on the high tide. Late morning offers the best shape.", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "32", "board": "Fish, Longboard", "exposure": "5", "face_ft": "2 ft", "llm_note": "Waist-high long walls with a cross-off wind, cleanest at low tide with spilling sections. The afternoon stays waist-high but gets dumpy and fair with a cross breeze. Morning low tide is the pick.", "name": "South Steyne", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.5012958008904186, "wind_strength": "Moderate"}], "date_str": "", "day": "tomorrow", "emoji": "\ud83c\udf07", "swell_compass": "S", "swell_dir_deg": 170, "swell_height": 0.64, "swell_period": 8.05, "tide_height": 1.52, "tide_summary": "high tide (1.5m)", "timeframe": "3\u20136pm", "wind_compass": "WNW", "wind_dir_deg": 288, "wind_knots": 6.155507559395248}, {"beaches": [{"attack_angle": "9", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3 ft", "llm_note": "", "name": "Long Reef", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "32", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3 ft", "llm_note": "", "name": "Dee Why", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8849872668444443, "wind_strength": "Moderate"}, {"attack_angle": "10", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3 ft", "llm_note": "", "name": "North Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Shortboard, Groveller, Fish", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "South Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8849872668444443, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Shortboard, Groveller, Fish", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "Freshwater", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8849872668444443, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Shortboard, Groveller, Fish", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.5048757412345679, "wind_strength": "Moderate"}, {"attack_angle": "0", "board": "Fish, Longboard", "exposure": "55", "face_ft": "2 ft", "llm_note": "", "name": "North Steyne", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.4734494770944242, "wind_strength": "Moderate"}, {"attack_angle": "39", "board": "Fish, Longboard", "exposure": "5", "face_ft": "1-2 ft", "llm_note": "", "name": "South Steyne", "rating": 1.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross-On", "wind_quality": 0.21024643698496814, "wind_strength": "Moderate"}], "date_str": "", "day": "ubermorgan", "emoji": "\ud83c\udf05", "swell_compass": "SSE", "swell_dir_deg": 167, "swell_height": 0.58, "swell_period": 7.55, "tide_height": 0.94, "tide_summary": "mid tide (0.9m)", "timeframe": "6\u20139am", "wind_compass": "NNW", "wind_dir_deg": 347, "wind_knots": 6.695464362850972}, {"beaches": [{"attack_angle": "9", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "Long Reef", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8507486993112823, "wind_strength": "Strong"}, {"attack_angle": "32", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "Dee Why", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "10", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "North Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8507486993112823, "wind_strength": "Strong"}, {"attack_angle": "22", "board": "Fish, Longboard", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "South Curl Curl", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "22", "board": "Fish, Longboard", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "Freshwater", "rating": 2.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "56", "board": "Fish, Longboard", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "1", "board": "Fish, Longboard", "exposure": "54", "face_ft": "2 ft", "llm_note": "", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Strong"}, {"attack_angle": "40", "board": "Fish, Longboard", "exposure": "5", "face_ft": "1-2 ft", "llm_note": "", "name": "South Steyne", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.49513514463250174, "wind_strength": "Strong"}], "date_str": "", "day": "ubermorgan", "emoji": "\u2600\ufe0f", "swell_compass": "SSE", "swell_dir_deg": 167, "swell_height": 0.54, "swell_period": 7.5, "tide_height": 0.34, "tide_summary": "low tide (0.3m)", "timeframe": "9\u201312pm", "wind_compass": "WNW", "wind_dir_deg": 286, "wind_knots": 8.69330453563715}, {"beaches": [{"attack_angle": "9", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "Long Reef", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.47258031976431786, "wind_strength": "Moderate"}, {"attack_angle": "32", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "Dee Why", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8341598694820884, "wind_strength": "Moderate"}, {"attack_angle": "10", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "North Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.47258031976431786, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Fish, Longboard", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "South Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8341598694820884, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Fish, Longboard", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "Freshwater", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8341598694820884, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Fish, Longboard", "exposure": "95", "face_ft": "2-3 ft", "llm_note": "", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9864405300317997, "wind_strength": "Moderate"}, {"attack_angle": "1", "board": "Fish, Longboard", "exposure": "54", "face_ft": "2 ft", "llm_note": "", "name": "North Steyne", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "40", "board": "Fish, Longboard", "exposure": "5", "face_ft": "1-2 ft", "llm_note": "", "name": "South Steyne", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8875178256288643, "wind_strength": "Moderate"}], "date_str": "", "day": "ubermorgan", "emoji": "\ud83c\udf24\ufe0f", "swell_compass": "SSE", "swell_dir_deg": 167, "swell_height": 0.5, "swell_period": 7.45, "tide_height": 0.81, "tide_summary": "mid-low tide (0.8m)", "timeframe": "12\u20133pm", "wind_compass": "W", "wind_dir_deg": 270, "wind_knots": 7.397408207343412}, {"beaches": [{"attack_angle": "7", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "Long Reef", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.46872925518321107, "wind_strength": "Moderate"}, {"attack_angle": "30", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "Dee Why", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8332671695685848, "wind_strength": "Moderate"}, {"attack_angle": "8", "board": "Fish, Longboard", "exposure": "100", "face_ft": "2-3 ft", "llm_note": "", "name": "North Curl Curl", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross", "wind_quality": 0.46872925518321107, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Fish, Longboard", "exposure": "97", "face_ft": "2-3 ft", "llm_note": "", "name": "South Curl Curl", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8332671695685848, "wind_strength": "Moderate"}, {"attack_angle": "22", "board": "Fish, Longboard", "exposure": "97", "face_ft": "2-3 ft", "llm_note": "", "name": "Freshwater", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.8332671695685848, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Fish, Longboard", "exposure": "97", "face_ft": "2-3 ft", "llm_note": "", "name": "Queenscliff", "rating": 2.0, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#2980b9\"\u003eGood\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 0.9863229251227164, "wind_strength": "Moderate"}, {"attack_angle": "0", "board": "Fish, Longboard", "exposure": "54", "face_ft": "2 ft", "llm_note": "", "name": "North Steyne", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "39", "board": "Longboard, Log, Mid-Length", "exposure": "5", "face_ft": "1-2 ft", "llm_note": "", "name": "South Steyne", "rating": 1.5, "rating_badge": "\u003cspan class=\"rating-badge\" style=\"background:#f39c12\"\u003eFair\u003c/span\u003e", "wind_label": "Cross-Off", "wind_quality": 0.889919000906563, "wind_strength": "Moderate"}], "date_str": "", "day": "ubermorgan", "emoji": "\ud83c\udf07", "swell_compass": "SSE", "swell_dir_deg": 165, "swell_height": 0.44, "swell_period": 7.0, "tide_height": 1.43, "tide_summary": "high tide (1.4m)", "timeframe": "3\u20136pm", "wind_compass": "W", "wind_dir_deg": 269, "wind_knots": 8.04535637149028}]};
+  if (!mapData || !mapData.frames || !mapData.beaches) return;
+
+  var map = L.map('regionMap', {
+    center: [-33.77, 151.295],
+    zoom: 13,
+    zoomControl: true,
+    attributionControl: false,
+    fadeAnimation: true,
+    zoomAnimation: true,
+    scrollWheelZoom: true,
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>',
+  }).addTo(map);
+
+  // ── Swell compass arrow overlay ─────────────────────
+  // Fixed position east of the beaches (in the ocean)
+  var compassIcon = L.divIcon({
+    className: 'map-compass',
+    html: '<div class="compass-arrow" id="compassArrow"><svg viewBox="0 0 120 120" width="120" height="120"><polygon points="60,5 100,115 60,85 20,115" fill="rgba(0,102,204,0.35)" stroke="rgba(0,102,204,0.7)" stroke-width="2.5"/><circle cx="60" cy="60" r="8" fill="rgba(0,102,204,0.5)"/><line x1="60" y1="60" x2="60" y2="5" stroke="rgba(0,102,204,0.8)" stroke-width="3"/><text x="60" y="28" text-anchor="middle" font-size="10" font-weight="bold" fill="rgba(0,102,204,0.9)">SWELL</text></svg></div><div class="compass-label" id="compassLabel">SE 11s</div>',
+    iconSize: [120, 140],
+    iconAnchor: [60, 70],
+  });
+
+  var compassMarker = L.marker([-33.765, 151.33], { icon: compassIcon, interactive: false }).addTo(map);
+  var compassArrowEl = null;
+  var compassLabelEl = null;
+
+  // ── Beach markers ───────────────────────────────────
+  var beachMarkers = {};
+  mapData.beaches.forEach(function(b) {
+    if (b.lat == null || b.lng == null) return;
+    var icon = L.divIcon({
+      className: 'map-beach-marker',
+      html: '<div class="beach-pin" data-beach="' + b.name + '"><div class="pin-wave"></div><div class="pin-rating"></div></div>',
+      iconSize: [80, 48],
+      iconAnchor: [40, 24],
+    });
+    var marker = L.marker([b.lat, b.lng], { icon: icon }).addTo(map);
+    marker._beachName = b.name;
+    marker.on('click', function(e) {
+      var idx = parseInt(document.getElementById('mapSlider').value, 10);
+      var frame = mapData.frames[idx];
+      if (!frame) return;
+      showBeachPopup(this, frame);
+    });
+    beachMarkers[b.name] = marker;
+  });
+
+  // ── Wind arrow markers ──────────────────────────────
+  var windMarkers = {};
+  mapData.beaches.forEach(function(b) {
+    if (b.lat == null || b.lng == null) return;
+    // Offset slightly from beach pin so they don't overlap
+    var icon = L.divIcon({
+      className: 'map-wind-marker',
+      html: '<div class="wind-arrow" id="wind_' + b.name.replace(/\s+/g, '_') + '"><svg viewBox="0 0 40 40" width="40" height="40"><polygon points="20,2 34,38 20,28 6,38" fill="rgba(100,100,100,0.5)" stroke="rgba(80,80,80,0.6)" stroke-width="1.5"/></svg></div>',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20],
+    });
+    var marker = L.marker([b.lat + 0.001, b.lng + 0.003], { icon: icon, interactive: false }).addTo(map);
+    windMarkers[b.name] = marker;
+  });
+
+  // ── Slider setup ────────────────────────────────────
+  var slider = document.getElementById('mapSlider');
+  var labelsEl = document.getElementById('mapSliderLabels');
+  var infoEl = document.getElementById('mapSliderInfo');
+
+  // Set slider range from actual frame count (robust to missing data)
+  slider.max = String(mapData.frames.length - 1);
+
+  var dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  var frameLabels = [];
+
+  mapData.frames.forEach(function(f, i) {
+    var dayAbbr = f.date_str ? f.date_str.split(' ')[0] : f.day;
+    var label = dayAbbr + ' ' + f.timeframe;
+    frameLabels.push(label);
+  });
+
+  // Build tick labels
+  frameLabels.forEach(function(lbl, i) {
+    var span = document.createElement('span');
+    span.textContent = lbl;
+    span.className = 'map-slider-tick';
+    labelsEl.appendChild(span);
+  });
+
+  // ── Update map for a given frame index ─────────────
+  function updateMap(idx) {
+    var frame = mapData.frames[idx];
+    if (!frame) return;
+
+    // Update info
+    infoEl.innerHTML = '<span class="msi-date">' + frame.date_str + '</span>' +
+      ' <span class="msi-sep">|</span> ' +
+      '<span class="msi-tf">' + frame.emoji + ' ' + frame.timeframe + '</span>' +
+      ' <span class="msi-sep">|</span> ' +
+      '<span class="msi-swell">' + frame.swell_compass + ' ' + (frame.swell_period || '') + 's</span>' +
+      ' <span class="msi-sep">|</span> ' +
+      '<span class="msi-wind">💨 ' + frame.wind_compass + ' ' + (frame.wind_knots || 0).toFixed(0) + 'kn</span>' +
+      ' <span class="msi-sep">|</span> ' +
+      '<span class="msi-tide">🌊 ' + frame.tide_summary + '</span>';
+
+    // Update compass arrow
+    var deg = frame.swell_dir_deg || 0;
+    var arrow = document.getElementById('compassArrow');
+    if (arrow) {
+      arrow.style.transform = 'rotate(' + (deg - 180) + 'deg)'; // point FROM direction
+    }
+    var cl = document.getElementById('compassLabel');
+    if (cl) {
+      cl.textContent = frame.swell_compass + ' ' + (frame.swell_period || '') + 's';
+    }
+
+    // Update beach pins
+    frame.beaches.forEach(function(b) {
+      var marker = beachMarkers[b.name];
+      if (!marker) return;
+      var el = marker.getElement();
+      if (!el) return;
+      var pin = el.querySelector('.beach-pin');
+      if (!pin) return;
+      var waveEl = pin.querySelector('.pin-wave');
+      var ratingEl = pin.querySelector('.pin-rating');
+      if (waveEl) waveEl.textContent = b.face_ft;
+      if (ratingEl) ratingEl.textContent = b.rating_badge;
+      // Color by rating
+      var rating = b.rating || 0;
+      var color = '#999';
+      if (rating >= 8) color = '#1b5e20';
+      else if (rating >= 6) color = '#2e7d32';
+      else if (rating >= 4) color = '#f57c00';
+      else if (rating >= 2) color = '#e65100';
+      else color = '#c62828';
+      pin.style.borderColor = color;
+      if (ratingEl) ratingEl.style.background = color;
+    });
+
+    // Update wind arrows
+    frame.beaches.forEach(function(b) {
+      var wm = windMarkers[b.name];
+      if (!wm) return;
+      var el = wm.getElement();
+      if (!el) return;
+      var arrowEl = el.querySelector('.wind-arrow svg polygon');
+      if (!arrowEl) return;
+      var windDeg = frame.wind_dir_deg || 0;
+      var parent = arrowEl.parentElement;
+      if (parent) {
+        parent.style.transform = 'rotate(' + windDeg + 'deg)';
+      }
+      // Color by wind quality
+      var wq = b.wind_quality || 0;
+      var fill = 'rgba(100,100,100,0.5)';
+      var stroke = 'rgba(80,80,80,0.6)';
+      if (wq >= 0.7) { fill = 'rgba(46,125,50,0.45)'; stroke = 'rgba(46,125,50,0.7)'; }     // offshore
+      else if (wq >= 0.4) { fill = 'rgba(245,124,0,0.4)'; stroke = 'rgba(245,124,0,0.65)'; } // side
+      else { fill = 'rgba(198,40,40,0.4)'; stroke = 'rgba(198,40,40,0.65)'; }                 // onshore
+      if (arrowEl) {
+        arrowEl.setAttribute('fill', fill);
+        arrowEl.setAttribute('stroke', stroke);
+      }
+    });
+  }
+
+  // ── Beach popup ────────────────────────────────────
+  function showBeachPopup(marker, frame) {
+    var name = marker._beachName;
+    var beach = null;
+    frame.beaches.forEach(function(b) { if (b.name === name) beach = b; });
+    if (!beach) return;
+
+    var windLabel = beach.wind_label || '';
+    var windStrength = beach.wind_strength || '';
+    var board = beach.board || '';
+    var note = beach.llm_note || '';
+    var exposure = beach.exposure || '';
+    var attack = beach.attack_angle || '';
+
+    var html = '<div class="beach-popup"><div class="bp-name">' + name + '</div>' +
+      '<div class="bp-row"><span class="bp-label">Waves</span><span class="bp-val">' + beach.face_ft + '</span></div>' +
+      '<div class="bp-row"><span class="bp-label">Rating</span><span class="bp-val"><span class="rating-badge" style="background:' + getRatingColor(beach.rating) + '">' + beach.rating_badge + '</span></span></div>' +
+      '<div class="bp-row"><span class="bp-label">Wind</span><span class="bp-val">' + windStrength + ' ' + frame.wind_compass + ' (' + windLabel + ')</span></div>' +
+      '<div class="bp-row"><span class="bp-label">Exposure</span><span class="bp-val">' + exposure + '%</span></div>' +
+      '<div class="bp-row"><span class="bp-label">Attack</span><span class="bp-val">' + attack + '°</span></div>' +
+      (board ? '<div class="bp-row"><span class="bp-label">Board</span><span class="bp-val">' + board + '</span></div>' : '') +
+      (note ? '<div class="bp-note">💬 ' + note + '</div>' : '') +
+      '</div>';
+
+    var popup = L.popup({
+      closeButton: true,
+      className: 'beach-popup-container',
+      maxWidth: 280,
+      minWidth: 200,
+    }).setContent(html);
+
+    marker.bindPopup(popup).openPopup();
+  }
+
+  function getRatingColor(r) {
+    if (r >= 8) return '#1b5e20';
+    if (r >= 6) return '#2e7d32';
+    if (r >= 4) return '#f57c00';
+    if (r >= 2) return '#e65100';
+    return '#c62828';
+  }
+
+  // ── Slider event ────────────────────────────────────
+  slider.addEventListener('input', function() {
+    var idx = parseInt(this.value, 10);
+    updateMap(idx);
+    // Update active tick
+    var ticks = labelsEl.querySelectorAll('.map-slider-tick');
+    ticks.forEach(function(t, i) {
+      t.classList.toggle('active', i === idx);
+    });
+  });
+
+  // ── Init ────────────────────────────────────────────
+  // Initialise with first frame
+  updateMap(0);
+  var ticks = labelsEl.querySelectorAll('.map-slider-tick');
+  if (ticks.length > 0) ticks[0].classList.add('active');
+
+  // Fix map rendering after container becomes visible
+  var container = document.getElementById('regionMapContainer');
+  var observer = new MutationObserver(function() {
+    if (container.style.display !== 'none') {
+      setTimeout(function() { map.invalidateSize(); }, 100);
+    }
+  });
+  if (container) {
+    observer.observe(container, { attributes: true, attributeFilter: ['style'] });
+  }
+
+})();
+</script>
+
   <div class="footer">
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-weight: 600; font-size: 0.9em;">About this site →</a></p>
-    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-08-10 08:31:10 AEST</p>
+    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-08-10 09:44:53 AEST</p>
     <details style="margin:10px 0; text-align:left; display:inline-block;">
       <summary style="cursor:pointer; color:#666; font-size:0.85em; font-weight:600;">📊 Data source status</summary>
       <table style="margin:4px 0 0 0; font-size:0.85em; border-collapse:collapse;">
@@ -4598,14 +5058,14 @@ h2 {
                 <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ MHL Sydney Buoy (THREDDS)</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">30-min avg at 2026-08-10T06:00 AEST</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ MHL Sydney Buoy (THREDDS)</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
                 <td style="text-align:left;padding:2px 8px;">✅ MHL Sydney Buoy (THREDDS 30-min avg)</td>
                 <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">Hs=1.72m, Tp=6.6s, Dir=36.0° at 2026-08-10T06:00 AEST</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Hs=1.64m, Tp=6.6s, Dir=56.0° at 2026-08-10T07:00 AEST</td>
             </tr>
 <tr>
                 <td style="text-align:left;padding:2px 8px;">⏳ Open-Meteo Marine API</td>
@@ -4689,8 +5149,19 @@ h2 {
       if (btn) btn.classList.add('active');
       document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
       document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = ''; });
+      document.querySelectorAll('.region-map-container').forEach(function(el) { el.style.display = 'none'; });
       closeBeachModal();
       try { localStorage.setItem('surfcheckDay', 'outlook'); } catch(e) {}
+    }
+    function showMap() {
+      document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
+      var btn = document.querySelector('.day-btn.map-btn');
+      if (btn) btn.classList.add('active');
+      document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
+      document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'none'; });
+      document.querySelectorAll('.region-map-container').forEach(function(el) { el.style.display = 'block'; });
+      closeBeachModal();
+      try { localStorage.setItem('surfcheckDay', 'map'); } catch(e) {}
     }
 
     /* ── HTML escape helper ────────────────────────── */
@@ -4810,6 +5281,8 @@ h2 {
       var savedDay = (function(){ try { return localStorage.getItem('surfcheckDay'); } catch(e){ return null; } })();
       if (savedDay === 'outlook') {
         showOutlook();
+      } else if (savedDay === 'map') {
+        showMap();
       } else if (savedDay === 'tomorrow') {
         showDay('tomorrow');
       } else if (savedDay === 'ubermorgan') {
