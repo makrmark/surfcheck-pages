@@ -130,6 +130,7 @@
     lower_mult = max(0.75, 1.0 &minus; (ratio &minus; 1.0) &middot; 0.1)
     upper_mult = 1.0 + (ratio &minus; 1.0) &middot; 0.4
     H_range = [H_eff &middot; lower_mult, H_eff &middot; upper_mult]</pre>
+    <div class="note"><strong>Note:</strong> Open-Meteo's <code>swell_wave_peak_period</code> is unavailable for Australian waters (returns null, unit "undefined"). When T<sub>p</sub> is absent, the system derives it from the mean period (T<sub>z</sub>) using a buoy-informed multiplier. See <a href="#period-factor">&sect;2.2.5</a>.</div>
 
     <hr>
 
@@ -214,8 +215,9 @@ quality_multiplier = &Sigma;(weight &middot; factor) / &Sigma;(weight)
     <pre>base: &lt; 0.4m &rarr; 0.6, 0.4&ndash;0.8m &rarr; 0.8, 0.8&ndash;1.2m &rarr; 0.9, &gt; 1.5m &rarr; 0.5
     trend: rising +0.075, falling &minus;0.075</pre>
 
-    <h4>2.2.5 Period / Groundswell Quality Factor (gs_factor)</h4>
+    <h4 id="period-factor">2.2.5 Period / Groundswell Quality Factor (gs_factor)</h4>
     <p>This is the period factor. It also absorbs the former wind-sea quality and swell variability factors &mdash; they all measured the same thing (is this proper groundswell or junk?). Long period &rarr; clean organised lines &rarr; high factor. Short period &rarr; chop &rarr; low factor.</p>
+    <div class="note"><strong>Peak period availability:</strong> Open-Meteo's <code>swell_wave_peak_period</code> is only populated for European waters (MeteoFrance MFWAM model). For Australia and all other non-European regions, it returns null with unit "undefined". The system handles this automatically: when T<sub>p</sub> is absent, T<sub>z</sub> is used directly. For Tomorrow+ forecast slots, <code>derive_peak_period(tz)</code> estimates T<sub>p</sub> from T<sub>z</sub> using a multiplier derived from MHL Sydney buoy observations (ranging from ~1.38&times; at 4s to ~1.50&times; at 8s+). Today&rsquo;s buoy data provides real T<sub>p</sub>, unaffected by this limitation.</div>
     <table>
         <tr><th>Period</th><th>Factor</th></tr>
         <tr><td>&ge; 12s</td><td>1.30</td></tr>
@@ -234,6 +236,7 @@ quality_multiplier = &Sigma;(weight &middot; factor) / &Sigma;(weight)
 
     <h3>3.2 MHL Sydney Buoy via THREDDS (Today Observations)</h3>
     <p><strong>2026-08-04 change:</strong> Replaced the PA NSW scrape with a proper AODN THREDDS OPeNDAP query. The MHL Sydney directional wave buoy (SYDDOW, off Bondi/Coogee) provides <strong>30-minute averaged</strong> statistics that replace the Open-Meteo forecast for <strong>Today&rsquo;s</strong> hourly slots. The buoy measures:</p>
+    <p><strong>2026-08-17 note:</strong> Open-Meteo&rsquo;s <code>swell_wave_peak_period</code> is unavailable for Australian waters (model limitation). The buoy is the only source of real T<sub>p</sub> for Today. For Tomorrow+, T<sub>p</sub> is derived from T<sub>z</sub> via <code>derive_peak_period()</code>. See the groundswell quality factor section for details.</p>
     <table>
         <tr><th>Parameter</th><th>Symbol</th><th>Unit</th></tr>
         <tr><td>Significant wave height</td><td>H<sub>s</sub></td><td>m</td></tr>
@@ -246,6 +249,7 @@ quality_multiplier = &Sigma;(weight &middot; factor) / &Sigma;(weight)
 
     <h3>3.3 Data Logging & Correlation Tracking</h3>
     <p><strong>2026-08-02 addition:</strong> Every forecast fetch and buoy observation is logged to the SQLite database (<code>observation_log</code> table) for long-term trend analysis. Use <code>get_correlation_summary(days=30)</code> to compare Open-Meteo forecasts against real buoy readings over time.</p>
+    <div class="note"><strong>Key finding (2026-08-17):</strong> Analysis of observation_log data shows Open-Meteo systematically under-predicts significant wave height (Hs) for Sydney: over 11 days with both forecast and buoy data, the buoy was higher than the forecast <strong>every single day</strong>, averaging <strong>+0.67m</strong> higher. The worst miss was +1.06m on Aug 14. Open-Meteo&rsquo;s peak period is also null for our region &mdash; T<sub>p</sub> is derived from T<sub>z</sub> for Tomorrow+ forecast slots.</div>
     <pre>Table: observation_log
     Columns: id, logged_at, source, hs, tp, tz, dir, hmax, meta
 
