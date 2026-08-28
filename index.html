@@ -1277,201 +1277,12 @@ h2 {
     }
 }
 
-/* ── Region Map ──────────────────────────────────────── */
-.region-map-container {
-    margin-bottom: 25px;
-}
-.map-section {
-    padding: 10px;
-}
-.region-map {
-    width: 100%;
-    height: 480px;
-    border-radius: 8px;
-    border: 1px solid #d0d0d0;
-    z-index: 1;
-}
-@media (max-width: 600px) {
-    .region-map {
-        height: 420px;
-    }
-}
 
-/* ── Map compass (forecast style overlay) ───────────── */
-.map-compass {
-    background: transparent;
-    border: none;
-}
-.compass-wrap {
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
-    transition: transform 0.3s ease;
-}
-.compass-wrap svg {
-    display: block;
-}
-
-/* Beach pins */
-.map-beach-marker {
-    background: transparent;
-    border: none;
-}
-.beach-pin {
-    border: 2px solid #999;
-    border-radius: 10px;
-    padding: 4px 10px;
-    text-align: center;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: transform 0.12s;
-    min-width: 60px;
-}
-.beach-pin:hover {
-    transform: scale(1.08);
-}
-.pin-wave {
-    display: inline-block;
-    background: #e8f4ff;
-    color: #0055a5;
-    font-weight: 700;
-    font-size: 12px;
-    padding: 2px 10px;
-    border-radius: 10px;
-    white-space: nowrap;
-    line-height: 1.3;
-    margin-bottom: 2px;
-}
-.pin-rating {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    color: #fff;
-    border-radius: 8px;
-    padding: 1px 8px;
-    white-space: nowrap;
-    line-height: 1.4;
-}
-
-/* Wind arrows */
-.map-wind-marker {
-    background: transparent;
-    border: none;
-}
-.wind-arrow {
-    transition: transform 0.3s ease;
-    transform-origin: center;
-}
-.wind-arrow svg {
-    display: block;
-}
-
-/* Slider */
-.map-slider-wrap {
-    margin-top: 12px;
-    padding: 8px 4px 4px;
-}
-.map-slider-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 4px;
-    gap: 2px;
-}
-.map-slider-tick {
-    flex: 1;
-    text-align: center;
-    font-size: 0.62em;
-    color: #999;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 1px 2px;
-    cursor: pointer;
-    border-radius: 3px;
-}
-.map-slider-tick.active {
-    color: #0066cc;
-    font-weight: 700;
-    background: #e6f2ff;
-}
-.map-slider {
-    width: 100%;
-    margin: 4px 0;
-    accent-color: #0066cc;
-    cursor: pointer;
-}
-.map-slider-info {
-    text-align: center;
-    font-size: 0.85em;
     color: #333;
     margin-top: 6px;
     line-height: 1.5;
 }
-.msi-date { font-weight: 700; color: #0066cc; }
-.msi-tf { font-weight: 600; }
-.msi-swell { color: #0066cc; font-weight: 600; }
-.msi-wind { color: #555; }
-.msi-tide { color: #555; }
-.msi-sep { color: #bbb; }
 
-/* Map button */
-.map-btn {
-    border-color: #16a085;
-    color: #16a085;
-}
-.map-btn:hover {
-    background: #e6f7f3;
-}
-.day-btn.active.map-btn {
-    background: #16a085;
-    border-color: #16a085;
-    color: white;
-}
-
-/* Beach popup */
-.beach-popup-container .leaflet-popup-content-wrapper {
-    border-radius: 10px;
-}
-.beach-popup {
-    font-size: 0.85em;
-}
-.bp-name {
-    font-size: 1.1em;
-    font-weight: 700;
-    color: #0066cc;
-    margin-bottom: 6px;
-    border-bottom: 1px solid #e6f2ff;
-    padding-bottom: 4px;
-}
-.bp-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    padding: 2px 0;
-}
-.bp-label {
-    color: #888;
-    font-weight: 600;
-}
-.bp-val {
-    color: #333;
-    font-weight: 600;
-    text-align: right;
-}
-.bp-note {
-    font-size: 0.8em;
-    color: #555;
-    background: #f0fff0;
-    border-left: 3px solid #4caf50;
-    padding: 4px 8px;
-    margin-top: 6px;
-    border-radius: 4px;
-    line-height: 1.4;
-}
-
-/* Hide leaflet attribution control (kept minimal) */
-.leaflet-control-attribution {
-    font-size: 9px;
-}
 
 </style>
 </head>
@@ -1483,7 +1294,6 @@ h2 {
       <button class="day-btn" data-day="tomorrow" onclick="showDay('tomorrow')">Sat</button>
       <button class="day-btn" data-day="ubermorgan" onclick="showDay('ubermorgan')">Sun</button>
       <button class="day-btn outlook-btn" data-day="outlook" onclick="showOutlook()">7-Day</button>
-      <button class="day-btn map-btn" data-day="map" onclick="showMap()">🗺️ Map</button>
     </nav>
   </header>
 
@@ -1858,8 +1668,8 @@ h2 {
             </td>
             
             <td class="cm-cell">
-              <div class="cm-cell-value">—</div>
-              
+              <div class="cm-cell-value">1.7m @ 5s</div>
+              <div class="cm-cell-detail">192° (SSW)</div>
             </td>
             
             
@@ -4807,275 +4617,9 @@ h2 {
     </div>
 </div>
 
-  <div class="region-map-container" id="regionMapContainer" style="display:none;">
-  <div class="section map-section">
-    <div id="regionMap" class="region-map"></div>
-    <div class="map-slider-wrap">
-      <div class="map-slider-labels" id="mapSliderLabels"></div>
-      <input type="range" id="mapSlider" class="map-slider" min="0" max="11" value="0" step="1">
-      <div class="map-slider-info" id="mapSliderInfo"></div>
-    </div>
-  </div>
-</div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-
-<script>
-(function() {
-  'use strict';
-
-  var mapData = {"beaches": [{"aspect": 158, "aspect_compass": "SSE", "lat": -33.7447, "lng": 151.3154, "name": "Long Reef"}, {"aspect": 135, "aspect_compass": "SE", "lat": -33.7544, "lng": 151.3109, "name": "Dee Why"}, {"aspect": 157.5, "aspect_compass": "SSE", "lat": -33.766, "lng": 151.303, "name": "North Curl Curl"}, {"aspect": 135, "aspect_compass": "SE", "lat": -33.7709, "lng": 151.2973, "name": "South Curl Curl"}, {"aspect": 135, "aspect_compass": "SE", "lat": -33.7786, "lng": 151.2847, "name": "Freshwater"}, {"aspect": 101.25, "aspect_compass": "E", "lat": -33.7817, "lng": 151.2825, "name": "Queenscliff"}, {"aspect": 83.75, "aspect_compass": "E", "lat": -33.789, "lng": 151.282, "name": "North Steyne"}, {"aspect": 45, "aspect_compass": "NE", "lat": -33.793, "lng": 151.2808, "name": "South Steyne"}], "frames": [{"beaches": [{"attack_angle": "5", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8610674051185169, "wind_strength": "Moderate"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 3.0, "wind_label": "Cross-Off", "wind_quality": 0.8610674051185169, "wind_strength": "Moderate"}, {"attack_angle": "4", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 3.0, "wind_label": "Cross-Off", "wind_quality": 0.8610674051185169, "wind_strength": "Moderate"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 3.0, "wind_label": "Cross-Off", "wind_quality": 0.8610674051185169, "wind_strength": "Moderate"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 3.0, "wind_label": "Cross-Off", "wind_quality": 0.8610674051185169, "wind_strength": "Moderate"}, {"attack_angle": "52", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 3.0, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "87", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.5, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "35", "board": "Longboard, Log, Mid-Length", "exposure": "23", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.5, "wind_label": "Cross-Off", "wind_quality": 0.8727063087950032, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 153, "height": 0.96, "period": 8.45, "source": "primary"}, "wind_sea": 0.0, "windswell": null}, "date_str": "", "day": "today", "emoji": "\ud83c\udf05", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"33.7\" y2=\"17.9\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"30.0,10.8 36.6,15.4 29.9,18.8\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"84.9\" y2=\"58.7\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"92.7,60.6 84.9,62.6 86.7,55.3\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 8.45s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 153, "swell_height": 0.96, "swell_period": 8.45, "tide_height": 1.15, "tide_summary": "mid-high tide (1.1m)", "timeframe": "6\u20139am", "wind_compass": "WNW", "wind_dir_deg": 284, "wind_knots": 4.805615550755939}, {"beaches": [{"attack_angle": "6", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.5, "wind_label": "Cross", "wind_quality": 0.48968253927855376, "wind_strength": "Light"}, {"attack_angle": "17", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 2.5, "wind_label": "Cross", "wind_quality": 0.48968253927855376, "wind_strength": "Light"}, {"attack_angle": "6", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.5, "wind_label": "Cross", "wind_quality": 0.48968253927855376, "wind_strength": "Light"}, {"attack_angle": "17", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.5, "wind_label": "Cross", "wind_quality": 0.48968253927855376, "wind_strength": "Light"}, {"attack_angle": "17", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 2.5, "wind_label": "Cross", "wind_quality": 0.48968253927855376, "wind_strength": "Light"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8354697768524421, "wind_strength": "Light"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "88", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8354697768524421, "wind_strength": "Light"}, {"attack_angle": "56", "board": "Longboard, Log, Mid-Length", "exposure": "26", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.5, "wind_label": "Offshore", "wind_quality": 0.9834020222077224, "wind_strength": "Light"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 152, "height": 0.94, "period": 8.55, "source": "primary"}, "wind_sea": 0.0, "windswell": null}, "date_str": "", "day": "today", "emoji": "\u2600\ufe0f", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"33.1\" y2=\"18.2\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"29.3,11.2 36.0,15.6 29.3,19.2\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"75.5\" y2=\"24.5\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"81.1,18.9 78.8,26.5 73.5,21.2\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 8.55s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 152, "swell_height": 0.94, "swell_period": 8.55, "tide_height": 0.52, "tide_summary": "low tide (0.5m)", "timeframe": "9\u201312pm", "wind_compass": "SW", "wind_dir_deg": 225, "wind_knots": 2.321814254859611}, {"beaches": [{"attack_angle": "8", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.12318080489830273, "wind_strength": "Moderate"}, {"attack_angle": "15", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.12318080489830273, "wind_strength": "Moderate"}, {"attack_angle": "8", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.12318080489830273, "wind_strength": "Moderate"}, {"attack_angle": "15", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.12318080489830273, "wind_strength": "Moderate"}, {"attack_angle": "15", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.12318080489830273, "wind_strength": "Moderate"}, {"attack_angle": "49", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.22520395276040117, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "91", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.22520395276040117, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Fish, Longboard", "exposure": "29", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.5, "wind_label": "Cross", "wind_quality": 0.46660455994670647, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 150, "height": 0.92, "period": 8.45, "source": "primary"}, "wind_sea": 0.04, "windswell": null}, "date_str": "", "day": "today", "emoji": "\ud83c\udf24\ufe0f", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"32.0\" y2=\"18.8\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"28.0,11.9 34.8,16.1 28.3,19.9\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"26.9\" y2=\"22.4\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"21.7,16.3 29.1,19.3 23.4,24.1\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 8.45s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 150, "swell_height": 0.92, "swell_period": 8.45, "tide_height": 0.62, "tide_summary": "mid-low tide (0.6m)", "timeframe": "12\u20133pm", "wind_compass": "SE", "wind_dir_deg": 140, "wind_knots": 3.7796976241900646}, {"beaches": [{"attack_angle": "10", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.06042373065841386, "wind_strength": "Moderate"}, {"attack_angle": "13", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.06042373065841386, "wind_strength": "Moderate"}, {"attack_angle": "10", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.06042373065841386, "wind_strength": "Moderate"}, {"attack_angle": "13", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.0, "wind_label": "Onshore", "wind_quality": 0.06042373065841386, "wind_strength": "Moderate"}, {"attack_angle": "13", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.06042373065841386, "wind_strength": "Moderate"}, {"attack_angle": "47", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.1786027813725916, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "92", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.42059743153299206, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log, Mid-Length", "exposure": "29", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.0, "wind_label": "Cross", "wind_quality": 0.42059743153299206, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 148, "height": 0.92, "period": 8.15, "source": "primary"}, "wind_sea": 0.22, "windswell": {"compass": "ENE", "direction": 67, "height": 0.22, "period": 6.75, "source": "secondary"}}, "date_str": "", "day": "today", "emoji": "\ud83c\udf07", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"30.9\" y2=\"19.5\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"26.7,12.7 33.6,16.7 27.2,20.7\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"47.7\" y2=\"51.0\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"40.3,54.1 45.3,47.9 48.3,54.8\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"33.7\" y2=\"17.9\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"30.0,10.8 36.6,15.4 29.9,18.8\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 8.15s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 148, "swell_height": 0.92, "swell_period": 8.15, "tide_height": 1.23, "tide_summary": "mid-high tide (1.2m)", "timeframe": "3\u20136pm", "wind_compass": "SSE", "wind_dir_deg": 153, "wind_knots": 7.721382289416846}, {"beaches": [{"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.4902667318558699, "wind_strength": "Moderate"}, {"attack_angle": "7", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8500852775900892, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.4902667318558699, "wind_strength": "Moderate"}, {"attack_angle": "7", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8500852775900892, "wind_strength": "Moderate"}, {"attack_angle": "7", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8500852775900892, "wind_strength": "Moderate"}, {"attack_angle": "41", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.5, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "97", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.5, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log, Mid-Length", "exposure": "30", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.5, "wind_label": "Cross-Off", "wind_quality": 0.8500852775900892, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SE", "direction": 142, "height": 0.86, "period": 7.15, "source": "primary"}, "wind_sea": 0.04, "windswell": null}, "date_str": "", "day": "tomorrow", "emoji": "\ud83c\udf05", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"27.8\" y2=\"21.6\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"22.9,15.3 30.2,18.6 24.3,23.2\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"85.1\" y2=\"41.9\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"92.9,40.1 86.8,45.4 85.1,38.0\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSE 7.15s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SE", "swell_dir_deg": 142, "swell_height": 0.86, "swell_period": 7.15, "tide_height": 1.23, "tide_summary": "mid-high tide (1.2m)", "timeframe": "6\u20139am", "wind_compass": "WSW", "wind_dir_deg": 257, "wind_knots": 5.399568034557235}, {"beaches": [{"attack_angle": "12", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.2111391695375831, "wind_strength": "Moderate"}, {"attack_angle": "11", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.2111391695375831, "wind_strength": "Moderate"}, {"attack_angle": "12", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.2111391695375831, "wind_strength": "Moderate"}, {"attack_angle": "11", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.2111391695375831, "wind_strength": "Moderate"}, {"attack_angle": "11", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.2111391695375831, "wind_strength": "Moderate"}, {"attack_angle": "45", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.4571310864347403, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "92", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.4571310864347403, "wind_strength": "Moderate"}, {"attack_angle": "24", "board": "Longboard, Log, Mid-Length", "exposure": "17", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.5, "wind_label": "Cross-Off", "wind_quality": 0.8585771024632662, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "ENE", "direction": 69, "height": 0.28, "period": 7.75, "source": "secondary"}, "wind_sea": 0.22, "windswell": {"compass": "SE", "direction": 146, "height": 0.82, "period": 6.8, "source": "primary"}}, "date_str": "", "day": "tomorrow", "emoji": "\u2600\ufe0f", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"43.4\" y2=\"52.5\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"36.0,55.4 41.2,49.3 43.9,56.4\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"29.9\" y2=\"20.2\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"25.4,13.5 32.5,17.3 26.2,21.5\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"59.3\" y2=\"15.2\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"61.4,7.5 63.2,15.3 55.9,13.4\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSE 6.8s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SE", "swell_dir_deg": 146, "swell_height": 0.82, "swell_period": 6.8, "tide_height": 0.73, "tide_summary": "mid-low tide (0.7m)", "timeframe": "9\u201312pm", "wind_compass": "SSW", "wind_dir_deg": 195, "wind_knots": 5.561555075593953}, {"beaches": [{"attack_angle": "7", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.06801649667393024, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.184520771668838, "wind_strength": "Moderate"}, {"attack_angle": "6", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.06801649667393024, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.184520771668838, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.184520771668838, "wind_strength": "Moderate"}, {"attack_angle": "50", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.426951181662547, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "77", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.426951181662547, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log, Mid-Length", "exposure": "5", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.5, "wind_label": "Cross-Off", "wind_quality": 0.762616243432485, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SE", "direction": 133, "height": 0.5, "period": 8.6, "source": "secondary"}, "wind_sea": 0.36, "windswell": {"compass": "SSE", "direction": 151, "height": 0.82, "period": 5.65, "source": "primary"}}, "date_str": "", "day": "tomorrow", "emoji": "\ud83c\udf24\ufe0f", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"36.2\" y2=\"37.2\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"30.4,31.7 38.1,33.8 33.0,39.3\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"32.5\" y2=\"18.5\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"28.7,11.5 35.4,15.9 28.8,19.5\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"42.5\" y2=\"14.8\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"40.9,7.0 46.0,13.1 38.6,14.7\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 5.65s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 151, "swell_height": 0.82, "swell_period": 5.65, "tide_height": 0.56, "tide_summary": "low tide (0.6m)", "timeframe": "12\u20133pm", "wind_compass": "SSE", "wind_dir_deg": 168, "wind_knots": 7.34341252699784}, {"beaches": [{"attack_angle": "7", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.09092977130281502, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.09092977130281502, "wind_strength": "Moderate"}, {"attack_angle": "6", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.09092977130281502, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.09092977130281502, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.09092977130281502, "wind_strength": "Moderate"}, {"attack_angle": "50", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "4-5 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.20068063087216514, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "77", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 1.5, "wind_label": "Cross", "wind_quality": 0.4413438556355181, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log, Mid-Length", "exposure": "5", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.0, "wind_label": "Cross", "wind_quality": 0.4439160639264542, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SE", "direction": 134, "height": 0.42, "period": 9.3, "source": "secondary"}, "wind_sea": 0.14, "windswell": {"compass": "SSE", "direction": 151, "height": 0.92, "period": 5.55, "source": "primary"}}, "date_str": "", "day": "tomorrow", "emoji": "\ud83c\udf07", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"41.3\" y2=\"41.6\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"35.6,36.0 43.2,38.3 38.0,43.7\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"32.5\" y2=\"18.5\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"28.7,11.5 35.4,15.9 28.8,19.5\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"36.5\" y2=\"16.6\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"33.5,9.2 39.6,14.3 32.7,17.2\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 5.55s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 151, "swell_height": 0.92, "swell_period": 5.55, "tide_height": 1.01, "tide_summary": "mid tide (1.0m)", "timeframe": "3\u20136pm", "wind_compass": "SSE", "wind_dir_deg": 158, "wind_knots": 6.047516198704103}, {"beaches": [{"attack_angle": "7", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.49441, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8540175999999999, "wind_strength": "Moderate"}, {"attack_angle": "6", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.49441, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8540175999999999, "wind_strength": "Moderate"}, {"attack_angle": "16", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 2.0, "wind_label": "Cross-Off", "wind_quality": 0.8540175999999999, "wind_strength": "Moderate"}, {"attack_angle": "50", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.5, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Fish, Longboard", "exposure": "83", "face_ft": "3 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.0, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log", "exposure": "6", "face_ft": "1-2 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 0.5, "wind_label": "Cross-Off", "wind_quality": 0.8437629707300294, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 165, "height": 0.28, "period": 11.05, "source": "secondary"}, "wind_sea": 0.02, "windswell": {"compass": "SSE", "direction": 151, "height": 0.7, "period": 6.6, "source": "primary"}}, "date_str": "", "day": "ubermorgan", "emoji": "\ud83c\udf05", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"47.5\" y2=\"40.7\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"45.4,33.0 50.9,38.9 43.6,40.8\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"32.5\" y2=\"18.5\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"28.7,11.5 35.4,15.9 28.8,19.5\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"86.0\" y2=\"50.6\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"94.0,50.8 86.9,54.4 87.0,46.9\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 6.6s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 151, "swell_height": 0.7, "swell_period": 6.6, "tide_height": 1.22, "tide_summary": "mid-high tide (1.2m)", "timeframe": "6\u20139am", "wind_compass": "W", "wind_dir_deg": 271, "wind_knots": 4.859611231101511}, {"beaches": [{"attack_angle": "5", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.5000011032263716, "wind_strength": "Moderate"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8543325866573718, "wind_strength": "Moderate"}, {"attack_angle": "4", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.5000011032263716, "wind_strength": "Moderate"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8543325866573718, "wind_strength": "Moderate"}, {"attack_angle": "18", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 2.5, "wind_label": "Cross-Off", "wind_quality": 0.8543325866573718, "wind_strength": "Moderate"}, {"attack_angle": "52", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 2.5, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Shortboard, Groveller, Fish", "exposure": "78", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 2.5, "wind_label": "Offshore", "wind_quality": 1.0, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log", "exposure": "5", "face_ft": "1 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.0, "wind_label": "Cross-Off", "wind_quality": 0.8499160575109549, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 164, "height": 0.32, "period": 11.95, "source": "secondary"}, "wind_sea": 0.02, "windswell": {"compass": "SSE", "direction": 153, "height": 0.72, "period": 6.4, "source": "primary"}}, "date_str": "", "day": "ubermorgan", "emoji": "\u2600\ufe0f", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"46.8\" y2=\"38.9\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"44.6,31.2 50.2,37.0 42.9,39.0\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"33.7\" y2=\"17.9\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"30.0,10.8 36.6,15.4 29.9,18.8\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"85.8\" y2=\"53.8\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"93.8,54.6 86.3,57.6 87.1,50.1\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 6.4s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 153, "swell_height": 0.72, "swell_period": 6.4, "tide_height": 0.95, "tide_summary": "mid tide (0.9m)", "timeframe": "9\u201312pm", "wind_compass": "W", "wind_dir_deg": 276, "wind_knots": 2.7537796976241897}, {"beaches": [{"attack_angle": "3", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.23351833106791883, "wind_strength": "Moderate"}, {"attack_angle": "20", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.13288452380213425, "wind_strength": "Moderate"}, {"attack_angle": "2", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.23351833106791883, "wind_strength": "Moderate"}, {"attack_angle": "20", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.13288452380213425, "wind_strength": "Moderate"}, {"attack_angle": "20", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.13288452380213425, "wind_strength": "Moderate"}, {"attack_angle": "54", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.13288452380213425, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Fish, Longboard", "exposure": "73", "face_ft": "2-3 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 1.5, "wind_label": "Cross-On", "wind_quality": 0.23351833106791883, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log", "exposure": "5", "face_ft": "1 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.0, "wind_label": "Cross", "wind_quality": 0.47836501936587184, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 165, "height": 0.34, "period": 11.9, "source": "secondary"}, "wind_sea": 0.0, "windswell": {"compass": "SSE", "direction": 155, "height": 0.72, "period": 6.4, "source": "primary"}}, "date_str": "", "day": "ubermorgan", "emoji": "\ud83c\udf24\ufe0f", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"46.7\" y2=\"37.7\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"44.6,29.9 50.1,35.8 42.8,37.7\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"34.8\" y2=\"17.4\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"31.4,10.1 37.8,14.9 31.0,18.1\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"21.2\" y2=\"28.3\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"14.9,23.5 22.8,24.8 18.2,30.8\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 6.4s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 155, "swell_height": 0.72, "swell_period": 6.4, "tide_height": 0.59, "tide_summary": "low tide (0.6m)", "timeframe": "12\u20133pm", "wind_compass": "SE", "wind_dir_deg": 127, "wind_knots": 2.915766738660907}, {"beaches": [{"attack_angle": "2", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell wraps around all morning with light offshore wind holding up the long walls. High tide fattens it up early, but mid-tide dropping improves shape. Best window is 9-12pm for clean logging conditions.", "name": "Long Reef", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.46801248997518397, "wind_strength": "Moderate"}, {"attack_angle": "21", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Dee Why", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.22077565075552177, "wind_strength": "Moderate"}, {"attack_angle": "2", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "North Curl Curl", "rating": 2.0, "wind_label": "Cross", "wind_quality": 0.46801248997518397, "wind_strength": "Moderate"}, {"attack_angle": "21", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the shorebreak clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for punchy, hollow waves.", "name": "South Curl Curl", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.22077565075552177, "wind_strength": "Moderate"}, {"attack_angle": "21", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light cross-off wind keeps the moderate walls clean through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for fun, rideable waves.", "name": "Freshwater", "rating": 2.0, "wind_label": "Cross-On", "wind_quality": 0.22077565075552177, "wind_strength": "Moderate"}, {"attack_angle": "55", "board": "Shortboard, Groveller, Fish", "exposure": "100", "face_ft": "3-4 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "Queenscliff", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.11295592632388549, "wind_strength": "Moderate"}, {"attack_angle": "51", "board": "Fish, Longboard", "exposure": "70", "face_ft": "2-3 ft", "llm_note": "Chest-high SSE swell with light offshore wind holds up the long walls through the morning. High tide fattens it up, but mid-tide dropping improves shape. Best window is 9-12pm for clean, peeling waves.", "name": "North Steyne", "rating": 1.5, "wind_label": "Onshore", "wind_quality": 0.11295592632388549, "wind_strength": "Moderate"}, {"attack_angle": "56", "board": "Longboard, Log", "exposure": "5", "face_ft": "1 ft", "llm_note": "Ankle-to-knee-high SSE swell is heavily shadowed by the headland, leaving small, weak waves all day. Light cross-off wind in the morning gives clean conditions, but the swell is too small for any real ride. Best window is 9-12pm for a log.", "name": "South Steyne", "rating": 1.0, "wind_label": "Cross-On", "wind_quality": 0.2227103482925378, "wind_strength": "Moderate"}], "classified_swell": {"groundswell": {"compass": "SSE", "direction": 166, "height": 0.36, "period": 12.0, "source": "secondary"}, "wind_sea": 0.0, "windswell": {"compass": "SSE", "direction": 156, "height": 0.72, "period": 6.3, "source": "primary"}}, "date_str": "", "day": "ubermorgan", "emoji": "\ud83c\udf07", "map_compass_svg": "\u003csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" style=\"vertical-align:middle;display:block;overflow:visible;\"\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"44\" fill=\"rgba(255,255,255,0.5)\" stroke=\"#bbb\" stroke-width=\"0.8\"/\u003e\u003cline x1=\"50\" y1=\"6\" x2=\"50\" y2=\"94\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003cline x1=\"6\" y1=\"50\" x2=\"94\" y2=\"50\" stroke=\"#ddd\" stroke-width=\"0.4\"/\u003e\u003ctext x=\"50\" y=\"4\" text-anchor=\"middle\" font-size=\"8\" fill=\"#666\" font-weight=\"600\" font-family=\"sans-serif\"\u003eN\u003c/text\u003e\u003ccircle cx=\"50\" cy=\"50\" r=\"2\" fill=\"#444\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"46.6\" y2=\"36.4\" stroke=\"#c0392b\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"44.7,28.7 50.0,34.6 42.7,36.4\" fill=\"#c0392b\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"35.4\" y2=\"17.1\" stroke=\"#d6721e\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"32.1,9.8 38.4,14.7 31.5,17.8\" fill=\"#d6721e\"/\u003e\u003cline x1=\"50\" y1=\"50\" x2=\"14.3\" y2=\"45.6\" stroke=\"#0066cc\" stroke-width=\"3\" stroke-linecap=\"round\"/\u003e\u003cpolygon points=\"6.3,44.6 13.8,41.8 12.9,49.2\" fill=\"#0066cc\"/\u003e\u003ctext x=\"50\" y=\"53\" text-anchor=\"middle\" font-size=\"7\" fill=\"#333\" font-weight=\"700\" font-family=\"sans-serif\"\u003eSSE 6.3s\u003c/text\u003e\u003c/svg\u003e", "swell_compass": "SSE", "swell_dir_deg": 156, "swell_height": 0.72, "swell_period": 6.3, "tide_height": 0.8, "tide_summary": "mid-low tide (0.8m)", "timeframe": "3\u20136pm", "wind_compass": "E", "wind_dir_deg": 97, "wind_knots": 4.805615550755939}]};
-  if (!mapData || !mapData.frames || !mapData.beaches) return;
-
-  var mapInitialised = false;
-  var map, satellite, streets, compassMarker, beachMarkers, windMarkers,
-      slider, labelsEl, infoEl, frameLabels;
-
-  window.initMap = function() {
-    if (mapInitialised) { map.invalidateSize(); return; }
-    mapInitialised = true;
-
-    // Need the container visible so Leaflet gets real dimensions
-    var container = document.getElementById('regionMapContainer');
-    if (container.style.display === 'none') {
-      // Not visible yet — bail, showMap will call us again
-      mapInitialised = false;
-      return;
-    }
-
-    // ── Satellite tile layer ─────────────────────────────
-    satellite = L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { maxZoom: 19, attribution: '&copy; Esri, Maxar, Earthstar Geographics' }
-    );
-
-    streets = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      { maxZoom: 18, attribution: '&copy; OpenStreetMap' }
-    );
-
-    map = L.map('regionMap', {
-      layers: [satellite],
-      zoomControl: true,
-      attributionControl: false,
-      fadeAnimation: true,
-      zoomAnimation: true,
-      scrollWheelZoom: true,
-    });
-
-    // ── Tile switcher ────────────────────────────────────
-    var tileLayers = { 'Satellite': satellite, 'Street': streets };
-    L.control.layers(tileLayers, null, { position: 'bottomright' }).addTo(map);
-
-    // ── fitBounds — frame all beaches + compass ─────────
-    var allPoints = [];
-    mapData.beaches.forEach(function(b) {
-      if (b.lat != null && b.lng != null) allPoints.push([b.lat, b.lng]);
-    });
-    if (allPoints.length > 0) {
-      var sumLat = 0, sumLng = 0;
-      allPoints.forEach(function(p) { sumLat += p[0]; sumLng += p[1]; });
-      var avgLat = sumLat / allPoints.length;
-      var avgLng = sumLng / allPoints.length;
-      allPoints.push([avgLat - 0.012, avgLng]);
-      allPoints.push([avgLat + 0.012, avgLng]);
-      allPoints.push([avgLat, avgLng + 0.08]);
-    }
-    map.fitBounds(allPoints, { padding: [30, 30], maxZoom: 14 });
-
-    // ── Surf compass ──
-    var compassIcon = L.divIcon({
-      className: 'map-compass',
-      html: '<div class="compass-wrap" id="mapCompassWrap"></div>',
-      iconSize: [100, 120],
-      iconAnchor: [50, 60],
-    });
-    compassMarker = L.marker([-33.765, 151.33], { icon: compassIcon, interactive: false }).addTo(map);
-
-    // ── Beach markers ──
-    beachMarkers = {};
-    mapData.beaches.forEach(function(b) {
-      if (b.lat == null || b.lng == null) return;
-      var icon = L.divIcon({
-        className: 'map-beach-marker',
-        html: '<div class="beach-pin" data-beach="' + b.name + '">' +
-          '<div class="pin-wave"></div><div class="pin-rating"></div></div>',
-        iconSize: [80, 48],
-        iconAnchor: [40, 24],
-      });
-      var marker = L.marker([b.lat, b.lng], { icon: icon }).addTo(map);
-      marker._beachName = b.name;
-      marker.on('click', function(e) {
-        var idx = parseInt(slider.value, 10);
-        var frame = mapData.frames[idx];
-        if (!frame) return;
-        showBeachPopup(this, frame);
-      });
-      beachMarkers[b.name] = marker;
-    });
-
-    // ── Wind arrow markers ──
-    windMarkers = {};
-    mapData.beaches.forEach(function(b) {
-      if (b.lat == null || b.lng == null) return;
-      var icon = L.divIcon({
-        className: 'map-wind-marker',
-        html: '<div class="wind-arrow" id="wind_' + b.name.replace(/\s+/g, '_') + '">' +
-          '<svg viewBox="0 0 40 40" width="40" height="40">' +
-          '<polygon points="20,2 34,38 20,28 6,38" fill="rgba(100,100,100,0.5)" stroke="rgba(80,80,80,0.6)" stroke-width="1.5"/>' +
-          '</svg></div>',
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
-      });
-      var marker = L.marker([b.lat + 0.001, b.lng + 0.003], { icon: icon, interactive: false }).addTo(map);
-      windMarkers[b.name] = marker;
-    });
-
-    // ── Slider setup ──
-    slider = document.getElementById('mapSlider');
-    labelsEl = document.getElementById('mapSliderLabels');
-    infoEl = document.getElementById('mapSliderInfo');
-    slider.max = String(mapData.frames.length - 1);
-
-    frameLabels = [];
-    mapData.frames.forEach(function(f, i) {
-      var dayAbbr = f.date_str ? f.date_str.split(' ')[0] : f.day;
-      frameLabels.push(dayAbbr + ' ' + f.timeframe);
-    });
-    frameLabels.forEach(function(lbl, i) {
-      var span = document.createElement('span');
-      span.textContent = lbl;
-      span.className = 'map-slider-tick';
-      labelsEl.appendChild(span);
-    });
-
-    // ── Slider event ──
-    slider.addEventListener('input', function() {
-      var idx = parseInt(this.value, 10);
-      updateMap(idx);
-      var ticks = labelsEl.querySelectorAll('.map-slider-tick');
-      ticks.forEach(function(t, i) { t.classList.toggle('active', i === idx); });
-    });
-
-    // ── Init first frame ──
-    updateMap(0);
-    var ticks = labelsEl.querySelectorAll('.map-slider-tick');
-    if (ticks.length > 0) ticks[0].classList.add('active');
-  };
-
-  // ── Update map for frame index ──────────────────────
-  function updateMap(idx) {
-    var frame = mapData.frames[idx];
-    if (!frame) return;
-
-    infoEl.innerHTML = '<span class="msi-date">' + frame.date_str + '</span>' +
-      ' <span class="msi-sep">|</span> ' +
-      '<span class="msi-tf">' + frame.emoji + ' ' + frame.timeframe + '</span>' +
-      ' <span class="msi-sep">|</span> ' +
-      '<span class="msi-swell">' + frame.swell_compass + ' ' + (frame.swell_period || '') + 's</span>' +
-      ' <span class="msi-sep">|</span> ' +
-      '<span class="msi-wind">💨 ' + frame.wind_compass + ' ' + (frame.wind_knots || 0).toFixed(0) + 'kn</span>' +
-      ' <span class="msi-sep">|</span> ' +
-      '<span class="msi-tide">🌊 ' + frame.tide_summary + '</span>';
-
-    // Forecast-style compass
-    var wrap = document.getElementById('mapCompassWrap');
-    if (wrap && frame.map_compass_svg) {
-      wrap.innerHTML = frame.map_compass_svg;
-      var avgLat = 0, avgLng = 0, count = 0;
-      frame.beaches.forEach(function(b) {
-        var m = beachMarkers[b.name];
-        if (m) { avgLat += m.getLatLng().lat; avgLng += m.getLatLng().lng; count++; }
-      });
-      if (count > 0) {
-        avgLat /= count;
-        avgLng /= count;
-        compassMarker.setLatLng([avgLat, avgLng + 0.055]);
-      }
-    }
-
-    // Beach pins
-    frame.beaches.forEach(function(b) {
-      var marker = beachMarkers[b.name];
-      if (!marker) return;
-      var el = marker.getElement();
-      if (!el) return;
-      var pin = el.querySelector('.beach-pin');
-      if (!pin) return;
-      var waveEl = pin.querySelector('.pin-wave');
-      var ratingEl = pin.querySelector('.pin-rating');
-      if (waveEl) waveEl.textContent = b.face_ft;
-      var rating = b.rating || 0;
-      var color = getRatingColor(rating);
-      if (ratingEl) {
-        ratingEl.textContent = rating + (rating % 1 === 0 ? '.0' : '');
-        ratingEl.style.background = color;
-      }
-      pin.style.borderColor = color;
-    });
-
-    // Wind arrows
-    frame.beaches.forEach(function(b) {
-      var wm = windMarkers[b.name];
-      if (!wm) return;
-      var el = wm.getElement();
-      if (!el) return;
-      var poly = el.querySelector('.wind-arrow svg polygon');
-      if (!poly) return;
-      var windDeg = frame.wind_dir_deg || 0;
-      var parent = poly.parentElement;
-      if (parent) parent.style.transform = 'rotate(' + windDeg + 'deg)';
-      var wq = b.wind_quality || 0;
-      var fill, stroke;
-      if (wq >= 0.7) { fill = 'rgba(46,125,50,0.45)'; stroke = 'rgba(46,125,50,0.7)'; }
-      else if (wq >= 0.4) { fill = 'rgba(245,124,0,0.4)'; stroke = 'rgba(245,124,0,0.65)'; }
-      else { fill = 'rgba(198,40,40,0.4)'; stroke = 'rgba(198,40,40,0.65)'; }
-      poly.setAttribute('fill', fill);
-      poly.setAttribute('stroke', stroke);
-    });
-  }
-
-  // ── Beach popup ──
-  function showBeachPopup(marker, frame) {
-    var name = marker._beachName;
-    var beach = null;
-    frame.beaches.forEach(function(b) { if (b.name === name) beach = b; });
-    if (!beach) return;
-
-    var html = '<div class="beach-popup"><div class="bp-name">' + name + '</div>' +
-      '<div class="bp-row"><span class="bp-label">Waves</span><span class="bp-val">' + beach.face_ft + '</span></div>' +
-      '<div class="bp-row"><span class="bp-label">Rating</span><span class="bp-val"><span class="rating-badge" style="background:' + getRatingColor(beach.rating) + '">' + (beach.rating + (beach.rating % 1 === 0 ? '.0' : '')) + '</span></span></div>' +
-      '<div class="bp-row"><span class="bp-label">Wind</span><span class="bp-val">' + (beach.wind_strength || '') + ' ' + frame.wind_compass + ' (' + (beach.wind_label || '') + ')</span></div>' +
-      '<div class="bp-row"><span class="bp-label">Exposure</span><span class="bp-val">' + (beach.exposure || '') + '%</span></div>' +
-      '<div class="bp-row"><span class="bp-label">Attack</span><span class="bp-val">' + (beach.attack_angle || '') + '°</span></div>' +
-      (beach.board ? '<div class="bp-row"><span class="bp-label">Board</span><span class="bp-val">' + beach.board + '</span></div>' : '') +
-      (beach.llm_note ? '<div class="bp-note">💬 ' + beach.llm_note + '</div>' : '') +
-      '</div>';
-
-    var popup = L.popup({
-      closeButton: true,
-      className: 'beach-popup-container',
-      maxWidth: 280,
-      minWidth: 200,
-    }).setContent(html);
-    marker.bindPopup(popup).openPopup();
-  }
-
-  function getRatingColor(r) {
-    if (r >= 8) return '#1b5e20';
-    if (r >= 6) return '#2e7d32';
-    if (r >= 4) return '#f57c00';
-    if (r >= 2) return '#e65100';
-    return '#c62828';
-  }
-
-})();
-</script>
-
   <div class="footer">
     <p><a href="./about.html" style="color: #0066cc; text-decoration: none; font-weight: 600; font-size: 0.9em;">About this site →</a></p>
-    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-08-28 14:42:33 AEST</p>
+    <p class="timestamp" style="margin-bottom: 8px; font-size: 0.9em;">Generated: 2026-08-28 16:29:03 AEST</p>
     <details style="margin:10px 0; text-align:left; display:inline-block;">
       <summary style="cursor:pointer; color:#666; font-size:0.85em; font-weight:600;">📊 Data source status</summary>
       <table style="margin:4px 0 0 0; font-size:0.85em; border-collapse:collapse;">
@@ -5085,9 +4629,9 @@ h2 {
                 <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
-                <td style="text-align:left;padding:2px 8px;">✅ MHL Sydney Buoy (THREDDS)</td>
-                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#2e7d32;">Live API</td>
-                <td style="text-align:right;padding:2px 8px;color:#666;">30-min avg at 2026-08-26T14:00 AEST</td>
+                <td style="text-align:left;padding:2px 8px;">⏳ MHL Sydney Buoy (THREDDS)</td>
+                <td style="text-align:center;padding:2px 8px;font-weight:bold;color:#f57c00;">Cache</td>
+                <td style="text-align:right;padding:2px 8px;color:#666;">Within TTL</td>
             </tr>
 <tr>
                 <td style="text-align:left;padding:2px 8px;">✅ MHL Sydney Buoy (THREDDS 30-min avg)</td>
@@ -5177,21 +4721,10 @@ h2 {
       if (btn) btn.classList.add('active');
       document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
       document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = ''; });
-      document.querySelectorAll('.region-map-container').forEach(function(el) { el.style.display = 'none'; });
       closeBeachModal();
       try { localStorage.setItem('surfcheckDay', 'outlook'); } catch(e) {}
     }
-    function showMap() {
-      document.querySelectorAll('.day-btn').forEach(function(el) { el.classList.remove('active'); });
-      var btn = document.querySelector('.day-btn.map-btn');
-      if (btn) btn.classList.add('active');
-      document.querySelectorAll('.daily-overview').forEach(function(el) { el.style.display = 'none'; });
-      document.querySelectorAll('.outlook-content').forEach(function(el) { el.style.display = 'none'; });
-      document.querySelectorAll('.region-map-container').forEach(function(el) { el.style.display = 'block'; });
-      closeBeachModal();
-      if (typeof initMap === 'function') initMap();
-      try { localStorage.setItem('surfcheckDay', 'map'); } catch(e) {}
-    }
+
 
     /* ── HTML escape helper ────────────────────────── */
     function escapeHtml(str) {
@@ -5310,8 +4843,6 @@ h2 {
       var savedDay = (function(){ try { return localStorage.getItem('surfcheckDay'); } catch(e){ return null; } })();
       if (savedDay === 'outlook') {
         showOutlook();
-      } else if (savedDay === 'map') {
-        showMap();
       } else if (savedDay === 'tomorrow') {
         showDay('tomorrow');
       } else if (savedDay === 'ubermorgan') {
