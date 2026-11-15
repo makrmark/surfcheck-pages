@@ -1276,3 +1276,29 @@ h2 {
     line-height: 1.5;
 }
 
+/* ── Stale data banner ────────────────────────────── */
+.stale-banner {
+    background: #fff3cd;
+    border: 1px solid #f0c020;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85em;
+    line-height: 1.4;
+}
+.stale-banner-icon {
+    font-size: 1.3em;
+}
+.stale-banner-text {
+    flex: 1;
+    color: #856404;
+}
+.stale-banner-detail {
+    color: #6c5b01;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
